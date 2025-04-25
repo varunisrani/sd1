@@ -1,0 +1,9 @@
+openai-agents
+streamlit
+pydantic
+python-dotenv
+pandas
+numpy
+matplotlib
+networkx
+geopy 

@@ -1,0 +1,521 @@
+{
+  "location_plan": {
+    "locations": [
+      {
+        "id": "1",
+        "name": "Deserted Highway",
+        "address": "Unknown",
+        "latitude": null,
+        "longitude": null,
+        "scenes": [
+          "1"
+        ],
+        "requirements": [
+          "Night shooting",
+          "Full moon"
+        ],
+        "setup_time_minutes": 90,
+        "wrap_time_minutes": 60
+      },
+      {
+        "id": "2",
+        "name": "Radio Tent",
+        "address": "Unknown",
+        "latitude": null,
+        "longitude": null,
+        "scenes": [
+          "2",
+          "4",
+          "9"
+        ],
+        "requirements": [
+          "Continuous to dawn transition"
+        ],
+        "setup_time_minutes": 45,
+        "wrap_time_minutes": 30
+      },
+      {
+        "id": "3",
+        "name": "Rocky Outcrop",
+        "address": "Unknown",
+        "latitude": null,
+        "longitude": null,
+        "scenes": [
+          "3"
+        ],
+        "requirements": [
+          "Night shooting"
+        ],
+        "setup_time_minutes": 60,
+        "wrap_time_minutes": 45
+      },
+      {
+        "id": "4",
+        "name": "Sheriff's Office",
+        "address": "Unknown",
+        "latitude": null,
+        "longitude": null,
+        "scenes": [
+          "5"
+        ],
+        "requirements": [
+          "Night shooting"
+        ],
+        "setup_time_minutes": 30,
+        "wrap_time_minutes": 15
+      },
+      {
+        "id": "5",
+        "name": "Desolation Road",
+        "address": "Unknown",
+        "latitude": null,
+        "longitude": null,
+        "scenes": [
+          "6"
+        ],
+        "requirements": [
+          "Late night shooting"
+        ],
+        "setup_time_minutes": 60,
+        "wrap_time_minutes": 45
+      },
+      {
+        "id": "6",
+        "name": "Sheriff\u2019s SUV",
+        "address": "Moving",
+        "latitude": null,
+        "longitude": null,
+        "scenes": [
+          "7"
+        ],
+        "requirements": [
+          "Moving vehicle"
+        ],
+        "setup_time_minutes": 15,
+        "wrap_time_minutes": 10
+      },
+      {
+        "id": "7",
+        "name": "Crash Site",
+        "address": "Unknown",
+        "latitude": null,
+        "longitude": null,
+        "scenes": [
+          "8"
+        ],
+        "requirements": [
+          "Night shooting"
+        ],
+        "setup_time_minutes": 60,
+        "wrap_time_minutes": 50
+      }
+    ],
+    "location_groups": [
+      {
+        "group_id": "G1",
+        "locations": [
+          "1",
+          "5",
+          "7"
+        ],
+        "reason": "Proximity and night shooting requirement"
+      },
+      {
+        "group_id": "G2",
+        "locations": [
+          "2",
+          "4"
+        ],
+        "reason": "Continuous to night transition in scenes"
+      }
+    ],
+    "shooting_sequence": [
+      "2",
+      "4",
+      "6",
+      "1",
+      "5",
+      "7",
+      "3"
+    ],
+    "optimization_notes": [
+      "Grouped locations by proximity to reduce travel time",
+      "Arranged scenes considering time of day needs for night and dawn shots",
+      "Included continuous scenes at Radio Tent for efficiency"
+    ]
+  },
+  "crew_allocation": {
+    "crew_assignments": [
+      {
+        "crew_member": "Director",
+        "role": "Director",
+        "assigned_scenes": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "work_hours": 12,
+        "turnaround_hours": 10,
+        "meal_break_interval": 6,
+        "equipment_assigned": [
+          "Tablet",
+          "Headset"
+        ]
+      },
+      {
+        "crew_member": "DP",
+        "role": "Director of Photography",
+        "assigned_scenes": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "work_hours": 12,
+        "turnaround_hours": 10,
+        "meal_break_interval": 6,
+        "equipment_assigned": [
+          "Camera",
+          "Lenses"
+        ]
+      },
+      {
+        "crew_member": "Sound Mixer",
+        "role": "Sound",
+        "assigned_scenes": [
+          "2",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "work_hours": 10,
+        "turnaround_hours": 10,
+        "meal_break_interval": 5,
+        "equipment_assigned": [
+          "Sound Recorder",
+          "Microphones"
+        ]
+      },
+      {
+        "crew_member": "Gaffer",
+        "role": "Lighting",
+        "assigned_scenes": [
+          "1",
+          "3",
+          "6"
+        ],
+        "work_hours": 8,
+        "turnaround_hours": 10,
+        "meal_break_interval": 4,
+        "equipment_assigned": [
+          "Lights",
+          "Generators"
+        ]
+      },
+      {
+        "crew_member": "Key Grip",
+        "role": "Grip",
+        "assigned_scenes": [
+          "3",
+          "6",
+          "8"
+        ],
+        "work_hours": 8,
+        "turnaround_hours": 10,
+        "meal_break_interval": 4,
+        "equipment_assigned": [
+          "Stands",
+          "Rigs"
+        ]
+      }
+    ],
+    "equipment_assignments": [
+      {
+        "equipment_id": "Camera",
+        "type": "Digital",
+        "assigned_scenes": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "setup_time_minutes": 20,
+        "assigned_crew": [
+          "DP",
+          "Key Grip"
+        ]
+      },
+      {
+        "equipment_id": "Sound Recorder",
+        "type": "Mixer",
+        "assigned_scenes": [
+          "2",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "setup_time_minutes": 15,
+        "assigned_crew": [
+          "Sound Mixer"
+        ]
+      },
+      {
+        "equipment_id": "Lights",
+        "type": "LED",
+        "assigned_scenes": [
+          "1",
+          "3",
+          "6"
+        ],
+        "setup_time_minutes": 30,
+        "assigned_crew": [
+          "Gaffer"
+        ]
+      },
+      {
+        "equipment_id": "Generators",
+        "type": "Portable Power",
+        "assigned_scenes": [
+          "1",
+          "3",
+          "6"
+        ],
+        "setup_time_minutes": 25,
+        "assigned_crew": [
+          "Gaffer"
+        ]
+      },
+      {
+        "equipment_id": "Stands",
+        "type": "Support",
+        "assigned_scenes": [
+          "3",
+          "6",
+          "8"
+        ],
+        "setup_time_minutes": 10,
+        "assigned_crew": [
+          "Key Grip"
+        ]
+      }
+    ],
+    "department_schedules": {
+      "camera": {
+        "crew": [
+          "DP",
+          "Key Grip"
+        ],
+        "equipment": [
+          "Camera",
+          "Stands"
+        ],
+        "notes": [
+          "Ensure extra lenses are available",
+          "Check battery levels regularly"
+        ]
+      },
+      "sound": {
+        "crew": [
+          "Sound Mixer"
+        ],
+        "equipment": [
+          "Sound Recorder",
+          "Microphones"
+        ],
+        "notes": [
+          "Test audio levels before each scene",
+          "Sync with camera"
+        ]
+      }
+    },
+    "allocation_notes": [
+      "Coordinate equipment setup wisely to minimize downtime",
+      "Ensure compliance with union rules for work hours and breaks",
+      "Optimize transitions between scenes for faster shooting"
+    ]
+  },
+  "schedule": {
+    "schedule": [
+      {
+        "date": "2025-04-24",
+        "day_number": 1,
+        "scenes": [
+          {
+            "scene_id": "2",
+            "location": "Radio Tent",
+            "start_time": "07:00",
+            "end_time": "09:00",
+            "setup_time": "06:00",
+            "wrap_time": "09:30",
+            "crew_calls": [
+              {
+                "crew_member": "Director",
+                "call_time": "06:00"
+              },
+              {
+                "crew_member": "DP",
+                "call_time": "06:00"
+              },
+              {
+                "crew_member": "Sound Mixer",
+                "call_time": "06:30"
+              }
+            ],
+            "equipment_requirements": [
+              "Camera",
+              "Sound Recorder"
+            ],
+            "notes": [
+              "Test audio levels before each take",
+              "Ensure continuous lighting setup"
+            ]
+          },
+          {
+            "scene_id": "4",
+            "location": "Radio Tent",
+            "start_time": "09:30",
+            "end_time": "11:00",
+            "setup_time": "09:00",
+            "wrap_time": "11:15",
+            "crew_calls": [
+              {
+                "crew_member": "Director",
+                "call_time": "09:00"
+              },
+              {
+                "crew_member": "DP",
+                "call_time": "09:00"
+              },
+              {
+                "crew_member": "Sound Mixer",
+                "call_time": "09:30"
+              }
+            ],
+            "equipment_requirements": [
+              "Camera",
+              "Sound Recorder"
+            ],
+            "notes": [
+              "Allow for natural dawn light transition"
+            ]
+          }
+        ],
+        "day_start": "06:00",
+        "day_wrap": "11:15",
+        "total_pages": 4,
+        "company_moves": 0,
+        "notes": [
+          "Starting the day at Radio Tent for efficiency",
+          "Consider sunrise light dynamics"
+        ]
+      },
+      {
+        "date": "2025-04-25",
+        "day_number": 2,
+        "scenes": [
+          {
+            "scene_id": "6",
+            "location": "Desolation Road",
+            "start_time": "18:00",
+            "end_time": "19:30",
+            "setup_time": "17:00",
+            "wrap_time": "20:00",
+            "crew_calls": [
+              {
+                "crew_member": "Director",
+                "call_time": "17:00"
+              },
+              {
+                "crew_member": "DP",
+                "call_time": "17:00"
+              },
+              {
+                "crew_member": "Sound Mixer",
+                "call_time": "18:00"
+              }
+            ],
+            "equipment_requirements": [
+              "Camera",
+              "Sound Recorder"
+            ],
+            "notes": [
+              "Ensure vehicle movement shots are stabilized",
+              "Check flashlight props"
+            ]
+          },
+          {
+            "scene_id": "1",
+            "location": "Deserted Highway",
+            "start_time": "20:00",
+            "end_time": "22:30",
+            "setup_time": "18:30",
+            "wrap_time": "23:00",
+            "crew_calls": [
+              {
+                "crew_member": "Director",
+                "call_time": "18:30"
+              },
+              {
+                "crew_member": "DP",
+                "call_time": "18:30"
+              },
+              {
+                "crew_member": "Gaffer",
+                "call_time": "19:00"
+              }
+            ],
+            "equipment_requirements": [
+              "Camera",
+              "Lights"
+            ],
+            "notes": [
+              "Full moon required for natural lighting",
+              "Additional generators for lighting"
+            ]
+          }
+        ],
+        "day_start": "17:00",
+        "day_wrap": "23:00",
+        "total_pages": 5,
+        "company_moves": 1,
+        "notes": [
+          "Night scenes prioritized for coordination",
+          "Weather check required for night shooting"
+        ]
+      }
+    ],
+    "total_days": 2,
+    "schedule_notes": [
+      "Balanced day with night scenes for coherent story flow",
+      "Maintained equipment allocations for each scene"
+    ],
+    "efficiency_metrics": {
+      "company_moves_per_day": 0.5,
+      "average_pages_per_day": 4.5,
+      "location_optimization_score": 85
+    }
+  },
+  "timestamp": "2025-04-24T21:59:51.251980"
+}

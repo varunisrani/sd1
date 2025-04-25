@@ -1,0 +1,940 @@
+{
+  "parsed_data": {
+    "scenes": [
+      {
+        "scene_number": "1",
+        "location": {
+          "type": "EXT",
+          "place": "DESERTED HIGHWAY"
+        },
+        "time": "NIGHT",
+        "description": "A full moon illuminates an empty two-lane road with a RADIO TENT glowing under floodlights at the asphalt's edge.",
+        "dialogues": [],
+        "transitions": [
+          "FADE IN"
+        ]
+      },
+      {
+        "scene_number": "2",
+        "location": {
+          "type": "EXT",
+          "place": "TENT\u2019S ENTRANCE"
+        },
+        "time": "NIGHT",
+        "description": "The tent\u2019s entrance flap gently flaps in a chill breeze.",
+        "dialogues": [],
+        "transitions": []
+      },
+      {
+        "scene_number": "3",
+        "location": {
+          "type": "INT",
+          "place": "RADIO TENT"
+        },
+        "time": "CONTINUOUS",
+        "description": "Rows of vintage radio gear hum. ELA, in rugged field gear, sits behind a console with headphones on. A single lantern casts shadows.",
+        "dialogues": [
+          {
+            "character": "ELA",
+            "line": "Command, do you copy? Over.",
+            "parenthetical": "(into mic)"
+          },
+          {
+            "character": "MARCUS (V.O.)",
+            "line": "\u2026help\u2026engine failure\u2026coordinates\u2026 Desolation Road\u2026",
+            "parenthetical": "(faint, urgent)"
+          },
+          {
+            "character": "ELA",
+            "line": "Got it. Stay calm. I\u2019ll send help.",
+            "parenthetical": "(softly)"
+          }
+        ],
+        "transitions": [
+          "CUT TO"
+        ]
+      },
+      {
+        "scene_number": "4",
+        "location": {
+          "type": "EXT",
+          "place": "ROCKY OUTCROP"
+        },
+        "time": "EARLIER THAT NIGHT",
+        "description": "A battered PERSONAL SPACECRAFT lies buried in sand and rock. Sparks flicker from the torn hull. MARCUS struggles to clear debris.",
+        "dialogues": [
+          {
+            "character": "MARCUS",
+            "line": "Computer, status report.",
+            "parenthetical": "(groans)"
+          }
+        ],
+        "transitions": [
+          "CUT BACK TO"
+        ]
+      },
+      {
+        "scene_number": "5",
+        "location": {
+          "type": "INT",
+          "place": "COCKPIT"
+        },
+        "time": "CONTINUOUS",
+        "description": "Red warning lights blink. Marcus manually reboots communications by bridging a circuit.",
+        "dialogues": [
+          {
+            "character": "AI VOICE (O.S.)",
+            "line": "Life support at twenty-three percent. Engine integrity critical. Radio beacon offline.",
+            "parenthetical": ""
+          },
+          {
+            "character": "MARCUS",
+            "line": "Then manually reboot comms. Now.",
+            "parenthetical": "(breathless)"
+          },
+          {
+            "character": "AI VOICE (O.S.)",
+            "line": "Reestablishing signal.",
+            "parenthetical": ""
+          }
+        ],
+        "transitions": [
+          "CUT BACK TO"
+        ]
+      },
+      {
+        "scene_number": "6",
+        "location": {
+          "type": "INT",
+          "place": "RADIO TENT"
+        },
+        "time": "NIGHT",
+        "description": "Ela listens intently and receives Marcus's coordinates. She contacts Sheriff Miller.",
+        "dialogues": [
+          {
+            "character": "MARCUS (V.O.)",
+            "line": "Coordinates are 36.114, \u2013115.172. Hurry. Over.",
+            "parenthetical": ""
+          },
+          {
+            "character": "ELA",
+            "line": "Sheriff Miller! You awake?",
+            "parenthetical": ""
+          }
+        ],
+        "transitions": []
+      },
+      {
+        "scene_number": "7",
+        "location": {
+          "type": "INT",
+          "place": "SHERIFF\u2019S OFFICE"
+        },
+        "time": "NIGHT",
+        "description": "Sheriff Miller wakes up, responding to Ela's call about the downed pilot.",
+        "dialogues": [
+          {
+            "character": "SHERIFF MILLER",
+            "line": "Ela? What is it now?",
+            "parenthetical": "(into radio)"
+          },
+          {
+            "character": "ELA (V.O.)",
+            "line": "We\u2019ve got a downed pilot, 10 klicks east. Bad shape. Need search party now.",
+            "parenthetical": ""
+          },
+          {
+            "character": "SHERIFF MILLER",
+            "line": "Copy that. I\u2019m on my way.",
+            "parenthetical": ""
+          }
+        ],
+        "transitions": [
+          "DISSOLVE TO"
+        ]
+      },
+      {
+        "scene_number": "8",
+        "location": {
+          "type": "EXT",
+          "place": "DESOLATION ROAD"
+        },
+        "time": "LATE NIGHT",
+        "description": "A sheriff's SUV travels down a dirt road, headlights cutting through the darkness.",
+        "dialogues": [],
+        "transitions": []
+      },
+      {
+        "scene_number": "9",
+        "location": {
+          "type": "INT",
+          "place": "SHERIFF\u2019S SUV"
+        },
+        "time": "MOVING",
+        "description": "Sheriff Miller checks the map against Marcus's coordinates.",
+        "dialogues": [
+          {
+            "character": "SHERIFF MILLER",
+            "line": "36.114, \u2013115.172\u2026 gotta be close.",
+            "parenthetical": "(muttering to himself)"
+          }
+        ],
+        "transitions": []
+      },
+      {
+        "scene_number": "10",
+        "location": {
+          "type": "EXT",
+          "place": "CRASH SITE"
+        },
+        "time": "MOMENTS LATER",
+        "description": "The sheriff arrives at the crash. Marcus acknowledges his arrival; Ela follows with a first-aid kit.",
+        "dialogues": [
+          {
+            "character": "MARCUS",
+            "line": "You\u2026 you made it.",
+            "parenthetical": "(weak, coughing)"
+          },
+          {
+            "character": "SHERIFF MILLER",
+            "line": "Stay still. Medics are en route.",
+            "parenthetical": ""
+          },
+          {
+            "character": "MARCUS",
+            "line": "Thank you\u2026 Ela.",
+            "parenthetical": ""
+          },
+          {
+            "character": "ELA",
+            "line": "We\u2019ll get you out of here.",
+            "parenthetical": ""
+          }
+        ],
+        "transitions": [
+          "CUT TO"
+        ]
+      },
+      {
+        "scene_number": "11",
+        "location": {
+          "type": "INT",
+          "place": "RADIO TENT"
+        },
+        "time": "DAWN",
+        "description": "Sunrise filters in. Ela sits alone, looking at a photo of Marcus. Sheriff Miller joins her with coffee.",
+        "dialogues": [
+          {
+            "character": "SHERIFF MILLER",
+            "line": "He made it through the night.",
+            "parenthetical": ""
+          },
+          {
+            "character": "ELA",
+            "line": "Thanks to you all.",
+            "parenthetical": ""
+          },
+          {
+            "character": "AI VOICE",
+            "line": "Power levels nominal. Ready for extraction?",
+            "parenthetical": "(calm, hopeful)"
+          },
+          {
+            "character": "ELA",
+            "line": "Affirmative. Let\u2019s bring him home.",
+            "parenthetical": "(into mic, excited)"
+          }
+        ],
+        "transitions": [
+          "FADE OUT"
+        ]
+      }
+    ],
+    "formatted_text": "\n================================================================================\n\nSCENE 1\nEXT. DESERTED HIGHWAY - NIGHT\n--------------------------------------------------------------------------------\n\nDescription:\nA full moon illuminates an empty two-lane road with a RADIO TENT glowing under floodlights at the asphalt's edge.\n\n\nTransitions: FADE IN\n\n================================================================================\n\nSCENE 2\nEXT. TENT\u2019S ENTRANCE - NIGHT\n--------------------------------------------------------------------------------\n\nDescription:\nThe tent\u2019s entrance flap gently flaps in a chill breeze.\n\n\n================================================================================\n\nSCENE 3\nINT. RADIO TENT - CONTINUOUS\n--------------------------------------------------------------------------------\n\nDescription:\nRows of vintage radio gear hum. ELA, in rugged field gear, sits behind a console with headphones on. A single lantern casts shadows.\n\n\nDialogue:\nELA (into mic)\n    \"Command, do you copy? Over.\"\n\nMARCUS (V.O.) (faint, urgent)\n    \"\u2026help\u2026engine failure\u2026coordinates\u2026 Desolation Road\u2026\"\n\nELA (softly)\n    \"Got it. Stay calm. I\u2019ll send help.\"\n\n\nTransitions: CUT TO\n\n================================================================================\n\nSCENE 4\nEXT. ROCKY OUTCROP - EARLIER THAT NIGHT\n--------------------------------------------------------------------------------\n\nDescription:\nA battered PERSONAL SPACECRAFT lies buried in sand and rock. Sparks flicker from the torn hull. MARCUS struggles to clear debris.\n\n\nDialogue:\nMARCUS (groans)\n    \"Computer, status report.\"\n\n\nTransitions: CUT BACK TO\n\n================================================================================\n\nSCENE 5\nINT. COCKPIT - CONTINUOUS\n--------------------------------------------------------------------------------\n\nDescription:\nRed warning lights blink. Marcus manually reboots communications by bridging a circuit.\n\n\nDialogue:\nAI VOICE (O.S.)\n    \"Life support at twenty-three percent. Engine integrity critical. Radio beacon offline.\"\n\nMARCUS (breathless)\n    \"Then manually reboot comms. Now.\"\n\nAI VOICE (O.S.)\n    \"Reestablishing signal.\"\n\n\nTransitions: CUT BACK TO\n\n================================================================================\n\nSCENE 6\nINT. RADIO TENT - NIGHT\n--------------------------------------------------------------------------------\n\nDescription:\nEla listens intently and receives Marcus's coordinates. She contacts Sheriff Miller.\n\n\nDialogue:\nMARCUS (V.O.)\n    \"Coordinates are 36.114, \u2013115.172. Hurry. Over.\"\n\nELA\n    \"Sheriff Miller! You awake?\"\n\n\n================================================================================\n\nSCENE 7\nINT. SHERIFF\u2019S OFFICE - NIGHT\n--------------------------------------------------------------------------------\n\nDescription:\nSheriff Miller wakes up, responding to Ela's call about the downed pilot.\n\n\nDialogue:\nSHERIFF MILLER (into radio)\n    \"Ela? What is it now?\"\n\nELA (V.O.)\n    \"We\u2019ve got a downed pilot, 10 klicks east. Bad shape. Need search party now.\"\n\nSHERIFF MILLER\n    \"Copy that. I\u2019m on my way.\"\n\n\nTransitions: DISSOLVE TO\n\n================================================================================\n\nSCENE 8\nEXT. DESOLATION ROAD - LATE NIGHT\n--------------------------------------------------------------------------------\n\nDescription:\nA sheriff's SUV travels down a dirt road, headlights cutting through the darkness.\n\n\n================================================================================\n\nSCENE 9\nINT. SHERIFF\u2019S SUV - MOVING\n--------------------------------------------------------------------------------\n\nDescription:\nSheriff Miller checks the map against Marcus's coordinates.\n\n\nDialogue:\nSHERIFF MILLER (muttering to himself)\n    \"36.114, \u2013115.172\u2026 gotta be close.\"\n\n\n================================================================================\n\nSCENE 10\nEXT. CRASH SITE - MOMENTS LATER\n--------------------------------------------------------------------------------\n\nDescription:\nThe sheriff arrives at the crash. Marcus acknowledges his arrival; Ela follows with a first-aid kit.\n\n\nDialogue:\nMARCUS (weak, coughing)\n    \"You\u2026 you made it.\"\n\nSHERIFF MILLER\n    \"Stay still. Medics are en route.\"\n\nMARCUS\n    \"Thank you\u2026 Ela.\"\n\nELA\n    \"We\u2019ll get you out of here.\"\n\n\nTransitions: CUT TO\n\n================================================================================\n\nSCENE 11\nINT. RADIO TENT - DAWN\n--------------------------------------------------------------------------------\n\nDescription:\nSunrise filters in. Ela sits alone, looking at a photo of Marcus. Sheriff Miller joins her with coffee.\n\n\nDialogue:\nSHERIFF MILLER\n    \"He made it through the night.\"\n\nELA\n    \"Thanks to you all.\"\n\nAI VOICE (calm, hopeful)\n    \"Power levels nominal. Ready for extraction?\"\n\nELA (into mic, excited)\n    \"Affirmative. Let\u2019s bring him home.\"\n\n\nTransitions: FADE OUT"
+  },
+  "metadata": {
+    "timestamp": "2023-10-03 12:00:00",
+    "scene_metadata": [
+      {
+        "scene_number": "1",
+        "mood": "Tense, eerie with solitude",
+        "lighting": {
+          "type": "natural/artificial",
+          "requirements": [
+            "Full moon illumination",
+            "Floodlights"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Night",
+          "duration": "2 minutes"
+        },
+        "weather": {
+          "conditions": [
+            "Clear night"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "RADIO TENT"
+          ],
+          "hand_props": [],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Wide shot of highway"
+          ],
+          "sound": [
+            "Ambient night sounds"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "2",
+        "mood": "Calm, yet slightly ominous",
+        "lighting": {
+          "type": "natural",
+          "requirements": [
+            "Moonlight"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Night",
+          "duration": "1 minute"
+        },
+        "weather": {
+          "conditions": [
+            "Chill breeze"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "Tent entrance"
+          ],
+          "hand_props": [],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Close-up of flapping tent"
+          ],
+          "sound": [
+            "Breezy wind"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "3",
+        "mood": "Intense, focused",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "Lantern casting shadows"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Night, continuous",
+          "duration": "3 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "Vintage radio gear"
+          ],
+          "hand_props": [
+            "Headphones"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Close-up of Ela"
+          ],
+          "sound": [
+            "Radio static, dialogues"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "4",
+        "mood": "Desperate, urgent",
+        "lighting": {
+          "type": "natural/artificial",
+          "requirements": [
+            "Moonlight",
+            "Sparks"
+          ],
+          "special_effects": [
+            "Sparks from hull"
+          ]
+        },
+        "time_details": {
+          "time_of_day": "Earlier that night",
+          "duration": "2 minutes"
+        },
+        "weather": {
+          "conditions": [
+            "Windy"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "PERSONAL SPACECRAFT"
+          ],
+          "hand_props": [],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Wide shot, close-up of Marcus"
+          ],
+          "sound": [
+            "Sparks crackling"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "5",
+        "mood": "Tense, dire",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "Red warning lights"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Night, continuous",
+          "duration": "1 minute"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "Cockpit console"
+          ],
+          "hand_props": [
+            "Circuit tools"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Close-up on controls"
+          ],
+          "sound": [
+            "Warning alarms"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "6",
+        "mood": "Urgent, decisive",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "Lantern light"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Night",
+          "duration": "2 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "Vintage radio gear"
+          ],
+          "hand_props": [],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Close-up of Ela"
+          ],
+          "sound": [
+            "Radio communication"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "7",
+        "mood": "Alert, responsive",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "Interior office lights"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Night",
+          "duration": "1 minute"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "Sheriff's office interior"
+          ],
+          "hand_props": [
+            "Radio equipment"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Close-up of Sheriff"
+          ],
+          "sound": [
+            "Radio dialogues"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "8",
+        "mood": "Determined, moving",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "SUV headlights"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Late night",
+          "duration": "1 minute"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "Dirt road"
+          ],
+          "hand_props": [],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Tracking shot of SUV"
+          ],
+          "sound": [
+            "Engine noise"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "9",
+        "mood": "Focused, anticipatory",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "Interior car lights"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Moving",
+          "duration": "1 minute"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "Sheriff's SUV interior"
+          ],
+          "hand_props": [
+            "Map"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Close-up of map"
+          ],
+          "sound": [
+            "Muttering"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "10",
+        "mood": "Relief, urgency",
+        "lighting": {
+          "type": "natural/artificial",
+          "requirements": [
+            "Headlights",
+            "Lantern glow"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Moments later",
+          "duration": "2 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "Crash site"
+          ],
+          "hand_props": [
+            "First-aid kit"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Wide shot of crash site"
+          ],
+          "sound": [
+            "Dialogues"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "11",
+        "mood": "Reflective, hopeful",
+        "lighting": {
+          "type": "natural",
+          "requirements": [
+            "Sunrise"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Dawn",
+          "duration": "3 minutes"
+        },
+        "weather": {
+          "conditions": [
+            "Clear"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "Radio tent, Photo of Marcus"
+          ],
+          "hand_props": [
+            "Coffee cup"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Close-up of photo"
+          ],
+          "sound": [
+            "Soft background music"
+          ],
+          "special_equipment": []
+        }
+      }
+    ],
+    "global_requirements": {
+      "equipment": [
+        "Floodlights",
+        "Lanterns",
+        "Headlights"
+      ],
+      "props": [
+        "RADIO TENT",
+        "Vintage radio gear",
+        "Personal spacecraft",
+        "Map",
+        "First-aid kit"
+      ],
+      "special_effects": [
+        "Sparks"
+      ]
+    },
+    "formatted_text": "Analysis Timestamp: 2023-10-03 12:00:00\n\n\n================================================================================\nSCENE 1 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Tense, eerie with solitude\n\nLighting:\n  Type: natural/artificial\n  Requirements: Full moon illumination, Floodlights\n  Special Effects: \n\nTime Details:\n  Time of Day: Night\n  Duration: 2 minutes\n\nWeather:\n  Conditions: Clear night\n  Effects Needed: \n\nProps:\n  Set Dressing: RADIO TENT\n  Hand Props: \n  Special Items: \n\nTechnical Requirements:\n  Camera: Wide shot of highway\n  Sound: Ambient night sounds\n  Special Equipment: \n\n\n================================================================================\nSCENE 2 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Calm, yet slightly ominous\n\nLighting:\n  Type: natural\n  Requirements: Moonlight\n  Special Effects: \n\nTime Details:\n  Time of Day: Night\n  Duration: 1 minute\n\nWeather:\n  Conditions: Chill breeze\n  Effects Needed: \n\nProps:\n  Set Dressing: Tent entrance\n  Hand Props: \n  Special Items: \n\nTechnical Requirements:\n  Camera: Close-up of flapping tent\n  Sound: Breezy wind\n  Special Equipment: \n\n\n================================================================================\nSCENE 3 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Intense, focused\n\nLighting:\n  Type: artificial\n  Requirements: Lantern casting shadows\n  Special Effects: \n\nTime Details:\n  Time of Day: Night, continuous\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: Vintage radio gear\n  Hand Props: Headphones\n  Special Items: \n\nTechnical Requirements:\n  Camera: Close-up of Ela\n  Sound: Radio static, dialogues\n  Special Equipment: \n\n\n================================================================================\nSCENE 4 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Desperate, urgent\n\nLighting:\n  Type: natural/artificial\n  Requirements: Moonlight, Sparks\n  Special Effects: Sparks from hull\n\nTime Details:\n  Time of Day: Earlier that night\n  Duration: 2 minutes\n\nWeather:\n  Conditions: Windy\n  Effects Needed: \n\nProps:\n  Set Dressing: PERSONAL SPACECRAFT\n  Hand Props: \n  Special Items: \n\nTechnical Requirements:\n  Camera: Wide shot, close-up of Marcus\n  Sound: Sparks crackling\n  Special Equipment: \n\n\n================================================================================\nSCENE 5 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Tense, dire\n\nLighting:\n  Type: artificial\n  Requirements: Red warning lights\n  Special Effects: \n\nTime Details:\n  Time of Day: Night, continuous\n  Duration: 1 minute\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: Cockpit console\n  Hand Props: Circuit tools\n  Special Items: \n\nTechnical Requirements:\n  Camera: Close-up on controls\n  Sound: Warning alarms\n  Special Equipment: \n\n\n================================================================================\nSCENE 6 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Urgent, decisive\n\nLighting:\n  Type: artificial\n  Requirements: Lantern light\n  Special Effects: \n\nTime Details:\n  Time of Day: Night\n  Duration: 2 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: Vintage radio gear\n  Hand Props: \n  Special Items: \n\nTechnical Requirements:\n  Camera: Close-up of Ela\n  Sound: Radio communication\n  Special Equipment: \n\n\n================================================================================\nSCENE 7 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Alert, responsive\n\nLighting:\n  Type: artificial\n  Requirements: Interior office lights\n  Special Effects: \n\nTime Details:\n  Time of Day: Night\n  Duration: 1 minute\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: Sheriff's office interior\n  Hand Props: Radio equipment\n  Special Items: \n\nTechnical Requirements:\n  Camera: Close-up of Sheriff\n  Sound: Radio dialogues\n  Special Equipment: \n\n\n================================================================================\nSCENE 8 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Determined, moving\n\nLighting:\n  Type: artificial\n  Requirements: SUV headlights\n  Special Effects: \n\nTime Details:\n  Time of Day: Late night\n  Duration: 1 minute\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: Dirt road\n  Hand Props: \n  Special Items: \n\nTechnical Requirements:\n  Camera: Tracking shot of SUV\n  Sound: Engine noise\n  Special Equipment: \n\n\n================================================================================\nSCENE 9 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Focused, anticipatory\n\nLighting:\n  Type: artificial\n  Requirements: Interior car lights\n  Special Effects: \n\nTime Details:\n  Time of Day: Moving\n  Duration: 1 minute\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: Sheriff's SUV interior\n  Hand Props: Map\n  Special Items: \n\nTechnical Requirements:\n  Camera: Close-up of map\n  Sound: Muttering\n  Special Equipment: \n\n\n================================================================================\nSCENE 10 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Relief, urgency\n\nLighting:\n  Type: natural/artificial\n  Requirements: Headlights, Lantern glow\n  Special Effects: \n\nTime Details:\n  Time of Day: Moments later\n  Duration: 2 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: Crash site\n  Hand Props: First-aid kit\n  Special Items: \n\nTechnical Requirements:\n  Camera: Wide shot of crash site\n  Sound: Dialogues\n  Special Equipment: \n\n\n================================================================================\nSCENE 11 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Reflective, hopeful\n\nLighting:\n  Type: natural\n  Requirements: Sunrise\n  Special Effects: \n\nTime Details:\n  Time of Day: Dawn\n  Duration: 3 minutes\n\nWeather:\n  Conditions: Clear\n  Effects Needed: \n\nProps:\n  Set Dressing: Radio tent, Photo of Marcus\n  Hand Props: Coffee cup\n  Special Items: \n\nTechnical Requirements:\n  Camera: Close-up of photo\n  Sound: Soft background music\n  Special Equipment: \n\n\n================================================================================\nGLOBAL REQUIREMENTS\n--------------------------------------------------------------------------------\n\nEquipment: Floodlights, Lanterns, Headlights\nProps: RADIO TENT, Vintage radio gear, Personal spacecraft, Map, First-aid kit\nSpecial Effects: Sparks"
+  },
+  "validation": {
+    "is_valid": true,
+    "validation_report": {
+      "is_valid": true,
+      "issues": [],
+      "scene_validations": [
+        {
+          "scene_number": "1",
+          "checks": [
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene is correctly numbered as 1."
+            },
+            {
+              "check_name": "Continuity",
+              "status": "pass",
+              "details": "Introduction sequence starts as expected."
+            },
+            {
+              "check_name": "Field Completeness",
+              "status": "pass",
+              "details": "All required fields are present and complete."
+            }
+          ]
+        },
+        {
+          "scene_number": "2",
+          "checks": [
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene is correctly numbered as 2."
+            },
+            {
+              "check_name": "Continuity",
+              "status": "pass",
+              "details": "Logical progression from Scene 1."
+            },
+            {
+              "check_name": "Field Completeness",
+              "status": "pass",
+              "details": "All required fields are present and complete."
+            }
+          ]
+        },
+        {
+          "scene_number": "3",
+          "checks": [
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene is correctly numbered as 3."
+            },
+            {
+              "check_name": "Continuity",
+              "status": "pass",
+              "details": "Switch to interior scene logically continuous."
+            },
+            {
+              "check_name": "Field Completeness",
+              "status": "pass",
+              "details": "All required fields are present and complete."
+            }
+          ]
+        },
+        {
+          "scene_number": "4",
+          "checks": [
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene is correctly numbered as 4."
+            },
+            {
+              "check_name": "Continuity",
+              "status": "pass",
+              "details": "Backstory to Marcus's condition fits continuity."
+            },
+            {
+              "check_name": "Field Completeness",
+              "status": "pass",
+              "details": "All required fields are present and complete."
+            }
+          ]
+        },
+        {
+          "scene_number": "5",
+          "checks": [
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene is correctly numbered as 5."
+            },
+            {
+              "check_name": "Continuity",
+              "status": "pass",
+              "details": "Scene follows logically from Scene 4."
+            },
+            {
+              "check_name": "Field Completeness",
+              "status": "pass",
+              "details": "All required fields are present and complete."
+            }
+          ]
+        },
+        {
+          "scene_number": "6",
+          "checks": [
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene is correctly numbered as 6."
+            },
+            {
+              "check_name": "Continuity",
+              "status": "pass",
+              "details": "Return to Ela\u2019s actions after Marcus's communication."
+            },
+            {
+              "check_name": "Field Completeness",
+              "status": "pass",
+              "details": "All required fields are present and complete."
+            }
+          ]
+        },
+        {
+          "scene_number": "7",
+          "checks": [
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene is correctly numbered as 7."
+            },
+            {
+              "check_name": "Continuity",
+              "status": "pass",
+              "details": "Sheriff's response follows the alert from Scene 6."
+            },
+            {
+              "check_name": "Field Completeness",
+              "status": "pass",
+              "details": "All required fields are present and complete."
+            }
+          ]
+        },
+        {
+          "scene_number": "8",
+          "checks": [
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene is correctly numbered as 8."
+            },
+            {
+              "check_name": "Continuity",
+              "status": "pass",
+              "details": "Transition to sheriff\u2019s departure."
+            },
+            {
+              "check_name": "Field Completeness",
+              "status": "pass",
+              "details": "All required fields are present and complete."
+            }
+          ]
+        },
+        {
+          "scene_number": "9",
+          "checks": [
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene is correctly numbered as 9."
+            },
+            {
+              "check_name": "Continuity",
+              "status": "pass",
+              "details": "Sheriff in transit with full attention."
+            },
+            {
+              "check_name": "Field Completeness",
+              "status": "pass",
+              "details": "All required fields are present and complete."
+            }
+          ]
+        },
+        {
+          "scene_number": "10",
+          "checks": [
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene is correctly numbered as 10."
+            },
+            {
+              "check_name": "Continuity",
+              "status": "pass",
+              "details": "Logical culmination of urgency established in earlier scenes."
+            },
+            {
+              "check_name": "Field Completeness",
+              "status": "pass",
+              "details": "All required fields are present and complete."
+            }
+          ]
+        },
+        {
+          "scene_number": "11",
+          "checks": [
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene is correctly numbered as 11."
+            },
+            {
+              "check_name": "Continuity",
+              "status": "pass",
+              "details": "Resolution and emotional follow-up appropriate."
+            },
+            {
+              "check_name": "Field Completeness",
+              "status": "pass",
+              "details": "All required fields are present and complete."
+            }
+          ]
+        }
+      ],
+      "metadata_validation": {
+        "smpte_compliance": true,
+        "missing_fields": [],
+        "warnings": []
+      },
+      "summary": {
+        "total_scenes": 11,
+        "valid_scenes": 11,
+        "scenes_with_issues": 0,
+        "total_issues": 0
+      },
+      "formatted_text": "\n================================================================================\nVALIDATION REPORT - PASSED\n--------------------------------------------------------------------------------\n\nNo issues found.\n\n\n================================================================================\nSCENE VALIDATIONS\n--------------------------------------------------------------------------------\n\n\nSCENE 1:\n  \u2713 Scene Numbering: Scene is correctly numbered as 1.\n  \u2713 Continuity: Introduction sequence starts as expected.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 2:\n  \u2713 Scene Numbering: Scene is correctly numbered as 2.\n  \u2713 Continuity: Logical progression from Scene 1.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 3:\n  \u2713 Scene Numbering: Scene is correctly numbered as 3.\n  \u2713 Continuity: Switch to interior scene logically continuous.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 4:\n  \u2713 Scene Numbering: Scene is correctly numbered as 4.\n  \u2713 Continuity: Backstory to Marcus's condition fits continuity.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 5:\n  \u2713 Scene Numbering: Scene is correctly numbered as 5.\n  \u2713 Continuity: Scene follows logically from Scene 4.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 6:\n  \u2713 Scene Numbering: Scene is correctly numbered as 6.\n  \u2713 Continuity: Return to Ela\u2019s actions after Marcus's communication.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 7:\n  \u2713 Scene Numbering: Scene is correctly numbered as 7.\n  \u2713 Continuity: Sheriff's response follows the alert from Scene 6.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 8:\n  \u2713 Scene Numbering: Scene is correctly numbered as 8.\n  \u2713 Continuity: Transition to sheriff\u2019s departure.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 9:\n  \u2713 Scene Numbering: Scene is correctly numbered as 9.\n  \u2713 Continuity: Sheriff in transit with full attention.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 10:\n  \u2713 Scene Numbering: Scene is correctly numbered as 10.\n  \u2713 Continuity: Logical culmination of urgency established in earlier scenes.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 11:\n  \u2713 Scene Numbering: Scene is correctly numbered as 11.\n  \u2713 Continuity: Resolution and emotional follow-up appropriate.\n  \u2713 Field Completeness: All required fields are present and complete.\n\n================================================================================\nMETADATA VALIDATION\n--------------------------------------------------------------------------------\n\nSMPTE Compliance: Yes\n\n================================================================================\nVALIDATION SUMMARY\n--------------------------------------------------------------------------------\nTotal Scenes: 11\nValid Scenes: 11\nScenes with Issues: 0\nTotal Issues: 0"
+    },
+    "formatted_text": "\n================================================================================\nVALIDATION REPORT - PASSED\n--------------------------------------------------------------------------------\n\nNo issues found.\n\n\n================================================================================\nSCENE VALIDATIONS\n--------------------------------------------------------------------------------\n\n\nSCENE 1:\n  \u2713 Scene Numbering: Scene is correctly numbered as 1.\n  \u2713 Continuity: Introduction sequence starts as expected.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 2:\n  \u2713 Scene Numbering: Scene is correctly numbered as 2.\n  \u2713 Continuity: Logical progression from Scene 1.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 3:\n  \u2713 Scene Numbering: Scene is correctly numbered as 3.\n  \u2713 Continuity: Switch to interior scene logically continuous.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 4:\n  \u2713 Scene Numbering: Scene is correctly numbered as 4.\n  \u2713 Continuity: Backstory to Marcus's condition fits continuity.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 5:\n  \u2713 Scene Numbering: Scene is correctly numbered as 5.\n  \u2713 Continuity: Scene follows logically from Scene 4.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 6:\n  \u2713 Scene Numbering: Scene is correctly numbered as 6.\n  \u2713 Continuity: Return to Ela\u2019s actions after Marcus's communication.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 7:\n  \u2713 Scene Numbering: Scene is correctly numbered as 7.\n  \u2713 Continuity: Sheriff's response follows the alert from Scene 6.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 8:\n  \u2713 Scene Numbering: Scene is correctly numbered as 8.\n  \u2713 Continuity: Transition to sheriff\u2019s departure.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 9:\n  \u2713 Scene Numbering: Scene is correctly numbered as 9.\n  \u2713 Continuity: Sheriff in transit with full attention.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 10:\n  \u2713 Scene Numbering: Scene is correctly numbered as 10.\n  \u2713 Continuity: Logical culmination of urgency established in earlier scenes.\n  \u2713 Field Completeness: All required fields are present and complete.\n\nSCENE 11:\n  \u2713 Scene Numbering: Scene is correctly numbered as 11.\n  \u2713 Continuity: Resolution and emotional follow-up appropriate.\n  \u2713 Field Completeness: All required fields are present and complete.\n\n================================================================================\nMETADATA VALIDATION\n--------------------------------------------------------------------------------\n\nSMPTE Compliance: Yes\n\n================================================================================\nVALIDATION SUMMARY\n--------------------------------------------------------------------------------\nTotal Scenes: 11\nValid Scenes: 11\nScenes with Issues: 0\nTotal Issues: 0"
+  },
+  "processing_log": {
+    "steps_completed": [
+      "parsing",
+      "metadata",
+      "validation"
+    ],
+    "scenes_processed": 11,
+    "status": "success"
+  },
+  "saved_path": "data/scripts/script_2023-10-03 12:00:00.json"
+}

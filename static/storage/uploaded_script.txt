@@ -1,0 +1,235 @@
+**THE SIGNAL**  
+A short sci‑fi drama  
+
+
+---
+
+
+**FADE IN:**  
+
+
+**EXT. DESERTED HIGHWAY – NIGHT**  
+A full moon hangs low over an empty two‑lane road stretching into black hills. A solitary RADIO TENT (canvas, weathered) glows under floodlights at the edge of the asphalt.  
+
+
+**ANGLE ON** the tent’s entrance flap, gently flapping in a chill breeze.  
+
+
+**INT. RADIO TENT – CONTINUOUS**  
+Rows of vintage radio gear hum. Cables snake across the floor. ELA (28, determined, in rugged field‑gear) sits behind a console of dials and meters, headphones on. A single lantern casts sharp shadows.  
+
+
+> **SOUND:** Radio static crackles.  
+
+
+ELA  
+*(into mic)*  
+Command, do you copy? Over.  
+
+
+She twists a knob. The static intensifies, then briefly clears.  
+
+
+MARCUS (V.O.)  
+*(faint, urgent)*  
+…help…engine failure…coordinates… Desolation Road…  
+
+
+Ela’s eyes snap open. She scribbles the coordinates on a notepad.  
+
+
+ELA  
+*(softly)*  
+Got it. Stay calm. I’ll send help.  
+
+
+She flips a switch. A tone bleeps.  
+
+
+**CUT TO:**  
+
+
+**EXT. CRASH SITE – FLASHBACK**  
+
+
+**EXT. ROCKY OUTCROP – EARLIER THAT NIGHT**  
+A battered PERSONAL SPACECRAFT lies half‑buried in sand and rock. Sparks flicker from the torn hull. Inside, MARCUS (35, veteran pilot, weary) struggles to clear debris.  
+
+
+MARCUS  
+*(groans)*  
+Computer, status report.  
+
+
+**INT. COCKPIT – CONTINUOUS**  
+Red warning lights blink on the console.  
+
+
+AI VOICE (O.S.)  
+Life support at twenty‑three percent. Engine integrity critical. Radio beacon offline.  
+
+
+MARCUS  
+*(breathless)*  
+Then manually reboot comms. Now.  
+
+
+He rips out a panel, exposes wires. Sparks fly. He clamps two leads together.  
+
+
+**EXTREME CLOSE‑UP** on his hand bridging the circuit.  
+
+
+**SFX:** A surge of electricity.  
+
+
+**INT. COCKPIT – CONTINUOUS**  
+The panels flicker back to life.  
+
+
+AI VOICE (O.S.)  
+Reestablishing signal.  
+
+
+**CUT BACK TO:**  
+
+
+**INT. RADIO TENT – NIGHT**  
+Ela leans forward, listening.  
+
+
+MARCUS (V.O.)  
+Coordinates are 36.114, –115.172. Hurry. Over.  
+
+
+Ela punches the numbers into her GPS device.  
+
+
+ELA  
+Sheriff Miller! You awake?  
+
+
+She lifts a handheld radio.  
+
+
+**INT. SHERIFF’S OFFICE (WHEREVER) – NIGHT**  
+SHERIFF MILLER (50s, grizzled but caring) jolts upright in bed, the radio’s buzzer piercing the calm.  
+
+
+SHERIFF MILLER  
+*(into radio)*  
+Ela? What is it now?  
+
+
+ELA (V.O.)  
+We’ve got a downed pilot, 10 klicks east. Bad shape. Need search party now.  
+
+
+SHERIFF MILLER  
+Copy that. I’m on my way.  
+
+
+He grabs his jacket and keys.  
+
+
+**DISSOLVE TO:**  
+
+
+**EXT. DESOLATION ROAD – LATE NIGHT**  
+Headlights carve two beams through darkness. A sheriff’s SUV rattles along a dirt spur.  
+
+
+**INT. SHERIFF’S SUV – MOVING**  
+Sheriff Miller consults a map on his dashboard.  
+
+
+SHERIFF MILLER  
+*(muttering to himself)*  
+36.114, –115.172… gotta be close.  
+
+
+He stops, grabs a spotlight, and hops out.  
+
+
+**EXT. CRASH SITE – MOMENTS LATER**  
+The SUV’s spotlight swings across the wreck. Sheriff Miller rushes to the cockpit.  
+
+
+MARCUS  
+*(weak, coughing)*  
+You… you made it.  
+
+
+Sheriff Miller peers in as Marcus tries to sit up.  
+
+
+SHERIFF MILLER  
+Stay still. Medics are en route.  
+
+
+Marcus’s breathing is ragged. He spots Ela running in with a first‑aid kit.  
+
+
+MARCUS  
+Thank you… Ela.  
+
+
+ELA  
+We’ll get you out of here.  
+
+
+**She kneels beside him, applying a bandage.**  
+
+
+**ANGLE ON** the spacecraft’s hull where a small PANEL flickers – a final piece of AI hardware glows.  
+
+
+**CUT TO:**  
+
+
+**INT. RADIO TENT – DAWN**  
+Sunrise bleeds through the tent flap. Ela sits alone, headphones off, staring at the empty seat beside her. The radio console is silent.  
+
+
+She picks up a PHOTO pinned to the board: Marcus standing proudly next to his ship before the flight.  
+
+
+Sheriff Miller’s footsteps approach. He slips inside and sets down a steaming mug of coffee.  
+
+
+SHERIFF MILLER  
+He made it through the night.  
+
+
+Ela offers a small, relieved smile.  
+
+
+ELA  
+Thanks to you all.  
+
+
+They share a quiet moment.  
+
+
+**OVER THE RADIO**: a single soft BLEEP. Ela hesitates, then lifts the receiver.  
+
+
+**AI VOICE (calm, hopeful)**  
+Power levels nominal. Ready for extraction?  
+
+
+Ela’s eyes light up.  A
+
+
+ELA  
+*(into mic, excited)*  
+Affirmative. Let’s bring him home.  
+
+
+**FADE OUT.**  
+
+
+---
+
+
+**END**

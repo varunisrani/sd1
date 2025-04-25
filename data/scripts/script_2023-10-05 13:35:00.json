@@ -1,0 +1,809 @@
+{
+  "parsed_data": {
+    "scenes": [
+      {
+        "scene_number": "1",
+        "location": {
+          "type": "EXT",
+          "place": "DESERTED HIGHWAY"
+        },
+        "time": "NIGHT",
+        "description": "A full moon hangs low over an empty two-lane road stretching into black hills. A solitary RADIO TENT glows under floodlights at the edge of the asphalt.",
+        "dialogues": [],
+        "transitions": [
+          "FADE IN"
+        ]
+      },
+      {
+        "scene_number": "2",
+        "location": {
+          "type": "INT",
+          "place": "RADIO TENT"
+        },
+        "time": "CONTINUOUS",
+        "description": "Rows of vintage radio gear hum. ELA sits behind a console of dials and meters, headphones on.",
+        "dialogues": [
+          {
+            "character": "ELA",
+            "line": "Command, do you copy? Over.",
+            "parenthetical": "(into mic)"
+          },
+          {
+            "character": "MARCUS (V.O.)",
+            "line": "\u2026help\u2026engine failure\u2026coordinates\u2026 Desolation Road\u2026",
+            "parenthetical": "(faint, urgent)"
+          },
+          {
+            "character": "ELA",
+            "line": "Got it. Stay calm. I\u2019ll send help.",
+            "parenthetical": "(softly)"
+          }
+        ],
+        "transitions": [
+          "CUT TO"
+        ]
+      },
+      {
+        "scene_number": "3",
+        "location": {
+          "type": "EXT",
+          "place": "CRASH SITE"
+        },
+        "time": "FLASHBACK",
+        "description": "A battered PERSONAL SPACECRAFT lies half-buried in sand and rock. Sparks flicker from the torn hull.",
+        "dialogues": [
+          {
+            "character": "MARCUS",
+            "line": "Computer, status report.",
+            "parenthetical": "(groans)"
+          }
+        ],
+        "transitions": []
+      },
+      {
+        "scene_number": "4",
+        "location": {
+          "type": "INT",
+          "place": "COCKPIT"
+        },
+        "time": "CONTINUOUS",
+        "description": "Red warning lights blink on the console.",
+        "dialogues": [
+          {
+            "character": "AI VOICE (O.S.)",
+            "line": "Life support at twenty-three percent. Engine integrity critical. Radio beacon offline.",
+            "parenthetical": ""
+          },
+          {
+            "character": "MARCUS",
+            "line": "Then manually reboot comms. Now.",
+            "parenthetical": "(breathless)"
+          }
+        ],
+        "transitions": [
+          "CUT BACK TO"
+        ]
+      },
+      {
+        "scene_number": "5",
+        "location": {
+          "type": "INT",
+          "place": "RADIO TENT"
+        },
+        "time": "NIGHT",
+        "description": "Ela leans forward, listening.",
+        "dialogues": [
+          {
+            "character": "MARCUS (V.O.)",
+            "line": "Coordinates are 36.114, \u2013115.172. Hurry. Over.",
+            "parenthetical": ""
+          },
+          {
+            "character": "ELA",
+            "line": "Sheriff Miller! You awake?",
+            "parenthetical": ""
+          }
+        ],
+        "transitions": []
+      },
+      {
+        "scene_number": "6",
+        "location": {
+          "type": "INT",
+          "place": "SHERIFF\u2019S OFFICE"
+        },
+        "time": "NIGHT",
+        "description": "SHERIFF MILLER jolts upright in bed.",
+        "dialogues": [
+          {
+            "character": "SHERIFF MILLER",
+            "line": "Ela? What is it now?",
+            "parenthetical": "(into radio)"
+          },
+          {
+            "character": "ELA (V.O.)",
+            "line": "We\u2019ve got a downed pilot, 10 klicks east. Bad shape. Need search party now.",
+            "parenthetical": ""
+          },
+          {
+            "character": "SHERIFF MILLER",
+            "line": "Copy that. I\u2019m on my way.",
+            "parenthetical": ""
+          }
+        ],
+        "transitions": [
+          "DISSOLVE TO"
+        ]
+      },
+      {
+        "scene_number": "7",
+        "location": {
+          "type": "EXT",
+          "place": "DESOLATION ROAD"
+        },
+        "time": "LATE NIGHT",
+        "description": "Headlights carve two beams through darkness. A sheriff\u2019s SUV rattles along a dirt spur.",
+        "dialogues": [
+          {
+            "character": "SHERIFF MILLER",
+            "line": "36.114, \u2013115.172\u2026 gotta be close.",
+            "parenthetical": "(muttering to himself)"
+          }
+        ],
+        "transitions": []
+      },
+      {
+        "scene_number": "8",
+        "location": {
+          "type": "EXT",
+          "place": "CRASH SITE"
+        },
+        "time": "MOMENTS LATER",
+        "description": "The SUV\u2019s spotlight swings across the wreck. Sheriff Miller rushes to the cockpit.",
+        "dialogues": [
+          {
+            "character": "MARCUS",
+            "line": "You\u2026 you made it.",
+            "parenthetical": "(weak, coughing)"
+          },
+          {
+            "character": "SHERIFF MILLER",
+            "line": "Stay still. Medics are en route.",
+            "parenthetical": ""
+          },
+          {
+            "character": "MARCUS",
+            "line": "Thank you\u2026 Ela.",
+            "parenthetical": ""
+          },
+          {
+            "character": "ELA",
+            "line": "We\u2019ll get you out of here.",
+            "parenthetical": ""
+          }
+        ],
+        "transitions": [
+          "CUT TO"
+        ]
+      },
+      {
+        "scene_number": "9",
+        "location": {
+          "type": "INT",
+          "place": "RADIO TENT"
+        },
+        "time": "DAWN",
+        "description": "Sunrise bleeds through the tent flap. Ela sits alone, staring at the empty seat beside her.",
+        "dialogues": [
+          {
+            "character": "SHERIFF MILLER",
+            "line": "He made it through the night.",
+            "parenthetical": ""
+          },
+          {
+            "character": "ELA",
+            "line": "Thanks to you all.",
+            "parenthetical": ""
+          },
+          {
+            "character": "AI VOICE",
+            "line": "Power levels nominal. Ready for extraction?",
+            "parenthetical": "(calm, hopeful)"
+          },
+          {
+            "character": "ELA",
+            "line": "Affirmative. Let\u2019s bring him home.",
+            "parenthetical": "(into mic, excited)"
+          }
+        ],
+        "transitions": [
+          "FADE OUT"
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "timestamp": "2023-10-05 13:35:00",
+    "scene_metadata": [
+      {
+        "scene_number": "1",
+        "mood": "Mysterious and eerie, with a sense of isolation.",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "floodlights illuminating the radio tent"
+          ],
+          "special_effects": [
+            "moonlight casting shadows"
+          ]
+        },
+        "time_details": {
+          "time_of_day": "night",
+          "duration": "2 minutes"
+        },
+        "weather": {
+          "conditions": [
+            "clear"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "radio tent",
+            "floodlights"
+          ],
+          "hand_props": [],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "wide shots of the highway and tent"
+          ],
+          "sound": [
+            "ambient wind sounds"
+          ],
+          "special_equipment": [
+            "cranes for overhead shots"
+          ]
+        }
+      },
+      {
+        "scene_number": "2",
+        "mood": "Tense, with a sense of urgency.",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "soft lighting to highlight radio equipment"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "continuous",
+          "duration": "3 minutes"
+        },
+        "weather": {
+          "conditions": [
+            "indoors"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "vintage radio gear",
+            "headphones"
+          ],
+          "hand_props": [
+            "microphone"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "close-ups on Ela"
+          ],
+          "sound": [
+            "radio static"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "3",
+        "mood": "Desolate and grim.",
+        "lighting": {
+          "type": "natural/artificial",
+          "requirements": [
+            "sparks from spacecraft"
+          ],
+          "special_effects": [
+            "smoke and sparks"
+          ]
+        },
+        "time_details": {
+          "time_of_day": "flashback",
+          "duration": "1 minute"
+        },
+        "weather": {
+          "conditions": [
+            "barren"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "battered spacecraft"
+          ],
+          "hand_props": [],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "medium shots"
+          ],
+          "sound": [
+            "metal creaking"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "4",
+        "mood": "Urgent and tense.",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "red warning lights"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "continuous",
+          "duration": "1 minute"
+        },
+        "weather": {
+          "conditions": [
+            "indoors"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "cockpit console"
+          ],
+          "hand_props": [],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "close-ups on warning lights"
+          ],
+          "sound": [
+            "alarm sounds"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "5",
+        "mood": "Anxious anticipation.",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "dim lighting"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "night",
+          "duration": "1 minute"
+        },
+        "weather": {
+          "conditions": [
+            "indoors"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "radio tent"
+          ],
+          "hand_props": [
+            "radio equipment"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "medium shots"
+          ],
+          "sound": [
+            "faint radio communications"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "6",
+        "mood": "Urgency with a hint of sleepiness.",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "bedside lamp lighting"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "night",
+          "duration": "1 minute"
+        },
+        "weather": {
+          "conditions": [
+            "indoors"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "bedroom setup"
+          ],
+          "hand_props": [
+            "handheld radio"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "close-ups on Sheriff Miller"
+          ],
+          "sound": [
+            "radio static"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "7",
+        "mood": "Anticipatory, with a sense of urgency.",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "car headlights"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "late night",
+          "duration": "2 minutes"
+        },
+        "weather": {
+          "conditions": [
+            "clear"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "SUV"
+          ],
+          "hand_props": [
+            "car radio"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "moving shots from car"
+          ],
+          "sound": [
+            "engine noises"
+          ],
+          "special_equipment": [
+            "car mounts"
+          ]
+        }
+      },
+      {
+        "scene_number": "8",
+        "mood": "Desperate yet hopeful.",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "spotlight from SUV"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "moments later",
+          "duration": "3 minutes"
+        },
+        "weather": {
+          "conditions": [
+            "clear"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "wreck site"
+          ],
+          "hand_props": [],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "close-ups and medium shots"
+          ],
+          "sound": [
+            "coughing"
+          ],
+          "special_equipment": []
+        }
+      },
+      {
+        "scene_number": "9",
+        "mood": "Hopeful and reflective.",
+        "lighting": {
+          "type": "natural",
+          "requirements": [
+            "soft morning light"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "dawn",
+          "duration": "2 minutes"
+        },
+        "weather": {
+          "conditions": [
+            "clear"
+          ],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "radio tent"
+          ],
+          "hand_props": [
+            "microphone"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "wide shots, close-ups"
+          ],
+          "sound": [
+            "ambient morning sounds"
+          ],
+          "special_equipment": []
+        }
+      }
+    ],
+    "global_requirements": {
+      "equipment": [
+        "floodlights",
+        "spotlights",
+        "cranes",
+        "car mounts"
+      ],
+      "props": [
+        "vintage radio gear",
+        "microphone",
+        "battered spacecraft",
+        "SUV"
+      ],
+      "special_effects": [
+        "smoke and sparks"
+      ]
+    }
+  },
+  "validation": {
+    "is_valid": true,
+    "validation_report": {
+      "is_valid": true,
+      "issues": [],
+      "scene_validations": [
+        {
+          "scene_number": "1",
+          "checks": [
+            {
+              "check_name": "Scene Continuity",
+              "status": "pass",
+              "details": "Smooth transition to scene 2, setting is established."
+            },
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene numbering is consistent."
+            },
+            {
+              "check_name": "Technical Specification",
+              "status": "pass",
+              "details": "All technical specifications are accurate."
+            }
+          ]
+        },
+        {
+          "scene_number": "2",
+          "checks": [
+            {
+              "check_name": "Scene Continuity",
+              "status": "pass",
+              "details": "Continuous from previous scene with maintained setting."
+            },
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene numbering is consistent."
+            },
+            {
+              "check_name": "Technical Specification",
+              "status": "pass",
+              "details": "All technical specifications are accurate."
+            }
+          ]
+        },
+        {
+          "scene_number": "3",
+          "checks": [
+            {
+              "check_name": "Scene Continuity",
+              "status": "pass",
+              "details": "Flashback is clear and distinct."
+            },
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene numbering is consistent."
+            },
+            {
+              "check_name": "Technical Specification",
+              "status": "pass",
+              "details": "All technical specifications are accurate."
+            }
+          ]
+        },
+        {
+          "scene_number": "4",
+          "checks": [
+            {
+              "check_name": "Scene Continuity",
+              "status": "pass",
+              "details": "Smooth transition expected back to tent."
+            },
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene numbering is consistent."
+            },
+            {
+              "check_name": "Technical Specification",
+              "status": "pass",
+              "details": "All technical specifications are accurate."
+            }
+          ]
+        },
+        {
+          "scene_number": "5",
+          "checks": [
+            {
+              "check_name": "Scene Continuity",
+              "status": "pass",
+              "details": "Continuity with previous tent scenes maintained."
+            },
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene numbering is consistent."
+            },
+            {
+              "check_name": "Technical Specification",
+              "status": "pass",
+              "details": "All technical specifications are accurate."
+            }
+          ]
+        },
+        {
+          "scene_number": "6",
+          "checks": [
+            {
+              "check_name": "Scene Continuity",
+              "status": "pass",
+              "details": "Follows logically from radio communication."
+            },
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene numbering is consistent."
+            },
+            {
+              "check_name": "Technical Specification",
+              "status": "pass",
+              "details": "All technical specifications are accurate."
+            }
+          ]
+        },
+        {
+          "scene_number": "7",
+          "checks": [
+            {
+              "check_name": "Scene Continuity",
+              "status": "pass",
+              "details": "Action follows logically from sheriff's response."
+            },
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene numbering is consistent."
+            },
+            {
+              "check_name": "Technical Specification",
+              "status": "pass",
+              "details": "All technical specifications are accurate."
+            }
+          ]
+        },
+        {
+          "scene_number": "8",
+          "checks": [
+            {
+              "check_name": "Scene Continuity",
+              "status": "pass",
+              "details": "Action and dialogue consistent with previous build-up."
+            },
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene numbering is consistent."
+            },
+            {
+              "check_name": "Technical Specification",
+              "status": "pass",
+              "details": "All technical specifications are accurate."
+            }
+          ]
+        },
+        {
+          "scene_number": "9",
+          "checks": [
+            {
+              "check_name": "Scene Continuity",
+              "status": "pass",
+              "details": "Concludes with resolved emotion and setting."
+            },
+            {
+              "check_name": "Scene Numbering",
+              "status": "pass",
+              "details": "Scene numbering is consistent."
+            },
+            {
+              "check_name": "Technical Specification",
+              "status": "pass",
+              "details": "All technical specifications are accurate."
+            }
+          ]
+        }
+      ],
+      "metadata_validation": {
+        "smpte_compliance": true,
+        "missing_fields": [],
+        "warnings": []
+      },
+      "summary": {
+        "total_scenes": 9,
+        "valid_scenes": 9,
+        "scenes_with_issues": 0,
+        "total_issues": 0
+      }
+    }
+  },
+  "processing_log": {
+    "steps_completed": [
+      "parsing",
+      "metadata",
+      "validation"
+    ],
+    "scenes_processed": 9,
+    "status": "success"
+  }
+}

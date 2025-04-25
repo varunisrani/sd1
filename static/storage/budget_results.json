@@ -1,0 +1,105 @@
+{
+  "location_costs": {
+    "abandoned_airfield": {
+      "daily_rate": 3000.0,
+      "permit_costs": 500.0,
+      "additional_fees": [
+        "clean-up fee"
+      ],
+      "total_days": 4,
+      "total_cost": 12000.0
+    }
+  },
+  "equipment_costs": {
+    "lighting": {
+      "items": [
+        "floodlights",
+        "single lantern"
+      ],
+      "rental_rates": {
+        "floodlights": 150.0,
+        "single lantern": 80.0
+      },
+      "purchase_costs": {
+        "floodlights": 0.0,
+        "single lantern": 0.0
+      },
+      "insurance_costs": 200.0,
+      "total_cost": 789.4736842105264
+    },
+    "vehicles": {
+      "items": [
+        "SUV"
+      ],
+      "rental_rates": {
+        "SUV": 200.0
+      },
+      "purchase_costs": {
+        "SUV": 0.0
+      },
+      "insurance_costs": 100.0,
+      "total_cost": 710.5263157894736
+    }
+  },
+  "personnel_costs": {
+    "director": {
+      "daily_rate": 1000.0,
+      "overtime_rate": 150.0,
+      "total_days": 4,
+      "benefits": 200.0,
+      "total_cost": 4891.2885662431945
+    },
+    "camera_operator": {
+      "daily_rate": 500.0,
+      "overtime_rate": 75.0,
+      "total_days": 4,
+      "benefits": 100.0,
+      "total_cost": 2791.1070780399273
+    },
+    "sound_technician": {
+      "daily_rate": 400.0,
+      "overtime_rate": 60.0,
+      "total_days": 4,
+      "benefits": 80.0,
+      "total_cost": 2332.885662431942
+    },
+    "lighting_technician": {
+      "daily_rate": 450.0,
+      "overtime_rate": 70.0,
+      "total_days": 4,
+      "benefits": 90.0,
+      "total_cost": 2504.7186932849363
+    }
+  },
+  "logistics_costs": {
+    "transportation": {
+      "bus": 100.0
+    },
+    "accommodation": {
+      "hotel_room": 120.0
+    },
+    "catering": {
+      "daily_meal": 50.0
+    },
+    "misc_expenses": [
+      "production office supplies",
+      "sundry expenses"
+    ]
+  },
+  "insurance_costs": {
+    "production": 1500.0
+  },
+  "contingency": {
+    "percentage": 10.0,
+    "amount": 3100.0
+  },
+  "total_estimates": {
+    "total_location_costs": 12000.0,
+    "total_equipment_costs": 1500.0,
+    "total_personnel_costs": 12520.0,
+    "total_logistics_costs": 0,
+    "total_insurance_costs": 0,
+    "contingency_amount": 0,
+    "grand_total": 26020.0
+  }
+}

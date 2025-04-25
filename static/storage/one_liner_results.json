@@ -1,0 +1,515 @@
+{
+  "summaries": {
+    "summaries": [
+      {
+        "scene_number": "1",
+        "summary": "Moonlit highway with mysterious tent creates an atmospheric, isolated setting.",
+        "story_thread": "Rescue Mission",
+        "characters": {}
+      },
+      {
+        "scene_number": "2",
+        "summary": "Tent entrance flaps evoke desolation, setting tone for impending uncertainty.",
+        "story_thread": "Rescue Mission",
+        "characters": {}
+      },
+      {
+        "scene_number": "3",
+        "summary": "Ela receives Marcus\u2019s distress call and promises help, initiating rescue mission.",
+        "story_thread": "Rescue Mission",
+        "characters": {
+          "ELA": {
+            "arc_point": "Takes decisive action to save Marcus.",
+            "emotional_state": "Determined"
+          },
+          "MARCUS": {
+            "arc_point": "Reaches out for help under dire circumstances.",
+            "emotional_state": "Desperate"
+          }
+        }
+      },
+      {
+        "scene_number": "4",
+        "summary": "Marcus struggles amidst spacecraft wreckage, highlighting his vulnerability.",
+        "story_thread": "Marcus\u2019s Survival",
+        "characters": {
+          "MARCUS": {
+            "arc_point": "Confronts dire physical challenges.",
+            "emotional_state": "Strained"
+          }
+        }
+      },
+      {
+        "scene_number": "5",
+        "summary": "Marcus attempts to restore communications, fighting against failing systems.",
+        "story_thread": "Marcus\u2019s Survival",
+        "characters": {
+          "MARCUS": {
+            "arc_point": "Takes immediate action under pressure.",
+            "emotional_state": "Focused"
+          }
+        }
+      },
+      {
+        "scene_number": "6",
+        "summary": "Ela relays Marcus\u2019s coordinates, enlisting the sheriff\u2019s help.",
+        "story_thread": "Rescue Mission",
+        "characters": {
+          "ELA": {
+            "arc_point": "Coordinates search and rescue efforts.",
+            "emotional_state": "Responsibly urgent"
+          }
+        }
+      },
+      {
+        "scene_number": "7",
+        "summary": "Sheriff Miller responds to Ela\u2019s urgent call about the downed pilot.",
+        "story_thread": "Rescue Mission",
+        "characters": {
+          "SHERIFF MILLER": {
+            "arc_point": "Takes leadership in rescue.",
+            "emotional_state": "Alert"
+          }
+        }
+      },
+      {
+        "scene_number": "8",
+        "summary": "Sheriff\u2019s SUV navigates treacherous terrain, heightening suspenseful search efforts.",
+        "story_thread": "Rescue Mission",
+        "characters": {}
+      },
+      {
+        "scene_number": "9",
+        "summary": "Sheriff checks navigation against Marcus\u2019s coordinates, ensuring precise rescue location.",
+        "story_thread": "Rescue Mission",
+        "characters": {
+          "SHERIFF MILLER": {
+            "arc_point": "Displays diligence in nearing crash site.",
+            "emotional_state": "Concentrated"
+          }
+        }
+      },
+      {
+        "scene_number": "10",
+        "summary": "Sheriff and Ela reach Marcus's crash site, providing needed aid.",
+        "story_thread": "Rescue Mission",
+        "characters": {
+          "MARCUS": {
+            "arc_point": "Receives critical assistance.",
+            "emotional_state": "Relieved"
+          },
+          "SHERIFF MILLER": {
+            "arc_point": "Delivers timely rescue.",
+            "emotional_state": "Reassuring"
+          },
+          "ELA": {
+            "arc_point": "Reaches pilot, fulfilling promise.",
+            "emotional_state": "Supportive"
+          }
+        }
+      },
+      {
+        "scene_number": "11",
+        "summary": "Dawn breaks as Ela reflects; hopeful future plans are solidified.",
+        "story_thread": "Rescue Resolution",
+        "characters": {
+          "ELA": {
+            "arc_point": "Contemplates aftermath and reaffirms commitment.",
+            "emotional_state": "Hopeful"
+          },
+          "SHERIFF MILLER": {
+            "arc_point": "Reassures Ela of Marcus\u2019s survival.",
+            "emotional_state": "Encouraging"
+          }
+        }
+      }
+    ],
+    "story_threads": {
+      "Rescue Mission": [
+        "1",
+        "2",
+        "3",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "Marcus\u2019s Survival": [
+        "4",
+        "5"
+      ],
+      "Rescue Resolution": [
+        "11"
+      ]
+    },
+    "character_arcs": {
+      "ELA": [
+        {
+          "scene": "3",
+          "arc_point": "Takes decisive action to save Marcus.",
+          "emotional_state": "Determined"
+        },
+        {
+          "scene": "6",
+          "arc_point": "Coordinates search and rescue efforts.",
+          "emotional_state": "Responsibly urgent"
+        },
+        {
+          "scene": "10",
+          "arc_point": "Reaches pilot, fulfilling promise.",
+          "emotional_state": "Supportive"
+        },
+        {
+          "scene": "11",
+          "arc_point": "Contemplates aftermath and reaffirms commitment.",
+          "emotional_state": "Hopeful"
+        }
+      ],
+      "MARCUS": [
+        {
+          "scene": "3",
+          "arc_point": "Reaches out for help under dire circumstances.",
+          "emotional_state": "Desperate"
+        },
+        {
+          "scene": "4",
+          "arc_point": "Confronts dire physical challenges.",
+          "emotional_state": "Strained"
+        },
+        {
+          "scene": "5",
+          "arc_point": "Takes immediate action under pressure.",
+          "emotional_state": "Focused"
+        },
+        {
+          "scene": "10",
+          "arc_point": "Receives critical assistance.",
+          "emotional_state": "Relieved"
+        }
+      ],
+      "SHERIFF MILLER": [
+        {
+          "scene": "7",
+          "arc_point": "Takes leadership in rescue.",
+          "emotional_state": "Alert"
+        },
+        {
+          "scene": "9",
+          "arc_point": "Displays diligence in nearing crash site.",
+          "emotional_state": "Concentrated"
+        },
+        {
+          "scene": "10",
+          "arc_point": "Delivers timely rescue.",
+          "emotional_state": "Reassuring"
+        },
+        {
+          "scene": "11",
+          "arc_point": "Reassures Ela of Marcus\u2019s survival.",
+          "emotional_state": "Encouraging"
+        }
+      ]
+    },
+    "warnings": [
+      "Scene 1: Summary length (10 words) outside 12-15 word range",
+      "Scene 2: Summary length (10 words) outside 12-15 word range",
+      "Scene 3: Summary length (11 words) outside 12-15 word range",
+      "Scene 4: Summary length (8 words) outside 12-15 word range",
+      "Scene 5: Summary length (9 words) outside 12-15 word range",
+      "Scene 6: Summary length (8 words) outside 12-15 word range",
+      "Scene 7: Summary length (11 words) outside 12-15 word range",
+      "Scene 8: Summary length (9 words) outside 12-15 word range",
+      "Scene 9: Summary length (10 words) outside 12-15 word range",
+      "Scene 10: Summary length (10 words) outside 12-15 word range",
+      "Scene 11: Summary length (10 words) outside 12-15 word range"
+    ]
+  },
+  "tags": {
+    "scene_tags": {
+      "1": [
+        "moonlit",
+        "highway",
+        "mysterious",
+        "tent",
+        "atmospheric",
+        "isolated"
+      ],
+      "2": [
+        "tent",
+        "entrance",
+        "desolation",
+        "tone",
+        "uncertainty"
+      ],
+      "3": [
+        "distress",
+        "call",
+        "rescue",
+        "mission",
+        "ela",
+        "marcus"
+      ],
+      "4": [
+        "marcus",
+        "wreckage",
+        "spacecraft",
+        "vulnerability",
+        "struggle"
+      ],
+      "5": [
+        "communications",
+        "failing",
+        "systems",
+        "marcus",
+        "restore"
+      ],
+      "6": [
+        "coordinates",
+        "sheriff",
+        "help",
+        "ela"
+      ],
+      "7": [
+        "sheriff",
+        "urgent",
+        "call",
+        "downed",
+        "pilot"
+      ],
+      "8": [
+        "sheriff's",
+        "suv",
+        "terrain",
+        "search",
+        "suspense"
+      ],
+      "9": [
+        "navigation",
+        "marcus",
+        "coordinates",
+        "rescue",
+        "sheriff"
+      ],
+      "10": [
+        "crash",
+        "site",
+        "aid",
+        "ela",
+        "marcus",
+        "sheriff"
+      ],
+      "11": [
+        "dawn",
+        "ela",
+        "reflection",
+        "future",
+        "hopeful"
+      ]
+    },
+    "cross_references": {
+      "scene1": [
+        "scene2",
+        "scene3"
+      ],
+      "scene2": [
+        "scene1",
+        "scene3"
+      ],
+      "scene3": [
+        "scene1",
+        "scene6"
+      ],
+      "scene4": [
+        "scene5"
+      ],
+      "scene5": [
+        "scene4"
+      ],
+      "scene6": [
+        "scene3",
+        "scene7"
+      ],
+      "scene7": [
+        "scene6",
+        "scene8"
+      ],
+      "scene8": [
+        "scene7",
+        "scene9"
+      ],
+      "scene9": [
+        "scene8",
+        "scene10"
+      ],
+      "scene10": [
+        "scene9",
+        "scene11"
+      ],
+      "scene11": [
+        "scene10"
+      ]
+    },
+    "story_elements": {
+      "themes": [
+        "isolation",
+        "survival",
+        "rescue",
+        "determination"
+      ],
+      "motifs": [
+        "communication",
+        "action",
+        "leadership"
+      ]
+    },
+    "enhanced_call_sheets": [],
+    "search_index": {
+      "moonlit": [
+        "1"
+      ],
+      "highway": [
+        "1"
+      ],
+      "mysterious": [
+        "1"
+      ],
+      "tent": [
+        "1",
+        "2"
+      ],
+      "atmospheric": [
+        "1"
+      ],
+      "isolated": [
+        "1"
+      ],
+      "entrance": [
+        "2"
+      ],
+      "desolation": [
+        "2"
+      ],
+      "tone": [
+        "2"
+      ],
+      "uncertainty": [
+        "2"
+      ],
+      "distress": [
+        "3"
+      ],
+      "call": [
+        "3",
+        "7"
+      ],
+      "rescue": [
+        "3",
+        "9"
+      ],
+      "mission": [
+        "3"
+      ],
+      "ela": [
+        "3",
+        "6",
+        "10",
+        "11"
+      ],
+      "marcus": [
+        "3",
+        "4",
+        "5",
+        "9",
+        "10"
+      ],
+      "wreckage": [
+        "4"
+      ],
+      "spacecraft": [
+        "4"
+      ],
+      "vulnerability": [
+        "4"
+      ],
+      "struggle": [
+        "4"
+      ],
+      "communications": [
+        "5"
+      ],
+      "failing": [
+        "5"
+      ],
+      "systems": [
+        "5"
+      ],
+      "restore": [
+        "5"
+      ],
+      "coordinates": [
+        "6",
+        "9"
+      ],
+      "sheriff": [
+        "6",
+        "7",
+        "9",
+        "10"
+      ],
+      "help": [
+        "6"
+      ],
+      "urgent": [
+        "7"
+      ],
+      "downed": [
+        "7"
+      ],
+      "pilot": [
+        "7"
+      ],
+      "sheriff's": [
+        "8"
+      ],
+      "suv": [
+        "8"
+      ],
+      "terrain": [
+        "8"
+      ],
+      "search": [
+        "8"
+      ],
+      "suspense": [
+        "8"
+      ],
+      "navigation": [
+        "9"
+      ],
+      "crash": [
+        "10"
+      ],
+      "site": [
+        "10"
+      ],
+      "aid": [
+        "10"
+      ],
+      "dawn": [
+        "11"
+      ],
+      "reflection": [
+        "11"
+      ],
+      "future": [
+        "11"
+      ],
+      "hopeful": [
+        "11"
+      ]
+    }
+  },
+  "timestamp": "2025-04-25T23:29:29.559227",
+  "formatted_text": "Generated on: 2025-04-25T23:29:29.559227\n\nSCENE SUMMARIES\n================================================================================\n\nScene 1:\nMoonlit highway with mysterious tent creates an atmospheric, isolated setting.\n\nScene 2:\nTent entrance flaps evoke desolation, setting tone for impending uncertainty.\n\nScene 3:\nEla receives Marcus\u2019s distress call and promises help, initiating rescue mission.\n\nScene 4:\nMarcus struggles amidst spacecraft wreckage, highlighting his vulnerability.\n\nScene 5:\nMarcus attempts to restore communications, fighting against failing systems.\n\nScene 6:\nEla relays Marcus\u2019s coordinates, enlisting the sheriff\u2019s help.\n\nScene 7:\nSheriff Miller responds to Ela\u2019s urgent call about the downed pilot.\n\nScene 8:\nSheriff\u2019s SUV navigates treacherous terrain, heightening suspenseful search efforts.\n\nScene 9:\nSheriff checks navigation against Marcus\u2019s coordinates, ensuring precise rescue location.\n\nScene 10:\nSheriff and Ela reach Marcus's crash site, providing needed aid.\n\nScene 11:\nDawn breaks as Ela reflects; hopeful future plans are solidified.\n\n\nSTORY THREADS\n================================================================================\n\nRescue Mission:\n  Appears in scenes: 1, 2, 3, 6, 7, 8, 9, 10\n\nMarcus\u2019s Survival:\n  Appears in scenes: 4, 5\n\nRescue Resolution:\n  Appears in scenes: 11\n\n\nCHARACTER ARCS\n================================================================================\n\nELA:\n  Scene 3: Takes decisive action to save Marcus. - Determined\n  Scene 6: Coordinates search and rescue efforts. - Responsibly urgent\n  Scene 10: Reaches pilot, fulfilling promise. - Supportive\n  Scene 11: Contemplates aftermath and reaffirms commitment. - Hopeful\n\nMARCUS:\n  Scene 3: Reaches out for help under dire circumstances. - Desperate\n  Scene 4: Confronts dire physical challenges. - Strained\n  Scene 5: Takes immediate action under pressure. - Focused\n  Scene 10: Receives critical assistance. - Relieved\n\nSHERIFF MILLER:\n  Scene 7: Takes leadership in rescue. - Alert\n  Scene 9: Displays diligence in nearing crash site. - Concentrated\n  Scene 10: Delivers timely rescue. - Reassuring\n  Scene 11: Reassures Ela of Marcus\u2019s survival. - Encouraging\n\n\nSCENE TAGS\n================================================================================\n\nScene 1:\n  moonlit, highway, mysterious, tent, atmospheric, isolated\n\nScene 2:\n  tent, entrance, desolation, tone, uncertainty\n\nScene 3:\n  distress, call, rescue, mission, ela, marcus\n\nScene 4:\n  marcus, wreckage, spacecraft, vulnerability, struggle\n\nScene 5:\n  communications, failing, systems, marcus, restore\n\nScene 6:\n  coordinates, sheriff, help, ela\n\nScene 7:\n  sheriff, urgent, call, downed, pilot\n\nScene 8:\n  sheriff's, suv, terrain, search, suspense\n\nScene 9:\n  navigation, marcus, coordinates, rescue, sheriff\n\nScene 10:\n  crash, site, aid, ela, marcus, sheriff\n\nScene 11:\n  dawn, ela, reflection, future, hopeful\n"
+}
