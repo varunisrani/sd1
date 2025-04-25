@@ -21,7 +21,7 @@ class ImageGeneratorAgent:
     
     def __init__(
         self,
-        model: str = "dall-e-3",
+        model: str = "dall-e-2",
         quality: str = "standard",
         style: str = "natural",
         size: str = "1024x1024",
