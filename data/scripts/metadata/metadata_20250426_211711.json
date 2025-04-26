@@ -1,0 +1,475 @@
+{
+  "metadata": {
+    "timestamp": "2025-04-26 21:16:48",
+    "scene_metadata": [
+      {
+        "scene_number": "1",
+        "mood": "Eerie and solitary",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "floodlights",
+            "natural moonlight"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Night",
+          "duration": "2 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "radio tent"
+          ],
+          "hand_props": [],
+          "special_items": [
+            "floodlights"
+          ]
+        },
+        "technical": {
+          "camera": [
+            "ANGLE ON tent's entrance",
+            "establishing shots"
+          ],
+          "sound": [
+            "radio static"
+          ],
+          "special_equipment": []
+        },
+        "department_notes": {
+          "props": [
+            "radio tent",
+            "floodlights"
+          ],
+          "lighting": [
+            "moonlight",
+            "floodlights"
+          ],
+          "sound": [
+            "radio static"
+          ],
+          "camera": [
+            "ANGLE ON",
+            "establishing shots"
+          ]
+        }
+      },
+      {
+        "scene_number": "2",
+        "mood": "Tense and suspenseful",
+        "lighting": {
+          "type": "dim",
+          "requirements": [
+            "lantern light"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Continuous",
+          "duration": "3 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "radio equipment"
+          ],
+          "hand_props": [
+            "lantern"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "close-ups of Ela"
+          ],
+          "sound": [
+            "radio static"
+          ],
+          "special_equipment": []
+        },
+        "department_notes": {
+          "props": [
+            "radio equipment",
+            "lantern"
+          ],
+          "lighting": [
+            "dim lighting to create shadows"
+          ],
+          "sound": [
+            "radio static"
+          ],
+          "camera": [
+            "close-ups of Ela"
+          ]
+        }
+      },
+      {
+        "scene_number": "3",
+        "mood": "Intense and dramatic",
+        "lighting": {
+          "type": "natural",
+          "requirements": [
+            "sparks for dramatic effect"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Flashback",
+          "duration": "3 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [],
+          "hand_props": [],
+          "special_items": [
+            "spacecraft"
+          ]
+        },
+        "technical": {
+          "camera": [
+            "EXTREME CLOSE-UP"
+          ],
+          "sound": [
+            "SFX: Sparks"
+          ],
+          "special_equipment": []
+        },
+        "department_notes": {
+          "props": [
+            "spacecraft"
+          ],
+          "lighting": [
+            "sparks for dramatic effect"
+          ],
+          "sound": [
+            "SFX: Sparks"
+          ],
+          "camera": [
+            "EXTREME CLOSE-UP"
+          ]
+        }
+      },
+      {
+        "scene_number": "4",
+        "mood": "Focused and determined",
+        "lighting": {
+          "type": "natural",
+          "requirements": [
+            "headlights"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Late Night",
+          "duration": "3 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "map"
+          ],
+          "hand_props": [
+            "SUV"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "shots from inside the SUV"
+          ],
+          "sound": [
+            "engine sounds"
+          ],
+          "special_equipment": []
+        },
+        "department_notes": {
+          "props": [
+            "SUV",
+            "map"
+          ],
+          "lighting": [
+            "headlights"
+          ],
+          "sound": [
+            "engine sounds"
+          ],
+          "camera": [
+            "shots from inside the SUV"
+          ]
+        }
+      },
+      {
+        "scene_number": "5",
+        "mood": "Hopeful and collaborative",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "spotlight"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Moments Later",
+          "duration": "4 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [],
+          "hand_props": [
+            "first-aid kit"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "close-ups of characters"
+          ],
+          "sound": [
+            "breathing"
+          ],
+          "special_equipment": []
+        },
+        "department_notes": {
+          "props": [
+            "first-aid kit"
+          ],
+          "lighting": [
+            "spotlight"
+          ],
+          "sound": [
+            "breathing"
+          ],
+          "camera": [
+            "close-ups of characters"
+          ]
+        }
+      },
+      {
+        "scene_number": "6",
+        "mood": "Reflective and serene",
+        "lighting": {
+          "type": "natural",
+          "requirements": [
+            "soft sunrise lighting"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Dawn",
+          "duration": "3 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [],
+          "hand_props": [
+            "photo of Marcus"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "medium shots of characters"
+          ],
+          "sound": [
+            "soft radio bleep"
+          ],
+          "special_equipment": []
+        },
+        "department_notes": {
+          "props": [
+            "photo of Marcus"
+          ],
+          "lighting": [
+            "soft sunrise lighting"
+          ],
+          "sound": [
+            "soft radio bleep"
+          ],
+          "camera": [
+            "medium shots of characters"
+          ]
+        }
+      }
+    ],
+    "global_requirements": {
+      "equipment": [
+        "floodlights",
+        "lantern"
+      ],
+      "props": [
+        "radio tent",
+        "radio equipment",
+        "spacecraft",
+        "SUV",
+        "first-aid kit"
+      ],
+      "special_effects": [
+        "sparks for dramatic effect",
+        "spotlight effect"
+      ]
+    },
+    "statistics": {
+      "total_scenes": 6,
+      "total_pages": 0.0,
+      "estimated_runtime": "00:18:00",
+      "total_cast": 0,
+      "unique_locations": 1,
+      "scene_statistics": {
+        "average_duration": 3.0,
+        "shortest_scene": 2,
+        "longest_scene": 4,
+        "total_duration": 18
+      }
+    },
+    "color_coding": {
+      "location_colors": {},
+      "time_colors": {
+        "DAY": "#FFD700",
+        "NIGHT": "#191970",
+        "DAWN": "#FFA07A",
+        "DUSK": "#483D8B",
+        "MORNING": "#87CEEB",
+        "EVENING": "#4B0082"
+      },
+      "department_colors": {
+        "PROPS": "#FF4500",
+        "LIGHTING": "#FFD700",
+        "SOUND": "#4169E1",
+        "CAMERA": "#32CD32",
+        "MAKEUP": "#FF69B4",
+        "WARDROBE": "#8A2BE2"
+      }
+    },
+    "formatted_text": "Analysis Timestamp: 2025-04-26 21:16:48\n\nScript Statistics:\nTotal Scenes: 6\nPage Count: 0.0\nEstimated Runtime: 00:18:00\nCast Size: 0\nUnique Locations: 1\n\n\n================================================================================\nSCENE 1 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Eerie and solitary\n\nLighting:\n  Type: artificial\n  Requirements: floodlights, natural moonlight\n  Special Effects: \n\nTime Details:\n  Time of Day: Night\n  Duration: 2 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: radio tent\n  Hand Props: \n  Special Items: floodlights\n\nTechnical Requirements:\n  Camera: ANGLE ON tent's entrance, establishing shots\n  Sound: radio static\n  Special Equipment: \n\n\n================================================================================\nSCENE 2 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Tense and suspenseful\n\nLighting:\n  Type: dim\n  Requirements: lantern light\n  Special Effects: \n\nTime Details:\n  Time of Day: Continuous\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: radio equipment\n  Hand Props: lantern\n  Special Items: \n\nTechnical Requirements:\n  Camera: close-ups of Ela\n  Sound: radio static\n  Special Equipment: \n\n\n================================================================================\nSCENE 3 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Intense and dramatic\n\nLighting:\n  Type: natural\n  Requirements: sparks for dramatic effect\n  Special Effects: \n\nTime Details:\n  Time of Day: Flashback\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: \n  Special Items: spacecraft\n\nTechnical Requirements:\n  Camera: EXTREME CLOSE-UP\n  Sound: SFX: Sparks\n  Special Equipment: \n\n\n================================================================================\nSCENE 4 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Focused and determined\n\nLighting:\n  Type: natural\n  Requirements: headlights\n  Special Effects: \n\nTime Details:\n  Time of Day: Late Night\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: map\n  Hand Props: SUV\n  Special Items: \n\nTechnical Requirements:\n  Camera: shots from inside the SUV\n  Sound: engine sounds\n  Special Equipment: \n\n\n================================================================================\nSCENE 5 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Hopeful and collaborative\n\nLighting:\n  Type: artificial\n  Requirements: spotlight\n  Special Effects: \n\nTime Details:\n  Time of Day: Moments Later\n  Duration: 4 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: first-aid kit\n  Special Items: \n\nTechnical Requirements:\n  Camera: close-ups of characters\n  Sound: breathing\n  Special Equipment: \n\n\n================================================================================\nSCENE 6 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Reflective and serene\n\nLighting:\n  Type: natural\n  Requirements: soft sunrise lighting\n  Special Effects: \n\nTime Details:\n  Time of Day: Dawn\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: photo of Marcus\n  Special Items: \n\nTechnical Requirements:\n  Camera: medium shots of characters\n  Sound: soft radio bleep\n  Special Equipment: \n\n\n================================================================================\nGLOBAL REQUIREMENTS\n--------------------------------------------------------------------------------\n\nEquipment: floodlights, lantern\nProps: radio tent, radio equipment, spacecraft, SUV, first-aid kit\nSpecial Effects: sparks for dramatic effect, spotlight effect"
+  },
+  "ui_metadata": {
+    "color_coding": {
+      "location_colors": {},
+      "time_colors": {
+        "DAY": "#FFD700",
+        "NIGHT": "#191970",
+        "DAWN": "#FFA07A",
+        "DUSK": "#483D8B",
+        "MORNING": "#87CEEB",
+        "EVENING": "#4B0082"
+      },
+      "department_colors": {
+        "PROPS": "#FF4500",
+        "LIGHTING": "#FFD700",
+        "SOUND": "#4169E1",
+        "CAMERA": "#32CD32",
+        "MAKEUP": "#FF69B4",
+        "WARDROBE": "#8A2BE2"
+      }
+    },
+    "scene_complexity": {
+      "1": 2,
+      "2": 2,
+      "3": 2,
+      "4": 1,
+      "5": 1,
+      "6": 1
+    },
+    "timeline_data": {
+      "total_duration": "0:18:00",
+      "scene_breakdown": [
+        {
+          "scene_number": "1",
+          "start_time": "0:00:00",
+          "end_time": "0:02:00",
+          "duration_minutes": 2,
+          "location": "DESERTED HIGHWAY",
+          "characters": [],
+          "technical_complexity": 2,
+          "setup_time": 31
+        },
+        {
+          "scene_number": "2",
+          "start_time": "0:02:00",
+          "end_time": "0:05:00",
+          "duration_minutes": 3,
+          "location": "RADIO TENT",
+          "characters": [
+            "MARCUS (V.O.)",
+            "ELA"
+          ],
+          "technical_complexity": 2,
+          "setup_time": 25
+        },
+        {
+          "scene_number": "3",
+          "start_time": "0:05:00",
+          "end_time": "0:08:00",
+          "duration_minutes": 3,
+          "location": "CRASH SITE",
+          "characters": [
+            "MARCUS",
+            "AI VOICE (O.S.)"
+          ],
+          "technical_complexity": 2,
+          "setup_time": 22
+        },
+        {
+          "scene_number": "4",
+          "start_time": "0:08:00",
+          "end_time": "0:11:00",
+          "duration_minutes": 3,
+          "location": "DESOLATION ROAD",
+          "characters": [
+            "SHERIFF MILLER"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 20
+        },
+        {
+          "scene_number": "5",
+          "start_time": "0:11:00",
+          "end_time": "0:15:00",
+          "duration_minutes": 4,
+          "location": "CRASH SITE",
+          "characters": [
+            "MARCUS",
+            "SHERIFF MILLER",
+            "ELA"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 17
+        },
+        {
+          "scene_number": "6",
+          "start_time": "0:15:00",
+          "end_time": "0:18:00",
+          "duration_minutes": 3,
+          "location": "RADIO TENT",
+          "characters": [
+            "SHERIFF MILLER",
+            "ELA"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 17
+        }
+      ],
+      "average_scene_duration": 3.0
+    },
+    "department_views": {}
+  }
+}

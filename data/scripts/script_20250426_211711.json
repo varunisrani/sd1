@@ -1,0 +1,420 @@
+{
+  "parsed_data": {
+    "scenes": [
+      {
+        "scene_number": "1",
+        "location": {
+          "type": "EXT",
+          "place": "DESERTED HIGHWAY"
+        },
+        "time": "NIGHT",
+        "description": "A full moon hangs over an empty highway, with a solitary radio tent glowing under floodlights.",
+        "duration": "2",
+        "main_characters": [
+          "ELA"
+        ],
+        "technical_cues": [
+          "ANGLE ON tent\u2019s entrance",
+          "SOUND: Radio static"
+        ],
+        "department_notes": {
+          "props": [
+            "radio tent",
+            "floodlights"
+          ],
+          "lighting": [
+            "moonlight",
+            "floodlights"
+          ],
+          "sound": [
+            "radio static"
+          ],
+          "camera": [
+            "ANGLE ON",
+            "establishing shots"
+          ]
+        },
+        "dialogues": [],
+        "transitions": [
+          "CUT TO"
+        ]
+      },
+      {
+        "scene_number": "2",
+        "location": {
+          "type": "INT",
+          "place": "RADIO TENT"
+        },
+        "time": "CONTINUOUS",
+        "description": "Ela listens to radio static, noting down coordinates.",
+        "duration": "3",
+        "main_characters": [
+          "ELA",
+          "MARCUS (V.O.)"
+        ],
+        "technical_cues": [
+          "SOUND: Radio static",
+          "low light from lantern"
+        ],
+        "department_notes": {
+          "props": [
+            "radio equipment",
+            "lantern"
+          ],
+          "lighting": [
+            "dim lighting to create shadows"
+          ],
+          "sound": [
+            "radio static"
+          ],
+          "camera": [
+            "close-ups of Ela"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "ELA",
+            "line": "Command, do you copy? Over.",
+            "parenthetical": "(into mic)"
+          },
+          {
+            "character": "MARCUS (V.O.)",
+            "line": "\u2026help\u2026engine failure\u2026coordinates\u2026 Desolation Road\u2026",
+            "parenthetical": "(faint, urgent)"
+          },
+          {
+            "character": "ELA",
+            "line": "Got it. Stay calm. I\u2019ll send help.",
+            "parenthetical": "(softly)"
+          }
+        ],
+        "transitions": [
+          "CUT TO"
+        ]
+      },
+      {
+        "scene_number": "3",
+        "location": {
+          "type": "EXT",
+          "place": "CRASH SITE"
+        },
+        "time": "FLASHBACK",
+        "description": "A damaged spacecraft lies in the sand. Marcus is struggling inside.",
+        "duration": "3",
+        "main_characters": [
+          "MARCUS"
+        ],
+        "technical_cues": [
+          "SFX: Sparks",
+          "EXTREME CLOSE-UP"
+        ],
+        "department_notes": {
+          "props": [
+            "spacecraft"
+          ],
+          "lighting": [
+            "sparks for dramatic effect"
+          ],
+          "sound": [
+            "SFX: Sparks"
+          ],
+          "camera": [
+            "EXTREME CLOSE-UP"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "MARCUS",
+            "line": "Computer, status report.",
+            "parenthetical": "(groans)"
+          },
+          {
+            "character": "AI VOICE (O.S.)",
+            "line": "Life support at twenty-three percent. Engine integrity critical. Radio beacon offline."
+          },
+          {
+            "character": "MARCUS",
+            "line": "Then manually reboot comms. Now.",
+            "parenthetical": "(breathless)"
+          }
+        ],
+        "transitions": [
+          "CUT BACK TO"
+        ]
+      },
+      {
+        "scene_number": "4",
+        "location": {
+          "type": "EXT",
+          "place": "DESOLATION ROAD"
+        },
+        "time": "LATE NIGHT",
+        "description": "Sheriff Miller navigates to the crash site.",
+        "duration": "3",
+        "main_characters": [
+          "SHERIFF MILLER"
+        ],
+        "technical_cues": [
+          "moving vehicle shots"
+        ],
+        "department_notes": {
+          "props": [
+            "SUV",
+            "map"
+          ],
+          "lighting": [
+            "headlights"
+          ],
+          "sound": [
+            "engine sounds"
+          ],
+          "camera": [
+            "shots from inside the SUV"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "SHERIFF MILLER",
+            "line": "36.114, \u2013115.172\u2026 gotta be close.",
+            "parenthetical": "(muttering to himself)"
+          }
+        ],
+        "transitions": [
+          "DISSOLVE TO"
+        ]
+      },
+      {
+        "scene_number": "5",
+        "location": {
+          "type": "EXT",
+          "place": "CRASH SITE"
+        },
+        "time": "MOMENTS LATER",
+        "description": "Sheriff Miller arrives and helps Marcus. Ela joins them.",
+        "duration": "4",
+        "main_characters": [
+          "SHERIFF MILLER",
+          "MARCUS",
+          "ELA"
+        ],
+        "technical_cues": [
+          "spotlight effect"
+        ],
+        "department_notes": {
+          "props": [
+            "first-aid kit"
+          ],
+          "lighting": [
+            "spotlight"
+          ],
+          "sound": [
+            "breathing"
+          ],
+          "camera": [
+            "close-ups of characters"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "MARCUS",
+            "line": "You\u2026 you made it.",
+            "parenthetical": "(weak, coughing)"
+          },
+          {
+            "character": "SHERIFF MILLER",
+            "line": "Stay still. Medics are en route."
+          },
+          {
+            "character": "MARCUS",
+            "line": "Thank you\u2026 Ela."
+          },
+          {
+            "character": "ELA",
+            "line": "We\u2019ll get you out of here."
+          }
+        ],
+        "transitions": [
+          "CUT TO"
+        ]
+      },
+      {
+        "scene_number": "6",
+        "location": {
+          "type": "INT",
+          "place": "RADIO TENT"
+        },
+        "time": "DAWN",
+        "description": "Ela reflects on the night\u2019s events with Sheriff Miller.",
+        "duration": "3",
+        "main_characters": [
+          "ELA",
+          "SHERIFF MILLER"
+        ],
+        "technical_cues": [
+          "soft lighting from sunrise"
+        ],
+        "department_notes": {
+          "props": [
+            "photo of Marcus"
+          ],
+          "lighting": [
+            "soft sunrise lighting"
+          ],
+          "sound": [
+            "soft radio bleep"
+          ],
+          "camera": [
+            "medium shots of characters"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "SHERIFF MILLER",
+            "line": "He made it through the night."
+          },
+          {
+            "character": "ELA",
+            "line": "Thanks to you all."
+          }
+        ],
+        "transitions": [
+          "FADE OUT"
+        ]
+      }
+    ],
+    "timeline": {
+      "total_duration": "0:18:00",
+      "scene_breakdown": [
+        {
+          "scene_number": "1",
+          "start_time": "0:00:00",
+          "end_time": "0:02:00",
+          "duration_minutes": 2,
+          "location": "DESERTED HIGHWAY",
+          "characters": [],
+          "technical_complexity": 2,
+          "setup_time": 31
+        },
+        {
+          "scene_number": "2",
+          "start_time": "0:02:00",
+          "end_time": "0:05:00",
+          "duration_minutes": 3,
+          "location": "RADIO TENT",
+          "characters": [
+            "MARCUS (V.O.)",
+            "ELA"
+          ],
+          "technical_complexity": 2,
+          "setup_time": 25
+        },
+        {
+          "scene_number": "3",
+          "start_time": "0:05:00",
+          "end_time": "0:08:00",
+          "duration_minutes": 3,
+          "location": "CRASH SITE",
+          "characters": [
+            "MARCUS",
+            "AI VOICE (O.S.)"
+          ],
+          "technical_complexity": 2,
+          "setup_time": 22
+        },
+        {
+          "scene_number": "4",
+          "start_time": "0:08:00",
+          "end_time": "0:11:00",
+          "duration_minutes": 3,
+          "location": "DESOLATION ROAD",
+          "characters": [
+            "SHERIFF MILLER"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 20
+        },
+        {
+          "scene_number": "5",
+          "start_time": "0:11:00",
+          "end_time": "0:15:00",
+          "duration_minutes": 4,
+          "location": "CRASH SITE",
+          "characters": [
+            "MARCUS",
+            "SHERIFF MILLER",
+            "ELA"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 17
+        },
+        {
+          "scene_number": "6",
+          "start_time": "0:15:00",
+          "end_time": "0:18:00",
+          "duration_minutes": 3,
+          "location": "RADIO TENT",
+          "characters": [
+            "SHERIFF MILLER",
+            "ELA"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 17
+        }
+      ],
+      "average_scene_duration": 3.0
+    },
+    "formatted_text": "SCRIPT TIMELINE\nTotal Duration: 0:18:00\nTotal Scenes: 6\n\n\n================================================================================\n\nSCENE 1\nEXT. DESERTED HIGHWAY - NIGHT\n--------------------------------------------------------------------------------\n\nEstimated Duration: 2\n\nDescription:\nA full moon hangs over an empty highway, with a solitary radio tent glowing under floodlights.\n\nMain Characters: ELA\n\nTechnical Cues:\n  - ANGLE ON tent\u2019s entrance\n  - SOUND: Radio static\n\nDepartment Notes:\n  PROPS:\n    - radio tent\n    - floodlights\n  LIGHTING:\n    - moonlight\n    - floodlights\n  SOUND:\n    - radio static\n  CAMERA:\n    - ANGLE ON\n    - establishing shots\n\n\nTransitions: CUT TO\n\n================================================================================\n\nSCENE 2\nINT. RADIO TENT - CONTINUOUS\n--------------------------------------------------------------------------------\n\nEstimated Duration: 3\n\nDescription:\nEla listens to radio static, noting down coordinates.\n\nMain Characters: ELA, MARCUS (V.O.)\n\nTechnical Cues:\n  - SOUND: Radio static\n  - low light from lantern\n\nDepartment Notes:\n  PROPS:\n    - radio equipment\n    - lantern\n  LIGHTING:\n    - dim lighting to create shadows\n  SOUND:\n    - radio static\n  CAMERA:\n    - close-ups of Ela\n\n\nDialogue:\nELA (into mic)\n    \"Command, do you copy? Over.\"\n\nMARCUS (V.O.) (faint, urgent)\n    \"\u2026help\u2026engine failure\u2026coordinates\u2026 Desolation Road\u2026\"\n\nELA (softly)\n    \"Got it. Stay calm. I\u2019ll send help.\"\n\n\nTransitions: CUT TO\n\n================================================================================\n\nSCENE 3\nEXT. CRASH SITE - FLASHBACK\n--------------------------------------------------------------------------------\n\nEstimated Duration: 3\n\nDescription:\nA damaged spacecraft lies in the sand. Marcus is struggling inside.\n\nMain Characters: MARCUS\n\nTechnical Cues:\n  - SFX: Sparks\n  - EXTREME CLOSE-UP\n\nDepartment Notes:\n  PROPS:\n    - spacecraft\n  LIGHTING:\n    - sparks for dramatic effect\n  SOUND:\n    - SFX: Sparks\n  CAMERA:\n    - EXTREME CLOSE-UP\n\n\nDialogue:\nMARCUS (groans)\n    \"Computer, status report.\"\n\nAI VOICE (O.S.)\n    \"Life support at twenty-three percent. Engine integrity critical. Radio beacon offline.\"\n\nMARCUS (breathless)\n    \"Then manually reboot comms. Now.\"\n\n\nTransitions: CUT BACK TO\n\n================================================================================\n\nSCENE 4\nEXT. DESOLATION ROAD - LATE NIGHT\n--------------------------------------------------------------------------------\n\nEstimated Duration: 3\n\nDescription:\nSheriff Miller navigates to the crash site.\n\nMain Characters: SHERIFF MILLER\n\nTechnical Cues:\n  - moving vehicle shots\n\nDepartment Notes:\n  PROPS:\n    - SUV\n    - map\n  LIGHTING:\n    - headlights\n  SOUND:\n    - engine sounds\n  CAMERA:\n    - shots from inside the SUV\n\n\nDialogue:\nSHERIFF MILLER (muttering to himself)\n    \"36.114, \u2013115.172\u2026 gotta be close.\"\n\n\nTransitions: DISSOLVE TO\n\n================================================================================\n\nSCENE 5\nEXT. CRASH SITE - MOMENTS LATER\n--------------------------------------------------------------------------------\n\nEstimated Duration: 4\n\nDescription:\nSheriff Miller arrives and helps Marcus. Ela joins them.\n\nMain Characters: SHERIFF MILLER, MARCUS, ELA\n\nTechnical Cues:\n  - spotlight effect\n\nDepartment Notes:\n  PROPS:\n    - first-aid kit\n  LIGHTING:\n    - spotlight\n  SOUND:\n    - breathing\n  CAMERA:\n    - close-ups of characters\n\n\nDialogue:\nMARCUS (weak, coughing)\n    \"You\u2026 you made it.\"\n\nSHERIFF MILLER\n    \"Stay still. Medics are en route.\"\n\nMARCUS\n    \"Thank you\u2026 Ela.\"\n\nELA\n    \"We\u2019ll get you out of here.\"\n\n\nTransitions: CUT TO\n\n================================================================================\n\nSCENE 6\nINT. RADIO TENT - DAWN\n--------------------------------------------------------------------------------\n\nEstimated Duration: 3\n\nDescription:\nEla reflects on the night\u2019s events with Sheriff Miller.\n\nMain Characters: ELA, SHERIFF MILLER\n\nTechnical Cues:\n  - soft lighting from sunrise\n\nDepartment Notes:\n  PROPS:\n    - photo of Marcus\n  LIGHTING:\n    - soft sunrise lighting\n  SOUND:\n    - soft radio bleep\n  CAMERA:\n    - medium shots of characters\n\n\nDialogue:\nSHERIFF MILLER\n    \"He made it through the night.\"\n\nELA\n    \"Thanks to you all.\"\n\n\nTransitions: FADE OUT"
+  },
+  "processing_status": {
+    "started_at": "2025-04-26T21:16:33.079045",
+    "current_stage": "validation",
+    "completed_stages": [
+      {
+        "stage": "parsing",
+        "completed_at": "2025-04-26T21:16:48.638200",
+        "success": true
+      },
+      {
+        "stage": "metadata",
+        "completed_at": "2025-04-26T21:16:58.281123",
+        "success": true
+      },
+      {
+        "stage": "validation",
+        "completed_at": "2025-04-26T21:17:11.366064",
+        "success": true
+      }
+    ],
+    "errors": [],
+    "warnings": [
+      {
+        "type": "validation_warning",
+        "message": "Time transition from 'NIGHT' in Scene 1 to 'CONTINUOUS' in Scene 2 should be explicitly defined in non-linear flashback settings.",
+        "scene": "2",
+        "category": "continuity"
+      },
+      {
+        "type": "validation_warning",
+        "message": "'MOMENTS LATER' following a 'FLASHBACK' in Scene 3 may create confusion without clear timeline context.",
+        "scene": "5",
+        "category": "continuity"
+      }
+    ]
+  },
+  "statistics": {
+    "total_scenes": 6,
+    "total_pages": 0.0,
+    "estimated_runtime": "00:18:00",
+    "total_cast": 0,
+    "unique_locations": 1,
+    "scene_statistics": {
+      "average_duration": 3.0,
+      "shortest_scene": 2,
+      "longest_scene": 4,
+      "total_duration": 18
+    },
+    "complex_scenes": 0,
+    "dialogue_heavy_scenes": 0,
+    "effects_required": 2
+  }
+}

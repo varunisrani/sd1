@@ -3,29 +3,25 @@
     "summaries": [
       {
         "scene_number": "1",
-        "summary": "Shinchan dances to TV jingle; Mitsy yells from kitchen to go outside.",
-        "story_thread": "Introduction of Shinchan's mischief",
-        "emotional_tone": "Playful and cheeky",
+        "summary": "Moonlit desert highway with a glowing radio tent; eerie solitude surrounds.",
+        "story_thread": "Mystery of Marcus's distress call begins.",
+        "emotional_tone": "Eerie and isolated",
         "key_elements": [
-          "Shinchan dancing",
-          "Mitsy's reprimand"
+          "full moon",
+          "radio tent",
+          "floodlights"
         ],
         "department_focus": {
-          "camera": "Wide shot of living room",
-          "lighting": "Indoor morning lighting",
-          "sound": "Jingle and TV background noise",
-          "art": "TV remote, pajamas"
+          "camera": "Establishing shots of deserted highway and tent's entrance.",
+          "lighting": "Moonlight and floodlights create stark contrast.",
+          "sound": "Radio static adds eerie tension.",
+          "art": "Tent positioned to appear solitary."
         },
         "characters": {
-          "SHINCHAN": {
-            "arc_point": "Establishes Shinchan's mischievous nature",
-            "emotional_state": "Cheerful",
-            "motivation": "Enjoy watching TV"
-          },
-          "MITSY": {
-            "arc_point": "Shows parental frustration",
-            "emotional_state": "Annoyed",
-            "motivation": "Get Shinchan to go outside"
+          "ELA": {
+            "arc_point": "Introduction as the central figure in the unfolding mystery.",
+            "emotional_state": "Focused",
+            "motivation": "Awaiting communication."
           }
         },
         "approval_status": "pending",
@@ -34,29 +30,30 @@
       },
       {
         "scene_number": "2",
-        "summary": "Shinchan finds strange crash; meets Ben, jokingly suggests teaming up against aliens.",
-        "story_thread": "Encounter with alien technology",
-        "emotional_tone": "Curious and comedic",
+        "summary": "Ela attentively listens to radio static; discovers Marcus's urgent distress call.",
+        "story_thread": "Ela receives Marcus's call for help.",
+        "emotional_tone": "Tense and urgent",
         "key_elements": [
-          "Green flash",
-          "Ben's introduction"
+          "radio static",
+          "coordinates",
+          "urgency"
         ],
         "department_focus": {
-          "camera": "Tracking shot following Shinchan",
-          "lighting": "Daylight",
-          "sound": "Crash SFX, ice cream slurping",
-          "art": "Ice cream cone, Omnitrix"
+          "camera": "Close-ups on Ela to capture tension.",
+          "lighting": "Dim lighting enhances suspense.",
+          "sound": "Static and mysterious voice add tension.",
+          "art": "Radio equipment well-worn to suggest constant use."
         },
         "characters": {
-          "SHINCHAN": {
-            "arc_point": "Intrigued by crash, open to adventure",
-            "emotional_state": "Excited",
-            "motivation": "Investigate crash"
+          "ELA": {
+            "arc_point": "Transition from passive to active problem-solver.",
+            "emotional_state": "Concerned",
+            "motivation": "Resolve Marcus's situation."
           },
-          "BEN": {
-            "arc_point": "Introduces heroic purpose",
-            "emotional_state": "Amused",
-            "motivation": "Assess alien threat"
+          "MARCUS": {
+            "arc_point": "Unseen but central to unfolding crisis.",
+            "emotional_state": "Desperate",
+            "motivation": "Seek immediate rescue."
           }
         },
         "approval_status": "pending",
@@ -65,29 +62,25 @@
       },
       {
         "scene_number": "3",
-        "summary": "Robot alien attacks; Ben and Shinchan prepare for a heroic confrontation.",
-        "story_thread": "Alien threat emerges",
-        "emotional_tone": "Tense yet humorous",
+        "summary": "Flashback: Marcus struggles in damaged spacecraft, battles to reboot communications.",
+        "story_thread": "Marcus's dire situation at crash site.",
+        "emotional_tone": "Desperate and chaotic",
         "key_elements": [
-          "Robot alien's demand",
-          "Ben's transformation"
+          "damaged spacecraft",
+          "manual reboot",
+          "extreme close-up"
         ],
         "department_focus": {
-          "camera": "Dynamic angles for action",
-          "lighting": "Daylight with dramatic shadows",
-          "sound": "Robot growls, tree crashing",
-          "art": "Toy fishing rod"
+          "camera": "Extreme close-up on Marcus's struggle.",
+          "lighting": "Sparks highlight danger and urgency.",
+          "sound": "Sparks enhance chaos.",
+          "art": "Spacecraft interior appears damaged and claustrophobic."
         },
         "characters": {
-          "SHINCHAN": {
-            "arc_point": "Fearful yet joking in crisis",
-            "emotional_state": "Nervous, playful",
-            "motivation": "Survive confrontation"
-          },
-          "BEN": {
-            "arc_point": "Takes action as hero",
-            "emotional_state": "Focused, determined",
-            "motivation": "Defeat alien threat"
+          "MARCUS": {
+            "arc_point": "Desperate attempt to survive.",
+            "emotional_state": "Panicked",
+            "motivation": "Repair and communicate for survival."
           }
         },
         "approval_status": "pending",
@@ -96,29 +89,25 @@
       },
       {
         "scene_number": "4",
-        "summary": "Ben transforms, defeats robot; Shinchan jokes about their dynamic hero duo.",
-        "story_thread": "Resolution of alien threat",
-        "emotional_tone": "Triumphant and lighthearted",
+        "summary": "Sheriff Miller drives toward crash site, determined to reach Marcus's location.",
+        "story_thread": "Sheriff Miller's journey to assist Marcus.",
+        "emotional_tone": "Determined and focused",
         "key_elements": [
-          "Ben's victory",
-          "Teamwork celebration"
+          "navigation",
+          "moving vehicle",
+          "coordinates"
         ],
         "department_focus": {
-          "camera": "Close-ups of action",
-          "lighting": "Post-action shading",
-          "sound": "Metal clangs, alien language",
-          "art": "Transformation VFX"
+          "camera": "Shots from inside SUV capturing navigation.",
+          "lighting": "Headlight beams piercing through night.",
+          "sound": "Engine sounds emphasize urgency.",
+          "art": "SUV interior clutter suggests urgency."
         },
         "characters": {
-          "SHINCHAN": {
-            "arc_point": "Relieved after danger",
-            "emotional_state": "Playful",
-            "motivation": "Celebrate win"
-          },
-          "BEN": {
-            "arc_point": "Completes heroic act",
-            "emotional_state": "Satisfaction",
-            "motivation": "Ensure safety"
+          "SHERIFF MILLER": {
+            "arc_point": "Moving towards becoming a key ally.",
+            "emotional_state": "Determined",
+            "motivation": "Locate and assist Marcus."
           }
         },
         "approval_status": "pending",
@@ -127,29 +116,67 @@
       },
       {
         "scene_number": "5",
-        "summary": "Ben and Shinchan enjoy ice cream at sunset, acknowledging their new friendship.",
-        "story_thread": "Conclusion and camaraderie",
-        "emotional_tone": "Warm and reflective",
+        "summary": "At crash site, Sheriff and Ela arrive, helping a weakened Marcus.",
+        "story_thread": "Rescue attempt at crash site.",
+        "emotional_tone": "Relieved yet urgent",
         "key_elements": [
-          "Ice cream moment",
-          "Friendship acknowledgment"
+          "arrival",
+          "rescue",
+          "reunion"
         ],
         "department_focus": {
-          "camera": "Wide sunset shot",
-          "lighting": "Sunset ambiance",
-          "sound": "Laughing, ending theme",
-          "art": "Ice cream cones"
+          "camera": "Close-ups to capture characters' relief and urgency.",
+          "lighting": "Spotlight intensifies focus on the rescue.",
+          "sound": "Breathing indicates tension relief.",
+          "art": "First-aid kit signifies immediate care."
         },
         "characters": {
-          "SHINCHAN": {
-            "arc_point": "Bonds with Ben",
-            "emotional_state": "Content",
-            "motivation": "Enjoy friendship"
+          "MARCUS": {
+            "arc_point": "Relieved to see help arrive.",
+            "emotional_state": "Grateful",
+            "motivation": "Survive and recover."
           },
-          "BEN": {
-            "arc_point": "Finds unexpected ally",
-            "emotional_state": "Appreciative",
-            "motivation": "Reflect on experience"
+          "SHERIFF MILLER": {
+            "arc_point": "Facilitates Marcus's rescue.",
+            "emotional_state": "Reassuring",
+            "motivation": "Provide aid and assurance."
+          },
+          "ELA": {
+            "arc_point": "Acts as supportive ally.",
+            "emotional_state": "Determined",
+            "motivation": "Ensure Marcus's safety."
+          }
+        },
+        "approval_status": "pending",
+        "last_modified_by": null,
+        "review_notes": []
+      },
+      {
+        "scene_number": "6",
+        "summary": "Ela and Sheriff Miller reflect on successful rescue under peaceful dawn light.",
+        "story_thread": "Resolution and reflection post-rescue.",
+        "emotional_tone": "Reflective and hopeful",
+        "key_elements": [
+          "reflection",
+          "dawn",
+          "gratitude"
+        ],
+        "department_focus": {
+          "camera": "Medium shots capture serene reflection.",
+          "lighting": "Soft sunrise enhances calm and closure.",
+          "sound": "Soft radio bleep signifies continuity.",
+          "art": "Personal items, like photo, suggest reflection."
+        },
+        "characters": {
+          "ELA": {
+            "arc_point": "Reflects on success and teamwork.",
+            "emotional_state": "Content",
+            "motivation": "Value connections made."
+          },
+          "SHERIFF MILLER": {
+            "arc_point": "Acknowledges collective effort in success.",
+            "emotional_state": "Grateful",
+            "motivation": "Express appreciation for teamwork."
           }
         },
         "approval_status": "pending",
@@ -158,282 +185,335 @@
       }
     ],
     "story_threads": {
-      "Introduction of Shinchan's mischief": [
+      "Mystery of Marcus's distress call begins.": [
         "1"
       ],
-      "Encounter with alien technology": [
+      "Ela receives Marcus's call for help.": [
         "2"
       ],
-      "Alien threat emerges": [
+      "Marcus's dire situation at crash site.": [
         "3"
       ],
-      "Resolution of alien threat": [
+      "Sheriff Miller's journey to assist Marcus.": [
         "4"
       ],
-      "Conclusion and camaraderie": [
+      "Rescue attempt at crash site.": [
         "5"
+      ],
+      "Resolution and reflection post-rescue.": [
+        "6"
       ]
     },
     "character_arcs": {
-      "SHINCHAN": [
+      "ELA": [
         {
           "scene": "1",
-          "arc_point": "Establishes Shinchan's mischievous nature",
-          "emotional_state": "Cheerful",
-          "motivation": "Enjoy watching TV"
+          "arc_point": "Introduction as the central figure in the unfolding mystery.",
+          "emotional_state": "Focused",
+          "motivation": "Awaiting communication."
         },
         {
           "scene": "2",
-          "arc_point": "Intrigued by crash, open to adventure",
-          "emotional_state": "Excited",
-          "motivation": "Investigate crash"
-        },
-        {
-          "scene": "3",
-          "arc_point": "Fearful yet joking in crisis",
-          "emotional_state": "Nervous, playful",
-          "motivation": "Survive confrontation"
-        },
-        {
-          "scene": "4",
-          "arc_point": "Relieved after danger",
-          "emotional_state": "Playful",
-          "motivation": "Celebrate win"
+          "arc_point": "Transition from passive to active problem-solver.",
+          "emotional_state": "Concerned",
+          "motivation": "Resolve Marcus's situation."
         },
         {
           "scene": "5",
-          "arc_point": "Bonds with Ben",
+          "arc_point": "Acts as supportive ally.",
+          "emotional_state": "Determined",
+          "motivation": "Ensure Marcus's safety."
+        },
+        {
+          "scene": "6",
+          "arc_point": "Reflects on success and teamwork.",
           "emotional_state": "Content",
-          "motivation": "Enjoy friendship"
+          "motivation": "Value connections made."
         }
       ],
-      "MITSY": [
-        {
-          "scene": "1",
-          "arc_point": "Shows parental frustration",
-          "emotional_state": "Annoyed",
-          "motivation": "Get Shinchan to go outside"
-        }
-      ],
-      "BEN": [
+      "MARCUS": [
         {
           "scene": "2",
-          "arc_point": "Introduces heroic purpose",
-          "emotional_state": "Amused",
-          "motivation": "Assess alien threat"
+          "arc_point": "Unseen but central to unfolding crisis.",
+          "emotional_state": "Desperate",
+          "motivation": "Seek immediate rescue."
         },
         {
           "scene": "3",
-          "arc_point": "Takes action as hero",
-          "emotional_state": "Focused, determined",
-          "motivation": "Defeat alien threat"
-        },
-        {
-          "scene": "4",
-          "arc_point": "Completes heroic act",
-          "emotional_state": "Satisfaction",
-          "motivation": "Ensure safety"
+          "arc_point": "Desperate attempt to survive.",
+          "emotional_state": "Panicked",
+          "motivation": "Repair and communicate for survival."
         },
         {
           "scene": "5",
-          "arc_point": "Finds unexpected ally",
-          "emotional_state": "Appreciative",
-          "motivation": "Reflect on experience"
+          "arc_point": "Relieved to see help arrive.",
+          "emotional_state": "Grateful",
+          "motivation": "Survive and recover."
+        }
+      ],
+      "SHERIFF MILLER": [
+        {
+          "scene": "4",
+          "arc_point": "Moving towards becoming a key ally.",
+          "emotional_state": "Determined",
+          "motivation": "Locate and assist Marcus."
+        },
+        {
+          "scene": "5",
+          "arc_point": "Facilitates Marcus's rescue.",
+          "emotional_state": "Reassuring",
+          "motivation": "Provide aid and assurance."
+        },
+        {
+          "scene": "6",
+          "arc_point": "Acknowledges collective effort in success.",
+          "emotional_state": "Grateful",
+          "motivation": "Express appreciation for teamwork."
         }
       ]
     },
     "emotional_journey": {
-      "1": "Playful and cheeky",
-      "2": "Curious and comedic",
-      "3": "Tense yet humorous",
-      "4": "Triumphant and lighthearted",
-      "5": "Warm and reflective"
+      "1": "Eerie and isolated",
+      "2": "Tense and urgent",
+      "3": "Desperate and chaotic",
+      "4": "Determined and focused",
+      "5": "Relieved yet urgent",
+      "6": "Reflective and hopeful"
     },
     "department_insights": {
       "camera": [
         {
           "scene": "1",
-          "notes": "Wide shot of living room"
+          "notes": "Establishing shots of deserted highway and tent's entrance."
         },
         {
           "scene": "2",
-          "notes": "Tracking shot following Shinchan"
+          "notes": "Close-ups on Ela to capture tension."
         },
         {
           "scene": "3",
-          "notes": "Dynamic angles for action"
+          "notes": "Extreme close-up on Marcus's struggle."
         },
         {
           "scene": "4",
-          "notes": "Close-ups of action"
+          "notes": "Shots from inside SUV capturing navigation."
         },
         {
           "scene": "5",
-          "notes": "Wide sunset shot"
+          "notes": "Close-ups to capture characters' relief and urgency."
+        },
+        {
+          "scene": "6",
+          "notes": "Medium shots capture serene reflection."
         }
       ],
       "lighting": [
         {
           "scene": "1",
-          "notes": "Indoor morning lighting"
+          "notes": "Moonlight and floodlights create stark contrast."
         },
         {
           "scene": "2",
-          "notes": "Daylight"
+          "notes": "Dim lighting enhances suspense."
         },
         {
           "scene": "3",
-          "notes": "Daylight with dramatic shadows"
+          "notes": "Sparks highlight danger and urgency."
         },
         {
           "scene": "4",
-          "notes": "Post-action shading"
+          "notes": "Headlight beams piercing through night."
         },
         {
           "scene": "5",
-          "notes": "Sunset ambiance"
+          "notes": "Spotlight intensifies focus on the rescue."
+        },
+        {
+          "scene": "6",
+          "notes": "Soft sunrise enhances calm and closure."
         }
       ],
       "sound": [
         {
           "scene": "1",
-          "notes": "Jingle and TV background noise"
+          "notes": "Radio static adds eerie tension."
         },
         {
           "scene": "2",
-          "notes": "Crash SFX, ice cream slurping"
+          "notes": "Static and mysterious voice add tension."
         },
         {
           "scene": "3",
-          "notes": "Robot growls, tree crashing"
+          "notes": "Sparks enhance chaos."
         },
         {
           "scene": "4",
-          "notes": "Metal clangs, alien language"
+          "notes": "Engine sounds emphasize urgency."
         },
         {
           "scene": "5",
-          "notes": "Laughing, ending theme"
+          "notes": "Breathing indicates tension relief."
+        },
+        {
+          "scene": "6",
+          "notes": "Soft radio bleep signifies continuity."
         }
       ],
       "art": [
         {
           "scene": "1",
-          "notes": "TV remote, pajamas"
+          "notes": "Tent positioned to appear solitary."
         },
         {
           "scene": "2",
-          "notes": "Ice cream cone, Omnitrix"
+          "notes": "Radio equipment well-worn to suggest constant use."
         },
         {
           "scene": "3",
-          "notes": "Toy fishing rod"
+          "notes": "Spacecraft interior appears damaged and claustrophobic."
         },
         {
           "scene": "4",
-          "notes": "Transformation VFX"
+          "notes": "SUV interior clutter suggests urgency."
         },
         {
           "scene": "5",
-          "notes": "Ice cream cones"
+          "notes": "First-aid kit signifies immediate care."
+        },
+        {
+          "scene": "6",
+          "notes": "Personal items, like photo, suggest reflection."
         }
       ]
     },
     "warnings": [
-      "Scene 3: Summary length (11 words) outside 12-15 word range",
-      "Scene 4: Summary length (11 words) outside 12-15 word range"
+      "Scene 1: Summary length (11 words) outside 12-15 word range",
+      "Scene 2: Summary length (11 words) outside 12-15 word range",
+      "Scene 3: Summary length (10 words) outside 12-15 word range",
+      "Scene 4: Summary length (11 words) outside 12-15 word range",
+      "Scene 5: Summary length (11 words) outside 12-15 word range"
     ]
   },
   "metadata": {
     "tags": {
       "1": {
         "emotional": [
-          "playful",
-          "cheeky"
+          "eerie",
+          "isolated"
         ],
         "technical": [
-          "wide_shot",
-          "indoor_lighting"
+          "establishing_shot",
+          "low_light"
         ],
         "story": [
-          "introduction",
-          "mischief"
+          "setting_intro",
+          "mystery_begins"
         ],
         "department": [
-          "camera_wide",
-          "sound_background"
+          "camera_establishing",
+          "lighting_contrast",
+          "sound_tension",
+          "art_solitary"
         ]
       },
       "2": {
         "emotional": [
-          "curious",
-          "comedic"
+          "tense",
+          "urgent"
         ],
         "technical": [
-          "tracking_shot",
-          "daylight"
+          "close_up",
+          "dim_lighting"
         ],
         "story": [
-          "alien_encounter",
-          "humor"
+          "discovery",
+          "call_to_action"
         ],
         "department": [
-          "camera_tracking",
-          "sound_effects"
+          "camera_tension",
+          "lighting_suspense",
+          "sound_tension",
+          "art_usage"
         ]
       },
       "3": {
         "emotional": [
-          "tense",
-          "humorous"
+          "desperate",
+          "chaotic"
         ],
         "technical": [
-          "dynamic_angles",
-          "dramatic_shadows"
+          "extreme_close_up",
+          "sparks"
         ],
         "story": [
-          "confrontation",
-          "action"
+          "crisis",
+          "struggle"
         ],
         "department": [
-          "camera_action",
-          "sound_intense"
+          "camera_struggle",
+          "lighting_danger",
+          "sound_chaos",
+          "art_claustrophobic"
         ]
       },
       "4": {
         "emotional": [
-          "triumphant",
-          "lighthearted"
+          "determined",
+          "focused"
         ],
         "technical": [
-          "close_ups",
-          "post_action_shading"
+          "navigation_shot",
+          "night_lighting"
         ],
         "story": [
-          "resolution",
-          "teamwork"
+          "journey",
+          "search"
         ],
         "department": [
-          "camera_closeups",
-          "sound_victory"
+          "camera_navigation",
+          "lighting_headlight",
+          "sound_urgency",
+          "art_clutter"
         ]
       },
       "5": {
         "emotional": [
-          "warm",
-          "reflective"
+          "relieved",
+          "urgent"
         ],
         "technical": [
-          "wide_shot",
-          "sunset_ambiance"
+          "close_up",
+          "spotlight"
         ],
         "story": [
-          "camaraderie",
-          "conclusion"
+          "rescue",
+          "reunion"
         ],
         "department": [
-          "camera_wide_sunset",
-          "sound_theme"
+          "camera_relief",
+          "lighting_focus",
+          "sound_relief",
+          "art_care"
+        ]
+      },
+      "6": {
+        "emotional": [
+          "reflective",
+          "hopeful"
+        ],
+        "technical": [
+          "medium_shot",
+          "sunrise"
+        ],
+        "story": [
+          "resolution",
+          "reflection"
+        ],
+        "department": [
+          "camera_serene",
+          "lighting_calm",
+          "sound_continuity",
+          "art_reflection"
         ]
       }
     },
@@ -442,131 +522,153 @@
         "related_scenes": [
           "scene2"
         ],
-        "relationship_type": "character_introduction"
+        "relationship_type": "introduction_continuation"
       },
       "scene2": {
         "related_scenes": [
-          "scene3",
-          "scene4"
+          "scene3"
         ],
-        "relationship_type": "story_continuation"
+        "relationship_type": "cause_effect"
       },
       "scene3": {
         "related_scenes": [
           "scene4"
         ],
-        "relationship_type": "action_sequence"
+        "relationship_type": "cause_effect"
       },
       "scene4": {
         "related_scenes": [
           "scene5"
         ],
-        "relationship_type": "resolution_followup"
+        "relationship_type": "action_outcome"
+      },
+      "scene5": {
+        "related_scenes": [
+          "scene6"
+        ],
+        "relationship_type": "resolution_reflection"
       }
     },
     "story_elements": {
       "themes": [
-        "friendship",
-        "adventure",
-        "heroism"
+        "isolation",
+        "survival",
+        "teamwork",
+        "hope"
       ],
       "motifs": [
-        "aliens",
-        "mischief",
-        "teamwork"
+        "radio_static",
+        "navigation",
+        "light_vs_dark"
       ],
       "emotional_progression": [
-        "Playful and cheeky",
-        "Warm and reflective"
+        "Eerie and isolated",
+        "Reflective and hopeful"
       ]
     },
     "department_insights": {
       "camera": [
         {
           "scene": "1",
-          "notes": "Wide shot of living room"
+          "notes": "Establishing shots of deserted highway and tent's entrance."
         },
         {
           "scene": "2",
-          "notes": "Tracking shot following Shinchan"
+          "notes": "Close-ups on Ela to capture tension."
         },
         {
           "scene": "3",
-          "notes": "Dynamic angles for action"
+          "notes": "Extreme close-up on Marcus's struggle."
         },
         {
           "scene": "4",
-          "notes": "Close-ups of action"
+          "notes": "Shots from inside SUV capturing navigation."
         },
         {
           "scene": "5",
-          "notes": "Wide sunset shot"
+          "notes": "Close-ups to capture characters' relief and urgency."
+        },
+        {
+          "scene": "6",
+          "notes": "Medium shots capture serene reflection."
         }
       ],
       "lighting": [
         {
           "scene": "1",
-          "notes": "Indoor morning lighting"
+          "notes": "Moonlight and floodlights create stark contrast."
         },
         {
           "scene": "2",
-          "notes": "Daylight"
+          "notes": "Dim lighting enhances suspense."
         },
         {
           "scene": "3",
-          "notes": "Daylight with dramatic shadows"
+          "notes": "Sparks highlight danger and urgency."
         },
         {
           "scene": "4",
-          "notes": "Post-action shading"
+          "notes": "Headlight beams piercing through night."
         },
         {
           "scene": "5",
-          "notes": "Sunset ambiance"
+          "notes": "Spotlight intensifies focus on the rescue."
+        },
+        {
+          "scene": "6",
+          "notes": "Soft sunrise enhances calm and closure."
         }
       ],
       "sound": [
         {
           "scene": "1",
-          "notes": "Jingle and TV background noise"
+          "notes": "Radio static adds eerie tension."
         },
         {
           "scene": "2",
-          "notes": "Crash SFX, ice cream slurping"
+          "notes": "Static and mysterious voice add tension."
         },
         {
           "scene": "3",
-          "notes": "Robot growls, tree crashing"
+          "notes": "Sparks enhance chaos."
         },
         {
           "scene": "4",
-          "notes": "Metal clangs, alien language"
+          "notes": "Engine sounds emphasize urgency."
         },
         {
           "scene": "5",
-          "notes": "Laughing, ending theme"
+          "notes": "Breathing indicates tension relief."
+        },
+        {
+          "scene": "6",
+          "notes": "Soft radio bleep signifies continuity."
         }
       ],
       "art": [
         {
           "scene": "1",
-          "notes": "TV remote, pajamas"
+          "notes": "Tent positioned to appear solitary."
         },
         {
           "scene": "2",
-          "notes": "Ice cream cone, Omnitrix"
+          "notes": "Radio equipment well-worn to suggest constant use."
         },
         {
           "scene": "3",
-          "notes": "Toy fishing rod"
+          "notes": "Spacecraft interior appears damaged and claustrophobic."
         },
         {
           "scene": "4",
-          "notes": "Transformation VFX"
+          "notes": "SUV interior clutter suggests urgency."
         },
         {
           "scene": "5",
-          "notes": "Ice cream cones"
+          "notes": "First-aid kit signifies immediate care."
+        },
+        {
+          "scene": "6",
+          "notes": "Personal items, like photo, suggest reflection."
         }
       ]
     },
@@ -574,23 +676,23 @@
   },
   "workflow": {
     "status": {
-      "started_at": "2025-04-26T17:03:11.853608",
+      "started_at": "2025-04-26T21:17:42.458051",
       "current_stage": "completed",
       "completed_stages": [
         {
           "stage": "summary_generation",
-          "completed_at": "2025-04-26T17:03:23.956310",
+          "completed_at": "2025-04-26T21:17:59.946184",
           "success": true
         },
         {
           "stage": "tag_processing",
-          "completed_at": "2025-04-26T17:03:35.206092",
+          "completed_at": "2025-04-26T21:18:12.229455",
           "success": true
         }
       ],
       "errors": [],
       "warnings": [],
-      "completed_at": "2025-04-26T17:03:35.206290"
+      "completed_at": "2025-04-26T21:18:12.229700"
     },
     "approval_data": null
   },
@@ -599,78 +701,93 @@
       "key_scenes": [],
       "character_arcs": {},
       "technical_requirements": {
-        "wide": [
-          "wide_shot"
+        "establishing": [
+          "establishing_shot"
         ],
-        "indoor": [
-          "indoor_lighting"
-        ],
-        "tracking": [
-          "tracking_shot"
-        ],
-        "daylight": [
-          "daylight"
-        ],
-        "dynamic": [
-          "dynamic_angles"
-        ],
-        "dramatic": [
-          "dramatic_shadows"
+        "low": [
+          "low_light"
         ],
         "close": [
-          "close_ups"
+          "close_up"
         ],
-        "post": [
-          "post_action_shading"
+        "dim": [
+          "dim_lighting"
         ],
-        "sunset": [
-          "sunset_ambiance"
+        "extreme": [
+          "extreme_close_up"
+        ],
+        "sparks": [
+          "sparks"
+        ],
+        "navigation": [
+          "navigation_shot"
+        ],
+        "night": [
+          "night_lighting"
+        ],
+        "spotlight": [
+          "spotlight"
+        ],
+        "medium": [
+          "medium_shot"
+        ],
+        "sunrise": [
+          "sunrise"
         ]
       },
       "story_threads": [
-        "friendship",
-        "adventure",
-        "heroism"
+        "isolation",
+        "survival",
+        "teamwork",
+        "hope"
       ]
     },
     "emotional_journey": [
       {
         "scene_id": "1",
         "emotions": [
-          "playful",
-          "cheeky"
+          "eerie",
+          "isolated"
         ],
         "intensity": 0.5
       },
       {
         "scene_id": "2",
         "emotions": [
-          "curious",
-          "comedic"
+          "tense",
+          "urgent"
         ],
         "intensity": 0.5
       },
       {
         "scene_id": "3",
         "emotions": [
-          "tense",
-          "humorous"
+          "desperate",
+          "chaotic"
         ],
         "intensity": 0.5
       },
       {
         "scene_id": "4",
         "emotions": [
-          "triumphant",
-          "lighthearted"
+          "determined",
+          "focused"
         ],
         "intensity": 0.5
       },
       {
         "scene_id": "5",
         "emotions": [
-          "warm",
-          "reflective"
+          "relieved",
+          "urgent"
+        ],
+        "intensity": 0.5
+      },
+      {
+        "scene_id": "6",
+        "emotions": [
+          "reflective",
+          "hopeful"
         ],
         "intensity": 0.5
       }
@@ -682,23 +799,27 @@
         "notes": [
           {
             "scene": "1",
-            "notes": "Wide shot of living room"
+            "notes": "Establishing shots of deserted highway and tent's entrance."
           },
           {
             "scene": "2",
-            "notes": "Tracking shot following Shinchan"
+            "notes": "Close-ups on Ela to capture tension."
           },
           {
             "scene": "3",
-            "notes": "Dynamic angles for action"
+            "notes": "Extreme close-up on Marcus's struggle."
           },
           {
             "scene": "4",
-            "notes": "Close-ups of action"
+            "notes": "Shots from inside SUV capturing navigation."
           },
           {
             "scene": "5",
-            "notes": "Wide sunset shot"
+            "notes": "Close-ups to capture characters' relief and urgency."
+          },
+          {
+            "scene": "6",
+            "notes": "Medium shots capture serene reflection."
           }
         ]
       },
@@ -708,23 +829,27 @@
         "notes": [
           {
             "scene": "1",
-            "notes": "Indoor morning lighting"
+            "notes": "Moonlight and floodlights create stark contrast."
           },
           {
             "scene": "2",
-            "notes": "Daylight"
+            "notes": "Dim lighting enhances suspense."
           },
           {
             "scene": "3",
-            "notes": "Daylight with dramatic shadows"
+            "notes": "Sparks highlight danger and urgency."
           },
           {
             "scene": "4",
-            "notes": "Post-action shading"
+            "notes": "Headlight beams piercing through night."
           },
           {
             "scene": "5",
-            "notes": "Sunset ambiance"
+            "notes": "Spotlight intensifies focus on the rescue."
+          },
+          {
+            "scene": "6",
+            "notes": "Soft sunrise enhances calm and closure."
           }
         ]
       },
@@ -734,23 +859,27 @@
         "notes": [
           {
             "scene": "1",
-            "notes": "Jingle and TV background noise"
+            "notes": "Radio static adds eerie tension."
           },
           {
             "scene": "2",
-            "notes": "Crash SFX, ice cream slurping"
+            "notes": "Static and mysterious voice add tension."
           },
           {
             "scene": "3",
-            "notes": "Robot growls, tree crashing"
+            "notes": "Sparks enhance chaos."
           },
           {
             "scene": "4",
-            "notes": "Metal clangs, alien language"
+            "notes": "Engine sounds emphasize urgency."
           },
           {
             "scene": "5",
-            "notes": "Laughing, ending theme"
+            "notes": "Breathing indicates tension relief."
+          },
+          {
+            "scene": "6",
+            "notes": "Soft radio bleep signifies continuity."
           }
         ]
       },
@@ -760,23 +889,27 @@
         "notes": [
           {
             "scene": "1",
-            "notes": "TV remote, pajamas"
+            "notes": "Tent positioned to appear solitary."
           },
           {
             "scene": "2",
-            "notes": "Ice cream cone, Omnitrix"
+            "notes": "Radio equipment well-worn to suggest constant use."
           },
           {
             "scene": "3",
-            "notes": "Toy fishing rod"
+            "notes": "Spacecraft interior appears damaged and claustrophobic."
           },
           {
             "scene": "4",
-            "notes": "Transformation VFX"
+            "notes": "SUV interior clutter suggests urgency."
           },
           {
             "scene": "5",
-            "notes": "Ice cream cones"
+            "notes": "First-aid kit signifies immediate care."
+          },
+          {
+            "scene": "6",
+            "notes": "Personal items, like photo, suggest reflection."
           }
         ]
       },
@@ -792,5 +925,5 @@
       }
     }
   },
-  "formatted_text": "Generated on: Not specified\n\nSCENE SUMMARIES\n================================================================================\n\nScene 1:\nShinchan dances to TV jingle; Mitsy yells from kitchen to go outside.\n\nScene 2:\nShinchan finds strange crash; meets Ben, jokingly suggests teaming up against aliens.\n\nScene 3:\nRobot alien attacks; Ben and Shinchan prepare for a heroic confrontation.\n\nScene 4:\nBen transforms, defeats robot; Shinchan jokes about their dynamic hero duo.\n\nScene 5:\nBen and Shinchan enjoy ice cream at sunset, acknowledging their new friendship.\n\n\nSTORY THREADS\n================================================================================\n\nIntroduction of Shinchan's mischief:\n  Appears in scenes: 1\n\nEncounter with alien technology:\n  Appears in scenes: 2\n\nAlien threat emerges:\n  Appears in scenes: 3\n\nResolution of alien threat:\n  Appears in scenes: 4\n\nConclusion and camaraderie:\n  Appears in scenes: 5\n\n\nCHARACTER ARCS\n================================================================================\n\nSHINCHAN:\n  Scene 1: Establishes Shinchan's mischievous nature - Cheerful\n  Scene 2: Intrigued by crash, open to adventure - Excited\n  Scene 3: Fearful yet joking in crisis - Nervous, playful\n  Scene 4: Relieved after danger - Playful\n  Scene 5: Bonds with Ben - Content\n\nMITSY:\n  Scene 1: Shows parental frustration - Annoyed\n\nBEN:\n  Scene 2: Introduces heroic purpose - Amused\n  Scene 3: Takes action as hero - Focused, determined\n  Scene 4: Completes heroic act - Satisfaction\n  Scene 5: Finds unexpected ally - Appreciative\n"
+  "formatted_text": "Generated on: Not specified\n\nSCENE SUMMARIES\n================================================================================\n\nScene 1:\nMoonlit desert highway with a glowing radio tent; eerie solitude surrounds.\n\nScene 2:\nEla attentively listens to radio static; discovers Marcus's urgent distress call.\n\nScene 3:\nFlashback: Marcus struggles in damaged spacecraft, battles to reboot communications.\n\nScene 4:\nSheriff Miller drives toward crash site, determined to reach Marcus's location.\n\nScene 5:\nAt crash site, Sheriff and Ela arrive, helping a weakened Marcus.\n\nScene 6:\nEla and Sheriff Miller reflect on successful rescue under peaceful dawn light.\n\n\nSTORY THREADS\n================================================================================\n\nMystery of Marcus's distress call begins.:\n  Appears in scenes: 1\n\nEla receives Marcus's call for help.:\n  Appears in scenes: 2\n\nMarcus's dire situation at crash site.:\n  Appears in scenes: 3\n\nSheriff Miller's journey to assist Marcus.:\n  Appears in scenes: 4\n\nRescue attempt at crash site.:\n  Appears in scenes: 5\n\nResolution and reflection post-rescue.:\n  Appears in scenes: 6\n\n\nCHARACTER ARCS\n================================================================================\n\nELA:\n  Scene 1: Introduction as the central figure in the unfolding mystery. - Focused\n  Scene 2: Transition from passive to active problem-solver. - Concerned\n  Scene 5: Acts as supportive ally. - Determined\n  Scene 6: Reflects on success and teamwork. - Content\n\nMARCUS:\n  Scene 2: Unseen but central to unfolding crisis. - Desperate\n  Scene 3: Desperate attempt to survive. - Panicked\n  Scene 5: Relieved to see help arrive. - Grateful\n\nSHERIFF MILLER:\n  Scene 4: Moving towards becoming a key ally. - Determined\n  Scene 5: Facilitates Marcus's rescue. - Reassuring\n  Scene 6: Acknowledges collective effort in success. - Grateful\n"
 }

@@ -54,6 +54,44 @@ def load_from_storage(filename: str) -> dict:
             return json.load(f)
     return {}
 
+def reset_storage():
+    """Reset all storage files and directories."""
+    try:
+        # Reset JSON result files
+        result_files = [
+            'script_ingestion_results.json',
+            'one_liner_results.json',
+            'character_breakdown_results.json',
+            'schedule_results.json',
+            'budget_results.json',
+            'storyboard_results.json'
+        ]
+        for file in result_files:
+            filepath = os.path.join(STORAGE_DIR, file)
+            if os.path.exists(filepath):
+                os.remove(filepath)
+        
+        # Reset uploaded script
+        script_path = os.path.join(STORAGE_DIR, 'uploaded_script.txt')
+        if os.path.exists(script_path):
+            os.remove(script_path)
+        
+        # Reset storyboards directory
+        storyboards_dir = os.path.join(STORAGE_DIR, 'storyboards')
+        if os.path.exists(storyboards_dir):
+            import shutil
+            shutil.rmtree(storyboards_dir)
+            os.makedirs(storyboards_dir)  # Recreate empty directory
+            
+        # Reset session state
+        if 'current_step' in st.session_state:
+            st.session_state.current_step = 'upload'
+            
+        return True, "Storage reset successfully"
+    except Exception as e:
+        logger.error(f"Error resetting storage: {str(e)}", exc_info=True)
+        return False, f"Error resetting storage: {str(e)}"
+
 def main():
     st.title("Film Production Assistant")
     
@@ -65,6 +103,16 @@ def main():
     st.sidebar.title("Navigation")
     steps = ['Upload Script', 'Script Analysis', 'One-Liner', 'Character Breakdown', 'Schedule', 'Budget', 'Storyboard', 'Overview']
     current_step = st.sidebar.radio("Go to", steps)
+    
+    # Add reset button to sidebar
+    st.sidebar.markdown("---")  # Add separator
+    if st.sidebar.button("Reset All Data", type="secondary"):
+        success, message = reset_storage()
+        if success:
+            st.sidebar.success(message)
+            st.rerun()  # Rerun the app to reflect changes
+        else:
+            st.sidebar.error(message)
     
     if current_step == 'Upload Script':
         show_upload_page()

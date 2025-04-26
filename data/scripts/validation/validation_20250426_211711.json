@@ -1,0 +1,349 @@
+{
+  "is_valid": false,
+  "validation_report": {
+    "is_valid": false,
+    "issues": [
+      {
+        "type": "warning",
+        "category": "continuity",
+        "scene_number": "2",
+        "description": "Time transition from 'NIGHT' in Scene 1 to 'CONTINUOUS' in Scene 2 should be explicitly defined in non-linear flashback settings.",
+        "suggestion": "Clarify the timeline connection between Scenes 1 and 2."
+      },
+      {
+        "type": "warning",
+        "category": "continuity",
+        "scene_number": "5",
+        "description": "'MOMENTS LATER' following a 'FLASHBACK' in Scene 3 may create confusion without clear timeline context.",
+        "suggestion": "Provide clearer timeline indicators for audience understanding."
+      }
+    ],
+    "scene_validations": [
+      {
+        "scene_number": "1",
+        "checks": [
+          {
+            "check_name": "Scene Number Consistency",
+            "status": "pass",
+            "details": "Scene number is consistent."
+          },
+          {
+            "check_name": "Technical Completeness",
+            "status": "pass",
+            "details": "All required technical details are complete."
+          }
+        ]
+      },
+      {
+        "scene_number": "2",
+        "checks": [
+          {
+            "check_name": "Scene Number Consistency",
+            "status": "pass",
+            "details": "Scene number is consistent."
+          },
+          {
+            "check_name": "Continuity Check",
+            "status": "fail",
+            "details": "Unclear transition from 'NIGHT' to 'CONTINUOUS'."
+          }
+        ]
+      },
+      {
+        "scene_number": "3",
+        "checks": [
+          {
+            "check_name": "Scene Number Consistency",
+            "status": "pass",
+            "details": "Scene number is consistent."
+          },
+          {
+            "check_name": "Technical Completeness",
+            "status": "pass",
+            "details": "All required technical details are complete."
+          }
+        ]
+      },
+      {
+        "scene_number": "4",
+        "checks": [
+          {
+            "check_name": "Scene Number Consistency",
+            "status": "pass",
+            "details": "Scene number is consistent."
+          },
+          {
+            "check_name": "Technical Completeness",
+            "status": "pass",
+            "details": "All required technical details are complete."
+          }
+        ]
+      },
+      {
+        "scene_number": "5",
+        "checks": [
+          {
+            "check_name": "Scene Number Consistency",
+            "status": "pass",
+            "details": "Scene number is consistent."
+          },
+          {
+            "check_name": "Continuity Check",
+            "status": "fail",
+            "details": "Ambiguous timing reference as 'MOMENTS LATER' from a 'FLASHBACK'."
+          }
+        ]
+      },
+      {
+        "scene_number": "6",
+        "checks": [
+          {
+            "check_name": "Scene Number Consistency",
+            "status": "pass",
+            "details": "Scene number is consistent."
+          },
+          {
+            "check_name": "Technical Completeness",
+            "status": "pass",
+            "details": "All required technical details are complete."
+          }
+        ]
+      }
+    ],
+    "metadata_validation": {
+      "smpte_compliance": true,
+      "missing_fields": [],
+      "warnings": []
+    },
+    "timeline_validation": {
+      "is_valid": false,
+      "continuity_issues": [],
+      "duration_issues": [
+        "Total duration mismatch: reported 0:18:00 vs calculated 0:18:00"
+      ],
+      "pacing_analysis": {
+        "scene_pacing": [
+          "FAST",
+          "MEDIUM",
+          "MEDIUM",
+          "MEDIUM",
+          "MEDIUM",
+          "MEDIUM"
+        ],
+        "suggestions": []
+      }
+    },
+    "technical_validation": {
+      "complex_elements": [],
+      "department_conflicts": [
+        {
+          "scene_number": "1",
+          "conflict": "Props and camera movement may interfere"
+        },
+        {
+          "scene_number": "2",
+          "conflict": "Props and camera movement may interfere"
+        },
+        {
+          "scene_number": "3",
+          "conflict": "Props and camera movement may interfere"
+        },
+        {
+          "scene_number": "4",
+          "conflict": "Props and camera movement may interfere"
+        },
+        {
+          "scene_number": "5",
+          "conflict": "Props and camera movement may interfere"
+        },
+        {
+          "scene_number": "6",
+          "conflict": "Props and camera movement may interfere"
+        }
+      ],
+      "resource_requirements": [
+        {
+          "scene_number": "1",
+          "department": "props",
+          "requirements": [
+            "radio tent",
+            "floodlights"
+          ]
+        },
+        {
+          "scene_number": "1",
+          "department": "lighting",
+          "requirements": [
+            "moonlight",
+            "floodlights"
+          ]
+        },
+        {
+          "scene_number": "1",
+          "department": "sound",
+          "requirements": [
+            "radio static"
+          ]
+        },
+        {
+          "scene_number": "1",
+          "department": "camera",
+          "requirements": [
+            "ANGLE ON",
+            "establishing shots"
+          ]
+        },
+        {
+          "scene_number": "2",
+          "department": "props",
+          "requirements": [
+            "radio equipment",
+            "lantern"
+          ]
+        },
+        {
+          "scene_number": "2",
+          "department": "lighting",
+          "requirements": [
+            "dim lighting to create shadows"
+          ]
+        },
+        {
+          "scene_number": "2",
+          "department": "sound",
+          "requirements": [
+            "radio static"
+          ]
+        },
+        {
+          "scene_number": "2",
+          "department": "camera",
+          "requirements": [
+            "close-ups of Ela"
+          ]
+        },
+        {
+          "scene_number": "3",
+          "department": "props",
+          "requirements": [
+            "spacecraft"
+          ]
+        },
+        {
+          "scene_number": "3",
+          "department": "lighting",
+          "requirements": [
+            "sparks for dramatic effect"
+          ]
+        },
+        {
+          "scene_number": "3",
+          "department": "sound",
+          "requirements": [
+            "SFX: Sparks"
+          ]
+        },
+        {
+          "scene_number": "3",
+          "department": "camera",
+          "requirements": [
+            "EXTREME CLOSE-UP"
+          ]
+        },
+        {
+          "scene_number": "4",
+          "department": "props",
+          "requirements": [
+            "SUV",
+            "map"
+          ]
+        },
+        {
+          "scene_number": "4",
+          "department": "lighting",
+          "requirements": [
+            "headlights"
+          ]
+        },
+        {
+          "scene_number": "4",
+          "department": "sound",
+          "requirements": [
+            "engine sounds"
+          ]
+        },
+        {
+          "scene_number": "4",
+          "department": "camera",
+          "requirements": [
+            "shots from inside the SUV"
+          ]
+        },
+        {
+          "scene_number": "5",
+          "department": "props",
+          "requirements": [
+            "first-aid kit"
+          ]
+        },
+        {
+          "scene_number": "5",
+          "department": "lighting",
+          "requirements": [
+            "spotlight"
+          ]
+        },
+        {
+          "scene_number": "5",
+          "department": "sound",
+          "requirements": [
+            "breathing"
+          ]
+        },
+        {
+          "scene_number": "5",
+          "department": "camera",
+          "requirements": [
+            "close-ups of characters"
+          ]
+        },
+        {
+          "scene_number": "6",
+          "department": "props",
+          "requirements": [
+            "photo of Marcus"
+          ]
+        },
+        {
+          "scene_number": "6",
+          "department": "lighting",
+          "requirements": [
+            "soft sunrise lighting"
+          ]
+        },
+        {
+          "scene_number": "6",
+          "department": "sound",
+          "requirements": [
+            "soft radio bleep"
+          ]
+        },
+        {
+          "scene_number": "6",
+          "department": "camera",
+          "requirements": [
+            "medium shots of characters"
+          ]
+        }
+      ]
+    },
+    "summary": {
+      "total_scenes": 6,
+      "valid_scenes": 6,
+      "scenes_with_issues": 2,
+      "total_issues": 2
+    },
+    "formatted_text": "\n================================================================================\nVALIDATION REPORT - FAILED\n--------------------------------------------------------------------------------\n\n\nTIMELINE VALIDATION:\nStatus: FAIL\n\nTECHNICAL VALIDATION:\n\nDepartment Conflicts:\n  Scene 1:\n    Props and camera movement may interfere\n  Scene 2:\n    Props and camera movement may interfere\n  Scene 3:\n    Props and camera movement may interfere\n  Scene 4:\n    Props and camera movement may interfere\n  Scene 5:\n    Props and camera movement may interfere\n  Scene 6:\n    Props and camera movement may interfere\n\nISSUES FOUND:\n\nType: warning\nCategory: continuity\nScene: 2\nDescription: Time transition from 'NIGHT' in Scene 1 to 'CONTINUOUS' in Scene 2 should be explicitly defined in non-linear flashback settings.\nSuggestion: Clarify the timeline connection between Scenes 1 and 2.\n\n\nType: warning\nCategory: continuity\nScene: 5\nDescription: 'MOMENTS LATER' following a 'FLASHBACK' in Scene 3 may create confusion without clear timeline context.\nSuggestion: Provide clearer timeline indicators for audience understanding.\n\n\n================================================================================\nSCENE VALIDATIONS\n--------------------------------------------------------------------------------\n\n\nSCENE 1:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\nSCENE 2:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2717 Continuity Check: Unclear transition from 'NIGHT' to 'CONTINUOUS'.\n\nSCENE 3:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\nSCENE 4:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\nSCENE 5:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2717 Continuity Check: Ambiguous timing reference as 'MOMENTS LATER' from a 'FLASHBACK'.\n\nSCENE 6:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\n================================================================================\nMETADATA VALIDATION\n--------------------------------------------------------------------------------\n\nSMPTE Compliance: Yes\n\n================================================================================\nVALIDATION SUMMARY\n--------------------------------------------------------------------------------\nTotal Scenes: 6\nValid Scenes: 6\nScenes with Issues: 2\nTotal Issues: 2"
+  },
+  "formatted_text": "\n================================================================================\nVALIDATION REPORT - FAILED\n--------------------------------------------------------------------------------\n\n\nTIMELINE VALIDATION:\nStatus: FAIL\n\nTECHNICAL VALIDATION:\n\nDepartment Conflicts:\n  Scene 1:\n    Props and camera movement may interfere\n  Scene 2:\n    Props and camera movement may interfere\n  Scene 3:\n    Props and camera movement may interfere\n  Scene 4:\n    Props and camera movement may interfere\n  Scene 5:\n    Props and camera movement may interfere\n  Scene 6:\n    Props and camera movement may interfere\n\nISSUES FOUND:\n\nType: warning\nCategory: continuity\nScene: 2\nDescription: Time transition from 'NIGHT' in Scene 1 to 'CONTINUOUS' in Scene 2 should be explicitly defined in non-linear flashback settings.\nSuggestion: Clarify the timeline connection between Scenes 1 and 2.\n\n\nType: warning\nCategory: continuity\nScene: 5\nDescription: 'MOMENTS LATER' following a 'FLASHBACK' in Scene 3 may create confusion without clear timeline context.\nSuggestion: Provide clearer timeline indicators for audience understanding.\n\n\n================================================================================\nSCENE VALIDATIONS\n--------------------------------------------------------------------------------\n\n\nSCENE 1:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\nSCENE 2:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2717 Continuity Check: Unclear transition from 'NIGHT' to 'CONTINUOUS'.\n\nSCENE 3:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\nSCENE 4:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\nSCENE 5:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2717 Continuity Check: Ambiguous timing reference as 'MOMENTS LATER' from a 'FLASHBACK'.\n\nSCENE 6:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\n================================================================================\nMETADATA VALIDATION\n--------------------------------------------------------------------------------\n\nSMPTE Compliance: Yes\n\n================================================================================\nVALIDATION SUMMARY\n--------------------------------------------------------------------------------\nTotal Scenes: 6\nValid Scenes: 6\nScenes with Issues: 2\nTotal Issues: 2"
+}

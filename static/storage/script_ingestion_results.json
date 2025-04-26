@@ -4,46 +4,37 @@
       {
         "scene_number": "1",
         "location": {
-          "type": "INT",
-          "place": "Kasukabe - Shinchan's House"
+          "type": "EXT",
+          "place": "DESERTED HIGHWAY"
         },
-        "time": "Morning",
-        "description": "Shinchan is watching TV in his pajamas, dancing to a jingle.",
-        "duration": "3 minutes",
+        "time": "NIGHT",
+        "description": "A full moon hangs over an empty highway, with a solitary radio tent glowing under floodlights.",
+        "duration": "2",
         "main_characters": [
-          "SHINCHAN",
-          "MITSY"
+          "ELA"
         ],
         "technical_cues": [
-          "TV background noise"
+          "ANGLE ON tent\u2019s entrance",
+          "SOUND: Radio static"
         ],
         "department_notes": {
           "props": [
-            "TV remote",
-            "pajamas"
+            "radio tent",
+            "floodlights"
           ],
           "lighting": [
-            "Indoor morning lighting"
+            "moonlight",
+            "floodlights"
           ],
           "sound": [
-            "Jingle music on TV"
+            "radio static"
           ],
           "camera": [
-            "Wide shot of living room"
+            "ANGLE ON",
+            "establishing shots"
           ]
         },
-        "dialogues": [
-          {
-            "character": "SHINCHAN",
-            "line": "La-la-laaa~ Mom said no aliens allowed today! But I say\u2014bring 'em on!",
-            "parenthetical": "(cheeky)"
-          },
-          {
-            "character": "MITSY",
-            "line": "Shinchan! Stop being weird and go outside!",
-            "parenthetical": "(yelling from kitchen)"
-          }
-        ],
+        "dialogues": [],
         "transitions": [
           "CUT TO"
         ]
@@ -51,171 +42,50 @@
       {
         "scene_number": "2",
         "location": {
-          "type": "EXT",
-          "place": "Park"
+          "type": "INT",
+          "place": "RADIO TENT"
         },
-        "time": "Same Time",
-        "description": "A green flash crashes nearby. SHINCHAN runs toward it, licking an ice cream.",
-        "duration": "2 minutes",
+        "time": "CONTINUOUS",
+        "description": "Ela listens to radio static, noting down coordinates.",
+        "duration": "3",
         "main_characters": [
-          "SHINCHAN",
-          "BEN"
+          "ELA",
+          "MARCUS (V.O.)"
         ],
         "technical_cues": [
-          "Green flash VFX",
-          "Smoke"
+          "SOUND: Radio static",
+          "low light from lantern"
         ],
         "department_notes": {
           "props": [
-            "Ice cream cone",
-            "Omnitrix"
+            "radio equipment",
+            "lantern"
           ],
           "lighting": [
-            "Daylight"
+            "dim lighting to create shadows"
           ],
           "sound": [
-            "Crash sound effect"
+            "radio static"
           ],
           "camera": [
-            "Tracking shot following Shinchan"
+            "close-ups of Ela"
           ]
         },
         "dialogues": [
           {
-            "character": "SHINCHAN",
-            "line": "Oooooh! Free fireworks? Or\u2026 maybe alien poop?"
+            "character": "ELA",
+            "line": "Command, do you copy? Over.",
+            "parenthetical": "(into mic)"
           },
           {
-            "character": "BEN",
-            "line": "Whoa! That was too close. Some alien tech fell into this area\u2014wait, where am I?"
+            "character": "MARCUS (V.O.)",
+            "line": "\u2026help\u2026engine failure\u2026coordinates\u2026 Desolation Road\u2026",
+            "parenthetical": "(faint, urgent)"
           },
           {
-            "character": "SHINCHAN",
-            "line": "You\u2019re in Kasukabe! And I\u2019m your tour guide, Shinchan, professional mischief-maker!"
-          },
-          {
-            "character": "BEN",
-            "line": "Nice to meet you, Shinchan. I\u2019m Ben. I\u2019m kinda saving the world right now.",
-            "parenthetical": "(laughs)"
-          },
-          {
-            "character": "SHINCHAN",
-            "line": "Cool! I\u2019m kinda annoying my mom right now. Wanna team up?"
-          },
-          {
-            "character": "BEN",
-            "line": "Actually, yeah. But stay close\u2014this could get dangerous.",
-            "parenthetical": "(chuckles)"
-          }
-        ],
-        "transitions": [
-          "SFX: RUMBLING"
-        ]
-      },
-      {
-        "scene_number": "3",
-        "location": {
-          "type": "EXT",
-          "place": "Park"
-        },
-        "time": "Continuous",
-        "description": "A GIANT ROBOT ALIEN appears, smashing trees and yelling in alien language.",
-        "duration": "5 minutes",
-        "main_characters": [
-          "SHINCHAN",
-          "BEN"
-        ],
-        "technical_cues": [
-          "Robot VFX",
-          "Trees falling"
-        ],
-        "department_notes": {
-          "props": [
-            "Toy fishing rod"
-          ],
-          "lighting": [
-            "Daylight with dramatic shadows"
-          ],
-          "sound": [
-            "Robot growls",
-            "Tree crashing"
-          ],
-          "camera": [
-            "Dynamic angles for action"
-          ]
-        },
-        "dialogues": [
-          {
-            "character": "ROBOT ALIEN",
-            "line": "Give me the Omnitrix!",
-            "parenthetical": "(Growling)"
-          },
-          {
-            "character": "BEN",
-            "line": "Guess we\u2019ve got company. Time to go hero!"
-          },
-          {
-            "character": "BEN (XLR8)",
-            "line": "Let\u2019s move, Shinchan!"
-          },
-          {
-            "character": "SHINCHAN",
-            "line": "Can I drive? Wait, do aliens eat butts?"
-          },
-          {
-            "character": "BEN (XLR8)",
-            "line": "...What?"
-          }
-        ],
-        "transitions": [
-          "ACTION SEQUENCE"
-        ]
-      },
-      {
-        "scene_number": "4",
-        "location": {
-          "type": "EXT",
-          "place": "Park"
-        },
-        "time": "Post-Action",
-        "description": "Ben finishes the fight by transforming into Four Arms, smashing the robot into scrap.",
-        "duration": "3 minutes",
-        "main_characters": [
-          "SHINCHAN",
-          "BEN"
-        ],
-        "technical_cues": [
-          "Transformation VFX"
-        ],
-        "department_notes": {
-          "props": [],
-          "lighting": [
-            "Post-action shading"
-          ],
-          "sound": [
-            "Metal clangs",
-            "Alien language"
-          ],
-          "camera": [
-            "Close-ups of action"
-          ]
-        },
-        "dialogues": [
-          {
-            "character": "SHINCHAN",
-            "line": "I caught a big one! It's uglier than Action Kamen\u2019s villain!"
-          },
-          {
-            "character": "BEN (Four Arms)",
-            "line": "Teamwork for the win!"
-          },
-          {
-            "character": "SHINCHAN",
-            "line": "We\u2019re like the ultimate hero duo! Ben & Butt-Man!"
-          },
-          {
-            "character": "BEN",
-            "line": "Let\u2019s stick with Ben 10 and Shinchan."
+            "character": "ELA",
+            "line": "Got it. Stay calm. I\u2019ll send help.",
+            "parenthetical": "(softly)"
           }
         ],
         "transitions": [
@@ -223,142 +93,349 @@
         ]
       },
       {
-        "scene_number": "5",
+        "scene_number": "3",
         "location": {
           "type": "EXT",
-          "place": "Park"
+          "place": "CRASH SITE"
         },
-        "time": "Sunset",
-        "description": "They sit on a bench eating ice cream.",
-        "duration": "2 minutes",
+        "time": "FLASHBACK",
+        "description": "A damaged spacecraft lies in the sand. Marcus is struggling inside.",
+        "duration": "3",
         "main_characters": [
-          "SHINCHAN",
-          "BEN"
+          "MARCUS"
         ],
         "technical_cues": [
-          "End credits"
+          "SFX: Sparks",
+          "EXTREME CLOSE-UP"
         ],
         "department_notes": {
           "props": [
-            "Ice cream cones"
+            "spacecraft"
           ],
           "lighting": [
-            "Sunset lighting"
+            "sparks for dramatic effect"
           ],
           "sound": [
-            "Laughing",
-            "Ending theme"
+            "SFX: Sparks"
           ],
           "camera": [
-            "Wide sunset shot"
+            "EXTREME CLOSE-UP"
           ]
         },
         "dialogues": [
           {
-            "character": "BEN",
-            "line": "Thanks, Shinchan. You\u2019re weird\u2014but you\u2019re awesome."
+            "character": "MARCUS",
+            "line": "Computer, status report.",
+            "parenthetical": "(groans)"
           },
           {
-            "character": "SHINCHAN",
-            "line": "And you\u2019re cool\u2014for an alien babysitter!"
+            "character": "AI VOICE (O.S.)",
+            "line": "Life support at twenty-three percent. Engine integrity critical. Radio beacon offline."
+          },
+          {
+            "character": "MARCUS",
+            "line": "Then manually reboot comms. Now.",
+            "parenthetical": "(breathless)"
           }
         ],
         "transitions": [
-          "ROLL CREDITS"
+          "CUT BACK TO"
+        ]
+      },
+      {
+        "scene_number": "4",
+        "location": {
+          "type": "EXT",
+          "place": "DESOLATION ROAD"
+        },
+        "time": "LATE NIGHT",
+        "description": "Sheriff Miller navigates to the crash site.",
+        "duration": "3",
+        "main_characters": [
+          "SHERIFF MILLER"
+        ],
+        "technical_cues": [
+          "moving vehicle shots"
+        ],
+        "department_notes": {
+          "props": [
+            "SUV",
+            "map"
+          ],
+          "lighting": [
+            "headlights"
+          ],
+          "sound": [
+            "engine sounds"
+          ],
+          "camera": [
+            "shots from inside the SUV"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "SHERIFF MILLER",
+            "line": "36.114, \u2013115.172\u2026 gotta be close.",
+            "parenthetical": "(muttering to himself)"
+          }
+        ],
+        "transitions": [
+          "DISSOLVE TO"
+        ]
+      },
+      {
+        "scene_number": "5",
+        "location": {
+          "type": "EXT",
+          "place": "CRASH SITE"
+        },
+        "time": "MOMENTS LATER",
+        "description": "Sheriff Miller arrives and helps Marcus. Ela joins them.",
+        "duration": "4",
+        "main_characters": [
+          "SHERIFF MILLER",
+          "MARCUS",
+          "ELA"
+        ],
+        "technical_cues": [
+          "spotlight effect"
+        ],
+        "department_notes": {
+          "props": [
+            "first-aid kit"
+          ],
+          "lighting": [
+            "spotlight"
+          ],
+          "sound": [
+            "breathing"
+          ],
+          "camera": [
+            "close-ups of characters"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "MARCUS",
+            "line": "You\u2026 you made it.",
+            "parenthetical": "(weak, coughing)"
+          },
+          {
+            "character": "SHERIFF MILLER",
+            "line": "Stay still. Medics are en route."
+          },
+          {
+            "character": "MARCUS",
+            "line": "Thank you\u2026 Ela."
+          },
+          {
+            "character": "ELA",
+            "line": "We\u2019ll get you out of here."
+          }
+        ],
+        "transitions": [
+          "CUT TO"
+        ]
+      },
+      {
+        "scene_number": "6",
+        "location": {
+          "type": "INT",
+          "place": "RADIO TENT"
+        },
+        "time": "DAWN",
+        "description": "Ela reflects on the night\u2019s events with Sheriff Miller.",
+        "duration": "3",
+        "main_characters": [
+          "ELA",
+          "SHERIFF MILLER"
+        ],
+        "technical_cues": [
+          "soft lighting from sunrise"
+        ],
+        "department_notes": {
+          "props": [
+            "photo of Marcus"
+          ],
+          "lighting": [
+            "soft sunrise lighting"
+          ],
+          "sound": [
+            "soft radio bleep"
+          ],
+          "camera": [
+            "medium shots of characters"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "SHERIFF MILLER",
+            "line": "He made it through the night."
+          },
+          {
+            "character": "ELA",
+            "line": "Thanks to you all."
+          }
+        ],
+        "transitions": [
+          "FADE OUT"
         ]
       }
     ],
     "timeline": {
-      "total_duration": "0:05:00",
+      "total_duration": "0:18:00",
       "scene_breakdown": [
         {
           "scene_number": "1",
           "start_time": "0:00:00",
-          "end_time": "0:01:00",
-          "duration_minutes": 1,
-          "location": "Kasukabe - Shinchan's House",
-          "characters": [
-            "MITSY",
-            "SHINCHAN"
-          ],
-          "technical_complexity": 1,
-          "setup_time": 20
+          "end_time": "0:02:00",
+          "duration_minutes": 2,
+          "location": "DESERTED HIGHWAY",
+          "characters": [],
+          "technical_complexity": 2,
+          "setup_time": 31
         },
         {
           "scene_number": "2",
-          "start_time": "0:01:00",
-          "end_time": "0:02:00",
-          "duration_minutes": 1,
-          "location": "Park",
+          "start_time": "0:02:00",
+          "end_time": "0:05:00",
+          "duration_minutes": 3,
+          "location": "RADIO TENT",
           "characters": [
-            "BEN",
-            "SHINCHAN"
+            "MARCUS (V.O.)",
+            "ELA"
           ],
           "technical_complexity": 2,
           "setup_time": 25
         },
         {
           "scene_number": "3",
-          "start_time": "0:02:00",
-          "end_time": "0:03:00",
-          "duration_minutes": 1,
-          "location": "Park",
+          "start_time": "0:05:00",
+          "end_time": "0:08:00",
+          "duration_minutes": 3,
+          "location": "CRASH SITE",
           "characters": [
-            "BEN",
-            "SHINCHAN",
-            "BEN (XLR8)",
-            "ROBOT ALIEN"
+            "MARCUS",
+            "AI VOICE (O.S.)"
           ],
           "technical_complexity": 2,
-          "setup_time": 25
+          "setup_time": 22
         },
         {
           "scene_number": "4",
-          "start_time": "0:03:00",
-          "end_time": "0:04:00",
-          "duration_minutes": 1,
-          "location": "Park",
+          "start_time": "0:08:00",
+          "end_time": "0:11:00",
+          "duration_minutes": 3,
+          "location": "DESOLATION ROAD",
           "characters": [
-            "BEN (Four Arms)",
-            "BEN",
-            "SHINCHAN"
+            "SHERIFF MILLER"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 20
+        },
+        {
+          "scene_number": "5",
+          "start_time": "0:11:00",
+          "end_time": "0:15:00",
+          "duration_minutes": 4,
+          "location": "CRASH SITE",
+          "characters": [
+            "MARCUS",
+            "SHERIFF MILLER",
+            "ELA"
           ],
           "technical_complexity": 1,
           "setup_time": 17
         },
         {
-          "scene_number": "5",
-          "start_time": "0:04:00",
-          "end_time": "0:05:00",
-          "duration_minutes": 1,
-          "location": "Park",
+          "scene_number": "6",
+          "start_time": "0:15:00",
+          "end_time": "0:18:00",
+          "duration_minutes": 3,
+          "location": "RADIO TENT",
           "characters": [
-            "BEN",
-            "SHINCHAN"
+            "SHERIFF MILLER",
+            "ELA"
           ],
           "technical_complexity": 1,
-          "setup_time": 20
+          "setup_time": 17
         }
       ],
-      "average_scene_duration": 1.0
+      "average_scene_duration": 3.0
     },
-    "formatted_text": "SCRIPT TIMELINE\nTotal Duration: 0:05:00\nTotal Scenes: 5\n\n\n================================================================================\n\nSCENE 1\nINT. Kasukabe - Shinchan's House - Morning\n--------------------------------------------------------------------------------\n\nEstimated Duration: 3 minutes\n\nDescription:\nShinchan is watching TV in his pajamas, dancing to a jingle.\n\nMain Characters: SHINCHAN, MITSY\n\nTechnical Cues:\n  - TV background noise\n\nDepartment Notes:\n  PROPS:\n    - TV remote\n    - pajamas\n  LIGHTING:\n    - Indoor morning lighting\n  SOUND:\n    - Jingle music on TV\n  CAMERA:\n    - Wide shot of living room\n\n\nDialogue:\nSHINCHAN (cheeky)\n    \"La-la-laaa~ Mom said no aliens allowed today! But I say\u2014bring 'em on!\"\n\nMITSY (yelling from kitchen)\n    \"Shinchan! Stop being weird and go outside!\"\n\n\nTransitions: CUT TO\n\n================================================================================\n\nSCENE 2\nEXT. Park - Same Time\n--------------------------------------------------------------------------------\n\nEstimated Duration: 2 minutes\n\nDescription:\nA green flash crashes nearby. SHINCHAN runs toward it, licking an ice cream.\n\nMain Characters: SHINCHAN, BEN\n\nTechnical Cues:\n  - Green flash VFX\n  - Smoke\n\nDepartment Notes:\n  PROPS:\n    - Ice cream cone\n    - Omnitrix\n  LIGHTING:\n    - Daylight\n  SOUND:\n    - Crash sound effect\n  CAMERA:\n    - Tracking shot following Shinchan\n\n\nDialogue:\nSHINCHAN\n    \"Oooooh! Free fireworks? Or\u2026 maybe alien poop?\"\n\nBEN\n    \"Whoa! That was too close. Some alien tech fell into this area\u2014wait, where am I?\"\n\nSHINCHAN\n    \"You\u2019re in Kasukabe! And I\u2019m your tour guide, Shinchan, professional mischief-maker!\"\n\nBEN (laughs)\n    \"Nice to meet you, Shinchan. I\u2019m Ben. I\u2019m kinda saving the world right now.\"\n\nSHINCHAN\n    \"Cool! I\u2019m kinda annoying my mom right now. Wanna team up?\"\n\nBEN (chuckles)\n    \"Actually, yeah. But stay close\u2014this could get dangerous.\"\n\n\nTransitions: SFX: RUMBLING\n\n================================================================================\n\nSCENE 3\nEXT. Park - Continuous\n--------------------------------------------------------------------------------\n\nEstimated Duration: 5 minutes\n\nDescription:\nA GIANT ROBOT ALIEN appears, smashing trees and yelling in alien language.\n\nMain Characters: SHINCHAN, BEN\n\nTechnical Cues:\n  - Robot VFX\n  - Trees falling\n\nDepartment Notes:\n  PROPS:\n    - Toy fishing rod\n  LIGHTING:\n    - Daylight with dramatic shadows\n  SOUND:\n    - Robot growls\n    - Tree crashing\n  CAMERA:\n    - Dynamic angles for action\n\n\nDialogue:\nROBOT ALIEN (Growling)\n    \"Give me the Omnitrix!\"\n\nBEN\n    \"Guess we\u2019ve got company. Time to go hero!\"\n\nBEN (XLR8)\n    \"Let\u2019s move, Shinchan!\"\n\nSHINCHAN\n    \"Can I drive? Wait, do aliens eat butts?\"\n\nBEN (XLR8)\n    \"...What?\"\n\n\nTransitions: ACTION SEQUENCE\n\n================================================================================\n\nSCENE 4\nEXT. Park - Post-Action\n--------------------------------------------------------------------------------\n\nEstimated Duration: 3 minutes\n\nDescription:\nBen finishes the fight by transforming into Four Arms, smashing the robot into scrap.\n\nMain Characters: SHINCHAN, BEN\n\nTechnical Cues:\n  - Transformation VFX\n\nDepartment Notes:\n  LIGHTING:\n    - Post-action shading\n  SOUND:\n    - Metal clangs\n    - Alien language\n  CAMERA:\n    - Close-ups of action\n\n\nDialogue:\nSHINCHAN\n    \"I caught a big one! It's uglier than Action Kamen\u2019s villain!\"\n\nBEN (Four Arms)\n    \"Teamwork for the win!\"\n\nSHINCHAN\n    \"We\u2019re like the ultimate hero duo! Ben & Butt-Man!\"\n\nBEN\n    \"Let\u2019s stick with Ben 10 and Shinchan.\"\n\n\nTransitions: CUT TO\n\n================================================================================\n\nSCENE 5\nEXT. Park - Sunset\n--------------------------------------------------------------------------------\n\nEstimated Duration: 2 minutes\n\nDescription:\nThey sit on a bench eating ice cream.\n\nMain Characters: SHINCHAN, BEN\n\nTechnical Cues:\n  - End credits\n\nDepartment Notes:\n  PROPS:\n    - Ice cream cones\n  LIGHTING:\n    - Sunset lighting\n  SOUND:\n    - Laughing\n    - Ending theme\n  CAMERA:\n    - Wide sunset shot\n\n\nDialogue:\nBEN\n    \"Thanks, Shinchan. You\u2019re weird\u2014but you\u2019re awesome.\"\n\nSHINCHAN\n    \"And you\u2019re cool\u2014for an alien babysitter!\"\n\n\nTransitions: ROLL CREDITS"
+    "formatted_text": "SCRIPT TIMELINE\nTotal Duration: 0:18:00\nTotal Scenes: 6\n\n\n================================================================================\n\nSCENE 1\nEXT. DESERTED HIGHWAY - NIGHT\n--------------------------------------------------------------------------------\n\nEstimated Duration: 2\n\nDescription:\nA full moon hangs over an empty highway, with a solitary radio tent glowing under floodlights.\n\nMain Characters: ELA\n\nTechnical Cues:\n  - ANGLE ON tent\u2019s entrance\n  - SOUND: Radio static\n\nDepartment Notes:\n  PROPS:\n    - radio tent\n    - floodlights\n  LIGHTING:\n    - moonlight\n    - floodlights\n  SOUND:\n    - radio static\n  CAMERA:\n    - ANGLE ON\n    - establishing shots\n\n\nTransitions: CUT TO\n\n================================================================================\n\nSCENE 2\nINT. RADIO TENT - CONTINUOUS\n--------------------------------------------------------------------------------\n\nEstimated Duration: 3\n\nDescription:\nEla listens to radio static, noting down coordinates.\n\nMain Characters: ELA, MARCUS (V.O.)\n\nTechnical Cues:\n  - SOUND: Radio static\n  - low light from lantern\n\nDepartment Notes:\n  PROPS:\n    - radio equipment\n    - lantern\n  LIGHTING:\n    - dim lighting to create shadows\n  SOUND:\n    - radio static\n  CAMERA:\n    - close-ups of Ela\n\n\nDialogue:\nELA (into mic)\n    \"Command, do you copy? Over.\"\n\nMARCUS (V.O.) (faint, urgent)\n    \"\u2026help\u2026engine failure\u2026coordinates\u2026 Desolation Road\u2026\"\n\nELA (softly)\n    \"Got it. Stay calm. I\u2019ll send help.\"\n\n\nTransitions: CUT TO\n\n================================================================================\n\nSCENE 3\nEXT. CRASH SITE - FLASHBACK\n--------------------------------------------------------------------------------\n\nEstimated Duration: 3\n\nDescription:\nA damaged spacecraft lies in the sand. Marcus is struggling inside.\n\nMain Characters: MARCUS\n\nTechnical Cues:\n  - SFX: Sparks\n  - EXTREME CLOSE-UP\n\nDepartment Notes:\n  PROPS:\n    - spacecraft\n  LIGHTING:\n    - sparks for dramatic effect\n  SOUND:\n    - SFX: Sparks\n  CAMERA:\n    - EXTREME CLOSE-UP\n\n\nDialogue:\nMARCUS (groans)\n    \"Computer, status report.\"\n\nAI VOICE (O.S.)\n    \"Life support at twenty-three percent. Engine integrity critical. Radio beacon offline.\"\n\nMARCUS (breathless)\n    \"Then manually reboot comms. Now.\"\n\n\nTransitions: CUT BACK TO\n\n================================================================================\n\nSCENE 4\nEXT. DESOLATION ROAD - LATE NIGHT\n--------------------------------------------------------------------------------\n\nEstimated Duration: 3\n\nDescription:\nSheriff Miller navigates to the crash site.\n\nMain Characters: SHERIFF MILLER\n\nTechnical Cues:\n  - moving vehicle shots\n\nDepartment Notes:\n  PROPS:\n    - SUV\n    - map\n  LIGHTING:\n    - headlights\n  SOUND:\n    - engine sounds\n  CAMERA:\n    - shots from inside the SUV\n\n\nDialogue:\nSHERIFF MILLER (muttering to himself)\n    \"36.114, \u2013115.172\u2026 gotta be close.\"\n\n\nTransitions: DISSOLVE TO\n\n================================================================================\n\nSCENE 5\nEXT. CRASH SITE - MOMENTS LATER\n--------------------------------------------------------------------------------\n\nEstimated Duration: 4\n\nDescription:\nSheriff Miller arrives and helps Marcus. Ela joins them.\n\nMain Characters: SHERIFF MILLER, MARCUS, ELA\n\nTechnical Cues:\n  - spotlight effect\n\nDepartment Notes:\n  PROPS:\n    - first-aid kit\n  LIGHTING:\n    - spotlight\n  SOUND:\n    - breathing\n  CAMERA:\n    - close-ups of characters\n\n\nDialogue:\nMARCUS (weak, coughing)\n    \"You\u2026 you made it.\"\n\nSHERIFF MILLER\n    \"Stay still. Medics are en route.\"\n\nMARCUS\n    \"Thank you\u2026 Ela.\"\n\nELA\n    \"We\u2019ll get you out of here.\"\n\n\nTransitions: CUT TO\n\n================================================================================\n\nSCENE 6\nINT. RADIO TENT - DAWN\n--------------------------------------------------------------------------------\n\nEstimated Duration: 3\n\nDescription:\nEla reflects on the night\u2019s events with Sheriff Miller.\n\nMain Characters: ELA, SHERIFF MILLER\n\nTechnical Cues:\n  - soft lighting from sunrise\n\nDepartment Notes:\n  PROPS:\n    - photo of Marcus\n  LIGHTING:\n    - soft sunrise lighting\n  SOUND:\n    - soft radio bleep\n  CAMERA:\n    - medium shots of characters\n\n\nDialogue:\nSHERIFF MILLER\n    \"He made it through the night.\"\n\nELA\n    \"Thanks to you all.\"\n\n\nTransitions: FADE OUT"
   },
   "metadata": {
-    "timestamp": "2025-04-26 16:46:21",
+    "timestamp": "2025-04-26 21:16:48",
     "scene_metadata": [
       {
         "scene_number": "1",
-        "mood": "Playful and comedic",
+        "mood": "Eerie and solitary",
         "lighting": {
           "type": "artificial",
           "requirements": [
-            "Indoor morning lighting"
+            "floodlights",
+            "natural moonlight"
           ],
           "special_effects": []
         },
         "time_details": {
-          "time_of_day": "Morning",
+          "time_of_day": "Night",
+          "duration": "2 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "radio tent"
+          ],
+          "hand_props": [],
+          "special_items": [
+            "floodlights"
+          ]
+        },
+        "technical": {
+          "camera": [
+            "ANGLE ON tent's entrance",
+            "establishing shots"
+          ],
+          "sound": [
+            "radio static"
+          ],
+          "special_equipment": []
+        },
+        "department_notes": {
+          "props": [
+            "radio tent",
+            "floodlights"
+          ],
+          "lighting": [
+            "moonlight",
+            "floodlights"
+          ],
+          "sound": [
+            "radio static"
+          ],
+          "camera": [
+            "ANGLE ON",
+            "establishing shots"
+          ]
+        }
+      },
+      {
+        "scene_number": "2",
+        "mood": "Tense and suspenseful",
+        "lighting": {
+          "type": "dim",
+          "requirements": [
+            "lantern light"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Continuous",
           "duration": "3 minutes"
         },
         "weather": {
@@ -367,158 +444,50 @@
         },
         "props": {
           "set_dressing": [
-            "TV remote",
-            "pajamas"
+            "radio equipment"
           ],
-          "hand_props": [],
+          "hand_props": [
+            "lantern"
+          ],
           "special_items": []
         },
         "technical": {
           "camera": [
-            "Wide shot of living room"
+            "close-ups of Ela"
           ],
           "sound": [
-            "TV background noise",
-            "Jingle music on TV"
+            "radio static"
           ],
           "special_equipment": []
         },
         "department_notes": {
           "props": [
-            "TV remote",
-            "pajamas"
+            "radio equipment",
+            "lantern"
           ],
           "lighting": [
-            "Indoor morning lighting"
+            "dim lighting to create shadows"
           ],
           "sound": [
-            "Jingle music on TV"
+            "radio static"
           ],
           "camera": [
-            "Wide shot of living room"
-          ]
-        }
-      },
-      {
-        "scene_number": "2",
-        "mood": "Excited and curious",
-        "lighting": {
-          "type": "natural",
-          "requirements": [
-            "Daylight"
-          ],
-          "special_effects": []
-        },
-        "time_details": {
-          "time_of_day": "Same Time",
-          "duration": "2 minutes"
-        },
-        "weather": {
-          "conditions": [],
-          "effects_needed": []
-        },
-        "props": {
-          "set_dressing": [],
-          "hand_props": [
-            "Ice cream cone",
-            "Omnitrix"
-          ],
-          "special_items": []
-        },
-        "technical": {
-          "camera": [
-            "Tracking shot following Shinchan"
-          ],
-          "sound": [
-            "Crash sound effect"
-          ],
-          "special_equipment": [
-            "Green flash VFX",
-            "Smoke"
-          ]
-        },
-        "department_notes": {
-          "props": [
-            "Ice cream cone",
-            "Omnitrix"
-          ],
-          "lighting": [
-            "Daylight"
-          ],
-          "sound": [
-            "Crash sound effect"
-          ],
-          "camera": [
-            "Tracking shot following Shinchan"
+            "close-ups of Ela"
           ]
         }
       },
       {
         "scene_number": "3",
-        "mood": "Intense and action-packed",
+        "mood": "Intense and dramatic",
         "lighting": {
           "type": "natural",
           "requirements": [
-            "Daylight with dramatic shadows"
+            "sparks for dramatic effect"
           ],
           "special_effects": []
         },
         "time_details": {
-          "time_of_day": "Continuous",
-          "duration": "5 minutes"
-        },
-        "weather": {
-          "conditions": [],
-          "effects_needed": []
-        },
-        "props": {
-          "set_dressing": [],
-          "hand_props": [
-            "Toy fishing rod"
-          ],
-          "special_items": []
-        },
-        "technical": {
-          "camera": [
-            "Dynamic angles for action"
-          ],
-          "sound": [
-            "Robot growls",
-            "Tree crashing"
-          ],
-          "special_equipment": [
-            "Robot VFX",
-            "Trees falling"
-          ]
-        },
-        "department_notes": {
-          "props": [
-            "Toy fishing rod"
-          ],
-          "lighting": [
-            "Daylight with dramatic shadows"
-          ],
-          "sound": [
-            "Robot growls",
-            "Tree crashing"
-          ],
-          "camera": [
-            "Dynamic angles for action"
-          ]
-        }
-      },
-      {
-        "scene_number": "4",
-        "mood": "Victorious and relieved",
-        "lighting": {
-          "type": "natural",
-          "requirements": [
-            "Post-action shading"
-          ],
-          "special_effects": []
-        },
-        "time_details": {
-          "time_of_day": "Post-Action",
+          "time_of_day": "Flashback",
           "duration": "3 minutes"
         },
         "weather": {
@@ -528,47 +497,99 @@
         "props": {
           "set_dressing": [],
           "hand_props": [],
+          "special_items": [
+            "spacecraft"
+          ]
+        },
+        "technical": {
+          "camera": [
+            "EXTREME CLOSE-UP"
+          ],
+          "sound": [
+            "SFX: Sparks"
+          ],
+          "special_equipment": []
+        },
+        "department_notes": {
+          "props": [
+            "spacecraft"
+          ],
+          "lighting": [
+            "sparks for dramatic effect"
+          ],
+          "sound": [
+            "SFX: Sparks"
+          ],
+          "camera": [
+            "EXTREME CLOSE-UP"
+          ]
+        }
+      },
+      {
+        "scene_number": "4",
+        "mood": "Focused and determined",
+        "lighting": {
+          "type": "natural",
+          "requirements": [
+            "headlights"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Late Night",
+          "duration": "3 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "map"
+          ],
+          "hand_props": [
+            "SUV"
+          ],
           "special_items": []
         },
         "technical": {
           "camera": [
-            "Close-ups of action"
+            "shots from inside the SUV"
           ],
           "sound": [
-            "Metal clangs",
-            "Alien language"
+            "engine sounds"
           ],
-          "special_equipment": [
-            "Transformation VFX"
-          ]
+          "special_equipment": []
         },
         "department_notes": {
-          "props": [],
+          "props": [
+            "SUV",
+            "map"
+          ],
           "lighting": [
-            "Post-action shading"
+            "headlights"
           ],
           "sound": [
-            "Metal clangs",
-            "Alien language"
+            "engine sounds"
           ],
           "camera": [
-            "Close-ups of action"
+            "shots from inside the SUV"
           ]
         }
       },
       {
         "scene_number": "5",
-        "mood": "Peaceful and closing",
+        "mood": "Hopeful and collaborative",
         "lighting": {
-          "type": "natural",
+          "type": "artificial",
           "requirements": [
-            "Sunset lighting"
+            "spotlight"
           ],
           "special_effects": []
         },
         "time_details": {
-          "time_of_day": "Sunset",
-          "duration": "2 minutes"
+          "time_of_day": "Moments Later",
+          "duration": "4 minutes"
         },
         "weather": {
           "conditions": [],
@@ -577,70 +598,112 @@
         "props": {
           "set_dressing": [],
           "hand_props": [
-            "Ice cream cones"
+            "first-aid kit"
           ],
           "special_items": []
         },
         "technical": {
           "camera": [
-            "Wide sunset shot"
+            "close-ups of characters"
           ],
           "sound": [
-            "Laughing",
-            "Ending theme"
+            "breathing"
           ],
-          "special_equipment": [
-            "End credits"
-          ]
+          "special_equipment": []
         },
         "department_notes": {
           "props": [
-            "Ice cream cones"
+            "first-aid kit"
           ],
           "lighting": [
-            "Sunset lighting"
+            "spotlight"
           ],
           "sound": [
-            "Laughing",
-            "Ending theme"
+            "breathing"
           ],
           "camera": [
-            "Wide sunset shot"
+            "close-ups of characters"
+          ]
+        }
+      },
+      {
+        "scene_number": "6",
+        "mood": "Reflective and serene",
+        "lighting": {
+          "type": "natural",
+          "requirements": [
+            "soft sunrise lighting"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Dawn",
+          "duration": "3 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [],
+          "hand_props": [
+            "photo of Marcus"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "medium shots of characters"
+          ],
+          "sound": [
+            "soft radio bleep"
+          ],
+          "special_equipment": []
+        },
+        "department_notes": {
+          "props": [
+            "photo of Marcus"
+          ],
+          "lighting": [
+            "soft sunrise lighting"
+          ],
+          "sound": [
+            "soft radio bleep"
+          ],
+          "camera": [
+            "medium shots of characters"
           ]
         }
       }
     ],
     "global_requirements": {
       "equipment": [
-        "Camera for wide shots",
-        "Transformation VFX equipment",
-        "Robot VFX equipment"
+        "floodlights",
+        "lantern"
       ],
       "props": [
-        "TV remote",
-        "pajamas",
-        "Ice cream cone",
-        "Omnitrix",
-        "Toy fishing rod"
+        "radio tent",
+        "radio equipment",
+        "spacecraft",
+        "SUV",
+        "first-aid kit"
       ],
       "special_effects": [
-        "Green flash VFX",
-        "Smoke",
-        "Robot VFX",
-        "Transformation VFX"
+        "sparks for dramatic effect",
+        "spotlight effect"
       ]
     },
     "statistics": {
-      "total_scenes": 5,
+      "total_scenes": 6,
       "total_pages": 0.0,
-      "estimated_runtime": "00:15:00",
+      "estimated_runtime": "00:18:00",
       "total_cast": 0,
       "unique_locations": 1,
       "scene_statistics": {
         "average_duration": 3.0,
         "shortest_scene": 2,
-        "longest_scene": 5,
-        "total_duration": 15
+        "longest_scene": 4,
+        "total_duration": 18
       }
     },
     "color_coding": {
@@ -662,7 +725,7 @@
         "WARDROBE": "#8A2BE2"
       }
     },
-    "formatted_text": "Analysis Timestamp: 2025-04-26 16:46:21\n\nScript Statistics:\nTotal Scenes: 5\nPage Count: 0.0\nEstimated Runtime: 00:15:00\nCast Size: 0\nUnique Locations: 1\n\n\n================================================================================\nSCENE 1 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Playful and comedic\n\nLighting:\n  Type: artificial\n  Requirements: Indoor morning lighting\n  Special Effects: \n\nTime Details:\n  Time of Day: Morning\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: TV remote, pajamas\n  Hand Props: \n  Special Items: \n\nTechnical Requirements:\n  Camera: Wide shot of living room\n  Sound: TV background noise, Jingle music on TV\n  Special Equipment: \n\n\n================================================================================\nSCENE 2 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Excited and curious\n\nLighting:\n  Type: natural\n  Requirements: Daylight\n  Special Effects: \n\nTime Details:\n  Time of Day: Same Time\n  Duration: 2 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: Ice cream cone, Omnitrix\n  Special Items: \n\nTechnical Requirements:\n  Camera: Tracking shot following Shinchan\n  Sound: Crash sound effect\n  Special Equipment: Green flash VFX, Smoke\n\n\n================================================================================\nSCENE 3 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Intense and action-packed\n\nLighting:\n  Type: natural\n  Requirements: Daylight with dramatic shadows\n  Special Effects: \n\nTime Details:\n  Time of Day: Continuous\n  Duration: 5 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: Toy fishing rod\n  Special Items: \n\nTechnical Requirements:\n  Camera: Dynamic angles for action\n  Sound: Robot growls, Tree crashing\n  Special Equipment: Robot VFX, Trees falling\n\n\n================================================================================\nSCENE 4 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Victorious and relieved\n\nLighting:\n  Type: natural\n  Requirements: Post-action shading\n  Special Effects: \n\nTime Details:\n  Time of Day: Post-Action\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: \n  Special Items: \n\nTechnical Requirements:\n  Camera: Close-ups of action\n  Sound: Metal clangs, Alien language\n  Special Equipment: Transformation VFX\n\n\n================================================================================\nSCENE 5 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Peaceful and closing\n\nLighting:\n  Type: natural\n  Requirements: Sunset lighting\n  Special Effects: \n\nTime Details:\n  Time of Day: Sunset\n  Duration: 2 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: Ice cream cones\n  Special Items: \n\nTechnical Requirements:\n  Camera: Wide sunset shot\n  Sound: Laughing, Ending theme\n  Special Equipment: End credits\n\n\n================================================================================\nGLOBAL REQUIREMENTS\n--------------------------------------------------------------------------------\n\nEquipment: Camera for wide shots, Transformation VFX equipment, Robot VFX equipment\nProps: TV remote, pajamas, Ice cream cone, Omnitrix, Toy fishing rod\nSpecial Effects: Green flash VFX, Smoke, Robot VFX, Transformation VFX"
+    "formatted_text": "Analysis Timestamp: 2025-04-26 21:16:48\n\nScript Statistics:\nTotal Scenes: 6\nPage Count: 0.0\nEstimated Runtime: 00:18:00\nCast Size: 0\nUnique Locations: 1\n\n\n================================================================================\nSCENE 1 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Eerie and solitary\n\nLighting:\n  Type: artificial\n  Requirements: floodlights, natural moonlight\n  Special Effects: \n\nTime Details:\n  Time of Day: Night\n  Duration: 2 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: radio tent\n  Hand Props: \n  Special Items: floodlights\n\nTechnical Requirements:\n  Camera: ANGLE ON tent's entrance, establishing shots\n  Sound: radio static\n  Special Equipment: \n\n\n================================================================================\nSCENE 2 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Tense and suspenseful\n\nLighting:\n  Type: dim\n  Requirements: lantern light\n  Special Effects: \n\nTime Details:\n  Time of Day: Continuous\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: radio equipment\n  Hand Props: lantern\n  Special Items: \n\nTechnical Requirements:\n  Camera: close-ups of Ela\n  Sound: radio static\n  Special Equipment: \n\n\n================================================================================\nSCENE 3 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Intense and dramatic\n\nLighting:\n  Type: natural\n  Requirements: sparks for dramatic effect\n  Special Effects: \n\nTime Details:\n  Time of Day: Flashback\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: \n  Special Items: spacecraft\n\nTechnical Requirements:\n  Camera: EXTREME CLOSE-UP\n  Sound: SFX: Sparks\n  Special Equipment: \n\n\n================================================================================\nSCENE 4 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Focused and determined\n\nLighting:\n  Type: natural\n  Requirements: headlights\n  Special Effects: \n\nTime Details:\n  Time of Day: Late Night\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: map\n  Hand Props: SUV\n  Special Items: \n\nTechnical Requirements:\n  Camera: shots from inside the SUV\n  Sound: engine sounds\n  Special Equipment: \n\n\n================================================================================\nSCENE 5 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Hopeful and collaborative\n\nLighting:\n  Type: artificial\n  Requirements: spotlight\n  Special Effects: \n\nTime Details:\n  Time of Day: Moments Later\n  Duration: 4 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: first-aid kit\n  Special Items: \n\nTechnical Requirements:\n  Camera: close-ups of characters\n  Sound: breathing\n  Special Equipment: \n\n\n================================================================================\nSCENE 6 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Reflective and serene\n\nLighting:\n  Type: natural\n  Requirements: soft sunrise lighting\n  Special Effects: \n\nTime Details:\n  Time of Day: Dawn\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: photo of Marcus\n  Special Items: \n\nTechnical Requirements:\n  Camera: medium shots of characters\n  Sound: soft radio bleep\n  Special Equipment: \n\n\n================================================================================\nGLOBAL REQUIREMENTS\n--------------------------------------------------------------------------------\n\nEquipment: floodlights, lantern\nProps: radio tent, radio equipment, spacecraft, SUV, first-aid kit\nSpecial Effects: sparks for dramatic effect, spotlight effect"
   },
   "validation": {
     "is_valid": false,
@@ -670,67 +733,18 @@
       "is_valid": false,
       "issues": [
         {
-          "type": "error",
-          "category": "continuity",
-          "scene_number": "1",
-          "description": "Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.",
-          "suggestion": "Adjust scene duration in timeline breakdown or description."
-        },
-        {
-          "type": "error",
+          "type": "warning",
           "category": "continuity",
           "scene_number": "2",
-          "description": "Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.",
-          "suggestion": "Adjust scene duration in timeline breakdown or description."
+          "description": "Time transition from 'NIGHT' in Scene 1 to 'CONTINUOUS' in Scene 2 should be explicitly defined in non-linear flashback settings.",
+          "suggestion": "Clarify the timeline connection between Scenes 1 and 2."
         },
         {
-          "type": "error",
-          "category": "continuity",
-          "scene_number": "3",
-          "description": "Scene duration stated as 5 minutes but timeline breakdown allocates only 1 minute.",
-          "suggestion": "Adjust scene duration in timeline breakdown or description."
-        },
-        {
-          "type": "error",
-          "category": "continuity",
-          "scene_number": "4",
-          "description": "Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.",
-          "suggestion": "Adjust scene duration in timeline breakdown or description."
-        },
-        {
-          "type": "error",
+          "type": "warning",
           "category": "continuity",
           "scene_number": "5",
-          "description": "Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.",
-          "suggestion": "Adjust scene duration in timeline breakdown or description."
-        },
-        {
-          "type": "error",
-          "category": "timeline",
-          "scene_number": null,
-          "description": "Total timeline duration sums to 5 minutes but multiple entries in scene data are inconsistent.",
-          "suggestion": "Recalculate scene durations to ensure consistency with total timeline time."
-        },
-        {
-          "type": "error",
-          "category": "metadata",
-          "scene_number": null,
-          "description": "Estimated runtime conflicts between script and metadata.",
-          "suggestion": "Ensure estimated runtime in metadata matches the sum of scene durations."
-        },
-        {
-          "type": "warning",
-          "category": "fields",
-          "scene_number": null,
-          "description": "Metadata field 'total_cast' is marked as 0.",
-          "suggestion": "Verify cast information is correctly entered."
-        },
-        {
-          "type": "warning",
-          "category": "technical",
-          "scene_number": "1",
-          "description": "Setup time allocated might be insufficient given technical complexity.",
-          "suggestion": "Review setup time for more feasible timing before scenes."
+          "description": "'MOMENTS LATER' following a 'FLASHBACK' in Scene 3 may create confusion without clear timeline context.",
+          "suggestion": "Provide clearer timeline indicators for audience understanding."
         }
       ],
       "scene_validations": [
@@ -738,14 +752,14 @@
           "scene_number": "1",
           "checks": [
             {
-              "check_name": "Duration Consistency",
-              "status": "fail",
-              "details": "Scene duration in description does not match timeline allocation."
+              "check_name": "Scene Number Consistency",
+              "status": "pass",
+              "details": "Scene number is consistent."
             },
             {
-              "check_name": "Technical Cues Present",
+              "check_name": "Technical Completeness",
               "status": "pass",
-              "details": "All required technical cues are listed."
+              "details": "All required technical details are complete."
             }
           ]
         },
@@ -753,14 +767,14 @@
           "scene_number": "2",
           "checks": [
             {
-              "check_name": "Duration Consistency",
-              "status": "fail",
-              "details": "Scene duration in description does not match timeline allocation."
+              "check_name": "Scene Number Consistency",
+              "status": "pass",
+              "details": "Scene number is consistent."
             },
             {
-              "check_name": "Technical Cues Present",
-              "status": "pass",
-              "details": "All required technical cues are listed."
+              "check_name": "Continuity Check",
+              "status": "fail",
+              "details": "Unclear transition from 'NIGHT' to 'CONTINUOUS'."
             }
           ]
         },
@@ -768,14 +782,14 @@
           "scene_number": "3",
           "checks": [
             {
-              "check_name": "Duration Consistency",
-              "status": "fail",
-              "details": "Scene duration in description does not match timeline allocation."
+              "check_name": "Scene Number Consistency",
+              "status": "pass",
+              "details": "Scene number is consistent."
             },
             {
-              "check_name": "Technical Cues Present",
+              "check_name": "Technical Completeness",
               "status": "pass",
-              "details": "All required technical cues are listed."
+              "details": "All required technical details are complete."
             }
           ]
         },
@@ -783,14 +797,14 @@
           "scene_number": "4",
           "checks": [
             {
-              "check_name": "Duration Consistency",
-              "status": "fail",
-              "details": "Scene duration in description does not match timeline allocation."
+              "check_name": "Scene Number Consistency",
+              "status": "pass",
+              "details": "Scene number is consistent."
             },
             {
-              "check_name": "Technical Cues Present",
+              "check_name": "Technical Completeness",
               "status": "pass",
-              "details": "All required technical cues are listed."
+              "details": "All required technical details are complete."
             }
           ]
         },
@@ -798,14 +812,29 @@
           "scene_number": "5",
           "checks": [
             {
-              "check_name": "Duration Consistency",
-              "status": "fail",
-              "details": "Scene duration in description does not match timeline allocation."
+              "check_name": "Scene Number Consistency",
+              "status": "pass",
+              "details": "Scene number is consistent."
             },
             {
-              "check_name": "Technical Cues Present",
+              "check_name": "Continuity Check",
+              "status": "fail",
+              "details": "Ambiguous timing reference as 'MOMENTS LATER' from a 'FLASHBACK'."
+            }
+          ]
+        },
+        {
+          "scene_number": "6",
+          "checks": [
+            {
+              "check_name": "Scene Number Consistency",
               "status": "pass",
-              "details": "All required technical cues are listed."
+              "details": "Scene number is consistent."
+            },
+            {
+              "check_name": "Technical Completeness",
+              "status": "pass",
+              "details": "All required technical details are complete."
             }
           ]
         }
@@ -813,27 +842,24 @@
       "metadata_validation": {
         "smpte_compliance": true,
         "missing_fields": [],
-        "warnings": [
-          "Estimated runtime conflicts between script and metadata."
-        ]
+        "warnings": []
       },
       "timeline_validation": {
         "is_valid": false,
         "continuity_issues": [],
         "duration_issues": [
-          "Total duration mismatch: reported 0:05:00 vs calculated 0:05:00"
+          "Total duration mismatch: reported 0:18:00 vs calculated 0:18:00"
         ],
         "pacing_analysis": {
           "scene_pacing": [
             "FAST",
-            "FAST",
-            "FAST",
-            "FAST",
-            "FAST"
+            "MEDIUM",
+            "MEDIUM",
+            "MEDIUM",
+            "MEDIUM",
+            "MEDIUM"
           ],
-          "suggestions": [
-            "Script may be too fast-paced. Consider adding more character development scenes."
-          ]
+          "suggestions": []
         }
       },
       "technical_validation": {
@@ -852,7 +878,15 @@
             "conflict": "Props and camera movement may interfere"
           },
           {
+            "scene_number": "4",
+            "conflict": "Props and camera movement may interfere"
+          },
+          {
             "scene_number": "5",
+            "conflict": "Props and camera movement may interfere"
+          },
+          {
+            "scene_number": "6",
             "conflict": "Props and camera movement may interfere"
           }
         ],
@@ -861,210 +895,240 @@
             "scene_number": "1",
             "department": "props",
             "requirements": [
-              "TV remote",
-              "pajamas"
+              "radio tent",
+              "floodlights"
             ]
           },
           {
             "scene_number": "1",
             "department": "lighting",
             "requirements": [
-              "Indoor morning lighting"
+              "moonlight",
+              "floodlights"
             ]
           },
           {
             "scene_number": "1",
             "department": "sound",
             "requirements": [
-              "Jingle music on TV"
+              "radio static"
             ]
           },
           {
             "scene_number": "1",
             "department": "camera",
             "requirements": [
-              "Wide shot of living room"
+              "ANGLE ON",
+              "establishing shots"
             ]
           },
           {
             "scene_number": "2",
             "department": "props",
             "requirements": [
-              "Ice cream cone",
-              "Omnitrix"
+              "radio equipment",
+              "lantern"
             ]
           },
           {
             "scene_number": "2",
             "department": "lighting",
             "requirements": [
-              "Daylight"
+              "dim lighting to create shadows"
             ]
           },
           {
             "scene_number": "2",
             "department": "sound",
             "requirements": [
-              "Crash sound effect"
+              "radio static"
             ]
           },
           {
             "scene_number": "2",
             "department": "camera",
             "requirements": [
-              "Tracking shot following Shinchan"
+              "close-ups of Ela"
             ]
           },
           {
             "scene_number": "3",
             "department": "props",
             "requirements": [
-              "Toy fishing rod"
+              "spacecraft"
             ]
           },
           {
             "scene_number": "3",
             "department": "lighting",
             "requirements": [
-              "Daylight with dramatic shadows"
+              "sparks for dramatic effect"
             ]
           },
           {
             "scene_number": "3",
             "department": "sound",
             "requirements": [
-              "Robot growls",
-              "Tree crashing"
+              "SFX: Sparks"
             ]
           },
           {
             "scene_number": "3",
             "department": "camera",
             "requirements": [
-              "Dynamic angles for action"
+              "EXTREME CLOSE-UP"
+            ]
+          },
+          {
+            "scene_number": "4",
+            "department": "props",
+            "requirements": [
+              "SUV",
+              "map"
             ]
           },
           {
             "scene_number": "4",
             "department": "lighting",
             "requirements": [
-              "Post-action shading"
+              "headlights"
             ]
           },
           {
             "scene_number": "4",
             "department": "sound",
             "requirements": [
-              "Metal clangs",
-              "Alien language"
+              "engine sounds"
             ]
           },
           {
             "scene_number": "4",
             "department": "camera",
             "requirements": [
-              "Close-ups of action"
+              "shots from inside the SUV"
             ]
           },
           {
             "scene_number": "5",
             "department": "props",
             "requirements": [
-              "Ice cream cones"
+              "first-aid kit"
             ]
           },
           {
             "scene_number": "5",
             "department": "lighting",
             "requirements": [
-              "Sunset lighting"
+              "spotlight"
             ]
           },
           {
             "scene_number": "5",
             "department": "sound",
             "requirements": [
-              "Laughing",
-              "Ending theme"
+              "breathing"
             ]
           },
           {
             "scene_number": "5",
             "department": "camera",
             "requirements": [
-              "Wide sunset shot"
+              "close-ups of characters"
+            ]
+          },
+          {
+            "scene_number": "6",
+            "department": "props",
+            "requirements": [
+              "photo of Marcus"
+            ]
+          },
+          {
+            "scene_number": "6",
+            "department": "lighting",
+            "requirements": [
+              "soft sunrise lighting"
+            ]
+          },
+          {
+            "scene_number": "6",
+            "department": "sound",
+            "requirements": [
+              "soft radio bleep"
+            ]
+          },
+          {
+            "scene_number": "6",
+            "department": "camera",
+            "requirements": [
+              "medium shots of characters"
             ]
           }
         ]
       },
       "summary": {
-        "total_scenes": 5,
-        "valid_scenes": 0,
-        "scenes_with_issues": 5,
-        "total_issues": 9
+        "total_scenes": 6,
+        "valid_scenes": 6,
+        "scenes_with_issues": 2,
+        "total_issues": 2
       },
-      "formatted_text": "\n================================================================================\nVALIDATION REPORT - FAILED\n--------------------------------------------------------------------------------\n\n\nTIMELINE VALIDATION:\nStatus: FAIL\n\nPacing Analysis:\n  - Script may be too fast-paced. Consider adding more character development scenes.\n\nTECHNICAL VALIDATION:\n\nDepartment Conflicts:\n  Scene 1:\n    Props and camera movement may interfere\n  Scene 2:\n    Props and camera movement may interfere\n  Scene 3:\n    Props and camera movement may interfere\n  Scene 5:\n    Props and camera movement may interfere\n\nISSUES FOUND:\n\nType: error\nCategory: continuity\nScene: 1\nDescription: Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 2\nDescription: Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 3\nDescription: Scene duration stated as 5 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 4\nDescription: Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 5\nDescription: Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: timeline\nScene: None\nDescription: Total timeline duration sums to 5 minutes but multiple entries in scene data are inconsistent.\nSuggestion: Recalculate scene durations to ensure consistency with total timeline time.\n\n\nType: error\nCategory: metadata\nScene: None\nDescription: Estimated runtime conflicts between script and metadata.\nSuggestion: Ensure estimated runtime in metadata matches the sum of scene durations.\n\n\nType: warning\nCategory: fields\nScene: None\nDescription: Metadata field 'total_cast' is marked as 0.\nSuggestion: Verify cast information is correctly entered.\n\n\nType: warning\nCategory: technical\nScene: 1\nDescription: Setup time allocated might be insufficient given technical complexity.\nSuggestion: Review setup time for more feasible timing before scenes.\n\n\n================================================================================\nSCENE VALIDATIONS\n--------------------------------------------------------------------------------\n\n\nSCENE 1:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 2:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 3:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 4:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 5:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\n================================================================================\nMETADATA VALIDATION\n--------------------------------------------------------------------------------\n\nSMPTE Compliance: Yes\n\nWarnings:\n  - Estimated runtime conflicts between script and metadata.\n\n================================================================================\nVALIDATION SUMMARY\n--------------------------------------------------------------------------------\nTotal Scenes: 5\nValid Scenes: 0\nScenes with Issues: 5\nTotal Issues: 9"
+      "formatted_text": "\n================================================================================\nVALIDATION REPORT - FAILED\n--------------------------------------------------------------------------------\n\n\nTIMELINE VALIDATION:\nStatus: FAIL\n\nTECHNICAL VALIDATION:\n\nDepartment Conflicts:\n  Scene 1:\n    Props and camera movement may interfere\n  Scene 2:\n    Props and camera movement may interfere\n  Scene 3:\n    Props and camera movement may interfere\n  Scene 4:\n    Props and camera movement may interfere\n  Scene 5:\n    Props and camera movement may interfere\n  Scene 6:\n    Props and camera movement may interfere\n\nISSUES FOUND:\n\nType: warning\nCategory: continuity\nScene: 2\nDescription: Time transition from 'NIGHT' in Scene 1 to 'CONTINUOUS' in Scene 2 should be explicitly defined in non-linear flashback settings.\nSuggestion: Clarify the timeline connection between Scenes 1 and 2.\n\n\nType: warning\nCategory: continuity\nScene: 5\nDescription: 'MOMENTS LATER' following a 'FLASHBACK' in Scene 3 may create confusion without clear timeline context.\nSuggestion: Provide clearer timeline indicators for audience understanding.\n\n\n================================================================================\nSCENE VALIDATIONS\n--------------------------------------------------------------------------------\n\n\nSCENE 1:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\nSCENE 2:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2717 Continuity Check: Unclear transition from 'NIGHT' to 'CONTINUOUS'.\n\nSCENE 3:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\nSCENE 4:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\nSCENE 5:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2717 Continuity Check: Ambiguous timing reference as 'MOMENTS LATER' from a 'FLASHBACK'.\n\nSCENE 6:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\n================================================================================\nMETADATA VALIDATION\n--------------------------------------------------------------------------------\n\nSMPTE Compliance: Yes\n\n================================================================================\nVALIDATION SUMMARY\n--------------------------------------------------------------------------------\nTotal Scenes: 6\nValid Scenes: 6\nScenes with Issues: 2\nTotal Issues: 2"
     },
-    "formatted_text": "\n================================================================================\nVALIDATION REPORT - FAILED\n--------------------------------------------------------------------------------\n\n\nTIMELINE VALIDATION:\nStatus: FAIL\n\nPacing Analysis:\n  - Script may be too fast-paced. Consider adding more character development scenes.\n\nTECHNICAL VALIDATION:\n\nDepartment Conflicts:\n  Scene 1:\n    Props and camera movement may interfere\n  Scene 2:\n    Props and camera movement may interfere\n  Scene 3:\n    Props and camera movement may interfere\n  Scene 5:\n    Props and camera movement may interfere\n\nISSUES FOUND:\n\nType: error\nCategory: continuity\nScene: 1\nDescription: Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 2\nDescription: Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 3\nDescription: Scene duration stated as 5 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 4\nDescription: Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 5\nDescription: Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: timeline\nScene: None\nDescription: Total timeline duration sums to 5 minutes but multiple entries in scene data are inconsistent.\nSuggestion: Recalculate scene durations to ensure consistency with total timeline time.\n\n\nType: error\nCategory: metadata\nScene: None\nDescription: Estimated runtime conflicts between script and metadata.\nSuggestion: Ensure estimated runtime in metadata matches the sum of scene durations.\n\n\nType: warning\nCategory: fields\nScene: None\nDescription: Metadata field 'total_cast' is marked as 0.\nSuggestion: Verify cast information is correctly entered.\n\n\nType: warning\nCategory: technical\nScene: 1\nDescription: Setup time allocated might be insufficient given technical complexity.\nSuggestion: Review setup time for more feasible timing before scenes.\n\n\n================================================================================\nSCENE VALIDATIONS\n--------------------------------------------------------------------------------\n\n\nSCENE 1:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 2:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 3:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 4:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 5:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\n================================================================================\nMETADATA VALIDATION\n--------------------------------------------------------------------------------\n\nSMPTE Compliance: Yes\n\nWarnings:\n  - Estimated runtime conflicts between script and metadata.\n\n================================================================================\nVALIDATION SUMMARY\n--------------------------------------------------------------------------------\nTotal Scenes: 5\nValid Scenes: 0\nScenes with Issues: 5\nTotal Issues: 9"
+    "formatted_text": "\n================================================================================\nVALIDATION REPORT - FAILED\n--------------------------------------------------------------------------------\n\n\nTIMELINE VALIDATION:\nStatus: FAIL\n\nTECHNICAL VALIDATION:\n\nDepartment Conflicts:\n  Scene 1:\n    Props and camera movement may interfere\n  Scene 2:\n    Props and camera movement may interfere\n  Scene 3:\n    Props and camera movement may interfere\n  Scene 4:\n    Props and camera movement may interfere\n  Scene 5:\n    Props and camera movement may interfere\n  Scene 6:\n    Props and camera movement may interfere\n\nISSUES FOUND:\n\nType: warning\nCategory: continuity\nScene: 2\nDescription: Time transition from 'NIGHT' in Scene 1 to 'CONTINUOUS' in Scene 2 should be explicitly defined in non-linear flashback settings.\nSuggestion: Clarify the timeline connection between Scenes 1 and 2.\n\n\nType: warning\nCategory: continuity\nScene: 5\nDescription: 'MOMENTS LATER' following a 'FLASHBACK' in Scene 3 may create confusion without clear timeline context.\nSuggestion: Provide clearer timeline indicators for audience understanding.\n\n\n================================================================================\nSCENE VALIDATIONS\n--------------------------------------------------------------------------------\n\n\nSCENE 1:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\nSCENE 2:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2717 Continuity Check: Unclear transition from 'NIGHT' to 'CONTINUOUS'.\n\nSCENE 3:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\nSCENE 4:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\nSCENE 5:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2717 Continuity Check: Ambiguous timing reference as 'MOMENTS LATER' from a 'FLASHBACK'.\n\nSCENE 6:\n  \u2713 Scene Number Consistency: Scene number is consistent.\n  \u2713 Technical Completeness: All required technical details are complete.\n\n================================================================================\nMETADATA VALIDATION\n--------------------------------------------------------------------------------\n\nSMPTE Compliance: Yes\n\n================================================================================\nVALIDATION SUMMARY\n--------------------------------------------------------------------------------\nTotal Scenes: 6\nValid Scenes: 6\nScenes with Issues: 2\nTotal Issues: 2"
   },
   "processing_status": {
-    "started_at": "2025-04-26T16:46:07.585985",
+    "started_at": "2025-04-26T21:16:33.079045",
     "current_stage": "completed",
     "completed_stages": [
       {
         "stage": "parsing",
-        "completed_at": "2025-04-26T16:46:21.924276",
+        "completed_at": "2025-04-26T21:16:48.638200",
         "success": true
       },
       {
         "stage": "metadata",
-        "completed_at": "2025-04-26T16:46:32.706358",
+        "completed_at": "2025-04-26T21:16:58.281123",
         "success": true
       },
       {
         "stage": "validation",
-        "completed_at": "2025-04-26T16:46:44.848590",
-        "success": false
+        "completed_at": "2025-04-26T21:17:11.366064",
+        "success": true
       }
     ],
     "errors": [],
     "warnings": [
       {
         "type": "validation_warning",
-        "message": "Metadata field 'total_cast' is marked as 0.",
-        "scene": null,
-        "category": "fields"
+        "message": "Time transition from 'NIGHT' in Scene 1 to 'CONTINUOUS' in Scene 2 should be explicitly defined in non-linear flashback settings.",
+        "scene": "2",
+        "category": "continuity"
       },
       {
         "type": "validation_warning",
-        "message": "Setup time allocated might be insufficient given technical complexity.",
-        "scene": "1",
-        "category": "technical"
-      },
-      {
-        "type": "validation_critical",
-        "message": "Critical validation issues found but proceeding (lenient mode)",
-        "details": "Critical validation issues found:\n\nScene 1 - continuity:\n  Issue: Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.\n  Suggestion: Adjust scene duration in timeline breakdown or description.\n\nScene 2 - continuity:\n  Issue: Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.\n  Suggestion: Adjust scene duration in timeline breakdown or description.\n\nScene 3 - continuity:\n  Issue: Scene duration stated as 5 minutes but timeline breakdown allocates only 1 minute.\n  Suggestion: Adjust scene duration in timeline breakdown or description.\n\nScene 4 - continuity:\n  Issue: Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.\n  Suggestion: Adjust scene duration in timeline breakdown or description.\n\nScene 5 - continuity:\n  Issue: Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.\n  Suggestion: Adjust scene duration in timeline breakdown or description.\n\nScene None - timeline:\n  Issue: Total timeline duration sums to 5 minutes but multiple entries in scene data are inconsistent.\n  Suggestion: Recalculate scene durations to ensure consistency with total timeline time.\n\nScene None - metadata:\n  Issue: Estimated runtime conflicts between script and metadata.\n  Suggestion: Ensure estimated runtime in metadata matches the sum of scene durations."
+        "message": "'MOMENTS LATER' following a 'FLASHBACK' in Scene 3 may create confusion without clear timeline context.",
+        "scene": "5",
+        "category": "continuity"
       }
     ],
-    "completed_at": "2025-04-26T16:46:44.858234",
-    "duration": "0:00:37.272262"
+    "completed_at": "2025-04-26T21:17:11.372824",
+    "duration": "0:00:38.293792"
   },
   "statistics": {
-    "total_scenes": 5,
+    "total_scenes": 6,
     "total_pages": 0.0,
-    "estimated_runtime": "00:15:00",
+    "estimated_runtime": "00:18:00",
     "total_cast": 0,
     "unique_locations": 1,
     "scene_statistics": {
       "average_duration": 3.0,
       "shortest_scene": 2,
-      "longest_scene": 5,
-      "total_duration": 15
+      "longest_scene": 4,
+      "total_duration": 18
     },
     "complex_scenes": 0,
     "dialogue_heavy_scenes": 0,
-    "effects_required": 4
+    "effects_required": 2
   },
   "ui_metadata": {
     "color_coding": {
@@ -1087,91 +1151,99 @@
       }
     },
     "scene_complexity": {
-      "1": 1,
+      "1": 2,
       "2": 2,
       "3": 2,
       "4": 1,
-      "5": 1
+      "5": 1,
+      "6": 1
     },
     "timeline_data": {
-      "total_duration": "0:05:00",
+      "total_duration": "0:18:00",
       "scene_breakdown": [
         {
           "scene_number": "1",
           "start_time": "0:00:00",
-          "end_time": "0:01:00",
-          "duration_minutes": 1,
-          "location": "Kasukabe - Shinchan's House",
-          "characters": [
-            "MITSY",
-            "SHINCHAN"
-          ],
-          "technical_complexity": 1,
-          "setup_time": 20
+          "end_time": "0:02:00",
+          "duration_minutes": 2,
+          "location": "DESERTED HIGHWAY",
+          "characters": [],
+          "technical_complexity": 2,
+          "setup_time": 31
         },
         {
           "scene_number": "2",
-          "start_time": "0:01:00",
-          "end_time": "0:02:00",
-          "duration_minutes": 1,
-          "location": "Park",
+          "start_time": "0:02:00",
+          "end_time": "0:05:00",
+          "duration_minutes": 3,
+          "location": "RADIO TENT",
           "characters": [
-            "BEN",
-            "SHINCHAN"
+            "MARCUS (V.O.)",
+            "ELA"
           ],
           "technical_complexity": 2,
           "setup_time": 25
         },
         {
           "scene_number": "3",
-          "start_time": "0:02:00",
-          "end_time": "0:03:00",
-          "duration_minutes": 1,
-          "location": "Park",
+          "start_time": "0:05:00",
+          "end_time": "0:08:00",
+          "duration_minutes": 3,
+          "location": "CRASH SITE",
           "characters": [
-            "BEN",
-            "SHINCHAN",
-            "BEN (XLR8)",
-            "ROBOT ALIEN"
+            "MARCUS",
+            "AI VOICE (O.S.)"
           ],
           "technical_complexity": 2,
-          "setup_time": 25
+          "setup_time": 22
         },
         {
           "scene_number": "4",
-          "start_time": "0:03:00",
-          "end_time": "0:04:00",
-          "duration_minutes": 1,
-          "location": "Park",
+          "start_time": "0:08:00",
+          "end_time": "0:11:00",
+          "duration_minutes": 3,
+          "location": "DESOLATION ROAD",
           "characters": [
-            "BEN (Four Arms)",
-            "BEN",
-            "SHINCHAN"
+            "SHERIFF MILLER"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 20
+        },
+        {
+          "scene_number": "5",
+          "start_time": "0:11:00",
+          "end_time": "0:15:00",
+          "duration_minutes": 4,
+          "location": "CRASH SITE",
+          "characters": [
+            "MARCUS",
+            "SHERIFF MILLER",
+            "ELA"
           ],
           "technical_complexity": 1,
           "setup_time": 17
         },
         {
-          "scene_number": "5",
-          "start_time": "0:04:00",
-          "end_time": "0:05:00",
-          "duration_minutes": 1,
-          "location": "Park",
+          "scene_number": "6",
+          "start_time": "0:15:00",
+          "end_time": "0:18:00",
+          "duration_minutes": 3,
+          "location": "RADIO TENT",
           "characters": [
-            "BEN",
-            "SHINCHAN"
+            "SHERIFF MILLER",
+            "ELA"
           ],
           "technical_complexity": 1,
-          "setup_time": 20
+          "setup_time": 17
         }
       ],
-      "average_scene_duration": 1.0
+      "average_scene_duration": 3.0
     },
     "department_views": {}
   },
   "saved_paths": {
-    "main": "data/scripts/script_20250426_164644.json",
-    "metadata": "data/scripts/metadata/metadata_20250426_164644.json",
-    "validation": "data/scripts/validation/validation_20250426_164644.json"
+    "main": "data/scripts/script_20250426_211711.json",
+    "metadata": "data/scripts/metadata/metadata_20250426_211711.json",
+    "validation": "data/scripts/validation/validation_20250426_211711.json"
   }
 }
