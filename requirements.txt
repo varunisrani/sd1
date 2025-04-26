@@ -13,6 +13,7 @@ pandas
 networkx
 geopy
 plotly
+qrcode
 
 # Visualization and UI
 openai-agents
