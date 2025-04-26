@@ -472,7 +472,7 @@ def show_script_analysis():
             
             # Scene duration statistics
             if "scene_statistics" in stats:
-                scene_stats = stats["scene_stats"]
+                scene_stats = stats["scene_statistics"]  # Use the correct key
                 st.write("### Scene Duration Statistics")
                 
                 duration_data = {
@@ -492,6 +492,8 @@ def show_script_analysis():
                     title="Scene Duration Analysis"
                 )
                 st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.info("Scene duration statistics are not available.")
     
     with tab7:
         st.subheader("Raw Data")
