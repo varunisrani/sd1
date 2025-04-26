@@ -716,10 +716,5 @@
     "Sequence outdoor park scenes together to utilize daylight effectively.",
     "Complete park scenes by sunset to capture necessary lighting conditions."
   ],
-  "timestamp": "2025-04-26T18:25:59.102897",
-  "saved_files": {
-    "main": "data/schedules/schedule_20250426_182559.json",
-    "calendar": "data/schedules/calendar/calendar_20250426_182559.json",
-    "gantt": "data/schedules/gantt/gantt_20250426_182559.json"
-  }
+  "timestamp": "2025-04-26T18:25:59.102897"
 }

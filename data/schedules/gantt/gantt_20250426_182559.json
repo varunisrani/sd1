@@ -1,0 +1,128 @@
+{
+  "tasks": [
+    {
+      "id": "task_1",
+      "text": "Scene 1",
+      "start_date": "2025-04-26 08:00",
+      "end_date": "2025-04-26 09:30",
+      "progress": 0,
+      "parent": null,
+      "dependencies": [],
+      "resource_ids": [
+        "location_1"
+      ],
+      "type": "shooting",
+      "color": "#FF0000"
+    },
+    {
+      "id": "task_2",
+      "text": "Scene 2",
+      "start_date": "2025-04-26 10:10",
+      "end_date": "2025-04-26 11:00",
+      "progress": 0,
+      "parent": null,
+      "dependencies": [
+        "task_1"
+      ],
+      "resource_ids": [
+        "location_2"
+      ],
+      "type": "shooting",
+      "color": "#0000FF"
+    },
+    {
+      "id": "task_3",
+      "text": "Scene 3",
+      "start_date": "2025-04-26 11:20",
+      "end_date": "2025-04-26 12:20",
+      "progress": 0,
+      "parent": null,
+      "dependencies": [
+        "task_2"
+      ],
+      "resource_ids": [
+        "location_2"
+      ],
+      "type": "shooting",
+      "color": "#00FF00"
+    },
+    {
+      "id": "task_4",
+      "text": "Scene 4",
+      "start_date": "2025-04-26 14:00",
+      "end_date": "2025-04-26 15:30",
+      "progress": 0,
+      "parent": null,
+      "dependencies": [
+        "task_3"
+      ],
+      "resource_ids": [
+        "location_2"
+      ],
+      "type": "shooting",
+      "color": "#FF00FF"
+    },
+    {
+      "id": "task_5",
+      "text": "Scene 5",
+      "start_date": "2025-04-26 17:30",
+      "end_date": "2025-04-26 18:00",
+      "progress": 0,
+      "parent": null,
+      "dependencies": [
+        "task_4"
+      ],
+      "resource_ids": [
+        "location_2"
+      ],
+      "type": "shooting",
+      "color": "#FFFF00"
+    }
+  ],
+  "links": [
+    {
+      "id": "link_1",
+      "source": "task_1",
+      "target": "task_2",
+      "type": "0"
+    },
+    {
+      "id": "link_2",
+      "source": "task_2",
+      "target": "task_3",
+      "type": "0"
+    },
+    {
+      "id": "link_3",
+      "source": "task_3",
+      "target": "task_4",
+      "type": "0"
+    },
+    {
+      "id": "link_4",
+      "source": "task_4",
+      "target": "task_5",
+      "type": "0"
+    }
+  ],
+  "resources": [
+    {
+      "id": "resource_1",
+      "name": "Main Camera",
+      "type": "Camera",
+      "calendar_id": "cal_1"
+    },
+    {
+      "id": "resource_2",
+      "name": "Boom Mic",
+      "type": "Sound",
+      "calendar_id": "cal_2"
+    },
+    {
+      "id": "resource_3",
+      "name": "Lights",
+      "type": "Lighting",
+      "calendar_id": "cal_3"
+    }
+  ]
+}

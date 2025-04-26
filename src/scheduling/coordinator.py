@@ -16,9 +16,11 @@ class SchedulingCoordinator:
         self.crew_allocator = CrewAllocatorAgent()
         self.schedule_generator = ScheduleGeneratorAgent()
         
-        # Create data directory if it doesn't exist
+        # Create necessary data directories
         os.makedirs("data/schedules", exist_ok=True)
-        logger.info("Schedule data directory ensured")
+        os.makedirs("data/schedules/calendar", exist_ok=True)
+        os.makedirs("data/schedules/gantt", exist_ok=True)
+        logger.info("Schedule data directories ensured")
     
     def _validate_scene_data(self, scene_data: Dict[str, Any]) -> Dict[str, Any]:
         """Validate scene data structure and return processed scenes."""
@@ -87,6 +89,53 @@ class SchedulingCoordinator:
         except ValueError:
             raise ValueError("Invalid start date format. Use YYYY-MM-DD")
     
+    def _validate_schedule_data(self, schedule: Dict[str, Any]) -> Dict[str, Any]:
+        """Validate schedule data structure including calendar and Gantt data."""
+        try:
+            logger.info("Validating schedule data structure")
+            
+            # Validate main schedule structure
+            if not isinstance(schedule.get('schedule'), list):
+                raise ValueError("Schedule must contain a list of shooting days")
+            
+            # Validate calendar data
+            calendar_data = schedule.get('calendar_data', {})
+            if not isinstance(calendar_data.get('events'), list):
+                logger.warning("Missing or invalid calendar events")
+                calendar_data['events'] = []
+            if not isinstance(calendar_data.get('resources'), list):
+                logger.warning("Missing or invalid calendar resources")
+                calendar_data['resources'] = []
+            
+            # Validate Gantt data
+            gantt_data = schedule.get('gantt_data', {})
+            if not isinstance(gantt_data.get('tasks'), list):
+                logger.warning("Missing or invalid Gantt tasks")
+                gantt_data['tasks'] = []
+            if not isinstance(gantt_data.get('links'), list):
+                logger.warning("Missing or invalid Gantt links")
+                gantt_data['links'] = []
+            if not isinstance(gantt_data.get('resources'), list):
+                logger.warning("Missing or invalid Gantt resources")
+                gantt_data['resources'] = []
+            
+            # Validate summary data
+            summary = schedule.get('summary', {})
+            required_summary_fields = ['total_days', 'start_date', 'end_date', 'total_scenes']
+            for field in required_summary_fields:
+                if field not in summary:
+                    logger.warning(f"Missing summary field: {field}")
+                    if field in ['total_days', 'total_scenes']:
+                        summary[field] = 0
+                    elif field in ['start_date', 'end_date']:
+                        summary[field] = datetime.now().strftime("%Y-%m-%d")
+            
+            return schedule
+            
+        except Exception as e:
+            logger.error(f"Error validating schedule data: {str(e)}")
+            raise
+    
     async def generate_schedule(
         self,
         scene_data: Dict[str, Any],
@@ -132,29 +181,33 @@ class SchedulingCoordinator:
             # Step 3: Generate detailed schedule
             logger.info("Step 3: Generating detailed schedule")
             schedule = await self.schedule_generator.generate_schedule(
-                processed_scene_data,  # Pass the processed scene data
+                processed_scene_data,
                 crew_allocation,
-                location_plan,  # Pass location_plan as location_optimization
-                validated_start_date,  # Pass the validated start date
+                location_plan,
+                validated_start_date,
                 schedule_constraints
             )
-            logger.info("Schedule generation completed")
+            
+            # Validate the schedule data structure
+            schedule = self._validate_schedule_data(schedule)
+            logger.info("Schedule generation and validation completed")
             
             # Combine all results
             result = {
                 "location_plan": location_plan,
                 "crew_allocation": crew_allocation,
-                "schedule": schedule,
+                "schedule": schedule.get('schedule', []),
+                "calendar_data": schedule.get('calendar_data', {}),
+                "gantt_data": schedule.get('gantt_data', {}),
+                "summary": schedule.get('summary', {}),
+                "optimization_notes": schedule.get('optimization_notes', []),
                 "timestamp": datetime.now().isoformat()
             }
             
-            # Save to disk if no major warnings
-            if not schedule.get("warnings", []):
-                logger.info("No major warnings found, saving schedule to disk")
-                filepath = self._save_to_disk(result)
-                result["saved_to"] = filepath
-            else:
-                logger.warning(f"Found {len(schedule['warnings'])} warnings in schedule")
+            # Save to disk
+            logger.info("Saving schedule data to disk")
+            saved_files = self._save_to_disk(result)
+            result["saved_files"] = saved_files
             
             return result
             
@@ -162,17 +215,35 @@ class SchedulingCoordinator:
             logger.error(f"Error in schedule generation pipeline: {str(e)}", exc_info=True)
             raise
     
-    def _save_to_disk(self, data: Dict[str, Any]) -> str:
-        """Save schedule data to disk."""
+    def _save_to_disk(self, data: Dict[str, Any]) -> Dict[str, str]:
+        """Save schedule data to disk in multiple formats."""
         try:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f"data/schedules/schedule_{timestamp}.json"
+            saved_files = {}
             
-            with open(filename, "w") as f:
+            # Save main schedule
+            schedule_file = f"data/schedules/schedule_{timestamp}.json"
+            with open(schedule_file, "w") as f:
                 json.dump(data, f, indent=2)
+            saved_files['main'] = schedule_file
             
-            logger.info(f"Schedule saved to {filename}")
-            return filename
+            # Save calendar data separately
+            if 'calendar_data' in data:
+                calendar_file = f"data/schedules/calendar/calendar_{timestamp}.json"
+                with open(calendar_file, "w") as f:
+                    json.dump(data['calendar_data'], f, indent=2)
+                saved_files['calendar'] = calendar_file
+            
+            # Save Gantt data separately
+            if 'gantt_data' in data:
+                gantt_file = f"data/schedules/gantt/gantt_{timestamp}.json"
+                with open(gantt_file, "w") as f:
+                    json.dump(data['gantt_data'], f, indent=2)
+                saved_files['gantt'] = gantt_file
+            
+            logger.info(f"Schedule data saved to multiple files")
+            return saved_files
+            
         except Exception as e:
-            logger.error(f"Error saving schedule to disk: {str(e)}", exc_info=True)
+            logger.error(f"Error saving schedule data to disk: {str(e)}")
             raise 

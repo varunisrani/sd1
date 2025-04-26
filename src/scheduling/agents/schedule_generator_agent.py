@@ -41,7 +41,7 @@ class ScheduleGeneratorAgent:
             
             logger.debug(f"Processing {len(scenes)} scenes")
             
-            prompt = f"""You are a film production schedule generator. Your task is to create a detailed shooting schedule.
+            prompt = f"""You are a film production schedule generator. Your task is to create a detailed shooting schedule based on scene data, crew allocation, and location optimization.
 
 IMPORTANT: You must respond with ONLY valid JSON data in the exact format specified below. Do not include any other text or explanations.
 
@@ -49,50 +49,106 @@ Required JSON format:
 {{
     "schedule": [
         {{
+            "day": number,
             "date": "YYYY-MM-DD",
-            "day_number": number,
             "scenes": [
                 {{
                     "scene_id": "string",
-                    "location": "string",
                     "start_time": "HH:MM",
                     "end_time": "HH:MM",
+                    "location_id": "string",
+                    "crew_ids": ["crew1", "crew2"],
+                    "equipment_ids": ["equip1", "equip2"],
                     "setup_time": "HH:MM",
                     "wrap_time": "HH:MM",
-                    "crew_calls": [
+                    "breaks": [
                         {{
-                            "crew_member": "string",
-                            "call_time": "HH:MM"
+                            "type": "string",
+                            "start_time": "HH:MM",
+                            "end_time": "HH:MM"
                         }}
-                    ],
-                    "equipment_requirements": ["string"],
-                    "notes": ["string"]
+                    ]
                 }}
-            ],
-            "day_start": "HH:MM",
-            "day_wrap": "HH:MM",
-            "total_pages": number,
-            "company_moves": number,
-            "notes": ["string"]
+            ]
         }}
     ],
-    "total_days": number,
-    "schedule_notes": ["string"],
-    "efficiency_metrics": {{
-        "company_moves_per_day": number,
-        "average_pages_per_day": number,
-        "location_optimization_score": number
-    }}
+    "calendar_data": {{
+        "events": [
+            {{
+                "id": "string",
+                "title": "string",
+                "start": "YYYY-MM-DDTHH:MM:SS",
+                "end": "YYYY-MM-DDTHH:MM:SS",
+                "resourceId": "string",
+                "color": "string",
+                "textColor": "string",
+                "description": "string",
+                "location": "string",
+                "crew": ["crew1", "crew2"],
+                "equipment": ["equip1", "equip2"]
+            }}
+        ],
+        "resources": [
+            {{
+                "id": "string",
+                "title": "string",
+                "type": "string"
+            }}
+        ]
+    }},
+    "gantt_data": {{
+        "tasks": [
+            {{
+                "id": "string",
+                "text": "string",
+                "start_date": "YYYY-MM-DD HH:MM",
+                "end_date": "YYYY-MM-DD HH:MM",
+                "progress": number,
+                "parent": "string",
+                "dependencies": ["task1", "task2"],
+                "resource_ids": ["resource1", "resource2"],
+                "type": "string",
+                "color": "string"
+            }}
+        ],
+        "links": [
+            {{
+                "id": "string",
+                "source": "string",
+                "target": "string",
+                "type": "string"
+            }}
+        ],
+        "resources": [
+            {{
+                "id": "string",
+                "name": "string",
+                "type": "string",
+                "calendar_id": "string"
+            }}
+        ]
+    }},
+    "summary": {{
+        "total_days": number,
+        "start_date": "YYYY-MM-DD",
+        "end_date": "YYYY-MM-DD",
+        "total_scenes": number,
+        "total_pages": number,
+        "total_runtime_minutes": number
+    }},
+    "optimization_notes": ["note1", "note2"]
 }}
 
-Consider these requirements:
-- Maximum shooting hours per day
-- Required meal breaks and turnaround time
-- Location grouping and company moves
-- Actor availability and daylight requirements
-- Weather considerations and seasonal factors
-
-Scene Data:
+Consider these scheduling factors:
+        - Scene complexity and estimated duration
+        - Location availability and optimization
+        - Crew availability and conflicts
+        - Equipment availability
+        - Weather dependencies
+        - Daylight requirements
+        - Meal breaks and union regulations
+        
+        Scene Data:
 {json.dumps(scenes, indent=2)}
 
 Crew Allocation:
@@ -123,156 +179,131 @@ Remember: Return ONLY the JSON data structure. No other text."""
                 raise ValueError("Could not find valid JSON in response")
             
             # Try to parse the JSON
-            schedule_data = json.loads(cleaned_response)
-            logger.info("Successfully parsed schedule data")
+            schedule_result = json.loads(cleaned_response)
             
-            # Validate required fields
-            required_fields = ['schedule', 'total_days']
+            # Validate the required fields
+            required_fields = ['schedule', 'calendar_data', 'gantt_data', 'summary']
             for field in required_fields:
-                if field not in schedule_data:
+                if field not in schedule_result:
                     raise ValueError(f"Missing required field: {field}")
             
-            # Validate schedule entries
-            for day in schedule_data.get('schedule', []):
-                required_day_fields = ['date', 'day_number', 'scenes']
+            # Validate schedule data
+            for day in schedule_result.get('schedule', []):
+                required_day_fields = ['day', 'date', 'scenes']
                 for field in required_day_fields:
                     if field not in day:
                         raise ValueError(f"Missing required day field: {field}")
                 
-                # Validate scenes in each day
                 for scene in day.get('scenes', []):
-                    required_scene_fields = ['scene_id', 'start_time', 'end_time']
+                    required_scene_fields = ['scene_id', 'start_time', 'end_time', 'location_id']
                     for field in required_scene_fields:
                         if field not in scene:
                             raise ValueError(f"Missing required scene field: {field}")
             
+            # Validate calendar data
+            calendar_data = schedule_result.get('calendar_data', {})
+            if not isinstance(calendar_data.get('events'), list):
+                raise ValueError("Calendar data must contain events array")
+            if not isinstance(calendar_data.get('resources'), list):
+                raise ValueError("Calendar data must contain resources array")
+            
+            # Validate Gantt data
+            gantt_data = schedule_result.get('gantt_data', {})
+            if not isinstance(gantt_data.get('tasks'), list):
+                raise ValueError("Gantt data must contain tasks array")
+            if not isinstance(gantt_data.get('links'), list):
+                raise ValueError("Gantt data must contain links array")
+            if not isinstance(gantt_data.get('resources'), list):
+                raise ValueError("Gantt data must contain resources array")
+            
+            # Validate summary data
+            summary = schedule_result.get('summary', {})
+            required_summary_fields = ['total_days', 'start_date', 'end_date', 'total_scenes']
+            for field in required_summary_fields:
+                if field not in summary:
+                    raise ValueError(f"Missing required summary field: {field}")
+            
             # Validate and adjust dates
-            schedule_data = self._validate_and_adjust_dates(schedule_data, start_date)
+            schedule_result = self._validate_and_adjust_dates(schedule_result, start_date)
             logger.info("Schedule dates validated and adjusted")
             
-            return schedule_data
+            return schedule_result
             
         except json.JSONDecodeError as e:
-            logger.error(f"Failed to parse schedule data: {str(e)}")
+            logger.error(f"Failed to parse schedule result: {str(e)}")
             logger.debug(f"Raw response: {result.final_output}")
             
-            # Create a basic valid response
-            logger.info("Generating fallback schedule")
-            fallback_response = self._generate_fallback_schedule(scenes, start_date)
+            # Try to create a basic valid response
+            logger.info("Attempting to create fallback response")
+            start_date = datetime.now()
+            fallback_response = {
+                "schedule": [
+                    {
+                        "day": 1,
+                        "date": start_date.strftime("%Y-%m-%d"),
+                        "scenes": []
+                    }
+                ],
+                "calendar_data": {
+                    "events": [],
+                    "resources": []
+                },
+                "gantt_data": {
+                    "tasks": [],
+                    "links": [],
+                    "resources": []
+                },
+                "summary": {
+                    "total_days": 1,
+                    "start_date": start_date.strftime("%Y-%m-%d"),
+                    "end_date": start_date.strftime("%Y-%m-%d"),
+                    "total_scenes": len(scenes),
+                    "total_pages": 0,
+                    "total_runtime_minutes": 0
+                },
+                "optimization_notes": ["Generated fallback response due to API parsing error"]
+            }
             return fallback_response
             
         except Exception as e:
-            logger.error(f"Error during schedule generation: {str(e)}", exc_info=True)
+            logger.error(f"Error in generate_schedule: {str(e)}")
             raise
     
     def _clean_and_extract_json(self, text: str) -> str:
-        """Clean and extract JSON from text response."""
-        # First, try to find JSON between triple backticks
-        matches = re.findall(r'```(?:json)?\s*({\s*.*?\s*})\s*```', text, re.DOTALL)
-        if matches:
-            return matches[0]
-        
-        # Then try to find JSON between single backticks
-        matches = re.findall(r'`({\s*.*?\s*})`', text, re.DOTALL)
-        if matches:
-            return matches[0]
-        
-        # Then try to find any JSON object
-        matches = re.findall(r'({\s*"[^"]+"\s*:[\s\S]*})', text)
-        if matches:
-            return matches[0]
-        
-        # Try to find anything that looks like JSON
-        matches = re.findall(r'({[\s\S]*})', text)
-        if matches:
-            return matches[0]
-        
-        # If we can't find JSON, return the original text
-        return text.strip()
-    
-    def _generate_fallback_schedule(self, scenes: List[Dict[str, Any]], start_date: str) -> Dict[str, Any]:
-        """Generate a basic valid schedule when the API response fails."""
-        logger.info("Generating fallback schedule")
-        
+        """Extract JSON from text response."""
         try:
-            start = datetime.strptime(start_date, "%Y-%m-%d")
-            schedule = []
-            scenes_per_day = 3  # Conservative estimate
+            # Find the first '{' and last '}'
+            start = text.find('{')
+            end = text.rfind('}')
             
-            # Group scenes into days
-            for i in range(0, len(scenes), scenes_per_day):
-                day_scenes = scenes[i:i + scenes_per_day]
-                current_date = start + timedelta(days=len(schedule))
-                
-                day_schedule = {
-                    "date": current_date.strftime("%Y-%m-%d"),
-                    "day_number": len(schedule) + 1,
-                    "scenes": [],
-                    "day_start": "08:00",
-                    "day_wrap": "18:00",
-                    "total_pages": len(day_scenes),
-                    "company_moves": 0,
-                    "notes": ["Fallback schedule - basic timing"]
-                }
-                
-                # Schedule scenes throughout the day
-                for idx, scene in enumerate(day_scenes):
-                    scene_id = scene.get('id') or scene.get('scene_id', f"scene_{i+idx}")
-                    start_hour = 8 + (idx * 3)  # 3 hours per scene
-                    
-                    scene_schedule = {
-                        "scene_id": scene_id,
-                        "location": scene.get('location', {}).get('name', 'Default Location'),
-                        "start_time": f"{start_hour:02d}:00",
-                        "end_time": f"{start_hour+2:02d}:30",
-                        "setup_time": f"{start_hour-1:02d}:30",
-                        "wrap_time": f"{start_hour+3:02d}:00",
-                        "crew_calls": [
-                            {"crew_member": "All Crew", "call_time": "07:30"}
-                        ],
-                        "equipment_requirements": ["Standard Package"],
-                        "notes": ["Basic schedule - adjust as needed"]
-                    }
-                    
-                    day_schedule["scenes"].append(scene_schedule)
-                
-                schedule.append(day_schedule)
+            if start == -1 or end == -1:
+                return ""
             
-            total_days = len(schedule)
+            # Extract the JSON substring
+            json_str = text[start:end + 1]
             
-            return {
-                "schedule": schedule,
-                "total_days": total_days,
-                "schedule_notes": [
-                    "Fallback schedule generated due to API error",
-                    "Conservative estimate of 3 scenes per day",
-                    "Standard 10-hour shooting days"
-                ],
-                "efficiency_metrics": {
-                    "company_moves_per_day": 0,
-                    "average_pages_per_day": scenes_per_day,
-                    "location_optimization_score": 0.5
-                },
-                "is_fallback": True
-            }
+            # Validate it's parseable
+            json.loads(json_str)
+            
+            return json_str
             
         except Exception as e:
-            logger.error(f"Error generating fallback schedule: {str(e)}", exc_info=True)
-            raise
+            logger.error(f"Error cleaning JSON: {str(e)}")
+            return ""
     
-    def _validate_and_adjust_dates(self, schedule_data: Dict[str, Any], start_date: str) -> Dict[str, Any]:
+    def _validate_and_adjust_dates(self, schedule_result: Dict[str, Any], start_date: str) -> Dict[str, Any]:
         """Validate and adjust dates in the schedule to ensure they are sequential and start from the given date."""
         try:
             start = datetime.strptime(start_date, "%Y-%m-%d")
             
-            if "schedule" not in schedule_data:
-                return schedule_data
+            if "schedule" not in schedule_result:
+                return schedule_result
             
-            for i, day in enumerate(schedule_data["schedule"]):
+            for i, day in enumerate(schedule_result["schedule"]):
                 # Set the correct date
                 current_date = start + timedelta(days=i)
                 day["date"] = current_date.strftime("%Y-%m-%d")
-                day["day_number"] = i + 1
+                day["day"] = i + 1
                 
                 # Validate time formats
                 for scene in day.get("scenes", []):
@@ -284,15 +315,17 @@ Remember: Return ONLY the JSON data structure. No other text."""
                                 scene[time_field] = "00:00"  # Set default if invalid
                     
                     # Validate crew call times
-                    for call in scene.get("crew_calls", []):
-                        if "call_time" in call:
+                    for call in scene.get("breaks", []):
+                        if "start_time" in call and "end_time" in call:
                             try:
-                                datetime.strptime(call["call_time"], "%H:%M")
+                                datetime.strptime(call["start_time"], "%H:%M")
+                                datetime.strptime(call["end_time"], "%H:%M")
                             except ValueError:
-                                call["call_time"] = "07:00"  # Set default if invalid
+                                call["start_time"] = "07:00"  # Set default if invalid
+                                call["end_time"] = "12:00"  # Set default if invalid
             
-            return schedule_data
+            return schedule_result
             
         except Exception as e:
             logger.error(f"Error validating schedule dates: {str(e)}", exc_info=True)
-            return schedule_data  # Return original if validation fails
+            return schedule_result  # Return original if validation fails

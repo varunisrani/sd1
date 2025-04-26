@@ -97,6 +97,20 @@ Required JSON format:
             "reason": "string"
         }}
     ],
+    "weather_dependencies": {{
+        "location_id": {{
+            "preferred_conditions": ["sunny", "overcast"],
+            "avoid_conditions": ["rain", "snow"],
+            "seasonal_notes": ["best in summer"]
+        }}
+    }},
+    "daylight_requirements": {{
+        "scene_id": {{
+            "needs_daylight": boolean,
+            "golden_hour": boolean,
+            "time_window": {{"start": "HH:MM", "end": "HH:MM"}}
+        }}
+    }},
     "shooting_sequence": ["location_id1", "location_id2"],
     "optimization_notes": ["note1", "note2"]
 }}
@@ -106,7 +120,7 @@ Consider these optimization factors:
         - Time of day requirements
         - Weather/seasonal dependencies
         - Set construction needs
-- Company move efficiency
+        - Company move efficiency
         
         Scene Data:
 {json.dumps(scenes, indent=2)}
@@ -137,7 +151,7 @@ Remember: Return ONLY the JSON data structure. No other text."""
                 optimization_result = json.loads(cleaned_response)
                 
                 # Validate the required fields
-                required_fields = ['locations', 'shooting_sequence']
+                required_fields = ['locations', 'shooting_sequence', 'weather_dependencies', 'daylight_requirements']
                 for field in required_fields:
                     if field not in optimization_result:
                         raise ValueError(f"Missing required field: {field}")
@@ -148,6 +162,20 @@ Remember: Return ONLY the JSON data structure. No other text."""
                     for field in required_location_fields:
                         if field not in location:
                             raise ValueError(f"Missing required location field: {field}")
+                
+                # Validate weather dependencies
+                for location_id, weather in optimization_result.get('weather_dependencies', {}).items():
+                    required_weather_fields = ['preferred_conditions', 'avoid_conditions']
+                    for field in required_weather_fields:
+                        if field not in weather:
+                            raise ValueError(f"Missing required weather dependency field: {field}")
+                
+                # Validate daylight requirements
+                for scene_id, daylight in optimization_result.get('daylight_requirements', {}).items():
+                    required_daylight_fields = ['needs_daylight', 'time_window']
+                    for field in required_daylight_fields:
+                        if field not in daylight:
+                            raise ValueError(f"Missing required daylight requirement field: {field}")
                 
                 logger.info("Successfully parsed and validated location optimization result")
                 
@@ -170,6 +198,8 @@ Remember: Return ONLY the JSON data structure. No other text."""
                     "locations": list(scene_locations.values()),
                     "shooting_sequence": [loc["id"] for loc in scene_locations.values()],
                     "location_groups": [],
+                    "weather_dependencies": {},
+                    "daylight_requirements": {},
                     "optimization_notes": ["Generated fallback response due to API parsing error"]
                 }
                 return fallback_response

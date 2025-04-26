@@ -76,6 +76,21 @@ Required JSON format:
             "notes": ["note1", "note2"]
         }}
     }},
+    "availability_windows": {{
+        "crew_member_id": {{
+            "available_dates": ["YYYY-MM-DD"],
+            "daily_hours": {{"start": "HH:MM", "end": "HH:MM"}},
+            "restrictions": ["restriction1", "restriction2"]
+        }}
+    }},
+    "resource_conflicts": [
+        {{
+            "type": "crew|equipment",
+            "resource_id": "string",
+            "conflicting_scenes": ["scene_id1", "scene_id2"],
+            "reason": "string"
+        }}
+    ],
     "allocation_notes": ["note1", "note2"]
 }}
 
@@ -116,7 +131,7 @@ Remember: Return ONLY the JSON data structure. No other text."""
                 logger.info("Successfully parsed crew allocation result")
                 
                 # Validate required fields
-                required_fields = ['crew_assignments', 'equipment_assignments']
+                required_fields = ['crew_assignments', 'equipment_assignments', 'availability_windows', 'resource_conflicts']
                 for field in required_fields:
                     if field not in allocation_result:
                         raise ValueError(f"Missing required field: {field}")
@@ -127,6 +142,20 @@ Remember: Return ONLY the JSON data structure. No other text."""
                     for field in required_fields:
                         if field not in assignment:
                             raise ValueError(f"Missing required crew assignment field: {field}")
+                
+                # Validate availability windows
+                for crew_id, window in allocation_result.get('availability_windows', {}).items():
+                    required_fields = ['available_dates', 'daily_hours']
+                    for field in required_fields:
+                        if field not in window:
+                            raise ValueError(f"Missing required availability window field: {field}")
+                
+                # Validate resource conflicts
+                for conflict in allocation_result.get('resource_conflicts', []):
+                    required_fields = ['type', 'resource_id', 'conflicting_scenes']
+                    for field in required_fields:
+                        if field not in conflict:
+                            raise ValueError(f"Missing required resource conflict field: {field}")
                 
                 # Validate the crew assignments against union rules
                 self._validate_crew_assignments(allocation_result)

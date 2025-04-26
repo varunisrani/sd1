@@ -16,6 +16,9 @@ import plotly.graph_objects as go
 import networkx as nx
 import numpy as np
 import pandas as pd
+import qrcode
+from io import BytesIO
+import base64
 
 # Configure logging
 logging.basicConfig(
@@ -469,7 +472,7 @@ def show_script_analysis():
             
             # Scene duration statistics
             if "scene_statistics" in stats:
-                scene_stats = stats["scene_statistics"]
+                scene_stats = stats["scene_stats"]
                 st.write("### Scene Duration Statistics")
                 
                 duration_data = {
@@ -1295,148 +1298,305 @@ def show_character_breakdown():
     col1, col2 = st.columns([1, 2])
     with col1:
         if st.button("Generate Production Schedule", type="primary"):
-            st.session_state.current_step = 'Schedule'
-            st.rerun()
+            with st.spinner("Analyzing characters and generating schedule..."):
+                try:
+                    # Load required data
+                    script_results = load_from_storage('script_ingestion_results.json')
+                    character_breakdown = load_from_storage('character_breakdown_results.json')
+                    
+                    # First ensure we have valid data
+                    if not script_results or not character_breakdown:
+                        st.error("Please complete script analysis and character breakdown first")
+                        return
+                        
+                    # Get default constraints
+                    location_constraints = {
+                        "preferred_locations": [],
+                        "avoid_weather": ["Rain", "Snow", "High Winds"]
+                    }
+                    
+                    schedule_constraints = {
+                        "max_hours_per_day": 12,
+                        "meal_break_duration": 60,
+                        "company_moves_per_day": 2
+                    }
+                    
+                    # Generate schedule
+                    schedule_data = asyncio.run(run_scheduling_pipeline(
+                        script_results=script_results,
+                        character_results=character_breakdown,
+                        start_date=datetime.now().strftime("%Y-%m-%d"),
+                        location_constraints=location_constraints,
+                        schedule_constraints=schedule_constraints
+                    ))
+                    
+                    if schedule_data:
+                        # Save the schedule data
+                        save_to_storage(schedule_data, 'schedule_results.json')
+                        st.session_state.current_step = 'Schedule'
+                        st.success("Schedule generated successfully!")
+                        st.rerun()
+                    else:
+                        st.error("Failed to generate schedule - no data returned")
+                        
+                except Exception as e:
+                    logger.error(f"Error generating schedule: {str(e)}", exc_info=True)
+                    st.error(f"An error occurred while generating the schedule: {str(e)}")
+                    if "is_generating" in st.session_state:
+                        st.session_state.is_generating = False
 
-def show_schedule():
-    st.header("Production Schedule")
-    script_results = load_from_storage('script_ingestion_results.json')
-    character_results = load_from_storage('character_breakdown_results.json')
-    
-    if not script_results or not character_results:
-        st.warning("Please complete script analysis and character breakdown first.")
-        return
-    
-    # Add tabs for different views
-    tab1, tab2, tab3, tab4 = st.tabs(["Schedule View", "JSON Format", "Raw Data", "Settings"])
-    
-    with tab1:
-        # Load schedule results
-        schedule_results = load_from_storage('schedule_results.json')
+async def run_scheduling_pipeline(script_results, character_results, start_date, location_constraints, schedule_constraints):
+    """Run the complete scheduling pipeline asynchronously."""
+    try:
+        coordinator = SchedulingCoordinator()
+        
+        # Status placeholder for progress updates
+        status = st.empty()
+        progress = st.progress(0)
+        
+        # Step 1: Location Optimization
+        status.text("Step 1/3: Optimizing shooting locations...")
+        progress.progress(20)
+        
+        # Log input data for debugging
+        logger.info(f"Starting scheduling pipeline with start_date: {start_date}")
+        logger.info(f"Location constraints: {location_constraints}")
+        logger.info(f"Schedule constraints: {schedule_constraints}")
+        
+        # Ensure script_results has the correct structure
+        if isinstance(script_results, dict) and "parsed_data" in script_results:
+            scene_data = script_results
+        else:
+            scene_data = {"parsed_data": {"scenes": script_results}} if isinstance(script_results, list) else {"parsed_data": {"scenes": []}}
+        
+        # Log the processed scene data
+        logger.info(f"Number of scenes to process: {len(scene_data.get('parsed_data', {}).get('scenes', []))}")
+        
+        # Step 2: Generate Schedule
+        status.text("Step 2/3: Generating initial schedule...")
+        progress.progress(60)
+        
+        schedule_results = await coordinator.generate_schedule(
+            scene_data=scene_data,
+            crew_data=character_results,
+            start_date=start_date,
+            location_constraints=location_constraints,
+            schedule_constraints=schedule_constraints
+        )
+        
+        # Step 3: Finalize
+        status.text("Step 3/3: Finalizing schedule...")
+        progress.progress(90)
         
         if not schedule_results:
-            col1, col2 = st.columns([2, 1])
-            with col1:
-                start_date = st.date_input("Schedule Start Date", min_value=date.today())
+            raise ValueError("No schedule results generated")
             
-            if st.button("Generate Schedule", type="primary"):
-                with st.spinner("Generating production schedule..."):
-                    try:
-                        schedule_results = asyncio.run(scheduling_coordinator.generate_schedule(
-                            script_results,
-                            character_results,
-                            start_date.strftime("%Y-%m-%d")
-                        ))
-                        save_to_storage(schedule_results, 'schedule_results.json')
-                        st.success("Schedule generated!")
-                        st.rerun()
-                    except Exception as e:
-                        logger.error(f"Error generating schedule: {str(e)}", exc_info=True)
-                        st.error(f"An error occurred: {str(e)}")
-        else:
-            # Display schedule in a structured format
-            if "schedule" in schedule_results:
-                for day in schedule_results["schedule"]:
-                    if isinstance(day, dict):
-                        # For dictionary data, display detailed schedule information
-                        with st.expander(f"📅 Day {day.get('day_number', '?')} - {day.get('date', 'Unknown Date')}"):
-                            st.write(f"**Day Start:** {day.get('day_start', 'N/A')}")
-                            st.write(f"**Day Wrap:** {day.get('day_wrap', 'N/A')}")
-                            
-                            # Display scenes for the day
-                            st.write("**Scenes:**")
-                            scenes = day.get("scenes", [])
-                            if isinstance(scenes, list):
-                                for scene in scenes:
-                                    if isinstance(scene, dict):
-                                        st.write(f"- Scene {scene.get('scene_id', '?')}:")
-                                        st.write(f"  Location: {scene.get('location', 'N/A')}")
-                                        st.write(f"  Time: {scene.get('start_time', 'N/A')} - {scene.get('end_time', 'N/A')}")
-                                    else:
-                                        st.write(f"- Scene: {scene}")
-                    else:
-                        # For string data, display basic schedule information
-                        with st.expander(f"📅 Schedule Entry"):
-                            st.write(f"Basic schedule information: {day}")
-                
-                # Display efficiency metrics if available
-                if isinstance(schedule_results.get("efficiency_metrics"), dict):
-                    st.subheader("Efficiency Metrics")
-                    metrics = schedule_results["efficiency_metrics"]
-                    col1, col2, col3 = st.columns(3)
+        # Validate the schedule results
+        if not isinstance(schedule_results, dict):
+            raise ValueError(f"Invalid schedule results type: {type(schedule_results)}")
+            
+        required_keys = ["schedule", "summary"]
+        missing_keys = [key for key in required_keys if key not in schedule_results]
+        if missing_keys:
+            raise ValueError(f"Missing required keys in schedule results: {missing_keys}")
+        
+        progress.progress(100)
+        status.empty()
+        
+        logger.info("Schedule generation completed successfully")
+        return schedule_results
+        
+    except Exception as e:
+        logger.error(f"Error in scheduling pipeline: {str(e)}", exc_info=True)
+        status.error(f"Error generating schedule: {str(e)}")
+        progress.empty()
+        raise
+
+def show_schedule():
+    st.title("Schedule View")
+    
+    # Initialize session state
+    if "schedule_modified" not in st.session_state:
+        st.session_state.schedule_modified = False
+    if "dragged_scene" not in st.session_state:
+        st.session_state.dragged_scene = None
+    if "is_generating" not in st.session_state:
+        st.session_state.is_generating = False
+    
+    # Create tabs
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
+        "Calendar View", "Schedule List", "Location Plan", "Crew Allocation", 
+        "Equipment", "Department Schedules", "Call Sheets", "Raw Data"
+    ])
+    
+    # Load schedule data
+    schedule_data = load_from_storage('schedule_results.json')
+    
+    with tab1:
+        st.write("## Calendar View")
+        if schedule_data and "calendar_data" in schedule_data:
+            calendar_data = schedule_data["calendar_data"]
+            
+            # Display calendar events
+            st.write("### Shooting Schedule")
+            for event in calendar_data.get("events", []):
+                with st.container(border=True):
+                    col1, col2 = st.columns([2,1])
                     with col1:
-                        st.metric("Moves/Day", f"{metrics.get('company_moves_per_day', 'N/A')}")
+                        st.write(f"**{event['title']}**")
+                        st.write(f"Time: {event['start'].split('T')[1]} - {event['end'].split('T')[1]}")
+                        st.write(f"Location: {event['location']}")
                     with col2:
-                        st.metric("Pages/Day", f"{metrics.get('average_pages_per_day', 'N/A')}")
-                    with col3:
-                        st.metric("Optimization Score", f"{metrics.get('location_optimization_score', 'N/A')}")
-                
-                # Add button to generate budget
-                st.divider()
-                col1, col2 = st.columns([1, 2])
-                with col1:
-                    if st.button("Generate Production Budget", type="primary"):
-                        st.session_state.current_step = 'Budget'
-                        st.rerun()
+                        st.write("**Crew:**")
+                        for crew_member in event.get("crew", []):
+                            st.write(f"- {crew_member}")
+                        st.write("**Equipment:**")
+                        for equipment in event.get("equipment", []):
+                            st.write(f"- {equipment}")
     
     with tab2:
-        # Display formatted JSON
-        if schedule_results:
-            st.json(schedule_results)
-            # Add button to generate budget
-            st.divider()
-            col1, col2 = st.columns([1, 2])
-            with col1:
-                if st.button("Generate Production Budget ", type="primary"):
-                    st.session_state.current_step = 'Budget'
-                    st.rerun()
-        else:
-            st.info("No schedule data available. Generate a schedule first.")
+        st.write("## Schedule List")
+        if schedule_data and "schedule" in schedule_data:
+            for day in schedule_data["schedule"]:
+                st.write(f"### Day {day['day']} - {day['date']}")
+                for scene in day["scenes"]:
+                    with st.container(border=True):
+                        col1, col2, col3 = st.columns([2,1,1])
+                        with col1:
+                            st.write(f"**Scene {scene['scene_id']}**")
+                            st.write(f"Location: {scene['location_id']}")
+                            st.write(f"Time: {scene['start_time']} - {scene['end_time']}")
+                        with col2:
+                            st.write("**Setup:** " + scene['setup_time'])
+                            st.write("**Wrap:** " + scene['wrap_time'])
+                        with col3:
+                            if scene.get("breaks"):
+                                st.write("**Breaks:**")
+                                for break_info in scene["breaks"]:
+                                    st.write(f"{break_info['type']}: {break_info['start_time']} - {break_info['end_time']}")
     
     with tab3:
-        # Display raw data in text format
-        if schedule_results:
-            st.text_area("Raw JSON Data", value=json.dumps(schedule_results, indent=2), height=400)
-            # Add button to generate budget
-            st.divider()
-            col1, col2 = st.columns([1, 2])
-            with col1:
-                if st.button("Generate Production Budget  ", type="primary"):
-                    st.session_state.current_step = 'Budget'
-                    st.rerun()
-        else:
-            st.info("No schedule data available. Generate a schedule first.")
+        st.write("## Location Plan")
+        if schedule_data and "location_plan" in schedule_data:
+            location_plan = schedule_data["location_plan"]
+            
+            # Display locations
+            st.write("### Locations")
+            for location in location_plan.get("locations", []):
+                with st.expander(f"{location['name']} ({location['id']})"):
+                    st.write(f"**Address:** {location['address']}")
+                    st.write(f"**Scenes:** {', '.join(location['scenes'])}")
+                    st.write("**Requirements:**")
+                    for req in location["requirements"]:
+                        st.write(f"- {req}")
+                    st.write(f"**Setup Time:** {location['setup_time_minutes']} minutes")
+                    st.write(f"**Wrap Time:** {location['wrap_time_minutes']} minutes")
+                    
+                    # Weather dependencies
+                    if location["id"] in location_plan.get("weather_dependencies", {}):
+                        weather = location_plan["weather_dependencies"][location["id"]]
+                        st.write("### Weather Requirements")
+                        col1, col2 = st.columns(2)
+                        with col1:
+                            st.write("**Preferred Conditions:**")
+                            for cond in weather["preferred_conditions"]:
+                                st.write(f"- {cond}")
+                        with col2:
+                            st.write("**Avoid Conditions:**")
+                            for cond in weather["avoid_conditions"]:
+                                st.write(f"- {cond}")
+                        st.write("**Seasonal Notes:**")
+                        for note in weather["seasonal_notes"]:
+                            st.write(f"- {note}")
+            
+            # Display optimization notes
+            st.write("### Optimization Notes")
+            for note in location_plan.get("optimization_notes", []):
+                st.write(f"- {note}")
     
     with tab4:
-        st.subheader("Schedule Settings")
-        st.write("Adjust these settings before generating a new schedule:")
-        
-        # Schedule constraints
-        with st.expander("Time Constraints", expanded=True):
-            max_hours = st.number_input("Maximum Hours per Day", min_value=8, max_value=14, value=12)
-            meal_break = st.number_input("Meal Break Duration (minutes)", min_value=30, max_value=90, value=60)
-            turnaround = st.number_input("Minimum Turnaround Time (hours)", min_value=8, max_value=12, value=10)
-        
-        # Location preferences
-        with st.expander("Location Preferences"):
-            max_moves = st.number_input("Maximum Company Moves per Day", min_value=1, max_value=5, value=2)
-            prefer_grouping = st.checkbox("Prefer Location Grouping", value=True)
-        
-        # Save settings button
-        if st.button("Save Settings"):
-            settings = {
-                "time_constraints": {
-                    "max_hours_per_day": max_hours,
-                    "meal_break_duration": meal_break,
-                    "min_turnaround": turnaround
-                },
-                "location_preferences": {
-                    "max_company_moves": max_moves,
-                    "prefer_grouping": prefer_grouping
-                }
-            }
-            save_to_storage(settings, 'schedule_settings.json')
-            st.success("Settings saved! They will be applied to the next schedule generation.")
+        st.write("## Crew Allocation")
+        if schedule_data and "crew_allocation" in schedule_data:
+            crew_data = schedule_data["crew_allocation"]
+            
+            # Display crew assignments
+            st.write("### Crew Assignments")
+            for crew in crew_data.get("crew_assignments", []):
+                with st.expander(f"{crew['crew_member']} - {crew['role']}"):
+                    st.write(f"**Assigned Scenes:** {', '.join(crew['assigned_scenes'])}")
+                    st.write(f"**Work Hours:** {crew['work_hours']}")
+                    st.write(f"**Turnaround Hours:** {crew['turnaround_hours']}")
+                    st.write(f"**Meal Break Interval:** {crew['meal_break_interval']} hours")
+                    st.write("**Equipment Assigned:**")
+                    for equipment in crew["equipment_assigned"]:
+                        st.write(f"- {equipment}")
+    
+    with tab5:
+        st.write("## Equipment")
+        if schedule_data and "crew_allocation" in schedule_data:
+            equipment_data = schedule_data["crew_allocation"].get("equipment_assignments", [])
+            
+            # Display equipment assignments
+            for equipment in equipment_data:
+                with st.container(border=True):
+                    st.write(f"**{equipment['equipment_id']}** ({equipment['type']})")
+                    st.write(f"Setup Time: {equipment['setup_time_minutes']} minutes")
+                    st.write(f"Assigned Scenes: {', '.join(equipment['assigned_scenes'])}")
+                    st.write(f"Assigned Crew: {', '.join(equipment['assigned_crew'])}")
+    
+    with tab6:
+        st.write("## Department Schedules")
+        if schedule_data and "crew_allocation" in schedule_data:
+            dept_data = schedule_data["crew_allocation"].get("department_schedules", {})
+            
+            for dept_name, dept_info in dept_data.items():
+                with st.expander(dept_name.title()):
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.write("**Crew:**")
+                        for crew in dept_info["crew"]:
+                            st.write(f"- {crew}")
+                    with col2:
+                        st.write("**Equipment:**")
+                        for equipment in dept_info["equipment"]:
+                            st.write(f"- {equipment}")
+                    st.write("**Notes:**")
+                    for note in dept_info["notes"]:
+                        st.write(f"- {note}")
+    
+    with tab7:
+        st.write("## Call Sheets")
+        if schedule_data and "schedule" in schedule_data:
+            for day in schedule_data["schedule"]:
+                st.write(f"### Day {day['day']} - {day['date']}")
+                for scene in day["scenes"]:
+                    with st.container(border=True):
+                        st.write(f"**Scene {scene['scene_id']}**")
+                        st.write(f"Location: {scene['location_id']}")
+                        st.write(f"Time: {scene['start_time']} - {scene['end_time']}")
+                        st.write(f"Setup: {scene['setup_time']}")
+                        st.write(f"Wrap: {scene['wrap_time']}")
+                        st.write("**Crew:**")
+                        for crew_id in scene["crew_ids"]:
+                            st.write(f"- {crew_id}")
+                        st.write("**Equipment:**")
+                        for equip_id in scene["equipment_ids"]:
+                            st.write(f"- {equip_id}")
+    
+    with tab8:
+        st.write("## Raw Data")
+        if schedule_data:
+            st.json(schedule_data)
+            
+            # Add download button
+            st.download_button(
+                label="Download Schedule Data",
+                data=json.dumps(schedule_data, indent=2),
+                file_name="schedule_data.json",
+                mime="application/json"
+            )
+        else:
+            st.warning("No schedule data found. Please generate a schedule first.")
 
 def show_budget():
     st.header("Production Budget")
@@ -1805,6 +1965,125 @@ def show_overview():
         st.json(results['storyboard'])
     else:
         st.warning("Please complete all previous steps first.")
+
+def get_location_color(location):
+    """Generate a consistent color for a given location."""
+    if not location:
+        return "#808080"  # Default gray
+    
+    # Use hash of location name to generate consistent colors
+    hash_val = hash(location)
+    # List of visually distinct colors
+    colors = [
+        "#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEEAD",
+        "#D4A5A5", "#9B59B6", "#3498DB", "#E67E22", "#2ECC71"
+    ]
+    return colors[abs(hash_val) % len(colors)]
+
+def display_week_calendar(events, week_start):
+    """Display a week view of the calendar with drag-and-drop support."""
+    # Convert week_start to datetime if it's a string
+    if isinstance(week_start, str):
+        week_start = datetime.strptime(week_start, "%Y-%m-%d")
+    
+    # Create week days
+    week_days = [(week_start + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(7)]
+    
+    # Create time slots (30-minute intervals)
+    time_slots = []
+    start_time = datetime.strptime("06:00", "%H:%M")
+    for _ in range(32):  # 6 AM to 10 PM
+        time_slots.append(start_time.strftime("%H:%M"))
+        start_time += timedelta(minutes=30)
+    
+    # Create grid
+    st.write("### Week Calendar")
+    
+    # Header row with dates
+    header_cols = st.columns(8)
+    with header_cols[0]:
+        st.write("Time")
+    for i, day in enumerate(week_days):
+        with header_cols[i + 1]:
+            st.write(datetime.strptime(day, "%Y-%m-%d").strftime("%a %m/%d"))
+    
+    # Time slots and events
+    for time_slot in time_slots:
+        slot_cols = st.columns(8)
+        with slot_cols[0]:
+            st.write(time_slot)
+        
+        for i, day in enumerate(week_days):
+            with slot_cols[i + 1]:
+                # Find events that overlap with this time slot
+                slot_events = [
+                    event for event in events
+                    if event["start"].split("T")[0] == day
+                    and time_slot >= event["start"].split("T")[1][:5]
+                    and time_slot <= event["end"].split("T")[1][:5]
+                ]
+                
+                if slot_events:
+                    for event in slot_events:
+                        with st.container(border=True):
+                            st.markdown(
+                                f'<div style="background-color: {event["color"]}; padding: 5px; border-radius: 3px;">'
+                                f'Scene {event["extendedProps"]["scene_id"]}<br>'
+                                f'{event["extendedProps"]["location"]}'
+                                '</div>',
+                                unsafe_allow_html=True
+                            )
+                            
+                            # Make container draggable
+                            if st.button(f"🔄 Move {event['title']}", key=f"move_{event['id']}_{time_slot}_{day}"):
+                                st.session_state.dragged_scene = event
+                                st.session_state.schedule_modified = True
+
+def display_day_calendar(events, day):
+    """Display a detailed day view of the calendar."""
+    st.write(f"### {datetime.strptime(day, '%Y-%m-%d').strftime('%A, %B %d, %Y')}")
+    
+    # Create time slots (15-minute intervals)
+    time_slots = []
+    start_time = datetime.strptime("06:00", "%H:%M")
+    for _ in range(64):  # 6 AM to 10 PM
+        time_slots.append(start_time.strftime("%H:%M"))
+        start_time += timedelta(minutes=15)
+    
+    # Group events by location
+    location_events = {}
+    for event in events:
+        location = event["extendedProps"]["location"]
+        if location not in location_events:
+            location_events[location] = []
+        location_events[location].append(event)
+    
+    # Create columns for each location
+    if location_events:
+        location_cols = st.columns(len(location_events))
+        for i, (location, loc_events) in enumerate(location_events.items()):
+            with location_cols[i]:
+                st.write(f"**{location}**")
+                
+                # Display events for this location
+                for event in sorted(loc_events, key=lambda x: x["start"]):
+                    with st.container(border=True):
+                        st.markdown(
+                            f'<div style="background-color: {event["color"]}; padding: 10px; border-radius: 5px;">'
+                            f'<b>{event["title"]}</b><br>'
+                            f'{event["start"].split("T")[1]} - {event["end"].split("T")[1]}<br>'
+                            f'Cast: {", ".join(event["extendedProps"]["cast"][:3])}'
+                            f'{"..." if len(event["extendedProps"]["cast"]) > 3 else ""}'
+                            '</div>',
+                            unsafe_allow_html=True
+                        )
+                        
+                        # Add move button
+                        if st.button(f"🔄 Move {event['title']}", key=f"move_{event['id']}_{location}"):
+                            st.session_state.dragged_scene = event
+                            st.session_state.schedule_modified = True
+    else:
+        st.info("No events scheduled for this day")
 
 if __name__ == '__main__':
     logger.info("Application started")

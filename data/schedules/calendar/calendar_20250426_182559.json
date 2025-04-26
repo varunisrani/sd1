@@ -1,0 +1,110 @@
+{
+  "events": [
+    {
+      "id": "event_1",
+      "title": "Scene 1 Shooting",
+      "start": "2025-04-26T08:00:00",
+      "end": "2025-04-26T09:30:00",
+      "resourceId": "location_1",
+      "color": "#FF0000",
+      "textColor": "#FFFFFF",
+      "description": "Shooting Scene 1 at Shinchan's House in the morning.",
+      "location": "Shinchan's House",
+      "crew": [
+        "Director",
+        "DP"
+      ],
+      "equipment": [
+        "Main Camera"
+      ]
+    },
+    {
+      "id": "event_2",
+      "title": "Scene 2 Shooting",
+      "start": "2025-04-26T10:10:00",
+      "end": "2025-04-26T11:00:00",
+      "resourceId": "location_2",
+      "color": "#0000FF",
+      "textColor": "#FFFFFF",
+      "description": "Shooting Scene 2 at the Park.",
+      "location": "Park",
+      "crew": [
+        "Director",
+        "DP"
+      ],
+      "equipment": [
+        "Main Camera",
+        "Lights"
+      ]
+    },
+    {
+      "id": "event_3",
+      "title": "Scene 3 Shooting",
+      "start": "2025-04-26T11:20:00",
+      "end": "2025-04-26T12:20:00",
+      "resourceId": "location_2",
+      "color": "#00FF00",
+      "textColor": "#000000",
+      "description": "Shooting Scene 3 involving VFX.",
+      "location": "Park",
+      "crew": [
+        "Director",
+        "DP"
+      ],
+      "equipment": [
+        "Main Camera",
+        "Lights"
+      ]
+    },
+    {
+      "id": "event_4",
+      "title": "Scene 4 Shooting",
+      "start": "2025-04-26T14:00:00",
+      "end": "2025-04-26T15:30:00",
+      "resourceId": "location_2",
+      "color": "#FF00FF",
+      "textColor": "#FFFFFF",
+      "description": "Shooting action sequence for Scene 4.",
+      "location": "Park",
+      "crew": [
+        "Director",
+        "DP"
+      ],
+      "equipment": [
+        "Main Camera",
+        "Lights"
+      ]
+    },
+    {
+      "id": "event_5",
+      "title": "Scene 5 Shooting",
+      "start": "2025-04-26T17:30:00",
+      "end": "2025-04-26T18:00:00",
+      "resourceId": "location_2",
+      "color": "#FFFF00",
+      "textColor": "#000000",
+      "description": "Final scene shoot during sunset.",
+      "location": "Park",
+      "crew": [
+        "Director",
+        "DP"
+      ],
+      "equipment": [
+        "Main Camera",
+        "Lights"
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "id": "location_1",
+      "title": "Shinchan's House",
+      "type": "Indoor Location"
+    },
+    {
+      "id": "location_2",
+      "title": "Park",
+      "type": "Outdoor Location"
+    }
+  ]
+}
