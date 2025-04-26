@@ -1,9 +1,48 @@
-openai-agents
-streamlit
-pydantic
+# Core dependencies
+openai
 python-dotenv
-pandas
+streamlit
+httpx
+httpx-sse
+starlette
+uvicorn
+
+# Data processing and analysis
 numpy
-matplotlib
+pandas
 networkx
-geopy 
+geopy
+
+# Visualization and UI
+openai-agents
+matplotlib
+altair
+pydeck
+pillow
+
+# PDF Generation
+fpdf
+
+# Utility libraries
+python-dateutil
+pytz
+typing-extensions
+pydantic
+attrs
+
+# File handling and system
+GitPython
+toml
+
+# Logging and monitoring
+logging
+cachetools
+
+# Development and testing
+black
+pytest
+pytest-asyncio
+
+# Optional dependencies
+colorama  # For colored terminal output
+tqdm      # For progress bars

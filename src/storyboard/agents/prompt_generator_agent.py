@@ -17,7 +17,7 @@ class PromptGeneratorAgent:
     """
     
     def __init__(self):
-        """Initialize the PromptGeneratorAgent with OpenAI client and prompt template."""
+        """Initialize the PromptGeneratorAgent with OpenAI client and prompt templates."""
         logger.info("Initializing PromptGeneratorAgent")
         
         self.openai_api_key = os.environ.get("OPENAI_API_KEY")
@@ -26,15 +26,43 @@ class PromptGeneratorAgent:
         
         self.client = OpenAI(api_key=self.openai_api_key)
         
-        # Define the prompt template for consistent prompt generation
+        # Shot type templates
+        self.shot_templates = {
+            "WS": "A wide establishing shot showing {scene}. Capture the entire environment and spatial relationships.",
+            "MS": "A medium shot focusing on {subject} from waist up. Show character expressions and body language.",
+            "CU": "A dramatic close-up of {subject}, emphasizing facial expressions and emotional detail.",
+            "ECU": "An extreme close-up highlighting specific details of {subject}.",
+            "OTS": "An over-the-shoulder shot looking past {subject} towards the scene.",
+            "POV": "A point-of-view shot from {subject}'s perspective, showing what they see."
+        }
+
+        # Technical panel templates
+        self.technical_templates = {
+            "action": "Show the key moment of action with {description}",
+            "reaction": "Capture the emotional reaction to {description}",
+            "transition": "Establish the transition between scenes with {description}",
+            "montage": "Create a montage effect showing {description}"
+        }
+
+        # Mood and atmosphere templates
+        self.mood_templates = {
+            "tense": "Create a tense atmosphere with dramatic shadows and confined space",
+            "joyful": "Use bright, warm lighting and open composition",
+            "mysterious": "Employ moody lighting and obscured elements",
+            "melancholic": "Utilize muted colors and isolated composition"
+        }
+
         self.prompt_template = """
-        Create a detailed visual prompt for an AI image generator based on this scene description from a screenplay:
+        Create a detailed visual prompt for an AI image generator based on this scene description:
         
         SCENE: {scene_description}
+        SHOT TYPE: {shot_type}
+        TECHNICAL NOTES: {technical_notes}
+        MOOD: {mood}
         
         Your prompt should:
         1. Include the key visual elements (setting, characters, actions)
-        2. Specify camera angle, framing, and perspective where appropriate
+        2. Specify camera angle, framing, and perspective
         3. Describe lighting, mood, and atmosphere
         4. Use specific, evocative, and concrete language
         5. Avoid dialogue or non-visual elements
@@ -45,47 +73,42 @@ class PromptGeneratorAgent:
         """
     
     async def generate_prompts(self, scene_data: Dict[str, Any]) -> List[Dict[str, Any]]:
-        """Generate image prompts for a list of scenes.
-        
-        Args:
-            scene_data: Dictionary containing scene data, with a 'scenes' key
-                       containing a list of scene objects
-        
-        Returns:
-            List of dictionaries containing scene IDs and generated prompts
-        """
-        # Extract scenes from scene_data
+        """Generate image prompts for a list of scenes with enhanced technical parameters."""
         scenes = scene_data.get('scenes', [])
         logger.info(f"Generating prompts for {len(scenes)} scenes")
         
         results = []
         for i, scene in enumerate(scenes):
-            # Handle both dictionary and string scenes
             if isinstance(scene, str):
-                # For string scenes, create a simple dictionary with index as ID
                 scene_id = str(i + 1)
                 scene_description = scene
                 scene_heading = f"Scene {scene_id}"
+                technical_params = {}
             else:
-                # For dictionary scenes, extract ID and description normally
                 scene_id = scene.get("scene_id") or scene.get("id") or str(i + 1)
                 scene_heading = scene.get("scene_heading", f"Scene {scene_id}")
                 scene_description = await self._extract_scene_description(scene)
+                technical_params = scene.get("technical_params", {})
             
             if not scene_description:
                 logger.warning(f"Scene {scene_id} has no description, skipping")
                 continue
             
             try:
-                # Generate the prompt for this scene
-                prompt = await self._generate_single_prompt(scene_description)
+                # Generate the prompt with technical parameters
+                prompt = await self._generate_single_prompt(
+                    scene_description,
+                    shot_type=technical_params.get("shot_type", "MS"),
+                    technical_notes=technical_params.get("technical_notes", ""),
+                    mood=technical_params.get("mood", "neutral")
+                )
                 
-                # Store the result
                 result = {
                     "scene_id": scene_id,
                     "scene_heading": scene_heading,
                     "scene_description": scene_description,
-                    "prompt": prompt
+                    "prompt": prompt,
+                    "technical_params": technical_params
                 }
                 results.append(result)
                 logger.info(f"Generated prompt for scene {scene_id}")
@@ -98,26 +121,37 @@ class PromptGeneratorAgent:
                     "error": str(e)
                 })
         
-        logger.info(f"Completed prompt generation for {len(results)} scenes")
         return results
     
-    async def _generate_single_prompt(self, scene_description: str) -> str:
-        """Generate a single image prompt from a scene description.
-        
-        Args:
-            scene_description: The description of the scene
-            
-        Returns:
-            A generated image prompt
-        """
+    async def _generate_single_prompt(
+        self, 
+        scene_description: str,
+        shot_type: str = "MS",
+        technical_notes: str = "",
+        mood: str = "neutral"
+    ) -> str:
+        """Generate a single image prompt with enhanced technical parameters."""
         try:
-            # Format the prompt template with the scene description
-            formatted_prompt = self.prompt_template.format(scene_description=scene_description)
+            # Apply shot type template if available
+            shot_description = self.shot_templates.get(shot_type, "").format(
+                scene=scene_description,
+                subject="the subject"  # This could be extracted from scene analysis
+            )
+
+            # Apply mood template if available
+            mood_description = self.mood_templates.get(mood, "")
+
+            # Format the complete prompt template
+            formatted_prompt = self.prompt_template.format(
+                scene_description=scene_description,
+                shot_type=shot_description,
+                technical_notes=technical_notes,
+                mood=mood_description
+            )
             
-            # Call the OpenAI API to generate the prompt
             response = await asyncio.to_thread(
                 self.client.chat.completions.create,
-                model="gpt-4",  # Use the best model for detailed visual interpretation
+                model="gpt-4",
                 messages=[
                     {"role": "system", "content": "You are a master cinematic storyboard artist."},
                     {"role": "user", "content": formatted_prompt}
@@ -126,10 +160,7 @@ class PromptGeneratorAgent:
                 temperature=0.7
             )
             
-            # Extract the response
             generated_prompt = response.choices[0].message.content.strip()
-            
-            # Clean up the prompt - remove any prefixes like "Prompt:" or quotes
             generated_prompt = re.sub(r'^(prompt:\s*|"|\')', '', generated_prompt, flags=re.IGNORECASE)
             generated_prompt = re.sub(r'("|\')\s*$', '', generated_prompt)
             

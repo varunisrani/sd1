@@ -5,6 +5,7 @@ import asyncio
 from typing import Dict, Any, List, Optional, Union
 import time
 from urllib.parse import urljoin
+from datetime import datetime
 
 import httpx
 from openai import OpenAI, RateLimitError
@@ -21,19 +22,15 @@ class ImageGeneratorAgent:
     
     def __init__(
         self,
-        model: str = "dall-e-3",
-        quality: str = "standard",
-        style: str = "natural",
+        model: str = "dall-e-2",
         size: str = "1024x1024",
         response_format: str = "b64_json"
     ):
         """Initialize the ImageGeneratorAgent with OpenAI client and default parameters.
         
         Args:
-            model: The model to use (default: dall-e-3)
-            quality: Image quality (standard or hd)
-            style: Image style (natural or vivid)
-            size: Image dimensions (e.g., 1024x1024, 1792x1024)
+            model: The model to use (default: dall-e-2)
+            size: Image dimensions (256x256, 512x512, or 1024x1024)
             response_format: The format to return image data in (url or b64_json)
         """
         logger.info("Initializing ImageGeneratorAgent")
@@ -47,23 +44,98 @@ class ImageGeneratorAgent:
         
         # Set default parameters
         self.model = model
-        self.quality = quality
-        self.style = style
         self.size = size
         self.response_format = response_format
-    
+        
+        # Note: quality and style parameters are not available in DALL-E 2
+
+        # Shot type presets
+        self.shot_presets = {
+            "WS": "wide shot showing the full scene and environment",
+            "MS": "medium shot from waist up",
+            "CU": "close-up shot focusing on face/details",
+            "ECU": "extreme close-up showing fine details",
+            "OTS": "over-the-shoulder shot",
+            "POV": "point-of-view shot from character perspective"
+        }
+
+        # Style presets
+        self.style_presets = {
+            "realistic": "photorealistic style with natural lighting",
+            "scribble": "rough sketch style with pencil lines",
+            "noir": "high contrast black and white style",
+            "anime": "anime/manga inspired style",
+            "watercolor": "soft watercolor artistic style",
+            "storyboard": "traditional storyboard sketch style"
+        }
+
+        # Camera and lighting presets
+        self.camera_presets = {
+            "low_angle": "shot from below looking up, emphasizing power/dominance",
+            "high_angle": "shot from above looking down, emphasizing vulnerability",
+            "dutch_angle": "tilted camera angle creating tension/unease",
+            "eye_level": "neutral camera angle at eye level"
+        }
+
+        self.lighting_presets = {
+            "dramatic": "high contrast lighting with strong shadows",
+            "soft": "diffused, even lighting with soft shadows",
+            "backlit": "strong light source behind subject creating silhouette",
+            "natural": "realistic ambient lighting matching scene time of day"
+        }
+
+    def _build_enhanced_prompt(self, base_prompt: str, shot_type: str = None, 
+                             style_type: str = None, camera_angle: str = None,
+                             lighting: str = None, mood: str = None) -> str:
+        """Build an enhanced prompt incorporating shot type, style, and technical aspects.
+        Ensures the final prompt stays within DALL-E 2's 1000 character limit."""
+        
+        # Start with technical aspects as they're most important
+        prompt_elements = []
+        
+        # Add shot type first as it's crucial for storyboard composition
+        if shot_type and shot_type in self.shot_presets:
+            prompt_elements.append(self.shot_presets[shot_type])
+            
+        # Add base prompt next as it contains core scene description
+        prompt_elements.append(base_prompt)
+        
+        remaining_chars = 1000 - len(". ".join(prompt_elements))
+        
+        # Add remaining elements if there's space, in order of importance
+        if style_type and style_type in self.style_presets and remaining_chars > 0:
+            style_text = self.style_presets[style_type]
+            if len(style_text) < remaining_chars:
+                prompt_elements.append(style_text)
+                remaining_chars -= len(style_text) + 2  # +2 for ". "
+                
+        if camera_angle and camera_angle in self.camera_presets and remaining_chars > 0:
+            camera_text = self.camera_presets[camera_angle]
+            if len(camera_text) < remaining_chars:
+                prompt_elements.append(camera_text)
+                remaining_chars -= len(camera_text) + 2
+                
+        if lighting and lighting in self.lighting_presets and remaining_chars > 0:
+            light_text = self.lighting_presets[lighting]
+            if len(light_text) < remaining_chars:
+                prompt_elements.append(light_text)
+                remaining_chars -= len(light_text) + 2
+                
+        if mood and remaining_chars > 20:  # Ensure enough space for mood
+            mood_text = f"The overall mood is {mood}"
+            if len(mood_text) < remaining_chars:
+                prompt_elements.append(mood_text)
+        
+        # Join all elements and ensure final length is under 1000
+        final_prompt = ". ".join(prompt_elements)
+        if len(final_prompt) > 1000:
+            logger.warning("Prompt exceeded 1000 characters, truncating...")
+            final_prompt = final_prompt[:997] + "..."
+            
+        return final_prompt
+
     async def generate_images(self, prompt_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Generate images based on a list of prompts.
-        
-        Processes prompts in batches to avoid overwhelming the API, with a pause
-        between batches to respect rate limits.
-        
-        Args:
-            prompt_data: List of dictionaries, each containing a scene_id and prompt
-        
-        Returns:
-            List of dictionaries with generated images and metadata
-        """
+        """Generate images based on a list of prompts with enhanced parameters."""
         if not prompt_data:
             logger.warning("No prompts provided for image generation")
             return []
@@ -71,31 +143,38 @@ class ImageGeneratorAgent:
         logger.info(f"Generating images for {len(prompt_data)} prompts")
         results = []
         
-        # Process prompts in batches to avoid overwhelming the API
         batch_size = 5
         for i in range(0, len(prompt_data), batch_size):
             batch = prompt_data[i:i + batch_size]
             
-            # Create tasks for each prompt in the batch
             tasks = []
             for item in batch:
                 scene_id = item.get("scene_id")
-                prompt = item.get("prompt")
+                base_prompt = item.get("prompt")
                 
-                if not scene_id or not prompt:
+                if not scene_id or not base_prompt:
                     logger.warning(f"Missing scene_id or prompt in item: {item}")
                     results.append({
                         "scene_id": scene_id or "unknown",
                         "error": "Missing scene_id or prompt"
                     })
                     continue
+
+                # Enhanced prompt building with technical parameters
+                enhanced_prompt = self._build_enhanced_prompt(
+                    base_prompt=base_prompt,
+                    shot_type=item.get("shot_type"),
+                    style_type=item.get("style_type"),
+                    camera_angle=item.get("camera_angle"),
+                    lighting=item.get("lighting"),
+                    mood=item.get("mood")
+                )
                 
-                tasks.append(self._generate_single_image(scene_id, prompt))
+                item["enhanced_prompt"] = enhanced_prompt
+                tasks.append(self._generate_single_image(scene_id, enhanced_prompt))
             
-            # Run the batch concurrently
             batch_results = await asyncio.gather(*tasks, return_exceptions=True)
             
-            # Process results, handling any exceptions
             for result in batch_results:
                 if isinstance(result, Exception):
                     logger.error(f"Error in batch processing: {str(result)}")
@@ -106,7 +185,6 @@ class ImageGeneratorAgent:
                 else:
                     results.append(result)
             
-            # Pause between batches to respect rate limits
             if i + batch_size < len(prompt_data):
                 await asyncio.sleep(2)
         
@@ -131,6 +209,13 @@ class ImageGeneratorAgent:
                 "scene_id": scene_id,
                 "error": "No prompt provided"
             }
+            
+        # Log prompt length for debugging
+        prompt_length = len(prompt)
+        if prompt_length > 900:  # Warn if getting close to limit
+            logger.warning(f"Scene {scene_id} prompt length ({prompt_length}) is close to 1000 char limit")
+        else:
+            logger.debug(f"Scene {scene_id} prompt length: {prompt_length} characters")
         
         # Initialize result dictionary
         result = {
@@ -138,7 +223,9 @@ class ImageGeneratorAgent:
             "prompt": prompt,
             "revised_prompt": None,
             "image_data": None,
-            "metadata": {}
+            "metadata": {
+                "prompt_length": prompt_length  # Add length to metadata
+            }
         }
         
         max_retries = 3
@@ -151,8 +238,6 @@ class ImageGeneratorAgent:
                     self.client.images.generate,
                     model=self.model,
                     prompt=prompt,
-                    quality=self.quality,
-                    style=self.style,
                     size=self.size,
                     response_format=self.response_format,
                     n=1
@@ -173,8 +258,6 @@ class ImageGeneratorAgent:
                     # Add metadata
                     result["metadata"] = {
                         "model": self.model,
-                        "quality": self.quality,
-                        "style": self.style,
                         "size": self.size
                     }
                     
@@ -231,8 +314,6 @@ class ImageGeneratorAgent:
             "timestamp": timestamp,
             "total_scenes": len(results),
             "model": self.model,
-            "quality": self.quality,
-            "style": self.style,
             "size": self.size,
             "scenes": []
         }
@@ -331,3 +412,85 @@ class ImageGeneratorAgent:
             logger.error(f"Error saving metadata file: {str(e)}")
         
         return results 
+
+    async def generate_image(
+        self,
+        prompt: str,
+        output_dir: str = None,
+        save_image: bool = True,
+        filename: str = None,
+        metadata: dict = None
+    ) -> dict:
+        """Generate a single image from a prompt.
+        
+        Args:
+            prompt: The text prompt to generate the image from
+            output_dir: Directory to save the image (if save_image is True)
+            save_image: Whether to save the image to disk
+            filename: Custom filename for saved image
+            metadata: Additional metadata to include in result
+            
+        Returns:
+            dict containing:
+            - image_data: Base64 encoded image or URL
+            - metadata: Generation parameters and additional info
+            - filepath: Path to saved image if applicable
+        """
+        try:
+            logger.info(f"Generating image with prompt: {prompt}")
+            
+            # Generate image with OpenAI
+            response = await self.client.images.generate(
+                model=self.model,
+                prompt=prompt,
+                size=self.size,
+                response_format=self.response_format,
+                n=1
+            )
+
+            # Extract image data
+            if self.response_format == "b64_json":
+                image_data = response.data[0].b64_json
+            else:
+                image_data = response.data[0].url
+
+            result = {
+                "image_data": image_data,
+                "metadata": {
+                    "model": self.model,
+                    "size": self.size
+                }
+            }
+
+            # Add any additional metadata
+            if metadata:
+                result["metadata"].update(metadata)
+
+            # Save image if requested
+            if save_image and output_dir:
+                if not filename:
+                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                    filename = f"image_{timestamp}.png"
+                
+                filepath = os.path.join(output_dir, filename)
+                os.makedirs(output_dir, exist_ok=True)
+                
+                if self.response_format == "b64_json":
+                    # Decode and save base64 image
+                    image_bytes = base64.b64decode(image_data)
+                    with open(filepath, "wb") as f:
+                        f.write(image_bytes)
+                else:
+                    # Download and save image from URL
+                    response = await self.http_client.get(image_data)
+                    with open(filepath, "wb") as f:
+                        f.write(response.content)
+                
+                result["filepath"] = filepath
+                logger.info(f"Saved image to {filepath}")
+
+            return result
+
+        except Exception as e:
+            logger.error(f"Error generating image: {str(e)}")
+            raise 

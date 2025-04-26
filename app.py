@@ -2082,50 +2082,30 @@ def show_storyboard():
     if not script_results:
         st.warning("Please complete script analysis first.")
         return
-    
-    # Add a prominent storyboard generation button at the top
-    st.subheader("Generate New Storyboard")
-    if st.button("🎬 GENERATE STORYBOARD 🎬", key="main_storyboard_button", type="primary", use_container_width=True):
-        with st.spinner("Generating storyboard images..."):
-            try:
-                # Generate storyboard using coordinator
-                storyboard_results = asyncio.run(storyboard_coordinator.generate_storyboard(script_results))
-                
-                save_to_storage(storyboard_results, 'storyboard_results.json')
-                st.success("Storyboard generated!")
-                st.rerun()
-            except Exception as e:
-                logger.error(f"Error generating storyboard: {str(e)}", exc_info=True)
-                st.error(f"An error occurred: {str(e)}")
-    
-    # Add tabs for different views
-    tab1, tab2, tab3 = st.tabs(["Storyboard View", "JSON Format", "Settings"])
+
+    # Create tabs for different views
+    tab1, tab2, tab3, tab4 = st.tabs(["Storyboard View", "Shot Setup", "Export Options", "Settings"])
     
     with tab1:
         # Load storyboard results
         storyboard_results = load_from_storage('storyboard_results.json')
         
+        # Add a prominent storyboard generation button at the top
         if not storyboard_results:
-            col1, col2 = st.columns([2, 1])
-            
-            # Storyboard generation options
-            with st.expander("Storyboard Options", expanded=True):
-                scenes_per_page = st.slider("Scenes Per Page", min_value=1, max_value=6, value=3)
-                style_choice = st.selectbox("Visual Style", ["Realistic", "Cinematic", "Sketch", "Comic"], index=1)
-                include_text = st.checkbox("Include Scene Text", value=True)
-                
-                settings = {
-                    "scenes_per_page": scenes_per_page,
-                    "style": style_choice,
-                    "include_text": include_text
-                }
-            
-            # Secondary button at the bottom of the options
-            if st.button("Generate Storyboard", key="secondary_storyboard_button", type="primary"):
+            st.subheader("Generate New Storyboard")
+            if st.button("🎬 GENERATE STORYBOARD 🎬", key="main_storyboard_button", type="primary", use_container_width=True):
                 with st.spinner("Generating storyboard images..."):
                     try:
-                        # Generate storyboard using coordinator
-                        storyboard_results = asyncio.run(storyboard_coordinator.generate_storyboard(script_results))
+                        # Get current settings
+                        settings = load_from_storage('storyboard_settings.json') or {}
+                        
+                        # Generate storyboard using coordinator with settings
+                        storyboard_results = asyncio.run(
+                            storyboard_coordinator.generate_storyboard(
+                                script_results,
+                                shot_settings=settings.get("shot_settings", {})
+                            )
+                        )
                         
                         save_to_storage(storyboard_results, 'storyboard_results.json')
                         st.success("Storyboard generated!")
@@ -2133,99 +2113,396 @@ def show_storyboard():
                     except Exception as e:
                         logger.error(f"Error generating storyboard: {str(e)}", exc_info=True)
                         st.error(f"An error occurred: {str(e)}")
-        else:
+        
+        if storyboard_results:
             # Display storyboard images
             if "scenes" in storyboard_results:
-                st.subheader("Storyboard Images")
+                st.subheader("Storyboard Sequence")
                 
-                # Organize scenes into rows
-                scenes = storyboard_results.get("scenes", [])
-                rows = []
-                num_cols = 3  # Number of images per row
+                # Add sequence controls
+                col1, col2 = st.columns([3, 1])
+                with col1:
+                    view_mode = st.radio("View Mode", ["Grid", "Slideshow"], horizontal=True)
+                with col2:
+                    if st.button("Reorder Sequence"):
+                        scene_order = [s["scene_id"] for s in storyboard_results["scenes"]]
+                        new_order = st.text_input("Enter scene IDs in desired order (comma-separated)", 
+                                                ",".join(scene_order))
+                        if st.button("Apply New Order"):
+                            try:
+                                new_order = [s.strip() for s in new_order.split(",")]
+                                storyboard_results = asyncio.run(
+                                    storyboard_coordinator.reorder_sequence(storyboard_results, new_order)
+                                )
+                                save_to_storage(storyboard_results, 'storyboard_results.json')
+                                st.success("Sequence updated!")
+                                st.rerun()
+                            except Exception as e:
+                                st.error(f"Error reordering sequence: {str(e)}")
                 
-                for i in range(0, len(scenes), num_cols):
-                    rows.append(scenes[i:i+num_cols])
-                
-                # Display images in a grid layout
-                for row in rows:
-                    cols = st.columns(num_cols)
-                    for i, scene in enumerate(row):
-                        if i < len(cols):
-                            with cols[i]:
+                if view_mode == "Grid":
+                    # Organize scenes into rows
+                    scenes = storyboard_results.get("scenes", [])
+                    num_cols = st.select_slider("Panels per row", options=[2, 3, 4], value=3)
+                    
+                    for i in range(0, len(scenes), num_cols):
+                        row_scenes = scenes[i:i+num_cols]
+                        cols = st.columns(num_cols)
+                        
+                        for j, scene in enumerate(row_scenes):
+                            with cols[j]:
                                 if "image_path" in scene and scene["image_path"]:
                                     # Display the image
-                                    st.image(scene["image_path"], caption=f"Scene {scene.get('scene_id', '?')}")
+                                    st.image(scene["image_path"], 
+                                           caption=f"Scene {scene.get('scene_id', '?')} - {scene.get('technical_params', {}).get('shot_type', 'MS')}")
                                     
-                                    # Display scene info in expander
-                                    with st.expander("Scene Details"):
+                                    # Display prompt
+                                    with st.expander("View Prompt"):
+                                        st.write("**Original Prompt:**")
+                                        st.write(scene.get("prompt", "No prompt available"))
+                                        if "enhanced_prompt" in scene:
+                                            st.write("**Enhanced Prompt:**")
+                                            st.write(scene["enhanced_prompt"])
+                                    
+                                    # Scene details and annotations
+                                    with st.expander("Scene Details & Annotations"):
                                         st.write(f"**Scene:** {scene.get('scene_id', 'Unknown')}")
-                                        st.write(f"**Description:** {scene.get('scene_heading', 'No description')}")
-                                        if "prompt" in scene:
-                                            st.write(f"**Prompt:** {scene.get('prompt', '')}")
+                                        st.write(f"**Shot Type:** {scene.get('technical_params', {}).get('shot_type', 'MS')}")
+                                        st.write(f"**Style:** {scene.get('technical_params', {}).get('style', 'realistic')}")
+                                        st.write(f"**Description:** {scene.get('description', 'No description')}")
+                                        
+                                        # Annotations
+                                        st.divider()
+                                        st.write("**Annotations:**")
+                                        for annotation in scene.get("annotations", []):
+                                            st.text(f"- {annotation['text']}")
+                                        
+                                        # Add new annotation
+                                        new_annotation = st.text_input("Add annotation", key=f"annot_{scene['scene_id']}")
+                                        if st.button("Add", key=f"add_annot_{scene['scene_id']}"):
+                                            try:
+                                                storyboard_results = asyncio.run(
+                                                    storyboard_coordinator.add_annotation(
+                                                        storyboard_results,
+                                                        scene["scene_id"],
+                                                        new_annotation
+                                                    )
+                                                )
+                                                save_to_storage(storyboard_results, 'storyboard_results.json')
+                                                st.success("Annotation added!")
+                                                st.rerun()
+                                            except Exception as e:
+                                                st.error(f"Error adding annotation: {str(e)}")
                                 else:
-                                    # Display placeholder for missing images
-                                    st.write(f"Scene {scene.get('scene_id', '?')} - No image available")
-                                    if "error" in scene:
-                                        st.error(scene["error"])
+                                    st.error(f"Scene {scene.get('scene_id', '?')} - No image available")
+                else:  # Slideshow mode
+                    scenes = storyboard_results.get("scenes", [])
+                    if "current_scene_index" not in st.session_state:
+                        st.session_state.current_scene_index = 0
+                    current_scene = st.session_state.current_scene_index
+                    
+                    col1, col2, col3 = st.columns([1, 3, 1])
+                    with col1:
+                        if st.button("⬅️ Previous") and current_scene > 0:
+                            st.session_state.current_scene_index = current_scene - 1
+                            st.rerun()
+                    
+                    with col2:
+                        scene = scenes[current_scene]
+                        if "image_path" in scene and scene["image_path"]:
+                            st.image(scene["image_path"], use_column_width=True)
+                            st.write(f"**Scene {scene.get('scene_id', '?')} - {scene.get('technical_params', {}).get('shot_type', 'MS')}**")
+                            
+                            # Display prompt in slideshow view
+                            with st.expander("View Prompt", expanded=True):
+                                st.write("**Original Prompt:**")
+                                st.write(scene.get("prompt", "No prompt available"))
+                                if "enhanced_prompt" in scene:
+                                    st.write("**Enhanced Prompt:**")
+                                    st.write(scene["enhanced_prompt"])
+                            
+                            # Scene details in columns
+                            det_col1, det_col2 = st.columns(2)
+                            with det_col1:
+                                st.write(f"**Shot Type:** {scene.get('technical_params', {}).get('shot_type', 'MS')}")
+                                st.write(f"**Style:** {scene.get('technical_params', {}).get('style', 'realistic')}")
+                            with det_col2:
+                                st.write(f"**Description:** {scene.get('description', 'No description')}")
+                            
+                            # Annotations
+                            with st.expander("Annotations", expanded=True):
+                                for annotation in scene.get("annotations", []):
+                                    st.text(f"- {annotation['text']}")
+                                new_annotation = st.text_input("Add annotation", key=f"slide_annot_{scene['scene_id']}")
+                                if st.button("Add", key=f"slide_add_annot_{scene['scene_id']}"):
+                                    try:
+                                        storyboard_results = asyncio.run(
+                                            storyboard_coordinator.add_annotation(
+                                                storyboard_results,
+                                                scene["scene_id"],
+                                                new_annotation
+                                            )
+                                        )
+                                        save_to_storage(storyboard_results, 'storyboard_results.json')
+                                        st.success("Annotation added!")
+                                        st.rerun()
+                                    except Exception as e:
+                                        st.error(f"Error adding annotation: {str(e)}")
+                    
+                    with col3:
+                        if st.button("Next ➡️") and current_scene < len(scenes) - 1:
+                            st.session_state.current_scene_index = current_scene + 1
+                            st.rerun()
+                    
+                    # Progress bar
+                    st.progress((current_scene + 1) / len(scenes))
             
             # Add regenerate button
             if st.button("Regenerate Storyboard", key="regenerate_button", type="primary"):
                 with st.spinner("Regenerating storyboard images..."):
                     try:
-                        storyboard_results = asyncio.run(storyboard_coordinator.generate_storyboard(script_results))
+                        settings = load_from_storage('storyboard_settings.json') or {}
+                        storyboard_results = asyncio.run(
+                            storyboard_coordinator.generate_storyboard(
+                                script_results,
+                                shot_settings=settings.get("shot_settings", {})
+                            )
+                        )
                         save_to_storage(storyboard_results, 'storyboard_results.json')
                         st.success("Storyboard regenerated!")
                         st.rerun()
                     except Exception as e:
                         logger.error(f"Error regenerating storyboard: {str(e)}", exc_info=True)
                         st.error(f"An error occurred: {str(e)}")
-            
-            # Add download button
-            if "saved_path" in storyboard_results:
-                st.download_button(
-                    label="Download Storyboard Data",
-                    data=json.dumps(storyboard_results, indent=2),
-                    file_name="storyboard_data.json",
-                    mime="application/json"
-                )
     
     with tab2:
-        # Display formatted JSON
-        if storyboard_results:
-            st.json(storyboard_results)
-        else:
-            st.info("No storyboard data available. Generate a storyboard first.")
-    
-    with tab3:
-        st.subheader("Storyboard Settings")
-        st.write("Adjust these settings before generating a new storyboard:")
+        st.subheader("Shot Setup")
         
-        # Storyboard appearance settings
-        with st.expander("Visual Style", expanded=True):
-            style = st.selectbox("Storyboard Style", ["Cinematic", "Sketch", "Comic", "Noir", "Animation"], index=0)
-            aspect_ratio = st.selectbox("Aspect Ratio", ["16:9", "4:3", "1:1", "2.35:1"], index=0)
-            color_scheme = st.selectbox("Color Scheme", ["Full Color", "Black & White", "Monochromatic", "Sepia"], index=0)
+        # Load or initialize settings
+        settings = load_from_storage('storyboard_settings.json') or {}
+        shot_settings = settings.get("shot_settings", {})
         
-        # Layout settings
-        with st.expander("Layout Settings"):
-            panels_per_page = st.slider("Panels Per Page", min_value=1, max_value=9, value=6)
-            include_captions = st.checkbox("Include Scene Captions", value=True)
-            include_dialogue = st.checkbox("Include Key Dialogue", value=False)
+        # Global shot settings
+        st.write("### Global Shot Settings")
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            default_shot = st.selectbox(
+                "Default Shot Type",
+                ["MS", "WS", "CU", "ECU", "OTS", "POV"],
+                index=0
+            )
+            style = st.selectbox(
+                "Visual Style",
+                ["realistic", "scribble", "noir", "anime", "watercolor", "storyboard"],
+                index=0
+            )
+        
+        with col2:
+            mood = st.selectbox(
+                "Default Mood",
+                ["neutral", "dramatic", "tense", "joyful", "mysterious", "melancholic"],
+                index=0
+            )
+            camera_angle = st.selectbox(
+                "Default Camera Angle",
+                ["eye_level", "low_angle", "high_angle", "dutch_angle"],
+                index=0
+            )
+        
+        # Scene-specific settings
+        st.write("### Scene-Specific Settings")
+        if script_results and "scenes" in script_results:
+            scene_settings = {}
+            for scene in script_results["scenes"]:
+                scene_id = scene.get("scene_id", "")
+                if scene_id:
+                    with st.expander(f"Scene {scene_id}"):
+                        col1, col2 = st.columns(2)
+                        with col1:
+                            scene_shot = st.selectbox(
+                                "Shot Type",
+                                ["MS", "WS", "CU", "ECU", "OTS", "POV"],
+                                key=f"shot_{scene_id}"
+                            )
+                            scene_style = st.selectbox(
+                                "Style",
+                                ["realistic", "scribble", "noir", "anime", "watercolor", "storyboard"],
+                                key=f"style_{scene_id}"
+                            )
+                        with col2:
+                            scene_mood = st.selectbox(
+                                "Mood",
+                                ["neutral", "dramatic", "tense", "joyful", "mysterious", "melancholic"],
+                                key=f"mood_{scene_id}"
+                            )
+                            scene_camera = st.selectbox(
+                                "Camera Angle",
+                                ["eye_level", "low_angle", "high_angle", "dutch_angle"],
+                                key=f"camera_{scene_id}"
+                            )
+                        
+                        scene_settings[scene_id] = {
+                            "shot_type": scene_shot,
+                            "style": scene_style,
+                            "mood": scene_mood,
+                            "camera_angle": scene_camera
+                        }
         
         # Save settings button
-        if st.button("Save Settings"):
-            settings = {
-                "visual_style": {
-                    "style": style,
-                    "aspect_ratio": aspect_ratio,
-                    "color_scheme": color_scheme
-                },
-                "layout": {
-                    "panels_per_page": panels_per_page,
-                    "include_captions": include_captions,
-                    "include_dialogue": include_dialogue
-                }
+        if st.button("Save Shot Settings", type="primary"):
+            settings["shot_settings"] = {
+                "default_shot_type": default_shot,
+                "style": style,
+                "mood": mood,
+                "camera_angle": camera_angle,
+                "scene_settings": scene_settings
             }
+            save_to_storage(settings, 'storyboard_settings.json')
+            st.success("Shot settings saved! They will be applied to the next storyboard generation.")
+    
+    with tab3:
+        st.subheader("Export Options")
+        
+        if not storyboard_results:
+            st.warning("Generate a storyboard first to enable export options.")
+        else:
+            export_format = st.radio("Export Format", ["PDF", "Slideshow"], horizontal=True)
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                include_annotations = st.checkbox("Include Annotations", value=True)
+                include_technical = st.checkbox("Include Technical Notes", value=True)
+            with col2:
+                include_descriptions = st.checkbox("Include Scene Descriptions", value=True)
+                high_quality = st.checkbox("High Quality Export", value=True)
+            
+            if st.button("Export Storyboard", type="primary"):
+                try:
+                    with st.spinner("Exporting storyboard..."):
+                        # Create export settings
+                        export_settings = {
+                            "include_annotations": include_annotations,
+                            "include_technical": include_technical,
+                            "include_descriptions": include_descriptions,
+                            "quality": "hd" if high_quality else "standard"
+                        }
+                        
+                        # Generate timestamp for filename
+                        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                        
+                        if export_format == "PDF":
+                            output_path = f"data/exports/storyboard_{timestamp}.pdf"
+                        else:
+                            output_path = f"data/exports/storyboard_{timestamp}"
+                        
+                        # Export using coordinator
+                        exported_path = asyncio.run(
+                            storyboard_coordinator.export_storyboard(
+                                storyboard_results,
+                                export_format.lower(),
+                                output_path
+                            )
+                        )
+                        
+                        if export_format == "PDF":
+                            with open(exported_path, "rb") as f:
+                                st.download_button(
+                                    label="Download PDF",
+                                    data=f.read(),
+                                    file_name=f"storyboard_{timestamp}.pdf",
+                                    mime="application/pdf"
+                                )
+                        else:
+                            st.success(f"Slideshow exported to: {exported_path}")
+                            st.write("You can access the slideshow at:")
+                            st.code(f"/exports/storyboard_{timestamp}/slideshow.html")
+                
+                except Exception as e:
+                    st.error(f"Error exporting storyboard: {str(e)}")
+    
+    with tab4:
+        st.subheader("Storyboard Settings")
+        
+        # Load or initialize settings
+        settings = load_from_storage('storyboard_settings.json') or {}
+        
+        # Layout settings
+        st.write("### Layout Settings")
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            panels_per_row = st.select_slider(
+                "Panels per Row",
+                options=[2, 3, 4],
+                value=settings.get("layout", {}).get("panels_per_row", 3)
+            )
+            panel_size = st.select_slider(
+                "Panel Size",
+                options=["small", "medium", "large"],
+                value=settings.get("layout", {}).get("panel_size", "medium")
+            )
+        
+        with col2:
+            show_captions = st.checkbox(
+                "Show Captions",
+                value=settings.get("layout", {}).get("show_captions", True)
+            )
+            show_technical = st.checkbox(
+                "Show Technical Info",
+                value=settings.get("layout", {}).get("show_technical", True)
+            )
+        
+        # Image settings
+        st.write("### Image Settings")
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            image_quality = st.select_slider(
+                "Image Quality",
+                options=["standard", "hd"],
+                value=settings.get("image", {}).get("quality", "standard")
+            )
+            aspect_ratio = st.selectbox(
+                "Aspect Ratio",
+                ["1:1", "16:9", "4:3", "2.35:1"],
+                index=["1:1", "16:9", "4:3", "2.35:1"].index(
+                    settings.get("image", {}).get("aspect_ratio", "16:9")
+                )
+            )
+        
+        with col2:
+            color_mode = st.selectbox(
+                "Color Mode",
+                ["color", "grayscale", "sepia"],
+                index=["color", "grayscale", "sepia"].index(
+                    settings.get("image", {}).get("color_mode", "color")
+                )
+            )
+            border_style = st.selectbox(
+                "Border Style",
+                ["none", "thin", "thick", "double"],
+                index=["none", "thin", "thick", "double"].index(
+                    settings.get("image", {}).get("border", "thin")
+                )
+            )
+        
+        # Save settings button
+        if st.button("Save Settings", type="primary"):
+            settings.update({
+                "layout": {
+                    "panels_per_row": panels_per_row,
+                    "panel_size": panel_size,
+                    "show_captions": show_captions,
+                    "show_technical": show_technical
+                },
+                "image": {
+                    "quality": image_quality,
+                    "aspect_ratio": aspect_ratio,
+                    "color_mode": color_mode,
+                    "border": border_style
+                }
+            })
             save_to_storage(settings, 'storyboard_settings.json')
             st.success("Settings saved! They will be applied to the next storyboard generation.")
 
