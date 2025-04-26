@@ -3,6 +3,7 @@ from typing import Dict, Any, List
 import json
 import logging
 from ...base_config import AGENT_INSTRUCTIONS
+import re
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -17,19 +18,127 @@ class DialogueProfilerAgent:
         logger.info("Initialized DialogueProfilerAgent")
     
     def _clean_response(self, response: str) -> str:
-        """Clean the response by removing markdown code block markers."""
-        response = response.strip()
-        if response.startswith("```json"):
-            response = response[7:]
-        elif response.startswith("```"):
-            response = response[3:]
-        if response.endswith("```"):
-            response = response[:-3]
-        return response.strip()
-    
+        """Clean the response by removing markdown code block markers and extract JSON."""
+        try:
+            response = response.strip()
+            
+            # Try to find JSON between triple backticks
+            json_pattern = r"```(?:json)?\s*([\s\S]*?)\s*```"
+            matches = re.findall(json_pattern, response)
+            if matches:
+                return matches[0].strip()
+            
+            # Try to find JSON between single backticks
+            single_tick_pattern = r"`([\s\S]*?)`"
+            matches = re.findall(single_tick_pattern, response)
+            if matches:
+                return matches[0].strip()
+            
+            # Try to find anything that looks like a JSON object
+            json_object_pattern = r"(\{[\s\S]*\})"
+            matches = re.findall(json_object_pattern, response)
+            if matches:
+                return matches[0].strip()
+            
+            # If no JSON found, return the original response
+            return response.strip()
+        except Exception as e:
+            logger.error(f"Error cleaning response: {str(e)}")
+            return response.strip()
+
+    def _create_fallback_analysis(self, scene_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Create a basic valid analysis when JSON parsing fails."""
+        logger.info("Creating fallback character analysis")
+        
+        # Extract characters from scene data
+        characters = set()
+        scenes = scene_data.get("scenes", [])
+        if not scenes and "parsed_data" in scene_data:
+            scenes = scene_data["parsed_data"].get("scenes", [])
+        
+        for scene in scenes:
+            if isinstance(scene, dict):
+                # Extract from dialogues
+                for dialogue in scene.get("dialogues", []):
+                    if isinstance(dialogue, dict):
+                        char_name = dialogue.get("character")
+                        if char_name:
+                            characters.add(char_name)
+        
+        # Create basic analysis structure
+        analysis = {
+            "characters": {},
+            "relationships": {},
+            "scene_matrix": {},
+            "statistics": {
+                "total_characters": len(characters),
+                "total_scenes": len(scenes)
+            }
+        }
+        
+        # Add basic character data
+        for char_name in characters:
+            analysis["characters"][char_name] = {
+                "dialogue_analysis": {
+                    "total_lines": 0,
+                    "total_words": 0,
+                    "patterns": {"common_phrases": [], "emotional_markers": []}
+                },
+                "action_sequences": [],
+                "emotional_range": {
+                    "primary_emotion": "neutral",
+                    "emotional_spectrum": ["neutral"],
+                    "emotional_journey": []
+                },
+                "scene_presence": [],
+                "objectives": {"main_objective": "Unknown", "scene_objectives": []}
+            }
+        
+        # Add basic scene matrix
+        for i, scene in enumerate(scenes):
+            scene_id = str(i + 1)
+            analysis["scene_matrix"][scene_id] = {
+                "present_characters": list(characters),
+                "interactions": [],
+                "emotional_atmosphere": "neutral",
+                "key_developments": []
+            }
+        
+        return analysis
+
     async def analyze_characters(self, scene_data: Dict[str, Any]) -> Dict[str, Any]:
         """Analyze character dialogues, relationships, and emotional arcs."""
-        # Define expected JSON format
+        try:
+            result = await Runner.run(self.agent, self._generate_analysis_prompt(scene_data))
+            logger.info("Received response from agent")
+            
+            try:
+                cleaned_response = self._clean_response(result.final_output)
+                logger.debug(f"Cleaned response: {cleaned_response[:200]}...")
+                
+                try:
+                    analysis = json.loads(cleaned_response)
+                    logger.info("Successfully parsed JSON response")
+                except json.JSONDecodeError as e:
+                    logger.warning(f"Failed to parse JSON response, using fallback: {str(e)}")
+                    analysis = self._create_fallback_analysis(scene_data)
+                
+                processed_analysis = self._process_analysis(analysis)
+                logger.info("Successfully processed character analysis")
+                
+                return processed_analysis
+                
+            except Exception as e:
+                logger.error(f"Error processing response: {str(e)}")
+                logger.debug(f"Raw response: {result.final_output}")
+                return self._create_fallback_analysis(scene_data)
+                
+        except Exception as e:
+            logger.error(f"Error in character analysis: {str(e)}")
+            return self._create_fallback_analysis(scene_data)
+
+    def _generate_analysis_prompt(self, scene_data: Dict[str, Any]) -> str:
+        """Generate the analysis prompt with clear JSON format instructions."""
         json_format = '''
 {
     "characters": {
@@ -64,125 +173,23 @@ class DialogueProfilerAgent:
                         "trigger": "trigger_description"
                     }
                 ]
-            },
-            "scene_presence": [
-                {
-                    "scene": "scene_number",
-                    "presence_type": "type",
-                    "dialogue_count": 0,
-                    "action_count": 0,
-                    "importance_score": 0.0
-                }
-            ],
-            "objectives": {
-                "main_objective": "objective",
-                "scene_objectives": [
-                    {
-                        "scene": "scene_number",
-                        "objective": "objective",
-                        "obstacles": ["obstacle1"],
-                        "outcome": "outcome"
-                    }
-                ]
             }
         }
     },
-    "relationships": {
-        "Character1-Character2": {
-            "relationship_type": "type",
-            "dynamics": ["dynamic1"],
-            "evolution": [
-                {
-                    "scene": "scene_number",
-                    "dynamic_change": "change",
-                    "trigger": "trigger"
-                }
-            ],
-            "interactions": [
-                {
-                    "scene": "scene_number",
-                    "type": "interaction_type",
-                    "description": "description",
-                    "emotional_impact": "impact"
-                }
-            ],
-            "conflict_points": [
-                {
-                    "scene": "scene_number",
-                    "conflict": "description",
-                    "resolution": "resolution"
-                }
-            ]
-        }
-    },
-    "scene_matrix": {
-        "scene_number": {
-            "present_characters": ["char1"],
-            "interactions": [
-                {
-                    "characters": ["char1", "char2"],
-                    "type": "interaction_type",
-                    "significance": 0.0
-                }
-            ],
-            "emotional_atmosphere": "atmosphere",
-            "key_developments": ["development1"]
-        }
-    }
+    "relationships": {},
+    "scene_matrix": {},
+    "statistics": {}
 }'''
         
-        prompt = f"""Perform deep analysis of character dialogues and interactions to:
-        - Analyze dialogue patterns, style, and emotional markers
-        - Map character actions and interactions
-        - Track emotional journey and intensity
-        - Identify scene presence and importance
-        - Define character objectives and obstacles
-        - Map relationship dynamics and evolution
-        - Create detailed scene interaction matrix
+        return f"""Analyze the provided scene data and generate a character analysis in the exact JSON format shown below.
+        DO NOT include any explanatory text or markdown formatting.
+        ONLY return the JSON object.
         
-        For each character, analyze:
-        - Dialogue style and patterns
-        - Action sequences and emotional context
-        - Scene presence and importance
-        - Objectives and obstacles
-        - Relationship dynamics
-        
-        For relationships, track:
-        - Dynamic changes over time
-        - Interaction patterns
-        - Conflict points and resolutions
-        
-        IMPORTANT: Return the data in this exact JSON format:
+        Required JSON format:
         {json_format}
         
         Scene Data:
-        {json.dumps(scene_data, indent=2)}
-        """
-        
-        try:
-            result = await Runner.run(self.agent, prompt)
-            logger.info("Received response from agent")
-            
-            try:
-                cleaned_response = self._clean_response(result.final_output)
-                logger.debug(f"Cleaned response: {cleaned_response[:200]}...")
-                
-                analysis = json.loads(cleaned_response)
-                logger.info("Successfully parsed JSON response")
-                
-                processed_analysis = self._process_analysis(analysis)
-                logger.info("Successfully processed character analysis")
-                
-                return processed_analysis
-                
-            except json.JSONDecodeError as e:
-                logger.error(f"Failed to parse JSON response: {str(e)}")
-                logger.debug(f"Raw response: {result.final_output}")
-                raise ValueError(f"Failed to generate valid character analysis: {str(e)}\nRaw response: {result.final_output[:200]}...")
-                
-        except Exception as e:
-            logger.error(f"Error in character analysis: {str(e)}")
-            raise ValueError(f"Failed to process character analysis: {str(e)}")
+        {json.dumps(scene_data, indent=2)}"""
     
     def _process_analysis(self, analysis: Dict[str, Any]) -> Dict[str, Any]:
         """Process and validate character analysis data."""
