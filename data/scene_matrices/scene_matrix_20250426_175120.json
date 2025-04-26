@@ -1,0 +1,110 @@
+{
+  "scene_matrix": {
+    "1": {
+      "present_characters": [
+        "SHINCHAN",
+        "MITSY"
+      ],
+      "interactions": [
+        {
+          "characters": [
+            "SHINCHAN",
+            "MITSY"
+          ],
+          "type": "domestic conflict",
+          "significance": 0.6
+        }
+      ],
+      "emotional_atmosphere": "playful",
+      "key_developments": [
+        "Shinchan's playful nature"
+      ]
+    },
+    "2": {
+      "present_characters": [
+        "SHINCHAN",
+        "BEN"
+      ],
+      "interactions": [
+        {
+          "characters": [
+            "SHINCHAN",
+            "BEN"
+          ],
+          "type": "introduction",
+          "significance": 0.8
+        }
+      ],
+      "emotional_atmosphere": "curious",
+      "key_developments": [
+        "Shinchan and Ben partnership"
+      ]
+    },
+    "3": {
+      "present_characters": [
+        "SHINCHAN",
+        "BEN",
+        "ROBOT ALIEN"
+      ],
+      "interactions": [
+        {
+          "characters": [
+            "SHINCHAN",
+            "BEN"
+          ],
+          "type": "combat teamwork",
+          "significance": 0.9
+        }
+      ],
+      "emotional_atmosphere": "intense",
+      "key_developments": [
+        "First joint action"
+      ]
+    },
+    "4": {
+      "present_characters": [
+        "SHINCHAN",
+        "BEN"
+      ],
+      "interactions": [
+        {
+          "characters": [
+            "SHINCHAN",
+            "BEN"
+          ],
+          "type": "victory celebration",
+          "significance": 0.85
+        }
+      ],
+      "emotional_atmosphere": "victorious",
+      "key_developments": [
+        "Defeating the robot alien"
+      ]
+    },
+    "5": {
+      "present_characters": [
+        "SHINCHAN",
+        "BEN"
+      ],
+      "interactions": [
+        {
+          "characters": [
+            "SHINCHAN",
+            "BEN"
+          ],
+          "type": "leisure",
+          "significance": 0.7
+        }
+      ],
+      "emotional_atmosphere": "peaceful",
+      "key_developments": [
+        "Friendship bond"
+      ]
+    }
+  },
+  "statistics": {
+    "total_scenes": 5,
+    "average_characters_per_scene": 2.2,
+    "total_interactions": 5
+  }
+}

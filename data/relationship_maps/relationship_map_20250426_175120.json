@@ -1,0 +1,51 @@
+{
+  "relationships": {
+    "SHINCHAN-BEN": {
+      "type": "allies",
+      "dynamics": [
+        "comedic",
+        "supportive"
+      ],
+      "evolution": [
+        {
+          "scene": "2",
+          "dynamic_change": "Became allies",
+          "trigger": "Mutual interest in alien tech"
+        },
+        {
+          "scene": "4",
+          "dynamic_change": "Solidified friendship",
+          "trigger": "Successfully defeating alien"
+        }
+      ],
+      "interactions": [
+        {
+          "scene": "2",
+          "type": "comedic introduction",
+          "description": "Shinchan introduces himself while Ben laughs at the situation.",
+          "emotional_impact": "lighthearted"
+        },
+        {
+          "scene": "3",
+          "type": "teamwork in combat",
+          "description": "Collaborating against a common enemy.",
+          "emotional_impact": "intense"
+        }
+      ],
+      "conflicts": [
+        {
+          "scene": "3",
+          "conflict": "Shinchan's comedic interruptions",
+          "resolution": "Ben handles it with humor"
+        }
+      ]
+    }
+  },
+  "statistics": {
+    "SHINCHAN-BEN": {
+      "total_interactions": 2,
+      "total_conflicts": 1,
+      "dynamic_changes": 2
+    }
+  }
+}

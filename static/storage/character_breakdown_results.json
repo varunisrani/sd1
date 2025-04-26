@@ -1,509 +1,536 @@
 {
   "characters": {
-    "ELA": {
-      "dialogue_stats": {
-        "scene_count": 5,
-        "scene_percentage": 0.7142857142857143,
-        "dialogue_count": 7,
-        "word_count": 41
-      },
-      "emotional_journey": [
-        {
-          "scene": "2",
-          "state": "focused"
-        },
-        {
-          "scene": "4",
-          "state": "alert"
-        },
-        {
-          "scene": "5",
-          "state": "urgent"
-        },
-        {
-          "scene": "8",
-          "state": "reassuring"
-        },
-        {
-          "scene": "9",
-          "state": "grateful"
-        }
-      ],
-      "objectives": [
-        "Coordinate rescue mission",
-        "Ensure Marcus's safety"
-      ],
-      "obstacles": [
-        "Communication difficulties",
-        "Urgency of the situation"
-      ],
-      "physical_attributes": {
-        "height": "average",
-        "build": "slim",
-        "age": "mid-30s",
-        "distinguishing_features": [
-          "dark hair",
-          "focused eyes"
-        ]
-      },
-      "costume_data": {
-        "base": {
-          "item": "casual field uniform"
-        },
-        "changes": [
-          {
-            "scene_number": "2",
-            "costume_changes": {},
-            "prop_changes": [
-              "adds microphone"
-            ],
-            "makeup_changes": {},
-            "notes": []
-          },
-          {
-            "scene_number": "4",
-            "costume_changes": {},
-            "prop_changes": [
-              "wears headphones"
-            ],
-            "makeup_changes": {},
-            "notes": []
-          },
-          {
-            "scene_number": "5",
-            "costume_changes": {},
-            "prop_changes": [],
-            "makeup_changes": {},
-            "notes": [
-              "heard as voiceover"
-            ]
-          },
-          {
-            "scene_number": "8",
-            "costume_changes": {},
-            "prop_changes": [],
-            "makeup_changes": {},
-            "notes": [
-              "voiceover presence"
-            ]
-          },
-          {
-            "scene_number": "9",
-            "costume_changes": {},
-            "prop_changes": [
-              "removes headphones"
-            ],
-            "makeup_changes": {},
-            "notes": []
-          }
-        ]
-      },
-      "props": [
-        "microphone",
-        "headphones"
-      ],
-      "makeup": {
-        "item": "natural, with a focus on eyes"
-      },
-      "evolution_timeline": [
-        {
-          "scene_number": "2",
-          "sequence": 1,
-          "changes": [
-            "focused at console"
-          ]
-        },
-        {
-          "scene_number": "4",
-          "sequence": 2,
-          "changes": [
-            "alert, calls Miller"
-          ]
-        },
-        {
-          "scene_number": "5",
-          "sequence": 3,
-          "changes": [
-            "communicates urgency"
-          ]
-        },
-        {
-          "scene_number": "8",
-          "sequence": 4,
-          "changes": [
-            "reassures Marcus"
-          ]
-        },
-        {
-          "scene_number": "9",
-          "sequence": 5,
-          "changes": [
-            "expresses gratitude"
+    "SHINCHAN": {
+      "dialogue_analysis": {
+        "total_lines": 10,
+        "total_words": 77,
+        "average_line_length": 7.7,
+        "vocabulary_complexity": 1.7,
+        "patterns": {
+          "common_phrases": [
+            "Mom",
+            "aliens",
+            "team up"
+          ],
+          "speech_style": "playful and cheeky",
+          "emotional_markers": [
+            "cheeky",
+            "excited"
           ]
         }
-      ]
-    },
-    "MARCUS": {
-      "dialogue_stats": {
-        "scene_count": 4,
-        "scene_percentage": 0.5714285714285714,
-        "dialogue_count": 6,
-        "word_count": 30
       },
-      "emotional_journey": [
+      "action_sequences": [
+        {
+          "scene": "1",
+          "sequence": "Dancing to a jingle in pajamas.",
+          "interaction_type": "individual",
+          "emotional_context": "playful"
+        },
         {
           "scene": "2",
-          "state": "desperate"
+          "sequence": "Runs toward a green flash.",
+          "interaction_type": "with environment",
+          "emotional_context": "curious"
         },
         {
           "scene": "3",
-          "state": "urgent"
+          "sequence": "Interacts with BEN and alien robot.",
+          "interaction_type": "action",
+          "emotional_context": "excited"
+        }
+      ],
+      "emotional_range": {
+        "primary_emotion": "cheerful",
+        "emotional_spectrum": [
+          "cheerful",
+          "excited",
+          "curious"
+        ],
+        "emotional_journey": [
+          {
+            "scene": "1",
+            "emotion": "playful",
+            "intensity": 0.8,
+            "trigger": "TV jingle"
+          },
+          {
+            "scene": "2",
+            "emotion": "curious",
+            "intensity": 0.9,
+            "trigger": "green flash"
+          },
+          {
+            "scene": "3",
+            "emotion": "excited",
+            "intensity": 1.0,
+            "trigger": "alien encounter"
+          }
+        ]
+      },
+      "scene_presence": [
+        {
+          "scene": "1",
+          "presence_type": "active",
+          "dialogue_count": 1,
+          "action_count": 1,
+          "importance_score": 0.7
+        },
+        {
+          "scene": "2",
+          "presence_type": "active",
+          "dialogue_count": 3,
+          "action_count": 1,
+          "importance_score": 0.9
+        },
+        {
+          "scene": "3",
+          "presence_type": "active",
+          "dialogue_count": 2,
+          "action_count": 1,
+          "importance_score": 0.8
+        }
+      ],
+      "objectives": {
+        "main_objective": "Find adventure",
+        "scene_objectives": [
+          {
+            "scene": "1",
+            "objective": "Avoid boredom",
+            "obstacles": [
+              "Mom's orders"
+            ],
+            "outcome": "Ignored"
+          },
+          {
+            "scene": "2",
+            "objective": "Explore crash site",
+            "obstacles": [
+              "Danger"
+            ],
+            "outcome": "Teamed up with Ben"
+          },
+          {
+            "scene": "3",
+            "objective": "Help Ben",
+            "obstacles": [
+              "Robot alien"
+            ],
+            "outcome": "Successful"
+          }
+        ]
+      },
+      "costumes": [],
+      "makeup": {
+        "base": {
+          "item": "none"
+        },
+        "timeline": [
+          {
+            "scene": "1",
+            "changes": {
+              "item": "none"
+            },
+            "special_effects": []
+          }
+        ]
+      },
+      "props": {
+        "base": [
+          "TV remote",
+          "ice cream cone"
+        ],
+        "timeline": [
+          {
+            "scene": "1",
+            "additions": [
+              "TV remote"
+            ],
+            "removals": []
+          },
+          {
+            "scene": "2",
+            "additions": [
+              "ice cream cone"
+            ],
+            "removals": []
+          }
+        ]
+      },
+      "casting_requirements": {},
+      "audition_notes": [],
+      "importance_score": 0.0,
+      "screen_time_percentage": 0.0
+    },
+    "BEN": {
+      "dialogue_analysis": {
+        "total_lines": 8,
+        "total_words": 59,
+        "average_line_length": 7.375,
+        "vocabulary_complexity": 1.5,
+        "patterns": {
+          "common_phrases": [
+            "alien tech",
+            "team up"
+          ],
+          "speech_style": "heroic and casual",
+          "emotional_markers": [
+            "laughs",
+            "chuckles"
+          ]
+        }
+      },
+      "action_sequences": [
+        {
+          "scene": "2",
+          "sequence": "Arrives at crash site.",
+          "interaction_type": "exploration",
+          "emotional_context": "curious"
+        },
+        {
+          "scene": "3",
+          "sequence": "Fights robot alien.",
+          "interaction_type": "combat",
+          "emotional_context": "determined"
         },
         {
           "scene": "4",
-          "state": "urgent"
-        },
-        {
-          "scene": "8",
-          "state": "relieved"
+          "sequence": "Transforms and defeats robot.",
+          "interaction_type": "conclusion",
+          "emotional_context": "victorious"
         }
       ],
-      "objectives": [
-        "Survive crash",
-        "Communicate location for rescue"
-      ],
-      "obstacles": [
-        "Engine failure",
-        "Limited resources"
-      ],
-      "physical_attributes": {
-        "height": "tall",
-        "build": "athletic",
-        "age": "early 40s",
-        "distinguishing_features": [
-          "short haircut",
-          "determined expression"
-        ]
-      },
-      "costume_data": {
-        "base": {
-          "item": "casual pilot gear"
-        },
-        "changes": [
+      "emotional_range": {
+        "primary_emotion": "determined",
+        "emotional_spectrum": [
+          "curious",
+          "determined",
+          "victorious"
+        ],
+        "emotional_journey": [
           {
-            "scene_number": "2",
-            "costume_changes": {},
-            "prop_changes": [],
-            "makeup_changes": {},
-            "notes": [
-              "voiceover presence"
-            ]
+            "scene": "2",
+            "emotion": "curious",
+            "intensity": 0.8,
+            "trigger": "crash site"
           },
           {
-            "scene_number": "3",
-            "costume_changes": {},
-            "prop_changes": [
-              "checks flight manual"
-            ],
-            "makeup_changes": {},
-            "notes": []
+            "scene": "3",
+            "emotion": "determined",
+            "intensity": 1.0,
+            "trigger": "robot alien"
           },
           {
-            "scene_number": "4",
-            "costume_changes": {},
-            "prop_changes": [],
-            "makeup_changes": {},
-            "notes": [
-              "voiceover presence"
-            ]
-          },
-          {
-            "scene_number": "8",
-            "costume_changes": {},
-            "prop_changes": [],
-            "makeup_changes": {},
-            "notes": []
+            "scene": "4",
+            "emotion": "victorious",
+            "intensity": 1.0,
+            "trigger": "robot defeat"
           }
         ]
       },
-      "props": [
-        "worn flight manual"
-      ],
-      "makeup": {
-        "item": "rugged look, slight cuts"
-      },
-      "evolution_timeline": [
+      "scene_presence": [
         {
-          "scene_number": "2",
-          "sequence": 1,
-          "changes": [
-            "desperate call for help"
-          ]
+          "scene": "2",
+          "presence_type": "active",
+          "dialogue_count": 2,
+          "action_count": 1,
+          "importance_score": 0.85
         },
         {
-          "scene_number": "3",
-          "sequence": 2,
-          "changes": [
-            "struggles with tech"
-          ]
+          "scene": "3",
+          "presence_type": "active",
+          "dialogue_count": 2,
+          "action_count": 1,
+          "importance_score": 0.9
         },
         {
-          "scene_number": "4",
-          "sequence": 3,
-          "changes": [
-            "clarifies coordinates"
-          ]
-        },
-        {
-          "scene_number": "8",
-          "sequence": 4,
-          "changes": [
-            "relieved at rescue"
-          ]
-        }
-      ]
-    },
-    "SHERIFF MILLER": {
-      "dialogue_stats": {
-        "scene_count": 4,
-        "scene_percentage": 0.5714285714285714,
-        "dialogue_count": 5,
-        "word_count": 24
-      },
-      "emotional_journey": [
-        {
-          "scene": "5",
-          "state": "startled"
-        },
-        {
-          "scene": "7",
-          "state": "determined"
-        },
-        {
-          "scene": "8",
-          "state": "calm"
-        },
-        {
-          "scene": "9",
-          "state": "reassuring"
+          "scene": "4",
+          "presence_type": "active",
+          "dialogue_count": 2,
+          "action_count": 1,
+          "importance_score": 0.95
         }
       ],
-      "objectives": [
-        "Respond to emergency",
-        "Assist in rescue"
-      ],
-      "obstacles": [
-        "Distance to crash site"
-      ],
-      "physical_attributes": {
-        "height": "average",
-        "build": "stocky",
-        "age": "late 40s",
-        "distinguishing_features": [
-          "graying hair",
-          "calm demeanor"
-        ]
-      },
-      "costume_data": {
-        "base": {
-          "item": "sheriff's uniform"
-        },
-        "changes": [
+      "objectives": {
+        "main_objective": "Protect and retrieve alien tech",
+        "scene_objectives": [
           {
-            "scene_number": "5",
-            "costume_changes": {},
-            "prop_changes": [
-              "carries radio"
+            "scene": "2",
+            "objective": "Locate alien tech",
+            "obstacles": [
+              "Unfamiliar location"
             ],
-            "makeup_changes": {},
-            "notes": []
+            "outcome": "Met Shinchan"
           },
           {
-            "scene_number": "7",
-            "costume_changes": {},
-            "prop_changes": [
-              "consults map"
+            "scene": "3",
+            "objective": "Defend against alien threat",
+            "obstacles": [
+              "Robot alien"
             ],
-            "makeup_changes": {},
-            "notes": []
+            "outcome": "Successful"
           },
           {
-            "scene_number": "8",
-            "costume_changes": {},
-            "prop_changes": [],
-            "makeup_changes": {},
-            "notes": []
-          },
-          {
-            "scene_number": "9",
-            "costume_changes": {},
-            "prop_changes": [],
-            "makeup_changes": {},
-            "notes": []
+            "scene": "4",
+            "objective": "Destroy threat",
+            "obstacles": [
+              "Robot's strength"
+            ],
+            "outcome": "Successful"
           }
         ]
       },
-      "props": [
-        "radio",
-        "SUV map"
-      ],
+      "costumes": [],
       "makeup": {
-        "item": "slightly tired look"
+        "base": {
+          "item": "none"
+        },
+        "timeline": [
+          {
+            "scene": "2",
+            "changes": {
+              "item": "none"
+            },
+            "special_effects": [
+              "transformation effects"
+            ]
+          }
+        ]
       },
-      "evolution_timeline": [
+      "props": {
+        "base": [
+          "Omnitrix"
+        ],
+        "timeline": [
+          {
+            "scene": "2",
+            "additions": [
+              "Omnitrix"
+            ],
+            "removals": []
+          }
+        ]
+      },
+      "casting_requirements": {},
+      "audition_notes": [],
+      "importance_score": 0.0,
+      "screen_time_percentage": 0.0
+    }
+  },
+  "relationships": {
+    "SHINCHAN-BEN": {
+      "type": "allies",
+      "dynamics": [
+        "comedic",
+        "supportive"
+      ],
+      "evolution": [
         {
-          "scene_number": "5",
-          "sequence": 1,
-          "changes": [
-            "startled awake"
-          ]
+          "scene": "2",
+          "dynamic_change": "Became allies",
+          "trigger": "Mutual interest in alien tech"
         },
         {
-          "scene_number": "7",
-          "sequence": 2,
-          "changes": [
-            "determined drive"
-          ]
+          "scene": "4",
+          "dynamic_change": "Solidified friendship",
+          "trigger": "Successfully defeating alien"
+        }
+      ],
+      "interactions": [
+        {
+          "scene": "2",
+          "type": "comedic introduction",
+          "description": "Shinchan introduces himself while Ben laughs at the situation.",
+          "emotional_impact": "lighthearted"
         },
         {
-          "scene_number": "8",
-          "sequence": 3,
-          "changes": [
-            "organizes rescue"
-          ]
-        },
+          "scene": "3",
+          "type": "teamwork in combat",
+          "description": "Collaborating against a common enemy.",
+          "emotional_impact": "intense"
+        }
+      ],
+      "conflicts": [
         {
-          "scene_number": "9",
-          "sequence": 4,
-          "changes": [
-            "reassures Ela"
-          ]
+          "scene": "3",
+          "conflict": "Shinchan's comedic interruptions",
+          "resolution": "Ben handles it with humor"
         }
       ]
     }
   },
-  "relationships": {
-    "Ela-Marcus": {
-      "type": "supportive",
-      "scenes": [
-        "2",
-        "4",
-        "8",
-        "9"
+  "scene_matrix": {
+    "1": {
+      "present_characters": [
+        "SHINCHAN",
+        "MITSY"
       ],
-      "dynamics": [
-        "Ela coordinates rescue",
-        "Marcus expresses gratitude"
+      "interactions": [
+        {
+          "characters": [
+            "SHINCHAN",
+            "MITSY"
+          ],
+          "type": "domestic conflict",
+          "significance": 0.6
+        }
+      ],
+      "emotional_atmosphere": "playful",
+      "key_developments": [
+        "Shinchan's playful nature"
       ]
     },
-    "Ela-Sheriff Miller": {
-      "type": "collaborative",
-      "scenes": [
-        "5",
-        "9"
+    "2": {
+      "present_characters": [
+        "SHINCHAN",
+        "BEN"
       ],
-      "dynamics": [
-        "Ela alerts Miller",
-        "Miller executes rescue"
+      "interactions": [
+        {
+          "characters": [
+            "SHINCHAN",
+            "BEN"
+          ],
+          "type": "introduction",
+          "significance": 0.8
+        }
+      ],
+      "emotional_atmosphere": "curious",
+      "key_developments": [
+        "Shinchan and Ben partnership"
       ]
     },
-    "Marcus-Sheriff Miller": {
-      "type": "rescue",
-      "scenes": [
-        "8"
+    "3": {
+      "present_characters": [
+        "SHINCHAN",
+        "BEN",
+        "ROBOT ALIEN"
       ],
-      "dynamics": [
-        "Miller finds Marcus",
-        "Marcus acknowledges help"
+      "interactions": [
+        {
+          "characters": [
+            "SHINCHAN",
+            "BEN"
+          ],
+          "type": "combat teamwork",
+          "significance": 0.9
+        }
+      ],
+      "emotional_atmosphere": "intense",
+      "key_developments": [
+        "First joint action"
+      ]
+    },
+    "4": {
+      "present_characters": [
+        "SHINCHAN",
+        "BEN"
+      ],
+      "interactions": [
+        {
+          "characters": [
+            "SHINCHAN",
+            "BEN"
+          ],
+          "type": "victory celebration",
+          "significance": 0.85
+        }
+      ],
+      "emotional_atmosphere": "victorious",
+      "key_developments": [
+        "Defeating the robot alien"
+      ]
+    },
+    "5": {
+      "present_characters": [
+        "SHINCHAN",
+        "BEN"
+      ],
+      "interactions": [
+        {
+          "characters": [
+            "SHINCHAN",
+            "BEN"
+          ],
+          "type": "leisure",
+          "significance": 0.7
+        }
+      ],
+      "emotional_atmosphere": "peaceful",
+      "key_developments": [
+        "Friendship bond"
       ]
     }
   },
   "statistics": {
-    "total_scenes": 7,
-    "total_characters": 3,
-    "total_relationships": 3,
-    "total_dialogue_count": 18,
-    "total_word_count": 95
-  },
-  "props_inventory": {
-    "microphone": {
-      "quantity": 1,
-      "scenes_needed": [
-        "2"
-      ],
-      "characters": [
-        "ELA"
-      ],
-      "special_requirements": [
-        "works with radio console"
-      ]
+    "dialogue_stats": {
+      "SHINCHAN": {
+        "total_lines": 10,
+        "total_words": 77,
+        "average_line_length": 7.7,
+        "vocabulary_complexity": 1.7
+      },
+      "BEN": {
+        "total_lines": 8,
+        "total_words": 59,
+        "average_line_length": 7.375,
+        "vocabulary_complexity": 1.5
+      }
     },
-    "headphones": {
-      "quantity": 1,
-      "scenes_needed": [
-        "4",
-        "9"
-      ],
-      "characters": [
-        "ELA"
-      ],
-      "special_requirements": [
-        "attached to radio gear"
-      ]
+    "emotional_stats": {
+      "SHINCHAN": {
+        "primary_emotion": "cheerful",
+        "emotional_variety": 3,
+        "average_intensity": 0.9
+      },
+      "BEN": {
+        "primary_emotion": "determined",
+        "emotional_variety": 3,
+        "average_intensity": 0.9333333333333332
+      }
     },
-    "worn flight manual": {
-      "quantity": 1,
-      "scenes_needed": [
-        "3"
-      ],
-      "characters": [
-        "MARCUS"
-      ],
-      "special_requirements": [
-        "visible wear and tear"
-      ]
+    "relationship_stats": {
+      "SHINCHAN-BEN": {
+        "total_interactions": 2,
+        "total_conflicts": 1,
+        "dynamic_changes": 2
+      }
     },
-    "radio": {
-      "quantity": 1,
-      "scenes_needed": [
-        "5"
-      ],
-      "characters": [
-        "SHERIFF MILLER"
-      ],
-      "special_requirements": [
-        "compatible with Ela's setup"
-      ]
+    "scene_stats": {
+      "total_scenes": 5,
+      "average_characters_per_scene": 2.2,
+      "total_interactions": 5
     },
-    "SUV map": {
-      "quantity": 1,
-      "scenes_needed": [
-        "7"
-      ],
-      "characters": [
-        "SHERIFF MILLER"
-      ],
-      "special_requirements": [
-        "detailed coordinates"
-      ]
+    "technical_stats": {
+      "costume_changes": {
+        "SHINCHAN": {
+          "total_changes": 0,
+          "unique_costumes": 0
+        },
+        "BEN": {
+          "total_changes": 0,
+          "unique_costumes": 0
+        }
+      },
+      "prop_usage": {
+        "SHINCHAN": {
+          "total_props": 0,
+          "unique_props": 0
+        },
+        "BEN": {
+          "total_props": 0,
+          "unique_props": 0
+        }
+      },
+      "makeup_changes": {
+        "SHINCHAN": {
+          "total_changes": 0,
+          "unique_looks": 0
+        },
+        "BEN": {
+          "total_changes": 0,
+          "unique_looks": 0
+        }
+      }
     }
-  },
-  "makeup_requirements": {
-    "character": {
-      "base": {},
-      "special_effects": []
-    }
-  },
-  "continuity_notes": [
-    "Ensure Ela's microphone is in place during all radio communications.",
-    "Marcus's cuts and rugged appearance must appear consistent from Scene 3 to Scene 8.",
-    "Sheriff Miller's map in Scene 7 should reflect the same coordinates as Marcus provides."
-  ],
-  "metadata": {
-    "total_characters": 3,
-    "total_relationships": 3,
-    "total_props": 5,
-    "total_costume_changes": 13,
-    "total_makeup_requirements": 1
   }
 }

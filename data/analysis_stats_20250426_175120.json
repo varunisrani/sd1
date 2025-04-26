@@ -1,0 +1,72 @@
+{
+  "dialogue_stats": {
+    "SHINCHAN": {
+      "total_lines": 10,
+      "total_words": 77,
+      "average_line_length": 7.7,
+      "vocabulary_complexity": 1.7
+    },
+    "BEN": {
+      "total_lines": 8,
+      "total_words": 59,
+      "average_line_length": 7.375,
+      "vocabulary_complexity": 1.5
+    }
+  },
+  "emotional_stats": {
+    "SHINCHAN": {
+      "primary_emotion": "cheerful",
+      "emotional_variety": 3,
+      "average_intensity": 0.9
+    },
+    "BEN": {
+      "primary_emotion": "determined",
+      "emotional_variety": 3,
+      "average_intensity": 0.9333333333333332
+    }
+  },
+  "relationship_stats": {
+    "SHINCHAN-BEN": {
+      "total_interactions": 2,
+      "total_conflicts": 1,
+      "dynamic_changes": 2
+    }
+  },
+  "scene_stats": {
+    "total_scenes": 5,
+    "average_characters_per_scene": 2.2,
+    "total_interactions": 5
+  },
+  "technical_stats": {
+    "costume_changes": {
+      "SHINCHAN": {
+        "total_changes": 0,
+        "unique_costumes": 0
+      },
+      "BEN": {
+        "total_changes": 0,
+        "unique_costumes": 0
+      }
+    },
+    "prop_usage": {
+      "SHINCHAN": {
+        "total_props": 0,
+        "unique_props": 0
+      },
+      "BEN": {
+        "total_props": 0,
+        "unique_props": 0
+      }
+    },
+    "makeup_changes": {
+      "SHINCHAN": {
+        "total_changes": 0,
+        "unique_looks": 0
+      },
+      "BEN": {
+        "total_changes": 0,
+        "unique_looks": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "dialogue_analysis": {
+    "total_lines": 8,
+    "total_words": 59,
+    "average_line_length": 7.375,
+    "vocabulary_complexity": 1.5,
+    "patterns": {
+      "common_phrases": [
+        "alien tech",
+        "team up"
+      ],
+      "speech_style": "heroic and casual",
+      "emotional_markers": [
+        "laughs",
+        "chuckles"
+      ]
+    }
+  },
+  "action_sequences": [
+    {
+      "scene": "2",
+      "sequence": "Arrives at crash site.",
+      "interaction_type": "exploration",
+      "emotional_context": "curious"
+    },
+    {
+      "scene": "3",
+      "sequence": "Fights robot alien.",
+      "interaction_type": "combat",
+      "emotional_context": "determined"
+    },
+    {
+      "scene": "4",
+      "sequence": "Transforms and defeats robot.",
+      "interaction_type": "conclusion",
+      "emotional_context": "victorious"
+    }
+  ],
+  "emotional_range": {
+    "primary_emotion": "determined",
+    "emotional_spectrum": [
+      "curious",
+      "determined",
+      "victorious"
+    ],
+    "emotional_journey": [
+      {
+        "scene": "2",
+        "emotion": "curious",
+        "intensity": 0.8,
+        "trigger": "crash site"
+      },
+      {
+        "scene": "3",
+        "emotion": "determined",
+        "intensity": 1.0,
+        "trigger": "robot alien"
+      },
+      {
+        "scene": "4",
+        "emotion": "victorious",
+        "intensity": 1.0,
+        "trigger": "robot defeat"
+      }
+    ]
+  },
+  "scene_presence": [
+    {
+      "scene": "2",
+      "presence_type": "active",
+      "dialogue_count": 2,
+      "action_count": 1,
+      "importance_score": 0.85
+    },
+    {
+      "scene": "3",
+      "presence_type": "active",
+      "dialogue_count": 2,
+      "action_count": 1,
+      "importance_score": 0.9
+    },
+    {
+      "scene": "4",
+      "presence_type": "active",
+      "dialogue_count": 2,
+      "action_count": 1,
+      "importance_score": 0.95
+    }
+  ],
+  "objectives": {
+    "main_objective": "Protect and retrieve alien tech",
+    "scene_objectives": [
+      {
+        "scene": "2",
+        "objective": "Locate alien tech",
+        "obstacles": [
+          "Unfamiliar location"
+        ],
+        "outcome": "Met Shinchan"
+      },
+      {
+        "scene": "3",
+        "objective": "Defend against alien threat",
+        "obstacles": [
+          "Robot alien"
+        ],
+        "outcome": "Successful"
+      },
+      {
+        "scene": "4",
+        "objective": "Destroy threat",
+        "obstacles": [
+          "Robot's strength"
+        ],
+        "outcome": "Successful"
+      }
+    ]
+  },
+  "costumes": [],
+  "makeup": {
+    "base": {
+      "item": "none"
+    },
+    "timeline": [
+      {
+        "scene": "2",
+        "changes": {
+          "item": "none"
+        },
+        "special_effects": [
+          "transformation effects"
+        ]
+      }
+    ]
+  },
+  "props": {
+    "base": [
+      "Omnitrix"
+    ],
+    "timeline": [
+      {
+        "scene": "2",
+        "additions": [
+          "Omnitrix"
+        ],
+        "removals": []
+      }
+    ]
+  },
+  "casting_requirements": {},
+  "audition_notes": [],
+  "importance_score": 0.0,
+  "screen_time_percentage": 0.0
+}

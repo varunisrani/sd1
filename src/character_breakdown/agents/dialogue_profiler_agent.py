@@ -34,38 +34,123 @@ class DialogueProfilerAgent:
 {
     "characters": {
         "Character Name": {
-            "appearances": [
+            "dialogue_analysis": {
+                "total_lines": 0,
+                "total_words": 0,
+                "average_line_length": 0.0,
+                "vocabulary_complexity": 0.0,
+                "patterns": {
+                    "common_phrases": ["phrase1"],
+                    "speech_style": "description",
+                    "emotional_markers": ["marker1"]
+                }
+            },
+            "action_sequences": [
                 {
                     "scene": "scene_number",
-                    "dialogue_count": 0,
-                    "word_count": 0,
-                    "emotional_state": "state"
+                    "sequence": "action_description",
+                    "interaction_type": "type",
+                    "emotional_context": "context"
                 }
             ],
-            "objectives": ["objective1", "objective2"],
-            "obstacles": ["obstacle1", "obstacle2"]
+            "emotional_range": {
+                "primary_emotion": "emotion",
+                "emotional_spectrum": ["emotion1", "emotion2"],
+                "emotional_journey": [
+                    {
+                        "scene": "scene_number",
+                        "emotion": "emotion",
+                        "intensity": 0.0,
+                        "trigger": "trigger_description"
+                    }
+                ]
+            },
+            "scene_presence": [
+                {
+                    "scene": "scene_number",
+                    "presence_type": "type",
+                    "dialogue_count": 0,
+                    "action_count": 0,
+                    "importance_score": 0.0
+                }
+            ],
+            "objectives": {
+                "main_objective": "objective",
+                "scene_objectives": [
+                    {
+                        "scene": "scene_number",
+                        "objective": "objective",
+                        "obstacles": ["obstacle1"],
+                        "outcome": "outcome"
+                    }
+                ]
+            }
         }
     },
     "relationships": {
         "Character1-Character2": {
-            "type": "relationship_type",
-            "scenes": ["scene1", "scene2"],
-            "dynamics": ["dynamic1", "dynamic2"]
+            "relationship_type": "type",
+            "dynamics": ["dynamic1"],
+            "evolution": [
+                {
+                    "scene": "scene_number",
+                    "dynamic_change": "change",
+                    "trigger": "trigger"
+                }
+            ],
+            "interactions": [
+                {
+                    "scene": "scene_number",
+                    "type": "interaction_type",
+                    "description": "description",
+                    "emotional_impact": "impact"
+                }
+            ],
+            "conflict_points": [
+                {
+                    "scene": "scene_number",
+                    "conflict": "description",
+                    "resolution": "resolution"
+                }
+            ]
+        }
+    },
+    "scene_matrix": {
+        "scene_number": {
+            "present_characters": ["char1"],
+            "interactions": [
+                {
+                    "characters": ["char1", "char2"],
+                    "type": "interaction_type",
+                    "significance": 0.0
+                }
+            ],
+            "emotional_atmosphere": "atmosphere",
+            "key_developments": ["development1"]
         }
     }
 }'''
         
-        prompt = f"""Analyze character dialogues and interactions to:
-        - Map emotional arcs and relationship dynamics
-        - Calculate screen time and dialogue distribution
-        - Identify character development patterns
-        - Track relationships and conflicts
+        prompt = f"""Perform deep analysis of character dialogues and interactions to:
+        - Analyze dialogue patterns, style, and emotional markers
+        - Map character actions and interactions
+        - Track emotional journey and intensity
+        - Identify scene presence and importance
+        - Define character objectives and obstacles
+        - Map relationship dynamics and evolution
+        - Create detailed scene interaction matrix
         
-        For each character, provide:
-        - Emotional journey through scenes
-        - Key relationships and dynamics
-        - Character objectives and obstacles
-        - Dialogue patterns and style
+        For each character, analyze:
+        - Dialogue style and patterns
+        - Action sequences and emotional context
+        - Scene presence and importance
+        - Objectives and obstacles
+        - Relationship dynamics
+        
+        For relationships, track:
+        - Dynamic changes over time
+        - Interaction patterns
+        - Conflict points and resolutions
         
         IMPORTANT: Return the data in this exact JSON format:
         {json_format}
@@ -79,14 +164,12 @@ class DialogueProfilerAgent:
             logger.info("Received response from agent")
             
             try:
-                # Clean the response before parsing JSON
                 cleaned_response = self._clean_response(result.final_output)
                 logger.debug(f"Cleaned response: {cleaned_response[:200]}...")
                 
                 analysis = json.loads(cleaned_response)
                 logger.info("Successfully parsed JSON response")
                 
-                # Process and validate the analysis
                 processed_analysis = self._process_analysis(analysis)
                 logger.info("Successfully processed character analysis")
                 
@@ -106,74 +189,104 @@ class DialogueProfilerAgent:
         processed = {
             "characters": {},
             "relationships": {},
-            "screen_time": {},
-            "emotional_arcs": {},
-            "statistics": {}
+            "scene_matrix": {},
+            "statistics": {
+                "dialogue_stats": {},
+                "emotional_stats": {},
+                "relationship_stats": {},
+                "scene_stats": {}
+            }
         }
         
         # Process character data
         if "characters" in analysis:
             for char_name, char_data in analysis["characters"].items():
                 char_profile = {
-                    "scenes": [],
-                    "dialogue_count": 0,
-                    "word_count": 0,
-                    "emotional_states": [],
-                    "objectives": [],
-                    "obstacles": []
+                    "dialogue_analysis": char_data.get("dialogue_analysis", {}),
+                    "action_sequences": sorted(
+                        char_data.get("action_sequences", []),
+                        key=lambda x: int(x.get("scene", 0))
+                    ),
+                    "emotional_range": char_data.get("emotional_range", {}),
+                    "scene_presence": sorted(
+                        char_data.get("scene_presence", []),
+                        key=lambda x: int(x.get("scene", 0))
+                    ),
+                    "objectives": char_data.get("objectives", {})
                 }
                 
-                # Track scenes and dialogue
-                if "appearances" in char_data:
-                    for appearance in char_data["appearances"]:
-                        scene_num = appearance["scene"]
-                        char_profile["scenes"].append(scene_num)
-                        char_profile["dialogue_count"] += appearance.get("dialogue_count", 0)
-                        char_profile["word_count"] += appearance.get("word_count", 0)
-                        
-                        if "emotional_state" in appearance:
-                            char_profile["emotional_states"].append({
-                                "scene": scene_num,
-                                "state": appearance["emotional_state"]
-                            })
+                # Calculate dialogue statistics
+                dialogue_stats = char_profile["dialogue_analysis"]
+                if dialogue_stats:
+                    processed["statistics"]["dialogue_stats"][char_name] = {
+                        "total_lines": dialogue_stats.get("total_lines", 0),
+                        "total_words": dialogue_stats.get("total_words", 0),
+                        "average_line_length": dialogue_stats.get("average_line_length", 0),
+                        "vocabulary_complexity": dialogue_stats.get("vocabulary_complexity", 0)
+                    }
                 
-                # Track objectives and obstacles
-                if "objectives" in char_data:
-                    char_profile["objectives"] = char_data["objectives"]
-                if "obstacles" in char_data:
-                    char_profile["obstacles"] = char_data["obstacles"]
+                # Calculate emotional statistics
+                emotional_range = char_profile["emotional_range"]
+                if emotional_range:
+                    processed["statistics"]["emotional_stats"][char_name] = {
+                        "primary_emotion": emotional_range.get("primary_emotion"),
+                        "emotional_variety": len(emotional_range.get("emotional_spectrum", [])),
+                        "average_intensity": sum(
+                            point.get("intensity", 0)
+                            for point in emotional_range.get("emotional_journey", [])
+                        ) / len(emotional_range.get("emotional_journey", [])) if emotional_range.get("emotional_journey") else 0
+                    }
                 
                 processed["characters"][char_name] = char_profile
         
         # Process relationships
         if "relationships" in analysis:
-            processed["relationships"] = analysis["relationships"]
+            for rel_key, rel_data in analysis["relationships"].items():
+                processed["relationships"][rel_key] = {
+                    "type": rel_data.get("relationship_type"),
+                    "dynamics": rel_data.get("dynamics", []),
+                    "evolution": sorted(
+                        rel_data.get("evolution", []),
+                        key=lambda x: int(x.get("scene", 0))
+                    ),
+                    "interactions": sorted(
+                        rel_data.get("interactions", []),
+                        key=lambda x: int(x.get("scene", 0))
+                    ),
+                    "conflicts": sorted(
+                        rel_data.get("conflict_points", []),
+                        key=lambda x: int(x.get("scene", 0))
+                    )
+                }
+                
+                # Calculate relationship statistics
+                processed["statistics"]["relationship_stats"][rel_key] = {
+                    "total_interactions": len(rel_data.get("interactions", [])),
+                    "total_conflicts": len(rel_data.get("conflict_points", [])),
+                    "dynamic_changes": len(rel_data.get("evolution", []))
+                }
         
-        # Calculate screen time
-        total_scenes = len(set(
-            scene for char in processed["characters"].values()
-            for scene in char["scenes"]
-        ))
-        
-        for char_name, char_data in processed["characters"].items():
-            processed["screen_time"][char_name] = {
-                "scene_count": len(char_data["scenes"]),
-                "scene_percentage": len(char_data["scenes"]) / total_scenes if total_scenes > 0 else 0,
-                "dialogue_count": char_data["dialogue_count"],
-                "word_count": char_data["word_count"]
+        # Process scene matrix
+        if "scene_matrix" in analysis:
+            processed["scene_matrix"] = {
+                int(scene_num): scene_data
+                for scene_num, scene_data in sorted(
+                    analysis["scene_matrix"].items(),
+                    key=lambda x: int(x[0])
+                )
             }
-        
-        # Generate statistics
-        processed["statistics"] = {
-            "total_scenes": total_scenes,
-            "total_characters": len(processed["characters"]),
-            "total_relationships": len(processed["relationships"]),
-            "total_dialogue_count": sum(
-                char["dialogue_count"] for char in processed["characters"].values()
-            ),
-            "total_word_count": sum(
-                char["word_count"] for char in processed["characters"].values()
-            )
-        }
+            
+            # Calculate scene statistics
+            processed["statistics"]["scene_stats"] = {
+                "total_scenes": len(processed["scene_matrix"]),
+                "average_characters_per_scene": sum(
+                    len(scene.get("present_characters", []))
+                    for scene in processed["scene_matrix"].values()
+                ) / len(processed["scene_matrix"]) if processed["scene_matrix"] else 0,
+                "total_interactions": sum(
+                    len(scene.get("interactions", []))
+                    for scene in processed["scene_matrix"].values()
+                )
+            }
         
         return processed 

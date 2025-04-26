@@ -11,6 +11,11 @@ from src.scheduling.coordinator import SchedulingCoordinator
 from src.budgeting.coordinator import BudgetingCoordinator
 from src.storyboard.coordinator import StoryboardCoordinator
 import logging
+import plotly.express as px
+import plotly.graph_objects as go
+import networkx as nx
+import numpy as np
+import pandas as pd
 
 # Configure logging
 logging.basicConfig(
@@ -272,8 +277,6 @@ def show_script_analysis():
                 })
             
             # Create complexity bar chart
-            import plotly.express as px
-            
             fig = px.bar(
                 complexity_data,
                 x="Scene",
@@ -730,12 +733,11 @@ def show_one_liner():
             st.write("**Emotional Journey**")
             emotional_journey = summaries_data.get("emotional_journey", {})
             if emotional_journey:
-                import plotly.express as px
-                journey_data = {
-                    "Scene": [f"Scene {scene}" for scene in emotional_journey.keys()],
-                    "Emotion": list(emotional_journey.values())
-                }
-                fig = px.line(journey_data, x="Scene", y="Emotion", title="Emotional Journey")
+                fig = px.line(
+                    x=list(emotional_journey.keys()),
+                    y=list(emotional_journey.values()),
+                    title="Emotional Journey"
+                )
                 st.plotly_chart(fig, use_container_width=True)
             
             # Cross References
@@ -882,7 +884,14 @@ def show_character_breakdown():
         return
     
     # Add tabs for different views
-    tab1, tab2, tab3 = st.tabs(["Visual Display", "JSON Format", "Raw Data"])
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+        "Character List", 
+        "Character Profiles",
+        "Arc & Relationships",
+        "Scene Matrix",
+        "Statistics",
+        "Raw Data"
+    ])
     
     with tab1:
         # Load character breakdown results
@@ -892,7 +901,7 @@ def show_character_breakdown():
             if st.button("Generate Character Breakdown", type="primary"):
                 with st.spinner("Analyzing characters..."):
                     try:
-                        breakdown_results = asyncio.run(character_coordinator.generate_breakdown(script_results))
+                        breakdown_results = asyncio.run(character_coordinator.process_script(script_results))
                         save_to_storage(breakdown_results, 'character_breakdown_results.json')
                         st.success("Character breakdown generated!")
                         st.rerun()
@@ -900,69 +909,394 @@ def show_character_breakdown():
                         logger.error(f"Error generating character breakdown: {str(e)}", exc_info=True)
                         st.error(f"An error occurred: {str(e)}")
         else:
-            # Display character information in a structured format
+            # Character List View
             if "characters" in breakdown_results:
-                for char in breakdown_results["characters"]:
-                    # Handle both string and dictionary character data
-                    if isinstance(char, dict):
-                        # For dictionary data, display detailed information
-                        with st.expander(f"📋 {char.get('name', 'Unknown Character')}"):
-                            col1, col2 = st.columns([1, 1])
-                            with col1:
-                                st.write("**Role Type:**", char.get("role_type", "N/A"))
-                                st.write("**Scene Count:**", len(char.get("scenes", [])))
-                            with col2:
-                                st.write("**First Appearance:**", char.get("first_appearance", "N/A"))
-                                st.write("**Last Appearance:**", char.get("last_appearance", "N/A"))
-                            
-                            if "description" in char:
-                                st.write("**Description:**", char["description"])
-                            
-                            if "scenes" in char:
-                                st.write("**Scenes:**")
-                                for scene in char["scenes"]:
-                                    st.write(f"- Scene {scene}")
-                    else:
-                        # For string data, display simple expander with character name
-                        with st.expander(f"📋 {char}"):
-                            st.write("Basic character information available")
-                            st.write(f"Character Name: {char}")
+                # Sorting options
+                sort_by = st.selectbox(
+                    "Sort by",
+                    ["Importance", "Screen Time", "First Appearance", "Name"],
+                    key="char_sort"
+                )
                 
-                # Add button to generate schedule
-                st.divider()
-                col1, col2 = st.columns([1, 2])
-                with col1:
-                    if st.button("Generate Production Schedule", type="primary"):
-                        st.session_state.current_step = 'Schedule'
-                        st.rerun()
+                # Create sortable character list
+                characters = []
+                for char_name, char_data in breakdown_results["characters"].items():
+                    char_info = {
+                        "name": char_name,
+                        "importance_score": char_data.get("importance_score", 0.0),
+                        "screen_time": char_data.get("screen_time_percentage", 0.0),
+                        "first_appearance": min([
+                            int(scene.get("scene", 0)) 
+                            for scene in char_data.get("scene_presence", [])
+                        ]) if char_data.get("scene_presence") else 0,
+                        "total_scenes": len(char_data.get("scene_presence", [])),
+                        "role_type": char_data.get("role_type", "Unknown"),
+                        "primary_emotion": char_data.get("emotional_range", {}).get("primary_emotion", "Unknown"),
+                        "main_objective": char_data.get("objectives", {}).get("main_objective", "Unknown")
+                    }
+                    characters.append(char_info)
+                
+                # Sort characters
+                if sort_by == "Importance":
+                    characters.sort(key=lambda x: x["importance_score"], reverse=True)
+                elif sort_by == "Screen Time":
+                    characters.sort(key=lambda x: x["screen_time"], reverse=True)
+                elif sort_by == "First Appearance":
+                    characters.sort(key=lambda x: x["first_appearance"])
+                else:
+                    characters.sort(key=lambda x: x["name"])
+                
+                # Display character grid
+                cols = st.columns(2)
+                for i, char in enumerate(characters):
+                    with cols[i % 2]:
+                        with st.container(border=True):
+                            st.subheader(char["name"])
+                            st.write(f"**Primary Emotion:** {char['primary_emotion']}")
+                            st.write(f"**Main Objective:** {char['main_objective']}")
+                            st.metric(
+                                "Importance Score",
+                                f"{char['importance_score']:.2f}",
+                                f"{char['screen_time']:.1f}% screen time"
+                            )
+                            st.write(f"**First Appearance:** Scene {char['first_appearance']}")
+                            st.write(f"**Total Scenes:** {char['total_scenes']}")
+                            if st.button("View Profile", key=f"view_{char['name']}"):
+                                st.session_state.selected_character = char["name"]
+                                st.rerun()
     
     with tab2:
-        # Display formatted JSON
-        if breakdown_results:
-            st.json(breakdown_results)
-            # Add button to generate schedule
-            st.divider()
-            col1, col2 = st.columns([1, 2])
-            with col1:
-                if st.button("Generate Production Schedule ", type="primary"):
-                    st.session_state.current_step = 'Schedule'
-                    st.rerun()
-        else:
-            st.info("No character breakdown data available. Generate a breakdown first.")
+        # Character Profiles View
+        if breakdown_results and "characters" in breakdown_results:
+            # Character selector
+            selected_char = st.selectbox(
+                "Select Character",
+                list(breakdown_results["characters"].keys()),
+                key="profile_char_select"
+            )
+            
+            if selected_char:
+                char_data = breakdown_results["characters"][selected_char]
+                
+                # Profile header
+                st.title(selected_char)
+                
+                # Create subtabs for detailed information
+                prof_tab1, prof_tab2, prof_tab3, prof_tab4 = st.tabs([
+                    "Overview", "Dialogue & Actions", "Emotional Journey", "Technical Details"
+                ])
+                
+                with prof_tab1:
+                    # Basic information and objectives
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.write("### Character Overview")
+                        if "objectives" in char_data:
+                            objectives = char_data["objectives"]
+                            st.write(f"**Main Objective:** {objectives.get('main_objective', 'N/A')}")
+                    
+                    with col2:
+                        if "dialogue_analysis" in char_data:
+                            dialogue = char_data["dialogue_analysis"]
+                            st.write("### Dialogue Stats")
+                            st.metric("Total Lines", dialogue.get("total_lines", 0))
+                            st.metric("Total Words", dialogue.get("total_words", 0))
+                            st.metric("Avg. Line Length", f"{dialogue.get('average_line_length', 0.0):.1f}")
+                            st.metric("Vocabulary Complexity", f"{dialogue.get('vocabulary_complexity', 0.0):.2f}")
+                    
+                    # Scene objectives
+                    if "objectives" in char_data and "scene_objectives" in char_data["objectives"]:
+                        st.write("### Scene Objectives")
+                        for obj in char_data["objectives"]["scene_objectives"]:
+                            with st.container(border=True):
+                                st.write(f"**Scene {obj.get('scene', 'N/A')}**")
+                                st.write(f"Objective: {obj.get('objective', 'N/A')}")
+                                st.write("Obstacles:")
+                                for obstacle in obj.get("obstacles", []):
+                                    st.write(f"- {obstacle}")
+                                st.write(f"Outcome: {obj.get('outcome', 'N/A')}")
+                
+                with prof_tab2:
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        # Dialogue patterns
+                        if "dialogue_analysis" in char_data and "patterns" in char_data["dialogue_analysis"]:
+                            patterns = char_data["dialogue_analysis"]["patterns"]
+                            st.write("### Speech Patterns")
+                            st.write(f"**Style:** {patterns.get('speech_style', 'N/A')}")
+                            
+                            st.write("**Common Phrases:**")
+                            for phrase in patterns.get("common_phrases", []):
+                                st.write(f"- {phrase}")
+                            
+                            st.write("**Emotional Markers:**")
+                            for marker in patterns.get("emotional_markers", []):
+                                st.write(f"- {marker}")
+                    
+                    with col2:
+                        # Action sequences
+                        if "action_sequences" in char_data:
+                            st.write("### Action Sequences")
+                            for action in char_data["action_sequences"]:
+                                with st.container(border=True):
+                                    st.write(f"**Scene {action.get('scene', 'N/A')}**")
+                                    st.write(f"Sequence: {action.get('sequence', 'N/A')}")
+                                    st.write(f"Type: {action.get('interaction_type', 'N/A')}")
+                                    st.write(f"Emotional Context: {action.get('emotional_context', 'N/A')}")
+                
+                with prof_tab3:
+                    # Emotional range and journey
+                    if "emotional_range" in char_data:
+                        emotional = char_data["emotional_range"]
+                        col1, col2 = st.columns(2)
+                        
+                        with col1:
+                            st.write("### Emotional Profile")
+                            st.write(f"**Primary Emotion:** {emotional.get('primary_emotion', 'N/A')}")
+                            st.write("**Emotional Spectrum:**")
+                            for emotion in emotional.get('emotional_spectrum', []):
+                                st.write(f"- {emotion}")
+                        
+                        with col2:
+                            # Create emotional journey visualization
+                            if "emotional_journey" in emotional:
+                                journey_data = {
+                                    "Scene": [],
+                                    "Emotion": [],
+                                    "Intensity": [],
+                                    "Trigger": []
+                                }
+                                
+                                for point in emotional["emotional_journey"]:
+                                    journey_data["Scene"].append(f"Scene {point.get('scene', 'N/A')}")
+                                    journey_data["Emotion"].append(point.get('emotion', 'N/A'))
+                                    journey_data["Intensity"].append(point.get('intensity', 0))
+                                    journey_data["Trigger"].append(point.get('trigger', 'N/A'))
+                                
+                                fig = px.line(
+                                    journey_data,
+                                    x="Scene",
+                                    y="Intensity",
+                                    color="Emotion",
+                                    title="Emotional Journey",
+                                    hover_data=["Trigger"]
+                                )
+                                st.plotly_chart(fig, use_container_width=True)
+                
+                with prof_tab4:
+                    # Technical details
+                    tech_tab1, tech_tab2, tech_tab3 = st.tabs(["Props", "Costumes", "Makeup"])
+                    
+                    with tech_tab1:
+                        if "props" in char_data:
+                            st.write("### Props")
+                            props = char_data["props"]
+                            
+                            st.write("**Base Props:**")
+                            for prop in props.get("base", []):
+                                st.write(f"- {prop}")
+                            
+                            st.write("### Props Timeline")
+                            for entry in props.get("timeline", []):
+                                with st.container(border=True):
+                                    st.write(f"**Scene {entry.get('scene', 'N/A')}**")
+                                    if entry.get("additions"):
+                                        st.write("Added:")
+                                        for prop in entry["additions"]:
+                                            st.write(f"- {prop}")
+                                    if entry.get("removals"):
+                                        st.write("Removed:")
+                                        for prop in entry["removals"]:
+                                            st.write(f"- {prop}")
+                    
+                    with tech_tab2:
+                        if "costumes" in char_data:
+                            st.write("### Costumes")
+                            for costume in char_data["costumes"]:
+                                with st.container(border=True):
+                                    if isinstance(costume, dict):
+                                        st.write(f"**Scene:** {costume.get('scene', 'N/A')}")
+                                        st.write(f"**Description:** {costume.get('description', 'N/A')}")
+                                    else:
+                                        st.write(costume)
+                    
+                    with tech_tab3:
+                        if "makeup" in char_data:
+                            st.write("### Makeup")
+                            makeup = char_data["makeup"]
+                            
+                            st.write("**Base Makeup:**")
+                            if isinstance(makeup.get("base"), dict):
+                                st.write(makeup["base"].get("item", "None"))
+                            
+                            st.write("### Makeup Timeline")
+                            for entry in makeup.get("timeline", []):
+                                with st.container(border=True):
+                                    st.write(f"**Scene {entry.get('scene', 'N/A')}**")
+                                    if "changes" in entry:
+                                        st.write(f"Changes: {entry['changes'].get('item', 'None')}")
+                                    if "special_effects" in entry:
+                                        st.write("Special Effects:")
+                                        for effect in entry["special_effects"]:
+                                            st.write(f"- {effect}")
     
     with tab3:
-        # Display raw data in text format
         if breakdown_results:
-            st.text_area("Raw JSON Data", value=json.dumps(breakdown_results, indent=2), height=400)
-            # Add button to generate schedule
-            st.divider()
-            col1, col2 = st.columns([1, 2])
-            with col1:
-                if st.button("Generate Production Schedule  ", type="primary"):
-                    st.session_state.current_step = 'Schedule'
-                    st.rerun()
-        else:
-            st.info("No character breakdown data available. Generate a breakdown first.")
+            # Relationship Network
+            st.write("### Character Relationships")
+            if "relationships" in breakdown_results:
+                for rel_key, rel_data in breakdown_results["relationships"].items():
+                    with st.expander(f"Relationship: {rel_key}"):
+                        st.write(f"**Type:** {rel_data.get('type', 'N/A')}")
+                        
+                        st.write("**Dynamics:**")
+                        for dynamic in rel_data.get("dynamics", []):
+                            st.write(f"- {dynamic}")
+                        
+                        st.write("### Evolution")
+                        for evolution in rel_data.get("evolution", []):
+                            with st.container(border=True):
+                                st.write(f"**Scene {evolution.get('scene', 'N/A')}**")
+                                st.write(f"Change: {evolution.get('dynamic_change', 'N/A')}")
+                                st.write(f"Trigger: {evolution.get('trigger', 'N/A')}")
+                        
+                        st.write("### Interactions")
+                        for interaction in rel_data.get("interactions", []):
+                            with st.container(border=True):
+                                st.write(f"**Scene {interaction.get('scene', 'N/A')}**")
+                                st.write(f"Type: {interaction.get('type', 'N/A')}")
+                                st.write(f"Description: {interaction.get('description', 'N/A')}")
+                                st.write(f"Emotional Impact: {interaction.get('emotional_impact', 'N/A')}")
+                        
+                        if "conflicts" in rel_data:
+                            st.write("### Conflicts")
+                            for conflict in rel_data["conflicts"]:
+                                with st.container(border=True):
+                                    st.write(f"**Scene {conflict.get('scene', 'N/A')}**")
+                                    st.write(f"Conflict: {conflict.get('conflict', 'N/A')}")
+                                    st.write(f"Resolution: {conflict.get('resolution', 'N/A')}")
+    
+    with tab4:
+        if breakdown_results and "scene_matrix" in breakdown_results:
+            st.write("### Scene Matrix")
+            
+            # Scene selector
+            scenes = sorted(breakdown_results["scene_matrix"].keys(), key=lambda x: int(x))
+            selected_scene = st.selectbox("Select Scene", [f"Scene {s}" for s in scenes])
+            
+            if selected_scene:
+                scene_num = selected_scene.split()[1]
+                scene_data = breakdown_results["scene_matrix"][scene_num]
+                
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    st.write("**Present Characters:**")
+                    for char in scene_data.get("present_characters", []):
+                        st.write(f"- {char}")
+                    
+                    st.write(f"**Emotional Atmosphere:** {scene_data.get('emotional_atmosphere', 'N/A')}")
+                
+                with col2:
+                    st.write("**Key Developments:**")
+                    for dev in scene_data.get("key_developments", []):
+                        st.write(f"- {dev}")
+                
+                st.write("### Interactions")
+                for interaction in scene_data.get("interactions", []):
+                    with st.container(border=True):
+                        st.write(f"**Characters:** {', '.join(interaction.get('characters', []))}")
+                        st.write(f"**Type:** {interaction.get('type', 'N/A')}")
+                        st.write(f"**Significance:** {interaction.get('significance', 0.0):.2f}")
+    
+    with tab5:
+        if breakdown_results and "statistics" in breakdown_results:
+            stats = breakdown_results["statistics"]
+            
+            st.write("### Overall Statistics")
+            
+            # Scene Statistics
+            if "scene_stats" in stats:
+                scene_stats = stats["scene_stats"]
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.metric("Total Scenes", scene_stats.get("total_scenes", 0))
+                with col2:
+                    st.metric("Avg Characters/Scene", f"{scene_stats.get('average_characters_per_scene', 0):.1f}")
+                with col3:
+                    st.metric("Total Interactions", scene_stats.get("total_interactions", 0))
+            
+            # Dialogue Statistics
+            if "dialogue_stats" in stats:
+                st.write("### Dialogue Statistics")
+                dialogue_data = []
+                for char, char_stats in stats["dialogue_stats"].items():
+                    dialogue_data.append({
+                        "Character": char,
+                        "Total Lines": char_stats.get("total_lines", 0),
+                        "Total Words": char_stats.get("total_words", 0),
+                        "Avg Line Length": char_stats.get("average_line_length", 0),
+                        "Vocabulary Complexity": char_stats.get("vocabulary_complexity", 0)
+                    })
+                
+                if dialogue_data:
+                    df = pd.DataFrame(dialogue_data)
+                    st.dataframe(df, use_container_width=True)
+            
+            # Emotional Statistics
+            if "emotional_stats" in stats:
+                st.write("### Emotional Statistics")
+                emotion_data = []
+                for char, char_stats in stats["emotional_stats"].items():
+                    emotion_data.append({
+                        "Character": char,
+                        "Primary Emotion": char_stats.get("primary_emotion", "N/A"),
+                        "Emotional Variety": char_stats.get("emotional_variety", 0),
+                        "Average Intensity": f"{char_stats.get('average_intensity', 0):.2f}"
+                    })
+                
+                if emotion_data:
+                    df = pd.DataFrame(emotion_data)
+                    st.dataframe(df, use_container_width=True)
+            
+            # Technical Statistics
+            if "technical_stats" in stats:
+                st.write("### Technical Statistics")
+                tech_stats = stats["technical_stats"]
+                
+                # Costume Changes
+                st.write("**Costume Changes**")
+                costume_data = []
+                for char, char_stats in tech_stats["costume_changes"].items():
+                    costume_data.append({
+                        "Character": char,
+                        "Total Changes": char_stats.get("total_changes", 0),
+                        "Unique Costumes": char_stats.get("unique_costumes", 0)
+                    })
+                
+                if costume_data:
+                    df = pd.DataFrame(costume_data)
+                    st.dataframe(df, use_container_width=True)
+    
+    with tab6:
+        if breakdown_results:
+            st.json(breakdown_results)
+            
+            st.download_button(
+                "Download Full Analysis",
+                data=json.dumps(breakdown_results, indent=2),
+                file_name="character_breakdown.json",
+                mime="application/json"
+            )
+    
+    # Navigation buttons
+    st.divider()
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        if st.button("Generate Production Schedule", type="primary"):
+            st.session_state.current_step = 'Schedule'
+            st.rerun()
 
 def show_schedule():
     st.header("Production Schedule")

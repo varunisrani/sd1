@@ -1,0 +1,161 @@
+{
+  "dialogue_analysis": {
+    "total_lines": 10,
+    "total_words": 77,
+    "average_line_length": 7.7,
+    "vocabulary_complexity": 1.7,
+    "patterns": {
+      "common_phrases": [
+        "Mom",
+        "aliens",
+        "team up"
+      ],
+      "speech_style": "playful and cheeky",
+      "emotional_markers": [
+        "cheeky",
+        "excited"
+      ]
+    }
+  },
+  "action_sequences": [
+    {
+      "scene": "1",
+      "sequence": "Dancing to a jingle in pajamas.",
+      "interaction_type": "individual",
+      "emotional_context": "playful"
+    },
+    {
+      "scene": "2",
+      "sequence": "Runs toward a green flash.",
+      "interaction_type": "with environment",
+      "emotional_context": "curious"
+    },
+    {
+      "scene": "3",
+      "sequence": "Interacts with BEN and alien robot.",
+      "interaction_type": "action",
+      "emotional_context": "excited"
+    }
+  ],
+  "emotional_range": {
+    "primary_emotion": "cheerful",
+    "emotional_spectrum": [
+      "cheerful",
+      "excited",
+      "curious"
+    ],
+    "emotional_journey": [
+      {
+        "scene": "1",
+        "emotion": "playful",
+        "intensity": 0.8,
+        "trigger": "TV jingle"
+      },
+      {
+        "scene": "2",
+        "emotion": "curious",
+        "intensity": 0.9,
+        "trigger": "green flash"
+      },
+      {
+        "scene": "3",
+        "emotion": "excited",
+        "intensity": 1.0,
+        "trigger": "alien encounter"
+      }
+    ]
+  },
+  "scene_presence": [
+    {
+      "scene": "1",
+      "presence_type": "active",
+      "dialogue_count": 1,
+      "action_count": 1,
+      "importance_score": 0.7
+    },
+    {
+      "scene": "2",
+      "presence_type": "active",
+      "dialogue_count": 3,
+      "action_count": 1,
+      "importance_score": 0.9
+    },
+    {
+      "scene": "3",
+      "presence_type": "active",
+      "dialogue_count": 2,
+      "action_count": 1,
+      "importance_score": 0.8
+    }
+  ],
+  "objectives": {
+    "main_objective": "Find adventure",
+    "scene_objectives": [
+      {
+        "scene": "1",
+        "objective": "Avoid boredom",
+        "obstacles": [
+          "Mom's orders"
+        ],
+        "outcome": "Ignored"
+      },
+      {
+        "scene": "2",
+        "objective": "Explore crash site",
+        "obstacles": [
+          "Danger"
+        ],
+        "outcome": "Teamed up with Ben"
+      },
+      {
+        "scene": "3",
+        "objective": "Help Ben",
+        "obstacles": [
+          "Robot alien"
+        ],
+        "outcome": "Successful"
+      }
+    ]
+  },
+  "costumes": [],
+  "makeup": {
+    "base": {
+      "item": "none"
+    },
+    "timeline": [
+      {
+        "scene": "1",
+        "changes": {
+          "item": "none"
+        },
+        "special_effects": []
+      }
+    ]
+  },
+  "props": {
+    "base": [
+      "TV remote",
+      "ice cream cone"
+    ],
+    "timeline": [
+      {
+        "scene": "1",
+        "additions": [
+          "TV remote"
+        ],
+        "removals": []
+      },
+      {
+        "scene": "2",
+        "additions": [
+          "ice cream cone"
+        ],
+        "removals": []
+      }
+    ]
+  },
+  "casting_requirements": {},
+  "audition_notes": [],
+  "importance_score": 0.0,
+  "screen_time_percentage": 0.0
+}
