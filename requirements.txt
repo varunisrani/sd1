@@ -12,6 +12,7 @@ numpy
 pandas
 networkx
 geopy
+plotly
 
 # Visualization and UI
 openai-agents
