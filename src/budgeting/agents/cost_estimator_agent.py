@@ -2,6 +2,7 @@ from typing import Dict, Any, List
 import json
 import logging
 import re
+from datetime import datetime
 from agents import Agent, Runner
 from ...base_config import AGENT_INSTRUCTIONS
 
@@ -13,83 +14,213 @@ class CostEstimatorAgent:
             name="Cost Estimator",
             instructions=AGENT_INSTRUCTIONS["cost_estimator"]
         )
+        # Initialize Indian cost templates
+        self.cost_templates = {
+            "mumbai": {
+                "studio_rates": {"small": 25000, "medium": 50000, "large": 100000},
+                "location_rates": {"basic": 15000, "premium": 35000},
+                "equipment_rates": {
+                    "camera": {"basic": 20000, "premium": 45000},
+                    "lighting": {"basic": 15000, "premium": 35000},
+                    "sound": {"basic": 10000, "premium": 25000}
+                },
+                "crew_rates": {
+                    "director": {"daily": 15000, "weekly": 90000},
+                    "dop": {"daily": 12000, "weekly": 70000},
+                    "sound": {"daily": 8000, "weekly": 45000}
+                }
+            },
+            "delhi": {
+                "studio_rates": {"small": 20000, "medium": 40000, "large": 80000},
+                "location_rates": {"basic": 12000, "premium": 30000},
+                "equipment_rates": {
+                    "camera": {"basic": 18000, "premium": 40000},
+                    "lighting": {"basic": 12000, "premium": 30000},
+                    "sound": {"basic": 8000, "premium": 20000}
+                },
+                "crew_rates": {
+                    "director": {"daily": 12000, "weekly": 75000},
+                    "dop": {"daily": 10000, "weekly": 60000},
+                    "sound": {"daily": 7000, "weekly": 40000}
+                }
+            }
+        }
     
     async def estimate_costs(
         self,
         production_data: Dict[str, Any],
         location_data: Dict[str, Any],
-        crew_data: Dict[str, Any]
+        crew_data: Dict[str, Any],
+        scene_data: Dict[str, Any] = None
     ) -> Dict[str, Any]:
-        """Generate detailed cost estimates for all production elements."""
-        prompt = (
-            "You are a professional film production cost estimator. "
-            "Analyze the provided data and generate a detailed cost estimate in valid JSON format.\n\n"
-            "Required JSON structure:\n"
-            "{\n"
-            '    "locations": {\n'
-            '        "location_name": {\n'
-            '            "daily_rate": float,\n'
-            '            "permits": float,\n'
-            '            "additional_fees": [string],\n'
-            '            "total_days": int,\n'
-            '            "total_cost": float\n'
-            "        }\n"
-            "    },\n"
-            '    "equipment": {\n'
-            '        "category": {\n'
-            '            "items": [string],\n'
-            '            "rental_rates": {"item": float},\n'
-            '            "purchase_costs": {"item": float},\n'
-            '            "insurance": float,\n'
-            '            "total_cost": float\n'
-            "        }\n"
-            "    },\n"
-            '    "personnel": {\n'
-            '        "role": {\n'
-            '            "daily_rate": float,\n'
-            '            "overtime_rate": float,\n'
-            '            "total_days": int,\n'
-            '            "benefits": float,\n'
-            '            "total_cost": float\n'
-            "        }\n"
-            "    },\n"
-            '    "logistics": {\n'
-            '        "transportation": {"item": float},\n'
-            '        "accommodation": {"item": float},\n'
-            '        "catering": {"item": float},\n'
-            '        "misc": [string]\n'
-            "    },\n"
-            '    "insurance": {"type": float},\n'
-            '    "contingency": {\n'
-            '        "percentage": float,\n'
-            '        "amount": float\n'
-            "    }\n"
-            "}\n\n"
-            f"Production Data:\n{json.dumps(production_data, indent=2)}\n\n"
-            f"Location Data:\n{json.dumps(location_data, indent=2)}\n\n"
-            f"Crew Data:\n{json.dumps(crew_data, indent=2)}\n\n"
-            "IMPORTANT: Respond ONLY with valid JSON matching the structure above. "
-            "Do not include any other text or explanations."
+        """Generate detailed cost estimates with scene-level breakdown."""
+        # Prepare scene-level cost structure if scene data is provided
+        scene_costs = {}
+        if scene_data:
+            for scene_id, scene in scene_data.items():
+                scene_costs[scene_id] = await self._estimate_scene_costs(
+                    scene,
+                    production_data,
+                    location_data
+                )
+        
+        # Generate overall cost estimates
+        prompt = self._generate_cost_estimation_prompt(
+            production_data,
+            location_data,
+            crew_data,
+            scene_costs
         )
         
         try:
             result = await Runner.run(self.agent, prompt)
             logger.info("Received cost estimation response")
             
-            # Try to extract JSON from the response
             estimates = self._extract_json(result.final_output)
             if not estimates:
                 logger.error("Failed to extract valid JSON from response")
-                logger.debug(f"Raw response: {result.final_output}")
-                # Create a basic fallback response
-                return self._create_fallback_estimates(production_data, location_data, crew_data)
+                return self._create_fallback_estimates(
+                    production_data,
+                    location_data,
+                    crew_data,
+                    scene_costs
+                )
             
-            processed = self._process_estimates(estimates)
+            processed = self._process_estimates(estimates, scene_costs)
             logger.info("Successfully processed cost estimates")
             return processed
+            
         except Exception as e:
             logger.error(f"Error in cost estimation: {str(e)}", exc_info=True)
-            return self._create_fallback_estimates(production_data, location_data, crew_data)
+            return self._create_fallback_estimates(
+                production_data,
+                location_data,
+                crew_data,
+                scene_costs
+            )
+    
+    async def _estimate_scene_costs(
+        self,
+        scene: Dict[str, Any],
+        production_data: Dict[str, Any],
+        location_data: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """Generate cost estimates for a single scene."""
+        # Get appropriate regional rates
+        region = location_data.get("region", "mumbai").lower()
+        rates = self.cost_templates.get(region, self.cost_templates["mumbai"])
+        
+        # Calculate basic scene costs
+        location_type = scene.get("location_type", "basic")
+        studio_size = scene.get("studio_size", "small")
+        equipment_level = scene.get("equipment_level", "basic")
+        
+        scene_costs = {
+            "location": rates["location_rates"].get(location_type, rates["location_rates"]["basic"]),
+            "studio": rates["studio_rates"].get(studio_size, rates["studio_rates"]["small"]),
+            "equipment": {
+                "camera": rates["equipment_rates"]["camera"].get(equipment_level, rates["equipment_rates"]["camera"]["basic"]),
+                "lighting": rates["equipment_rates"]["lighting"].get(equipment_level, rates["equipment_rates"]["lighting"]["basic"]),
+                "sound": rates["equipment_rates"]["sound"].get(equipment_level, rates["equipment_rates"]["sound"]["basic"])
+            },
+            "crew": {}
+        }
+        
+        # Calculate crew costs
+        for role, rate_info in rates["crew_rates"].items():
+            scene_costs["crew"][role] = rate_info["daily"]
+        
+        # Add scene-specific metadata
+        scene_costs["metadata"] = {
+            "scene_id": scene.get("scene_id"),
+            "duration": scene.get("duration_hours", 1),
+            "complexity": scene.get("complexity", "medium"),
+            "special_requirements": scene.get("special_requirements", [])
+        }
+        
+        return scene_costs
+    
+    def _generate_cost_estimation_prompt(
+        self,
+        production_data: Dict[str, Any],
+        location_data: Dict[str, Any],
+        crew_data: Dict[str, Any],
+        scene_costs: Dict[str, Any]
+    ) -> str:
+        """Generate detailed prompt for cost estimation."""
+        return f"""You are a professional Indian film production cost estimator. Analyze the provided data and generate a detailed cost estimate in valid JSON format.
+
+        Required JSON structure:
+        {{
+            "scenes": {{
+                "scene_id": {{
+                    "costs": {{
+                        "location": float,
+                        "studio": float,
+                        "equipment": {{}},
+                        "crew": {{}},
+                        "other": float
+                    }},
+                    "total": float,
+                    "cost_drivers": [string]
+                }}
+            }},
+            "locations": {{
+                "location_name": {{
+                    "daily_rate": float,
+                    "permits": float,
+                    "additional_fees": [string],
+                    "total_days": int,
+                    "total_cost": float
+                }}
+            }},
+            "equipment": {{
+                "category": {{
+                    "items": [string],
+                    "rental_rates": {{"item": float}},
+                    "purchase_costs": {{"item": float}},
+                    "insurance": float,
+                    "total_cost": float
+                }}
+            }},
+            "personnel": {{
+                "role": {{
+                    "daily_rate": float,
+                    "overtime_rate": float,
+                    "total_days": int,
+                    "benefits": float,
+                    "total_cost": float
+                }}
+            }},
+            "logistics": {{
+                "transportation": {{"item": float}},
+                "accommodation": {{"item": float}},
+                "catering": {{"item": float}},
+                "misc": [string]
+            }},
+            "insurance": {{"type": float}},
+            "contingency": {{
+                "percentage": float,
+                "amount": float
+            }},
+            "cost_drivers": {{
+                "category": [string]
+            }}
+        }}
+
+        Production Data:
+        {json.dumps(production_data, indent=2)}
+
+        Location Data:
+        {json.dumps(location_data, indent=2)}
+
+        Crew Data:
+        {json.dumps(crew_data, indent=2)}
+
+        Scene-Level Costs:
+        {json.dumps(scene_costs, indent=2)}
+
+        IMPORTANT: Respond ONLY with valid JSON matching the structure above. Do not include any other text or explanations."""
     
     def _extract_json(self, text: str) -> Dict[str, Any]:
         """Extract JSON from text response, handling various formats."""
@@ -127,7 +258,8 @@ class CostEstimatorAgent:
         self,
         production_data: Dict[str, Any],
         location_data: Dict[str, Any],
-        crew_data: Dict[str, Any]
+        crew_data: Dict[str, Any],
+        scene_costs: Dict[str, Any]
     ) -> Dict[str, Any]:
         """Create basic fallback estimates when JSON parsing fails."""
         logger.info("Creating fallback cost estimates")
@@ -221,7 +353,7 @@ class CostEstimatorAgent:
         
         return estimates
     
-    def _process_estimates(self, estimates: Dict[str, Any]) -> Dict[str, Any]:
+    def _process_estimates(self, estimates: Dict[str, Any], scene_costs: Dict[str, Any]) -> Dict[str, Any]:
         """Process and validate cost estimates."""
         processed = {
             "location_costs": {},

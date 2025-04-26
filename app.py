@@ -1457,6 +1457,72 @@ def show_schedule():
     with tab2:
         st.write("## Schedule List")
         if schedule_data and "schedule" in schedule_data:
+            # Add Generate Budget button at the top
+            col1, col2 = st.columns([1, 3])
+            with col1:
+                if st.button("💰 Generate Budget", type="primary"):
+                    with st.spinner("Generating production budget..."):
+                        try:
+                            # Load required data
+                            script_results = load_from_storage('script_ingestion_results.json')
+                            character_results = load_from_storage('character_breakdown_results.json')
+                            
+                            if not script_results or not character_results:
+                                st.error("Please complete script analysis and character breakdown first.")
+                                return
+                            
+                            # Prepare production data
+                            production_data = {
+                                "script_metadata": script_results.get("metadata", {}),
+                                "scene_count": len(script_results.get("parsed_data", {}).get("scenes", [])),
+                                "character_count": len(character_results.get("characters", [])),
+                                "schedule_days": len(schedule_data.get("schedule", [])),
+                                "quality_level": "Medium"  # Default value
+                            }
+                            
+                            # Prepare location data from schedule
+                            location_data = {
+                                "locations": [
+                                    scene.get("location_id", "Unknown")
+                                    for day in schedule_data.get("schedule", [])
+                                    for scene in day.get("scenes", [])
+                                ]
+                            }
+                            
+                            # Prepare crew data
+                            crew_data = {
+                                "size": "Medium",  # Default value
+                                "equipment_level": "Standard",  # Default value
+                                "departments": ["Production", "Camera", "Lighting", "Sound", "Art", "Makeup", "Wardrobe"]
+                            }
+                            
+                            # Default constraints
+                            constraints = {
+                                "quality_level": "Medium",
+                                "equipment_preference": "Standard",
+                                "crew_size": "Medium",
+                                "schedule_days": len(schedule_data.get("schedule", [])),
+                                "total_scenes": len(script_results.get("parsed_data", {}).get("scenes", [])),
+                                "total_characters": len(character_results.get("characters", []))
+                            }
+                            
+                            # Generate budget using coordinator
+                            budget_results = asyncio.run(budgeting_coordinator.initialize_budget(
+                                production_data=production_data,
+                                location_data=location_data,
+                                crew_data=crew_data,
+                                constraints=constraints
+                            ))
+                            
+                            save_to_storage(budget_results, 'budget_results.json')
+                            st.success("Budget generated! Redirecting to Budget view...")
+                            st.session_state.current_step = 'Budget'
+                            st.rerun()
+                        except Exception as e:
+                            logger.error(f"Error generating budget: {str(e)}", exc_info=True)
+                            st.error(f"An error occurred: {str(e)}")
+            
+            # Display schedule list
             for day in schedule_data["schedule"]:
                 st.write(f"### Day {day['day']} - {day['date']}")
                 for scene in day["scenes"]:
@@ -1606,18 +1672,27 @@ def show_budget():
     character_results = load_from_storage('character_breakdown_results.json')
     schedule_results = load_from_storage('schedule_results.json')
     
+    # Load budget results
+    budget_results = load_from_storage('budget_results.json')
+    
     if not script_results or not character_results or not schedule_results:
         st.warning("Please complete script analysis, character breakdown, and schedule generation first.")
         return
     
     # Add tabs for different views
-    tab1, tab2, tab3, tab4 = st.tabs(["Budget Overview", "JSON Format", "Raw Data", "Settings"])
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+        "Budget Overview", 
+        "Location Details",
+        "Equipment & Personnel",
+        "Logistics & Insurance",
+        "Vendor Analysis", 
+        "Cash Flow", 
+        "Scenario Analysis"
+    ])
     
-    with tab1:
-        # Load budget results
-        budget_results = load_from_storage('budget_results.json')
-        
-        if not budget_results:
+    # Check if we need to generate a new budget
+    if not budget_results:
+        with tab1:
             col1, col2 = st.columns([2, 1])
             with col1:
                 target_budget = st.number_input("Target Budget (Optional)", min_value=0.0, step=1000.0)
@@ -1682,101 +1757,321 @@ def show_budget():
                     except Exception as e:
                         logger.error(f"Error generating budget: {str(e)}", exc_info=True)
                         st.error(f"An error occurred: {str(e)}")
-        else:
-            # Display budget overview in a structured format
-            if "total_estimates" in budget_results:
-                st.subheader("Budget Summary")
-                total = budget_results["total_estimates"]
-                
-                # Display grand total
-                st.metric("Total Budget", f"${total.get('grand_total', 0):,.2f}")
-                
-                # Display category breakdowns
-                st.subheader("Cost Categories")
-                cols = st.columns(3)
-                categories = [
-                    ("Location Costs", "total_location_costs"),
-                    ("Equipment Costs", "total_equipment_costs"),
-                    ("Personnel Costs", "total_personnel_costs"),
-                    ("Logistics Costs", "total_logistics_costs"),
-                    ("Insurance Costs", "total_insurance_costs"),
-                    ("Contingency", "contingency_amount")
-                ]
-                
-                for i, (label, key) in enumerate(categories):
-                    with cols[i % 3]:
-                        st.metric(label, f"${total.get(key, 0):,.2f}")
-                
-                # Display detailed breakdowns in expanders
-                if "location_costs" in budget_results:
-                    with st.expander("📍 Location Costs Breakdown"):
-                        for loc, data in budget_results["location_costs"].items():
-                            st.write(f"**{loc}**")
-                            st.write(f"Daily Rate: ${data.get('daily_rate', 0):,.2f}")
-                            st.write(f"Total Days: {data.get('total_days', 0)}")
-                            st.write(f"Total Cost: ${data.get('total_cost', 0):,.2f}")
-                
-                if "equipment_costs" in budget_results:
-                    with st.expander("🎥 Equipment Costs Breakdown"):
-                        for category, data in budget_results["equipment_costs"].items():
-                            st.write(f"**{category}**")
-                            st.write(f"Total Cost: ${data.get('total_cost', 0):,.2f}")
-                
-                if "personnel_costs" in budget_results:
-                    with st.expander("👥 Personnel Costs Breakdown"):
-                        for role, data in budget_results["personnel_costs"].items():
-                            st.write(f"**{role}**")
-                            st.write(f"Daily Rate: ${data.get('daily_rate', 0):,.2f}")
-                            st.write(f"Total Days: {data.get('total_days', 0)}")
-                            st.write(f"Total Cost: ${data.get('total_cost', 0):,.2f}")
+        return
+    
+    with tab1:
+        # Display budget overview in a structured format
+        if "total_estimates" in budget_results:
+            st.header("Budget Overview")
+            total = budget_results["total_estimates"]
+            
+            # Display grand total with large emphasis
+            st.markdown(f"### 💰 Total Budget: ${total['grand_total']:,.2f}")
+            
+            # Create metrics for main categories
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Location Costs", f"${total['total_location_costs']:,.2f}")
+            with col2:
+                st.metric("Equipment Costs", f"${total['total_equipment_costs']:,.2f}")
+            with col3:
+                st.metric("Personnel Costs", f"${total['total_personnel_costs']:,.2f}")
+            
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Logistics Costs", f"${total['total_logistics_costs']:,.2f}")
+            with col2:
+                st.metric("Insurance Costs", f"${total['total_insurance_costs']:,.2f}")
+            with col3:
+                st.metric("Contingency", f"${total['contingency_amount']:,.2f}")
+            
+            # Add pie chart for cost distribution
+            st.subheader("Cost Distribution")
+            cost_data = {
+                "Location": total['total_location_costs'],
+                "Equipment": total['total_equipment_costs'],
+                "Personnel": total['total_personnel_costs'],
+                "Logistics": total['total_logistics_costs'],
+                "Insurance": total['total_insurance_costs'],
+                "Contingency": total['contingency_amount']
+            }
+            fig = px.pie(
+                values=list(cost_data.values()),
+                names=list(cost_data.keys()),
+                title="Budget Distribution"
+            )
+            st.plotly_chart(fig)
     
     with tab2:
-        # Display formatted JSON
-        if budget_results:
-            st.json(budget_results)
-        else:
-            st.info("No budget data available. Generate a budget first.")
+        st.header("📍 Location Costs Breakdown")
+        if "location_costs" in budget_results:
+            total_location = 0
+            for loc_id, loc_data in budget_results["location_costs"].items():
+                with st.expander(f"Location: {loc_id}", expanded=True):
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.metric("Daily Rate", f"${loc_data['daily_rate']:,.2f}")
+                        st.metric("Permit Costs", f"${loc_data['permit_costs']:,.2f}")
+                    with col2:
+                        st.metric("Total Days", loc_data['total_days'])
+                        st.metric("Total Cost", f"${loc_data['total_cost']:,.2f}")
+                    
+                    if loc_data.get('additional_fees'):
+                        st.write("**Additional Fees:**")
+                        for fee in loc_data['additional_fees']:
+                            st.write(f"- {fee}")
+                    total_location += loc_data['total_cost']
+            
+            # Add location costs summary
+            st.metric("Total Location Costs", f"${total_location:,.2f}")
     
     with tab3:
-        # Display raw data in text format
-        if budget_results:
-            st.text_area("Raw JSON Data", value=json.dumps(budget_results, indent=2), height=400)
-        else:
-            st.info("No budget data available. Generate a budget first.")
+        st.header("Equipment & Personnel")
+        
+        # Equipment Costs
+        st.subheader("🎥 Equipment Costs")
+        if "equipment_costs" in budget_results:
+            total_equipment = 0
+            for equip_type, equip_data in budget_results["equipment_costs"].items():
+                with st.expander(f"{equip_type.title()} Equipment", expanded=True):
+                    if equip_data.get('items'):
+                        st.write("**Items:**")
+                        for item in equip_data['items']:
+                            rate = equip_data['rental_rates'].get(item, 0)
+                            st.write(f"- {item}: ${rate:,.2f}/day")
+                    
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        if equip_data.get('insurance_costs'):
+                            st.metric("Insurance Costs", f"${equip_data['insurance_costs']:,.2f}")
+                    with col2:
+                        st.metric("Total Cost", f"${equip_data['total_cost']:,.2f}")
+                    total_equipment += equip_data['total_cost']
+            
+            st.metric("Total Equipment Costs", f"${total_equipment:,.2f}")
+        
+        # Personnel Costs
+        st.markdown("---")
+        st.subheader("👥 Personnel Costs")
+        if "personnel_costs" in budget_results:
+            total_personnel = 0
+            for role, role_data in budget_results["personnel_costs"].items():
+                with st.expander(f"{role.title()}", expanded=True):
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.metric("Daily Rate", f"${role_data['daily_rate']:,.2f}")
+                        st.metric("Overtime Rate", f"${role_data['overtime_rate']:,.2f}")
+                    with col2:
+                        st.metric("Total Days", role_data['total_days'])
+                        st.metric("Benefits", f"${role_data['benefits']:,.2f}")
+                    st.metric("Total Cost", f"${role_data['total_cost']:,.2f}")
+                    total_personnel += role_data['total_cost']
+            
+            st.metric("Total Personnel Costs", f"${total_personnel:,.2f}")
     
     with tab4:
-        st.subheader("Budget Settings")
-        st.write("Adjust these settings before generating a new budget:")
+        st.header("Logistics & Insurance")
         
-        # Budget constraints
-        with st.expander("Budget Constraints", expanded=True):
-            max_total = st.number_input("Maximum Total Budget", min_value=0.0, step=5000.0)
-            contingency = st.slider("Contingency Percentage", min_value=5, max_value=20, value=10)
+        # Logistics Costs
+        st.subheader("🚛 Logistics Costs")
+        if "logistics_costs" in budget_results:
+            logistics = budget_results["logistics_costs"]
+            total_logistics = 0
+            
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                if "transportation" in logistics:
+                    st.write("**Transportation:**")
+                    for item, cost in logistics["transportation"].items():
+                        st.metric(item.title(), f"${cost:,.2f}")
+                        total_logistics += cost
+            
+            with col2:
+                if "accommodation" in logistics:
+                    st.write("**Accommodation:**")
+                    for item, cost in logistics["accommodation"].items():
+                        st.metric(item.title(), f"${cost:,.2f}")
+                        total_logistics += cost
+            
+            with col3:
+                if "catering" in logistics:
+                    st.write("**Catering:**")
+                    for item, cost in logistics["catering"].items():
+                        st.metric(item.title(), f"${cost:,.2f}")
+                        total_logistics += cost
+            
+            if logistics.get("misc_expenses"):
+                st.write("**Miscellaneous Expenses:**")
+                for expense in logistics["misc_expenses"]:
+                    st.write(f"- {expense}")
+            
+            st.metric("Total Logistics Costs", f"${total_logistics:,.2f}")
         
-        # Department allocations
-        with st.expander("Department Allocations"):
-            st.write("Set maximum percentage allocations for each department:")
-            production = st.slider("Production Department", 0, 100, 30)
-            camera = st.slider("Camera Department", 0, 100, 20)
-            lighting = st.slider("Lighting Department", 0, 100, 15)
-            sound = st.slider("Sound Department", 0, 100, 10)
+        # Insurance and Contingency
+        st.markdown("---")
+        st.subheader("🛡️ Insurance & Contingency")
+        col1, col2 = st.columns(2)
         
-        # Save settings button
-        if st.button("Save Settings"):
-            settings = {
-                "budget_constraints": {
-                    "max_total": max_total,
-                    "contingency_percentage": contingency
-                },
-                "department_allocations": {
-                    "production": production / 100,
-                    "camera": camera / 100,
-                    "lighting": lighting / 100,
-                    "sound": sound / 100
-                }
-            }
-            save_to_storage(settings, 'budget_settings.json')
-            st.success("Settings saved! They will be applied to the next budget generation.")
+        with col1:
+            if "insurance_costs" in budget_results:
+                st.write("**Insurance:**")
+                total_insurance = 0
+                for insurance_type, cost in budget_results["insurance_costs"].items():
+                    st.metric(insurance_type.title(), f"${cost:,.2f}")
+                    total_insurance += cost
+                st.metric("Total Insurance Costs", f"${total_insurance:,.2f}")
+        
+        with col2:
+            if "contingency" in budget_results:
+                st.write("**Contingency:**")
+                contingency = budget_results["contingency"]
+                st.metric("Percentage", f"{contingency['percentage']}%")
+                st.metric("Amount", f"${contingency['amount']:,.2f}")
+    
+    with tab5:
+        st.header("Vendor Analysis")
+        if budget_results and "vendor_status" in budget_results:
+            vendor_status = budget_results["vendor_status"]
+            
+            # Summary metrics
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Total Vendors", vendor_status.get("total_vendors", 0))
+            with col2:
+                st.metric("Total Spend", f"${vendor_status.get('total_spend', 0):,.2f}")
+            with col3:
+                st.metric("Outstanding Payments", f"${vendor_status.get('outstanding_payments', 0):,.2f}")
+            
+            # Vendor performance chart
+            if "performance_summary" in vendor_status:
+                st.subheader("Vendor Performance Scores")
+                performance_data = pd.DataFrame(
+                    vendor_status["performance_summary"].items(),
+                    columns=["Vendor", "Score"]
+                )
+                st.bar_chart(performance_data.set_index("Vendor"))
+            
+            # Vendor details table
+            if "spend_by_vendor" in vendor_status:
+                st.subheader("Vendor Details")
+                vendor_df = pd.DataFrame(vendor_status["spend_by_vendor"]).T
+                st.dataframe(vendor_df)
+        else:
+            st.info("No vendor data available. Generate a budget first.")
+    
+    with tab6:
+        st.header("Cash Flow Analysis")
+        if budget_results and "cash_flow_status" in budget_results:
+            cash_flow = budget_results["cash_flow_status"]
+            
+            # Cash flow health indicators
+            col1, col2 = st.columns(2)
+            with col1:
+                st.metric("Current Balance", f"${cash_flow.get('current_balance', 0):,.2f}")
+            with col2:
+                st.metric("Upcoming Payments", f"${cash_flow.get('upcoming_total', 0):,.2f}")
+            
+            # Health status
+            health_status = cash_flow.get("health_status", "unknown")
+            st.info(f"Cash Flow Health Status: {health_status.title()}")
+            
+            # Recommendations
+            if "recommendations" in cash_flow:
+                st.subheader("Recommendations")
+                for rec in cash_flow["recommendations"]:
+                    st.write(f"• {rec}")
+            
+            # Cash flow projection chart
+            if "projections" in cash_flow:
+                st.subheader("Cash Flow Projections")
+                projection_data = pd.DataFrame(cash_flow["projections"])
+                st.line_chart(projection_data.set_index("date")["balance"])
+        else:
+            st.info("No cash flow data available. Generate a budget first.")
+    
+    with tab7:
+        st.header("Scenario Analysis")
+        if budget_results:
+            # Scenario selection
+            scenario = st.selectbox(
+                "Select Scenario",
+                ["Base", "Optimistic", "Conservative", "Aggressive Cost Cutting"],
+                index=0
+            )
+            
+            # Scenario parameters
+            with st.expander("Scenario Parameters", expanded=True):
+                quality_impact = st.slider("Quality Impact Tolerance", 0, 100, 50)
+                timeline_flexibility = st.slider("Timeline Flexibility (days)", 0, 30, 5)
+                risk_tolerance = st.select_slider(
+                    "Risk Tolerance",
+                    options=["Low", "Medium", "High"],
+                    value="Medium"
+                )
+            
+            if st.button("Run Scenario Analysis"):
+                with st.spinner("Analyzing scenario..."):
+                    try:
+                        # Prepare scenario constraints
+                        scenario_constraints = {
+                            "quality_impact_tolerance": quality_impact / 100,
+                            "timeline_flexibility": timeline_flexibility,
+                            "risk_tolerance": risk_tolerance.lower(),
+                            "original_constraints": constraints
+                        }
+                        
+                        # Run scenario analysis
+                        scenario_results = asyncio.run(budgeting_coordinator.optimize_current_budget(
+                            scenario_constraints,
+                            scenario=scenario.lower()
+                        ))
+                        
+                        if scenario_results:
+                            # Display scenario comparison
+                            st.subheader("Scenario Comparison")
+                            
+                            # Cost comparison
+                            original_total = budget_results["total_estimates"]["grand_total"]
+                            optimized_total = scenario_results["optimized_budget"]["total_estimates"]["grand_total"]
+                            savings = original_total - optimized_total
+                            
+                            col1, col2, col3 = st.columns(3)
+                            with col1:
+                                st.metric("Original Total", f"${original_total:,.2f}")
+                            with col2:
+                                st.metric("Optimized Total", f"${optimized_total:,.2f}")
+                            with col3:
+                                st.metric("Potential Savings", f"${savings:,.2f}")
+                            
+                            # Impact analysis
+                            if "impact_analysis" in scenario_results:
+                                st.subheader("Impact Analysis")
+                                impact = scenario_results["impact_analysis"]
+                                
+                                # Quality impact
+                                st.write("**Quality Impact:**", impact.get("quality_impact", {}).get("level", "Unknown"))
+                                
+                                # Timeline impact
+                                delay_days = impact.get("timeline_impact", {}).get("delay_days", 0)
+                                st.write("**Timeline Impact:**", f"{delay_days} days")
+                                
+                                # Risk assessment
+                                st.write("**Risk Assessment:**")
+                                for risk in impact.get("risk_assessment", []):
+                                    st.write(f"• {risk}")
+                            
+                            # Recommendations
+                            if "recommendations" in scenario_results:
+                                st.subheader("Recommendations")
+                                for rec in scenario_results["recommendations"]:
+                                    st.write(f"• {rec.get('action', '')}")
+                                    st.write(f"  Priority: {rec.get('priority', 'Unknown')}")
+                                    st.write(f"  Timeline: {rec.get('timeline', 'Unknown')}")
+                    except Exception as e:
+                        logger.error(f"Error in scenario analysis: {str(e)}", exc_info=True)
+                        st.error(f"An error occurred: {str(e)}")
+        else:
+            st.info("No budget data available. Generate a budget first.")
 
 def show_storyboard():
     st.header("Storyboard Generation")
