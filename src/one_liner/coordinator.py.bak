@@ -5,7 +5,6 @@ from datetime import datetime
 from .agents.semantic_distiller_agent import SemanticDistillerAgent
 from .agents.tag_injector_agent import TagInjectorAgent
 import logging
-from collections import defaultdict
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -114,7 +113,7 @@ class OneLinerCoordinator:
     
     async def process_script(
         self,
-        scene_data: Dict[str, Any],
+        script_text: str,
         department_focus: Optional[List[str]] = None,
         workflow_config: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
@@ -122,7 +121,7 @@ class OneLinerCoordinator:
         Process a script through the enhanced workflow pipeline.
         
         Args:
-            scene_data: The parsed scene data from script ingestion
+            script_text: The input script text
             department_focus: List of departments to focus analysis on
             workflow_config: Configuration for approval workflow
             
@@ -143,7 +142,10 @@ class OneLinerCoordinator:
             
             # Generate initial summaries with emotional analysis
             try:
-                summaries = await self.semantic_distiller.generate_summaries(scene_data)
+                summaries = await self.semantic_distiller.generate_summaries(
+                    script_text,
+                    department_focus=department_focus
+                )
                 workflow_status["completed_stages"].append({
                     "stage": "summary_generation",
                     "completed_at": datetime.now().isoformat(),
@@ -304,36 +306,20 @@ class OneLinerCoordinator:
             "camera", "lighting", "sound", "art", "wardrobe", "makeup"
         ]
         
-        # Get scene tags
-        scene_tags = tag_data.get("scene_tags", {})
-        
-        # Create a lookup dictionary if summaries is a list
-        summary_lookup = {}
-        if isinstance(summaries, list):
-            for summary in summaries:
-                if isinstance(summary, dict):
-                    scene_id = str(summary.get("scene_number", "?"))
-                    summary_lookup[scene_id] = summary
-        else:
-            summary_lookup = summaries
-        
         for dept in departments:
             relevant_scenes = []
-            for scene_id, tags in scene_tags.items():
+            for scene_id, tags in tag_data.get("scene_tags", {}).items():
                 if dept in " ".join(tags.get("department", [])):
-                    # Get the summary from our lookup dictionary
-                    scene_summary = summary_lookup.get(scene_id)
-                    if scene_summary:
-                        relevant_scenes.append({
-                            "scene_id": scene_id,
-                            "summary": scene_summary,
-                            "technical_notes": [
-                                tag for tag in tags.get("technical", [])
-                                if tag.startswith(f"{dept}_")
-                            ],
-                            "approval_status": tag_data.get("approval_workflow", {})
-                                .get(scene_id, {}).get("department_status", {}).get(dept)
-                        })
+                    relevant_scenes.append({
+                        "scene_id": scene_id,
+                        "summary": summaries[scene_id],
+                        "technical_notes": [
+                            tag for tag in tags.get("technical", [])
+                            if tag.startswith(f"{dept}_")
+                        ],
+                        "approval_status": tag_data.get("approval_workflow", {})
+                            .get(scene_id, {}).get("department_status", {}).get(dept)
+                    })
             
             department_views[dept] = {
                 "scenes": relevant_scenes,
@@ -351,43 +337,18 @@ class OneLinerCoordinator:
         """Identify and categorize key scenes."""
         key_scenes = []
         
-        # Get scene tags
-        scene_tags = tag_data.get("scene_tags", {})
-        
-        # Handle summaries as a list
-        if isinstance(summaries, list):
-            for summary in summaries:
-                if not isinstance(summary, dict):
-                    continue
-                    
-                scene_id = str(summary.get("scene_number", "?"))
-                tags = scene_tags.get(scene_id, {})
-                
-                if any(tag.startswith("key_") for tag in tags.get("story", [])):
-                    key_scenes.append({
-                        "scene_id": scene_id,
-                        "summary": summary,
-                        "importance": self._calculate_scene_importance(tags),
-                        "type": next(
-                            (tag.replace("key_", "") for tag in tags.get("story", [])
-                            if tag.startswith("key_")),
-                            "general"
-                        )
-                    })
-        # Handle summaries as a dictionary (legacy format)
-        else:
-            for scene_id, tags in scene_tags.items():
-                if any(tag.startswith("key_") for tag in tags.get("story", [])):
-                    key_scenes.append({
-                        "scene_id": scene_id,
-                        "summary": summaries.get(scene_id),
-                        "importance": self._calculate_scene_importance(tags),
-                        "type": next(
-                            (tag.replace("key_", "") for tag in tags.get("story", [])
-                            if tag.startswith("key_")),
-                            "general"
-                        )
-                    })
+        for scene_id, tags in tag_data.get("scene_tags", {}).items():
+            if any(tag.startswith("key_") for tag in tags.get("story", [])):
+                key_scenes.append({
+                    "scene_id": scene_id,
+                    "summary": summaries[scene_id],
+                    "importance": self._calculate_scene_importance(tags),
+                    "type": next(
+                        (tag.replace("key_", "") for tag in tags.get("story", [])
+                        if tag.startswith("key_")),
+                        "general"
+                    )
+                })
         
         return sorted(key_scenes, key=lambda x: x["importance"], reverse=True)
     
@@ -398,39 +359,16 @@ class OneLinerCoordinator:
         """Extract character arc information from summaries."""
         character_arcs = {}
         
-        # Handle summaries as a list
-        if isinstance(summaries, list):
-            for summary in summaries:
-                if not isinstance(summary, dict):
-                    continue
-                    
-                scene_id = str(summary.get("scene_number", "?"))
-                characters = summary.get("main_characters", []) or summary.get("characters", [])
+        for scene_id, summary in summaries.items():
+            for character in summary.get("characters", []):
+                if character not in character_arcs:
+                    character_arcs[character] = []
                 
-                for character in characters:
-                    if character not in character_arcs:
-                        character_arcs[character] = []
-                    
-                    character_arcs[character].append({
-                        "scene_id": scene_id,
-                        "action": summary.get("character_actions", {}).get(character),
-                        "emotional_state": summary.get("character_emotions", {}).get(character)
-                    })
-        # Handle summaries as a dictionary (legacy format)
-        else:
-            for scene_id, summary in summaries.items():
-                if not isinstance(summary, dict):
-                    continue
-                    
-                for character in summary.get("characters", []):
-                    if character not in character_arcs:
-                        character_arcs[character] = []
-                    
-                    character_arcs[character].append({
-                        "scene_id": scene_id,
-                        "action": summary.get("character_actions", {}).get(character),
-                        "emotional_state": summary.get("character_emotions", {}).get(character)
-                    })
+                character_arcs[character].append({
+                    "scene_id": scene_id,
+                    "action": summary.get("character_actions", {}).get(character),
+                    "emotional_state": summary.get("character_emotions", {}).get(character)
+                })
         
         return character_arcs
     
@@ -507,48 +445,6 @@ class OneLinerCoordinator:
         importance_score += len(tags.get("department", [])) * 0.25
         
         return min(importance_score, 1.0)  # Normalize to 0-1 range
-    
-    def _extract_themes(
-        self,
-        summaries: Dict[str, Any],
-        tag_data: Dict[str, Any]
-    ) -> Dict[str, List[Dict[str, Any]]]:
-        """Extract and analyze thematic elements."""
-        themes = defaultdict(list)
-        
-        # Get scene tags
-        scene_tags = tag_data.get("scene_tags", {})
-        
-        # Handle summaries as a list
-        if isinstance(summaries, list):
-            for summary in summaries:
-                if not isinstance(summary, dict):
-                    continue
-                    
-                scene_id = str(summary.get("scene_number", "?"))
-                tags = scene_tags.get(scene_id, {})
-                
-                for tag in tags.get("themes", []):
-                    themes[tag].append({
-                        "scene_id": scene_id,
-                        "summary": summary,
-                        "importance": self._calculate_scene_importance(tags)
-                    })
-        # Handle summaries as a dictionary (legacy format)
-        else:
-            for scene_id, tags in scene_tags.items():
-                for tag in tags.get("themes", []):
-                    themes[tag].append({
-                        "scene_id": scene_id,
-                        "summary": summaries.get(scene_id),
-                        "importance": self._calculate_scene_importance(tags)
-                    })
-        
-        # Sort scenes by importance for each theme
-        for theme_scenes in themes.values():
-            theme_scenes.sort(key=lambda x: x["importance"], reverse=True)
-            
-        return dict(themes)
     
     def _save_to_disk(self, data: Dict[str, Any]) -> str:
         """Save summary data to disk.

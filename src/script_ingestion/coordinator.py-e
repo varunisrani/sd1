@@ -28,7 +28,7 @@ class ScriptIngestionCoordinator:
         self,
         script_text: str,
         department_focus: Optional[list] = None,
-        validation_level: str = "lenient"
+        validation_level: str = "strict"
     ) -> Dict[str, Any]:
         """
         Process a script through the complete ingestion pipeline.

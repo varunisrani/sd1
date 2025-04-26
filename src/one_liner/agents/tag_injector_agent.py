@@ -19,7 +19,6 @@ class TagInjectorAgent:
     
     def _clean_response(self, response: str) -> str:
         """Clean the response by removing markdown code block markers."""
-        # Remove ```json or ``` markers from start and end
         response = response.strip()
         if response.startswith("```json"):
             response = response[7:]
@@ -33,22 +32,32 @@ class TagInjectorAgent:
         """Parse markdown-formatted tags into a structured dictionary."""
         logger.info("Parsing markdown-formatted tags")
         
-        # Initialize the structure
         parsed_data = {
             "scene_tags": {},
             "cross_references": {},
-            "story_elements": {}
+            "story_elements": {},
+            "approval_workflow": {},
+            "emotional_tags": {},
+            "technical_tags": {},
+            "department_tags": {}
         }
         
         try:
-            # Extract scene tags
-            scene_pattern = r"Scene (\d+): ((?:#\w+\s*)+)"
+            # Extract scene tags with categories
+            scene_pattern = r"Scene (\d+):\s*((?:#[\w-]+\s*)+)"
             scene_matches = re.finditer(scene_pattern, markdown_text)
             
             for match in scene_matches:
                 scene_num = match.group(1)
                 tags = [tag.strip('#') for tag in match.group(2).split()]
-                parsed_data["scene_tags"][scene_num] = tags
+                
+                # Categorize tags
+                parsed_data["scene_tags"][scene_num] = {
+                    "emotional": [t for t in tags if t.startswith("emotion_")],
+                    "technical": [t for t in tags if t.startswith("tech_")],
+                    "story": [t for t in tags if t.startswith("story_")],
+                    "department": [t for t in tags if t.startswith("dept_")]
+                }
             
             logger.info(f"Successfully parsed {len(parsed_data['scene_tags'])} scenes")
             return parsed_data
@@ -63,28 +72,50 @@ class TagInjectorAgent:
         call_sheets: List[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
         """Inject summaries into call sheets and generate searchable tags."""
-        # Define the expected JSON format
         json_format = '''
 {
     "scene_tags": {
-        "1": ["tag1", "tag2", "tag3"],
-        "2": ["tag4", "tag5", "tag6"]
+        "1": {
+            "emotional": ["intense", "dramatic"],
+            "technical": ["crane_shot", "low_light"],
+            "story": ["plot_point", "revelation"],
+            "department": ["camera_complex", "sound_critical"]
+        }
     },
     "cross_references": {
-        "scene1": ["scene2", "scene3"],
-        "scene2": ["scene1", "scene4"]
+        "scene1": {
+            "related_scenes": ["scene2", "scene3"],
+            "relationship_type": "story_continuation"
+        }
     },
     "story_elements": {
         "themes": ["theme1", "theme2"],
-        "motifs": ["motif1", "motif2"]
+        "motifs": ["motif1", "motif2"],
+        "emotional_progression": ["start_tone", "end_tone"]
+    },
+    "approval_workflow": {
+        "scene1": {
+            "status": "pending",
+            "approvers": [],
+            "notes": [],
+            "last_modified": null
+        }
+    },
+    "department_insights": {
+        "camera": ["scene1", "scene3"],
+        "lighting": ["scene2", "scene4"],
+        "sound": ["scene1", "scene5"],
+        "art": ["scene2", "scene3"]
     }
 }'''
         
         prompt = f"""Process these scene summaries to:
-        1. Generate searchable metadata tags
-        2. Create cross-references between related scenes
-        3. Identify key story elements and themes
-        4. Link character appearances and story threads
+        1. Generate categorized metadata tags (emotional, technical, story, department)
+        2. Create detailed cross-references between related scenes
+        3. Identify and tag key story elements, themes, and motifs
+        4. Track emotional progression and technical requirements
+        5. Initialize approval workflow status for each scene
+        6. Create department-specific insights and references
         
         If call sheets are provided, embed relevant summaries and tags.
         
@@ -103,18 +134,15 @@ class TagInjectorAgent:
             logger.info("Received response from agent")
             
             try:
-                # First try to parse as JSON
                 cleaned_response = self._clean_response(result.final_output)
                 try:
                     tag_data = json.loads(cleaned_response)
                     logger.info("Successfully parsed JSON response")
                 except json.JSONDecodeError:
-                    # If JSON parsing fails, try parsing as markdown
                     logger.info("JSON parsing failed, attempting to parse markdown format")
                     tag_data = self._parse_markdown_tags(result.final_output)
                     logger.info("Successfully parsed markdown format")
                 
-                # Process and validate the tag data
                 processed_data = self._process_tags(tag_data, call_sheets)
                 logger.info("Successfully processed tag data")
                 
@@ -139,22 +167,27 @@ class TagInjectorAgent:
             "scene_tags": {},
             "cross_references": {},
             "story_elements": {},
+            "approval_workflow": {},
+            "department_insights": {},
+            "emotional_progression": {},
             "enhanced_call_sheets": [],
             "search_index": {}
         }
         
         # Process scene tags
         if "scene_tags" in tag_data:
-            for scene_num, tags in tag_data["scene_tags"].items():
-                # Normalize tags
-                normalized_tags = [tag.lower().strip() for tag in tags]
-                processed["scene_tags"][scene_num] = normalized_tags
-                
-                # Build search index
-                for tag in normalized_tags:
-                    if tag not in processed["search_index"]:
-                        processed["search_index"][tag] = []
-                    processed["search_index"][tag].append(scene_num)
+            for scene_num, categories in tag_data["scene_tags"].items():
+                processed["scene_tags"][scene_num] = {}
+                for category, tags in categories.items():
+                    # Normalize tags
+                    normalized_tags = [tag.lower().strip() for tag in tags]
+                    processed["scene_tags"][scene_num][category] = normalized_tags
+                    
+                    # Build search index
+                    for tag in normalized_tags:
+                        if tag not in processed["search_index"]:
+                            processed["search_index"][tag] = []
+                        processed["search_index"][tag].append(scene_num)
         
         # Process cross-references
         if "cross_references" in tag_data:
@@ -163,6 +196,14 @@ class TagInjectorAgent:
         # Process story elements
         if "story_elements" in tag_data:
             processed["story_elements"] = tag_data["story_elements"]
+        
+        # Process approval workflow
+        if "approval_workflow" in tag_data:
+            processed["approval_workflow"] = tag_data["approval_workflow"]
+        
+        # Process department insights
+        if "department_insights" in tag_data:
+            processed["department_insights"] = tag_data["department_insights"]
         
         # Enhance call sheets if provided
         if call_sheets and "call_sheet_enhancements" in tag_data:

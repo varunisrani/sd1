@@ -1,0 +1,343 @@
+{
+  "is_valid": false,
+  "validation_report": {
+    "is_valid": false,
+    "issues": [
+      {
+        "type": "error",
+        "category": "continuity",
+        "scene_number": "1",
+        "description": "Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.",
+        "suggestion": "Adjust scene duration in timeline breakdown or description."
+      },
+      {
+        "type": "error",
+        "category": "continuity",
+        "scene_number": "2",
+        "description": "Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.",
+        "suggestion": "Adjust scene duration in timeline breakdown or description."
+      },
+      {
+        "type": "error",
+        "category": "continuity",
+        "scene_number": "3",
+        "description": "Scene duration stated as 5 minutes but timeline breakdown allocates only 1 minute.",
+        "suggestion": "Adjust scene duration in timeline breakdown or description."
+      },
+      {
+        "type": "error",
+        "category": "continuity",
+        "scene_number": "4",
+        "description": "Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.",
+        "suggestion": "Adjust scene duration in timeline breakdown or description."
+      },
+      {
+        "type": "error",
+        "category": "continuity",
+        "scene_number": "5",
+        "description": "Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.",
+        "suggestion": "Adjust scene duration in timeline breakdown or description."
+      },
+      {
+        "type": "error",
+        "category": "timeline",
+        "scene_number": null,
+        "description": "Total timeline duration sums to 5 minutes but multiple entries in scene data are inconsistent.",
+        "suggestion": "Recalculate scene durations to ensure consistency with total timeline time."
+      },
+      {
+        "type": "error",
+        "category": "metadata",
+        "scene_number": null,
+        "description": "Estimated runtime conflicts between script and metadata.",
+        "suggestion": "Ensure estimated runtime in metadata matches the sum of scene durations."
+      },
+      {
+        "type": "warning",
+        "category": "fields",
+        "scene_number": null,
+        "description": "Metadata field 'total_cast' is marked as 0.",
+        "suggestion": "Verify cast information is correctly entered."
+      },
+      {
+        "type": "warning",
+        "category": "technical",
+        "scene_number": "1",
+        "description": "Setup time allocated might be insufficient given technical complexity.",
+        "suggestion": "Review setup time for more feasible timing before scenes."
+      }
+    ],
+    "scene_validations": [
+      {
+        "scene_number": "1",
+        "checks": [
+          {
+            "check_name": "Duration Consistency",
+            "status": "fail",
+            "details": "Scene duration in description does not match timeline allocation."
+          },
+          {
+            "check_name": "Technical Cues Present",
+            "status": "pass",
+            "details": "All required technical cues are listed."
+          }
+        ]
+      },
+      {
+        "scene_number": "2",
+        "checks": [
+          {
+            "check_name": "Duration Consistency",
+            "status": "fail",
+            "details": "Scene duration in description does not match timeline allocation."
+          },
+          {
+            "check_name": "Technical Cues Present",
+            "status": "pass",
+            "details": "All required technical cues are listed."
+          }
+        ]
+      },
+      {
+        "scene_number": "3",
+        "checks": [
+          {
+            "check_name": "Duration Consistency",
+            "status": "fail",
+            "details": "Scene duration in description does not match timeline allocation."
+          },
+          {
+            "check_name": "Technical Cues Present",
+            "status": "pass",
+            "details": "All required technical cues are listed."
+          }
+        ]
+      },
+      {
+        "scene_number": "4",
+        "checks": [
+          {
+            "check_name": "Duration Consistency",
+            "status": "fail",
+            "details": "Scene duration in description does not match timeline allocation."
+          },
+          {
+            "check_name": "Technical Cues Present",
+            "status": "pass",
+            "details": "All required technical cues are listed."
+          }
+        ]
+      },
+      {
+        "scene_number": "5",
+        "checks": [
+          {
+            "check_name": "Duration Consistency",
+            "status": "fail",
+            "details": "Scene duration in description does not match timeline allocation."
+          },
+          {
+            "check_name": "Technical Cues Present",
+            "status": "pass",
+            "details": "All required technical cues are listed."
+          }
+        ]
+      }
+    ],
+    "metadata_validation": {
+      "smpte_compliance": true,
+      "missing_fields": [],
+      "warnings": [
+        "Estimated runtime conflicts between script and metadata."
+      ]
+    },
+    "timeline_validation": {
+      "is_valid": false,
+      "continuity_issues": [],
+      "duration_issues": [
+        "Total duration mismatch: reported 0:05:00 vs calculated 0:05:00"
+      ],
+      "pacing_analysis": {
+        "scene_pacing": [
+          "FAST",
+          "FAST",
+          "FAST",
+          "FAST",
+          "FAST"
+        ],
+        "suggestions": [
+          "Script may be too fast-paced. Consider adding more character development scenes."
+        ]
+      }
+    },
+    "technical_validation": {
+      "complex_elements": [],
+      "department_conflicts": [
+        {
+          "scene_number": "1",
+          "conflict": "Props and camera movement may interfere"
+        },
+        {
+          "scene_number": "2",
+          "conflict": "Props and camera movement may interfere"
+        },
+        {
+          "scene_number": "3",
+          "conflict": "Props and camera movement may interfere"
+        },
+        {
+          "scene_number": "5",
+          "conflict": "Props and camera movement may interfere"
+        }
+      ],
+      "resource_requirements": [
+        {
+          "scene_number": "1",
+          "department": "props",
+          "requirements": [
+            "TV remote",
+            "pajamas"
+          ]
+        },
+        {
+          "scene_number": "1",
+          "department": "lighting",
+          "requirements": [
+            "Indoor morning lighting"
+          ]
+        },
+        {
+          "scene_number": "1",
+          "department": "sound",
+          "requirements": [
+            "Jingle music on TV"
+          ]
+        },
+        {
+          "scene_number": "1",
+          "department": "camera",
+          "requirements": [
+            "Wide shot of living room"
+          ]
+        },
+        {
+          "scene_number": "2",
+          "department": "props",
+          "requirements": [
+            "Ice cream cone",
+            "Omnitrix"
+          ]
+        },
+        {
+          "scene_number": "2",
+          "department": "lighting",
+          "requirements": [
+            "Daylight"
+          ]
+        },
+        {
+          "scene_number": "2",
+          "department": "sound",
+          "requirements": [
+            "Crash sound effect"
+          ]
+        },
+        {
+          "scene_number": "2",
+          "department": "camera",
+          "requirements": [
+            "Tracking shot following Shinchan"
+          ]
+        },
+        {
+          "scene_number": "3",
+          "department": "props",
+          "requirements": [
+            "Toy fishing rod"
+          ]
+        },
+        {
+          "scene_number": "3",
+          "department": "lighting",
+          "requirements": [
+            "Daylight with dramatic shadows"
+          ]
+        },
+        {
+          "scene_number": "3",
+          "department": "sound",
+          "requirements": [
+            "Robot growls",
+            "Tree crashing"
+          ]
+        },
+        {
+          "scene_number": "3",
+          "department": "camera",
+          "requirements": [
+            "Dynamic angles for action"
+          ]
+        },
+        {
+          "scene_number": "4",
+          "department": "lighting",
+          "requirements": [
+            "Post-action shading"
+          ]
+        },
+        {
+          "scene_number": "4",
+          "department": "sound",
+          "requirements": [
+            "Metal clangs",
+            "Alien language"
+          ]
+        },
+        {
+          "scene_number": "4",
+          "department": "camera",
+          "requirements": [
+            "Close-ups of action"
+          ]
+        },
+        {
+          "scene_number": "5",
+          "department": "props",
+          "requirements": [
+            "Ice cream cones"
+          ]
+        },
+        {
+          "scene_number": "5",
+          "department": "lighting",
+          "requirements": [
+            "Sunset lighting"
+          ]
+        },
+        {
+          "scene_number": "5",
+          "department": "sound",
+          "requirements": [
+            "Laughing",
+            "Ending theme"
+          ]
+        },
+        {
+          "scene_number": "5",
+          "department": "camera",
+          "requirements": [
+            "Wide sunset shot"
+          ]
+        }
+      ]
+    },
+    "summary": {
+      "total_scenes": 5,
+      "valid_scenes": 0,
+      "scenes_with_issues": 5,
+      "total_issues": 9
+    },
+    "formatted_text": "\n================================================================================\nVALIDATION REPORT - FAILED\n--------------------------------------------------------------------------------\n\n\nTIMELINE VALIDATION:\nStatus: FAIL\n\nPacing Analysis:\n  - Script may be too fast-paced. Consider adding more character development scenes.\n\nTECHNICAL VALIDATION:\n\nDepartment Conflicts:\n  Scene 1:\n    Props and camera movement may interfere\n  Scene 2:\n    Props and camera movement may interfere\n  Scene 3:\n    Props and camera movement may interfere\n  Scene 5:\n    Props and camera movement may interfere\n\nISSUES FOUND:\n\nType: error\nCategory: continuity\nScene: 1\nDescription: Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 2\nDescription: Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 3\nDescription: Scene duration stated as 5 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 4\nDescription: Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 5\nDescription: Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: timeline\nScene: None\nDescription: Total timeline duration sums to 5 minutes but multiple entries in scene data are inconsistent.\nSuggestion: Recalculate scene durations to ensure consistency with total timeline time.\n\n\nType: error\nCategory: metadata\nScene: None\nDescription: Estimated runtime conflicts between script and metadata.\nSuggestion: Ensure estimated runtime in metadata matches the sum of scene durations.\n\n\nType: warning\nCategory: fields\nScene: None\nDescription: Metadata field 'total_cast' is marked as 0.\nSuggestion: Verify cast information is correctly entered.\n\n\nType: warning\nCategory: technical\nScene: 1\nDescription: Setup time allocated might be insufficient given technical complexity.\nSuggestion: Review setup time for more feasible timing before scenes.\n\n\n================================================================================\nSCENE VALIDATIONS\n--------------------------------------------------------------------------------\n\n\nSCENE 1:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 2:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 3:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 4:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 5:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\n================================================================================\nMETADATA VALIDATION\n--------------------------------------------------------------------------------\n\nSMPTE Compliance: Yes\n\nWarnings:\n  - Estimated runtime conflicts between script and metadata.\n\n================================================================================\nVALIDATION SUMMARY\n--------------------------------------------------------------------------------\nTotal Scenes: 5\nValid Scenes: 0\nScenes with Issues: 5\nTotal Issues: 9"
+  },
+  "formatted_text": "\n================================================================================\nVALIDATION REPORT - FAILED\n--------------------------------------------------------------------------------\n\n\nTIMELINE VALIDATION:\nStatus: FAIL\n\nPacing Analysis:\n  - Script may be too fast-paced. Consider adding more character development scenes.\n\nTECHNICAL VALIDATION:\n\nDepartment Conflicts:\n  Scene 1:\n    Props and camera movement may interfere\n  Scene 2:\n    Props and camera movement may interfere\n  Scene 3:\n    Props and camera movement may interfere\n  Scene 5:\n    Props and camera movement may interfere\n\nISSUES FOUND:\n\nType: error\nCategory: continuity\nScene: 1\nDescription: Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 2\nDescription: Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 3\nDescription: Scene duration stated as 5 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 4\nDescription: Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: continuity\nScene: 5\nDescription: Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.\nSuggestion: Adjust scene duration in timeline breakdown or description.\n\n\nType: error\nCategory: timeline\nScene: None\nDescription: Total timeline duration sums to 5 minutes but multiple entries in scene data are inconsistent.\nSuggestion: Recalculate scene durations to ensure consistency with total timeline time.\n\n\nType: error\nCategory: metadata\nScene: None\nDescription: Estimated runtime conflicts between script and metadata.\nSuggestion: Ensure estimated runtime in metadata matches the sum of scene durations.\n\n\nType: warning\nCategory: fields\nScene: None\nDescription: Metadata field 'total_cast' is marked as 0.\nSuggestion: Verify cast information is correctly entered.\n\n\nType: warning\nCategory: technical\nScene: 1\nDescription: Setup time allocated might be insufficient given technical complexity.\nSuggestion: Review setup time for more feasible timing before scenes.\n\n\n================================================================================\nSCENE VALIDATIONS\n--------------------------------------------------------------------------------\n\n\nSCENE 1:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 2:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 3:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 4:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\nSCENE 5:\n  \u2717 Duration Consistency: Scene duration in description does not match timeline allocation.\n  \u2713 Technical Cues Present: All required technical cues are listed.\n\n================================================================================\nMETADATA VALIDATION\n--------------------------------------------------------------------------------\n\nSMPTE Compliance: Yes\n\nWarnings:\n  - Estimated runtime conflicts between script and metadata.\n\n================================================================================\nVALIDATION SUMMARY\n--------------------------------------------------------------------------------\nTotal Scenes: 5\nValid Scenes: 0\nScenes with Issues: 5\nTotal Issues: 9"
+}

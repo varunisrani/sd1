@@ -1,0 +1,425 @@
+{
+  "metadata": {
+    "timestamp": "2025-04-26 16:46:21",
+    "scene_metadata": [
+      {
+        "scene_number": "1",
+        "mood": "Playful and comedic",
+        "lighting": {
+          "type": "artificial",
+          "requirements": [
+            "Indoor morning lighting"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Morning",
+          "duration": "3 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [
+            "TV remote",
+            "pajamas"
+          ],
+          "hand_props": [],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Wide shot of living room"
+          ],
+          "sound": [
+            "TV background noise",
+            "Jingle music on TV"
+          ],
+          "special_equipment": []
+        },
+        "department_notes": {
+          "props": [
+            "TV remote",
+            "pajamas"
+          ],
+          "lighting": [
+            "Indoor morning lighting"
+          ],
+          "sound": [
+            "Jingle music on TV"
+          ],
+          "camera": [
+            "Wide shot of living room"
+          ]
+        }
+      },
+      {
+        "scene_number": "2",
+        "mood": "Excited and curious",
+        "lighting": {
+          "type": "natural",
+          "requirements": [
+            "Daylight"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Same Time",
+          "duration": "2 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [],
+          "hand_props": [
+            "Ice cream cone",
+            "Omnitrix"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Tracking shot following Shinchan"
+          ],
+          "sound": [
+            "Crash sound effect"
+          ],
+          "special_equipment": [
+            "Green flash VFX",
+            "Smoke"
+          ]
+        },
+        "department_notes": {
+          "props": [
+            "Ice cream cone",
+            "Omnitrix"
+          ],
+          "lighting": [
+            "Daylight"
+          ],
+          "sound": [
+            "Crash sound effect"
+          ],
+          "camera": [
+            "Tracking shot following Shinchan"
+          ]
+        }
+      },
+      {
+        "scene_number": "3",
+        "mood": "Intense and action-packed",
+        "lighting": {
+          "type": "natural",
+          "requirements": [
+            "Daylight with dramatic shadows"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Continuous",
+          "duration": "5 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [],
+          "hand_props": [
+            "Toy fishing rod"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Dynamic angles for action"
+          ],
+          "sound": [
+            "Robot growls",
+            "Tree crashing"
+          ],
+          "special_equipment": [
+            "Robot VFX",
+            "Trees falling"
+          ]
+        },
+        "department_notes": {
+          "props": [
+            "Toy fishing rod"
+          ],
+          "lighting": [
+            "Daylight with dramatic shadows"
+          ],
+          "sound": [
+            "Robot growls",
+            "Tree crashing"
+          ],
+          "camera": [
+            "Dynamic angles for action"
+          ]
+        }
+      },
+      {
+        "scene_number": "4",
+        "mood": "Victorious and relieved",
+        "lighting": {
+          "type": "natural",
+          "requirements": [
+            "Post-action shading"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Post-Action",
+          "duration": "3 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [],
+          "hand_props": [],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Close-ups of action"
+          ],
+          "sound": [
+            "Metal clangs",
+            "Alien language"
+          ],
+          "special_equipment": [
+            "Transformation VFX"
+          ]
+        },
+        "department_notes": {
+          "props": [],
+          "lighting": [
+            "Post-action shading"
+          ],
+          "sound": [
+            "Metal clangs",
+            "Alien language"
+          ],
+          "camera": [
+            "Close-ups of action"
+          ]
+        }
+      },
+      {
+        "scene_number": "5",
+        "mood": "Peaceful and closing",
+        "lighting": {
+          "type": "natural",
+          "requirements": [
+            "Sunset lighting"
+          ],
+          "special_effects": []
+        },
+        "time_details": {
+          "time_of_day": "Sunset",
+          "duration": "2 minutes"
+        },
+        "weather": {
+          "conditions": [],
+          "effects_needed": []
+        },
+        "props": {
+          "set_dressing": [],
+          "hand_props": [
+            "Ice cream cones"
+          ],
+          "special_items": []
+        },
+        "technical": {
+          "camera": [
+            "Wide sunset shot"
+          ],
+          "sound": [
+            "Laughing",
+            "Ending theme"
+          ],
+          "special_equipment": [
+            "End credits"
+          ]
+        },
+        "department_notes": {
+          "props": [
+            "Ice cream cones"
+          ],
+          "lighting": [
+            "Sunset lighting"
+          ],
+          "sound": [
+            "Laughing",
+            "Ending theme"
+          ],
+          "camera": [
+            "Wide sunset shot"
+          ]
+        }
+      }
+    ],
+    "global_requirements": {
+      "equipment": [
+        "Camera for wide shots",
+        "Transformation VFX equipment",
+        "Robot VFX equipment"
+      ],
+      "props": [
+        "TV remote",
+        "pajamas",
+        "Ice cream cone",
+        "Omnitrix",
+        "Toy fishing rod"
+      ],
+      "special_effects": [
+        "Green flash VFX",
+        "Smoke",
+        "Robot VFX",
+        "Transformation VFX"
+      ]
+    },
+    "statistics": {
+      "total_scenes": 5,
+      "total_pages": 0.0,
+      "estimated_runtime": "00:15:00",
+      "total_cast": 0,
+      "unique_locations": 1,
+      "scene_statistics": {
+        "average_duration": 3.0,
+        "shortest_scene": 2,
+        "longest_scene": 5,
+        "total_duration": 15
+      }
+    },
+    "color_coding": {
+      "location_colors": {},
+      "time_colors": {
+        "DAY": "#FFD700",
+        "NIGHT": "#191970",
+        "DAWN": "#FFA07A",
+        "DUSK": "#483D8B",
+        "MORNING": "#87CEEB",
+        "EVENING": "#4B0082"
+      },
+      "department_colors": {
+        "PROPS": "#FF4500",
+        "LIGHTING": "#FFD700",
+        "SOUND": "#4169E1",
+        "CAMERA": "#32CD32",
+        "MAKEUP": "#FF69B4",
+        "WARDROBE": "#8A2BE2"
+      }
+    },
+    "formatted_text": "Analysis Timestamp: 2025-04-26 16:46:21\n\nScript Statistics:\nTotal Scenes: 5\nPage Count: 0.0\nEstimated Runtime: 00:15:00\nCast Size: 0\nUnique Locations: 1\n\n\n================================================================================\nSCENE 1 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Playful and comedic\n\nLighting:\n  Type: artificial\n  Requirements: Indoor morning lighting\n  Special Effects: \n\nTime Details:\n  Time of Day: Morning\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: TV remote, pajamas\n  Hand Props: \n  Special Items: \n\nTechnical Requirements:\n  Camera: Wide shot of living room\n  Sound: TV background noise, Jingle music on TV\n  Special Equipment: \n\n\n================================================================================\nSCENE 2 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Excited and curious\n\nLighting:\n  Type: natural\n  Requirements: Daylight\n  Special Effects: \n\nTime Details:\n  Time of Day: Same Time\n  Duration: 2 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: Ice cream cone, Omnitrix\n  Special Items: \n\nTechnical Requirements:\n  Camera: Tracking shot following Shinchan\n  Sound: Crash sound effect\n  Special Equipment: Green flash VFX, Smoke\n\n\n================================================================================\nSCENE 3 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Intense and action-packed\n\nLighting:\n  Type: natural\n  Requirements: Daylight with dramatic shadows\n  Special Effects: \n\nTime Details:\n  Time of Day: Continuous\n  Duration: 5 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: Toy fishing rod\n  Special Items: \n\nTechnical Requirements:\n  Camera: Dynamic angles for action\n  Sound: Robot growls, Tree crashing\n  Special Equipment: Robot VFX, Trees falling\n\n\n================================================================================\nSCENE 4 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Victorious and relieved\n\nLighting:\n  Type: natural\n  Requirements: Post-action shading\n  Special Effects: \n\nTime Details:\n  Time of Day: Post-Action\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: \n  Special Items: \n\nTechnical Requirements:\n  Camera: Close-ups of action\n  Sound: Metal clangs, Alien language\n  Special Equipment: Transformation VFX\n\n\n================================================================================\nSCENE 5 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Peaceful and closing\n\nLighting:\n  Type: natural\n  Requirements: Sunset lighting\n  Special Effects: \n\nTime Details:\n  Time of Day: Sunset\n  Duration: 2 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: Ice cream cones\n  Special Items: \n\nTechnical Requirements:\n  Camera: Wide sunset shot\n  Sound: Laughing, Ending theme\n  Special Equipment: End credits\n\n\n================================================================================\nGLOBAL REQUIREMENTS\n--------------------------------------------------------------------------------\n\nEquipment: Camera for wide shots, Transformation VFX equipment, Robot VFX equipment\nProps: TV remote, pajamas, Ice cream cone, Omnitrix, Toy fishing rod\nSpecial Effects: Green flash VFX, Smoke, Robot VFX, Transformation VFX"
+  },
+  "ui_metadata": {
+    "color_coding": {
+      "location_colors": {},
+      "time_colors": {
+        "DAY": "#FFD700",
+        "NIGHT": "#191970",
+        "DAWN": "#FFA07A",
+        "DUSK": "#483D8B",
+        "MORNING": "#87CEEB",
+        "EVENING": "#4B0082"
+      },
+      "department_colors": {
+        "PROPS": "#FF4500",
+        "LIGHTING": "#FFD700",
+        "SOUND": "#4169E1",
+        "CAMERA": "#32CD32",
+        "MAKEUP": "#FF69B4",
+        "WARDROBE": "#8A2BE2"
+      }
+    },
+    "scene_complexity": {
+      "1": 1,
+      "2": 2,
+      "3": 2,
+      "4": 1,
+      "5": 1
+    },
+    "timeline_data": {
+      "total_duration": "0:05:00",
+      "scene_breakdown": [
+        {
+          "scene_number": "1",
+          "start_time": "0:00:00",
+          "end_time": "0:01:00",
+          "duration_minutes": 1,
+          "location": "Kasukabe - Shinchan's House",
+          "characters": [
+            "MITSY",
+            "SHINCHAN"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 20
+        },
+        {
+          "scene_number": "2",
+          "start_time": "0:01:00",
+          "end_time": "0:02:00",
+          "duration_minutes": 1,
+          "location": "Park",
+          "characters": [
+            "BEN",
+            "SHINCHAN"
+          ],
+          "technical_complexity": 2,
+          "setup_time": 25
+        },
+        {
+          "scene_number": "3",
+          "start_time": "0:02:00",
+          "end_time": "0:03:00",
+          "duration_minutes": 1,
+          "location": "Park",
+          "characters": [
+            "BEN",
+            "SHINCHAN",
+            "BEN (XLR8)",
+            "ROBOT ALIEN"
+          ],
+          "technical_complexity": 2,
+          "setup_time": 25
+        },
+        {
+          "scene_number": "4",
+          "start_time": "0:03:00",
+          "end_time": "0:04:00",
+          "duration_minutes": 1,
+          "location": "Park",
+          "characters": [
+            "BEN (Four Arms)",
+            "BEN",
+            "SHINCHAN"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 17
+        },
+        {
+          "scene_number": "5",
+          "start_time": "0:04:00",
+          "end_time": "0:05:00",
+          "duration_minutes": 1,
+          "location": "Park",
+          "characters": [
+            "BEN",
+            "SHINCHAN"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 20
+        }
+      ],
+      "average_scene_duration": 1.0
+    },
+    "department_views": {}
+  }
+}

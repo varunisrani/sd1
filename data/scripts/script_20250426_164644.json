@@ -1,0 +1,404 @@
+{
+  "parsed_data": {
+    "scenes": [
+      {
+        "scene_number": "1",
+        "location": {
+          "type": "INT",
+          "place": "Kasukabe - Shinchan's House"
+        },
+        "time": "Morning",
+        "description": "Shinchan is watching TV in his pajamas, dancing to a jingle.",
+        "duration": "3 minutes",
+        "main_characters": [
+          "SHINCHAN",
+          "MITSY"
+        ],
+        "technical_cues": [
+          "TV background noise"
+        ],
+        "department_notes": {
+          "props": [
+            "TV remote",
+            "pajamas"
+          ],
+          "lighting": [
+            "Indoor morning lighting"
+          ],
+          "sound": [
+            "Jingle music on TV"
+          ],
+          "camera": [
+            "Wide shot of living room"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "SHINCHAN",
+            "line": "La-la-laaa~ Mom said no aliens allowed today! But I say\u2014bring 'em on!",
+            "parenthetical": "(cheeky)"
+          },
+          {
+            "character": "MITSY",
+            "line": "Shinchan! Stop being weird and go outside!",
+            "parenthetical": "(yelling from kitchen)"
+          }
+        ],
+        "transitions": [
+          "CUT TO"
+        ]
+      },
+      {
+        "scene_number": "2",
+        "location": {
+          "type": "EXT",
+          "place": "Park"
+        },
+        "time": "Same Time",
+        "description": "A green flash crashes nearby. SHINCHAN runs toward it, licking an ice cream.",
+        "duration": "2 minutes",
+        "main_characters": [
+          "SHINCHAN",
+          "BEN"
+        ],
+        "technical_cues": [
+          "Green flash VFX",
+          "Smoke"
+        ],
+        "department_notes": {
+          "props": [
+            "Ice cream cone",
+            "Omnitrix"
+          ],
+          "lighting": [
+            "Daylight"
+          ],
+          "sound": [
+            "Crash sound effect"
+          ],
+          "camera": [
+            "Tracking shot following Shinchan"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "SHINCHAN",
+            "line": "Oooooh! Free fireworks? Or\u2026 maybe alien poop?"
+          },
+          {
+            "character": "BEN",
+            "line": "Whoa! That was too close. Some alien tech fell into this area\u2014wait, where am I?"
+          },
+          {
+            "character": "SHINCHAN",
+            "line": "You\u2019re in Kasukabe! And I\u2019m your tour guide, Shinchan, professional mischief-maker!"
+          },
+          {
+            "character": "BEN",
+            "line": "Nice to meet you, Shinchan. I\u2019m Ben. I\u2019m kinda saving the world right now.",
+            "parenthetical": "(laughs)"
+          },
+          {
+            "character": "SHINCHAN",
+            "line": "Cool! I\u2019m kinda annoying my mom right now. Wanna team up?"
+          },
+          {
+            "character": "BEN",
+            "line": "Actually, yeah. But stay close\u2014this could get dangerous.",
+            "parenthetical": "(chuckles)"
+          }
+        ],
+        "transitions": [
+          "SFX: RUMBLING"
+        ]
+      },
+      {
+        "scene_number": "3",
+        "location": {
+          "type": "EXT",
+          "place": "Park"
+        },
+        "time": "Continuous",
+        "description": "A GIANT ROBOT ALIEN appears, smashing trees and yelling in alien language.",
+        "duration": "5 minutes",
+        "main_characters": [
+          "SHINCHAN",
+          "BEN"
+        ],
+        "technical_cues": [
+          "Robot VFX",
+          "Trees falling"
+        ],
+        "department_notes": {
+          "props": [
+            "Toy fishing rod"
+          ],
+          "lighting": [
+            "Daylight with dramatic shadows"
+          ],
+          "sound": [
+            "Robot growls",
+            "Tree crashing"
+          ],
+          "camera": [
+            "Dynamic angles for action"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "ROBOT ALIEN",
+            "line": "Give me the Omnitrix!",
+            "parenthetical": "(Growling)"
+          },
+          {
+            "character": "BEN",
+            "line": "Guess we\u2019ve got company. Time to go hero!"
+          },
+          {
+            "character": "BEN (XLR8)",
+            "line": "Let\u2019s move, Shinchan!"
+          },
+          {
+            "character": "SHINCHAN",
+            "line": "Can I drive? Wait, do aliens eat butts?"
+          },
+          {
+            "character": "BEN (XLR8)",
+            "line": "...What?"
+          }
+        ],
+        "transitions": [
+          "ACTION SEQUENCE"
+        ]
+      },
+      {
+        "scene_number": "4",
+        "location": {
+          "type": "EXT",
+          "place": "Park"
+        },
+        "time": "Post-Action",
+        "description": "Ben finishes the fight by transforming into Four Arms, smashing the robot into scrap.",
+        "duration": "3 minutes",
+        "main_characters": [
+          "SHINCHAN",
+          "BEN"
+        ],
+        "technical_cues": [
+          "Transformation VFX"
+        ],
+        "department_notes": {
+          "props": [],
+          "lighting": [
+            "Post-action shading"
+          ],
+          "sound": [
+            "Metal clangs",
+            "Alien language"
+          ],
+          "camera": [
+            "Close-ups of action"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "SHINCHAN",
+            "line": "I caught a big one! It's uglier than Action Kamen\u2019s villain!"
+          },
+          {
+            "character": "BEN (Four Arms)",
+            "line": "Teamwork for the win!"
+          },
+          {
+            "character": "SHINCHAN",
+            "line": "We\u2019re like the ultimate hero duo! Ben & Butt-Man!"
+          },
+          {
+            "character": "BEN",
+            "line": "Let\u2019s stick with Ben 10 and Shinchan."
+          }
+        ],
+        "transitions": [
+          "CUT TO"
+        ]
+      },
+      {
+        "scene_number": "5",
+        "location": {
+          "type": "EXT",
+          "place": "Park"
+        },
+        "time": "Sunset",
+        "description": "They sit on a bench eating ice cream.",
+        "duration": "2 minutes",
+        "main_characters": [
+          "SHINCHAN",
+          "BEN"
+        ],
+        "technical_cues": [
+          "End credits"
+        ],
+        "department_notes": {
+          "props": [
+            "Ice cream cones"
+          ],
+          "lighting": [
+            "Sunset lighting"
+          ],
+          "sound": [
+            "Laughing",
+            "Ending theme"
+          ],
+          "camera": [
+            "Wide sunset shot"
+          ]
+        },
+        "dialogues": [
+          {
+            "character": "BEN",
+            "line": "Thanks, Shinchan. You\u2019re weird\u2014but you\u2019re awesome."
+          },
+          {
+            "character": "SHINCHAN",
+            "line": "And you\u2019re cool\u2014for an alien babysitter!"
+          }
+        ],
+        "transitions": [
+          "ROLL CREDITS"
+        ]
+      }
+    ],
+    "timeline": {
+      "total_duration": "0:05:00",
+      "scene_breakdown": [
+        {
+          "scene_number": "1",
+          "start_time": "0:00:00",
+          "end_time": "0:01:00",
+          "duration_minutes": 1,
+          "location": "Kasukabe - Shinchan's House",
+          "characters": [
+            "MITSY",
+            "SHINCHAN"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 20
+        },
+        {
+          "scene_number": "2",
+          "start_time": "0:01:00",
+          "end_time": "0:02:00",
+          "duration_minutes": 1,
+          "location": "Park",
+          "characters": [
+            "BEN",
+            "SHINCHAN"
+          ],
+          "technical_complexity": 2,
+          "setup_time": 25
+        },
+        {
+          "scene_number": "3",
+          "start_time": "0:02:00",
+          "end_time": "0:03:00",
+          "duration_minutes": 1,
+          "location": "Park",
+          "characters": [
+            "BEN",
+            "SHINCHAN",
+            "BEN (XLR8)",
+            "ROBOT ALIEN"
+          ],
+          "technical_complexity": 2,
+          "setup_time": 25
+        },
+        {
+          "scene_number": "4",
+          "start_time": "0:03:00",
+          "end_time": "0:04:00",
+          "duration_minutes": 1,
+          "location": "Park",
+          "characters": [
+            "BEN (Four Arms)",
+            "BEN",
+            "SHINCHAN"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 17
+        },
+        {
+          "scene_number": "5",
+          "start_time": "0:04:00",
+          "end_time": "0:05:00",
+          "duration_minutes": 1,
+          "location": "Park",
+          "characters": [
+            "BEN",
+            "SHINCHAN"
+          ],
+          "technical_complexity": 1,
+          "setup_time": 20
+        }
+      ],
+      "average_scene_duration": 1.0
+    },
+    "formatted_text": "SCRIPT TIMELINE\nTotal Duration: 0:05:00\nTotal Scenes: 5\n\n\n================================================================================\n\nSCENE 1\nINT. Kasukabe - Shinchan's House - Morning\n--------------------------------------------------------------------------------\n\nEstimated Duration: 3 minutes\n\nDescription:\nShinchan is watching TV in his pajamas, dancing to a jingle.\n\nMain Characters: SHINCHAN, MITSY\n\nTechnical Cues:\n  - TV background noise\n\nDepartment Notes:\n  PROPS:\n    - TV remote\n    - pajamas\n  LIGHTING:\n    - Indoor morning lighting\n  SOUND:\n    - Jingle music on TV\n  CAMERA:\n    - Wide shot of living room\n\n\nDialogue:\nSHINCHAN (cheeky)\n    \"La-la-laaa~ Mom said no aliens allowed today! But I say\u2014bring 'em on!\"\n\nMITSY (yelling from kitchen)\n    \"Shinchan! Stop being weird and go outside!\"\n\n\nTransitions: CUT TO\n\n================================================================================\n\nSCENE 2\nEXT. Park - Same Time\n--------------------------------------------------------------------------------\n\nEstimated Duration: 2 minutes\n\nDescription:\nA green flash crashes nearby. SHINCHAN runs toward it, licking an ice cream.\n\nMain Characters: SHINCHAN, BEN\n\nTechnical Cues:\n  - Green flash VFX\n  - Smoke\n\nDepartment Notes:\n  PROPS:\n    - Ice cream cone\n    - Omnitrix\n  LIGHTING:\n    - Daylight\n  SOUND:\n    - Crash sound effect\n  CAMERA:\n    - Tracking shot following Shinchan\n\n\nDialogue:\nSHINCHAN\n    \"Oooooh! Free fireworks? Or\u2026 maybe alien poop?\"\n\nBEN\n    \"Whoa! That was too close. Some alien tech fell into this area\u2014wait, where am I?\"\n\nSHINCHAN\n    \"You\u2019re in Kasukabe! And I\u2019m your tour guide, Shinchan, professional mischief-maker!\"\n\nBEN (laughs)\n    \"Nice to meet you, Shinchan. I\u2019m Ben. I\u2019m kinda saving the world right now.\"\n\nSHINCHAN\n    \"Cool! I\u2019m kinda annoying my mom right now. Wanna team up?\"\n\nBEN (chuckles)\n    \"Actually, yeah. But stay close\u2014this could get dangerous.\"\n\n\nTransitions: SFX: RUMBLING\n\n================================================================================\n\nSCENE 3\nEXT. Park - Continuous\n--------------------------------------------------------------------------------\n\nEstimated Duration: 5 minutes\n\nDescription:\nA GIANT ROBOT ALIEN appears, smashing trees and yelling in alien language.\n\nMain Characters: SHINCHAN, BEN\n\nTechnical Cues:\n  - Robot VFX\n  - Trees falling\n\nDepartment Notes:\n  PROPS:\n    - Toy fishing rod\n  LIGHTING:\n    - Daylight with dramatic shadows\n  SOUND:\n    - Robot growls\n    - Tree crashing\n  CAMERA:\n    - Dynamic angles for action\n\n\nDialogue:\nROBOT ALIEN (Growling)\n    \"Give me the Omnitrix!\"\n\nBEN\n    \"Guess we\u2019ve got company. Time to go hero!\"\n\nBEN (XLR8)\n    \"Let\u2019s move, Shinchan!\"\n\nSHINCHAN\n    \"Can I drive? Wait, do aliens eat butts?\"\n\nBEN (XLR8)\n    \"...What?\"\n\n\nTransitions: ACTION SEQUENCE\n\n================================================================================\n\nSCENE 4\nEXT. Park - Post-Action\n--------------------------------------------------------------------------------\n\nEstimated Duration: 3 minutes\n\nDescription:\nBen finishes the fight by transforming into Four Arms, smashing the robot into scrap.\n\nMain Characters: SHINCHAN, BEN\n\nTechnical Cues:\n  - Transformation VFX\n\nDepartment Notes:\n  LIGHTING:\n    - Post-action shading\n  SOUND:\n    - Metal clangs\n    - Alien language\n  CAMERA:\n    - Close-ups of action\n\n\nDialogue:\nSHINCHAN\n    \"I caught a big one! It's uglier than Action Kamen\u2019s villain!\"\n\nBEN (Four Arms)\n    \"Teamwork for the win!\"\n\nSHINCHAN\n    \"We\u2019re like the ultimate hero duo! Ben & Butt-Man!\"\n\nBEN\n    \"Let\u2019s stick with Ben 10 and Shinchan.\"\n\n\nTransitions: CUT TO\n\n================================================================================\n\nSCENE 5\nEXT. Park - Sunset\n--------------------------------------------------------------------------------\n\nEstimated Duration: 2 minutes\n\nDescription:\nThey sit on a bench eating ice cream.\n\nMain Characters: SHINCHAN, BEN\n\nTechnical Cues:\n  - End credits\n\nDepartment Notes:\n  PROPS:\n    - Ice cream cones\n  LIGHTING:\n    - Sunset lighting\n  SOUND:\n    - Laughing\n    - Ending theme\n  CAMERA:\n    - Wide sunset shot\n\n\nDialogue:\nBEN\n    \"Thanks, Shinchan. You\u2019re weird\u2014but you\u2019re awesome.\"\n\nSHINCHAN\n    \"And you\u2019re cool\u2014for an alien babysitter!\"\n\n\nTransitions: ROLL CREDITS"
+  },
+  "processing_status": {
+    "started_at": "2025-04-26T16:46:07.585985",
+    "current_stage": "validation",
+    "completed_stages": [
+      {
+        "stage": "parsing",
+        "completed_at": "2025-04-26T16:46:21.924276",
+        "success": true
+      },
+      {
+        "stage": "metadata",
+        "completed_at": "2025-04-26T16:46:32.706358",
+        "success": true
+      },
+      {
+        "stage": "validation",
+        "completed_at": "2025-04-26T16:46:44.848590",
+        "success": false
+      }
+    ],
+    "errors": [],
+    "warnings": [
+      {
+        "type": "validation_warning",
+        "message": "Metadata field 'total_cast' is marked as 0.",
+        "scene": null,
+        "category": "fields"
+      },
+      {
+        "type": "validation_warning",
+        "message": "Setup time allocated might be insufficient given technical complexity.",
+        "scene": "1",
+        "category": "technical"
+      },
+      {
+        "type": "validation_critical",
+        "message": "Critical validation issues found but proceeding (lenient mode)",
+        "details": "Critical validation issues found:\n\nScene 1 - continuity:\n  Issue: Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.\n  Suggestion: Adjust scene duration in timeline breakdown or description.\n\nScene 2 - continuity:\n  Issue: Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.\n  Suggestion: Adjust scene duration in timeline breakdown or description.\n\nScene 3 - continuity:\n  Issue: Scene duration stated as 5 minutes but timeline breakdown allocates only 1 minute.\n  Suggestion: Adjust scene duration in timeline breakdown or description.\n\nScene 4 - continuity:\n  Issue: Scene duration stated as 3 minutes but timeline breakdown allocates only 1 minute.\n  Suggestion: Adjust scene duration in timeline breakdown or description.\n\nScene 5 - continuity:\n  Issue: Scene duration stated as 2 minutes but timeline breakdown allocates only 1 minute.\n  Suggestion: Adjust scene duration in timeline breakdown or description.\n\nScene None - timeline:\n  Issue: Total timeline duration sums to 5 minutes but multiple entries in scene data are inconsistent.\n  Suggestion: Recalculate scene durations to ensure consistency with total timeline time.\n\nScene None - metadata:\n  Issue: Estimated runtime conflicts between script and metadata.\n  Suggestion: Ensure estimated runtime in metadata matches the sum of scene durations."
+      }
+    ]
+  },
+  "statistics": {
+    "total_scenes": 5,
+    "total_pages": 0.0,
+    "estimated_runtime": "00:15:00",
+    "total_cast": 0,
+    "unique_locations": 1,
+    "scene_statistics": {
+      "average_duration": 3.0,
+      "shortest_scene": 2,
+      "longest_scene": 5,
+      "total_duration": 15
+    },
+    "complex_scenes": 0,
+    "dialogue_heavy_scenes": 0,
+    "effects_required": 4
+  }
+}

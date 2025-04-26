@@ -18,7 +18,6 @@ class SemanticDistillerAgent:
     
     def _clean_response(self, response: str) -> str:
         """Clean the response by removing markdown code block markers."""
-        # Remove ```json or ``` markers from start and end
         response = response.strip()
         if response.startswith("```json"):
             response = response[7:]
@@ -36,7 +35,7 @@ class SemanticDistillerAgent:
             
         logger.info(f"Generating summaries for {len(scene_data.get('scenes', []))} scenes")
         
-        # Define the JSON format template separately
+        # Define the JSON format template with new fields
         json_format = '''
 {
     "scenes": [
@@ -44,28 +43,44 @@ class SemanticDistillerAgent:
             "scene_number": "1",
             "summary": "12-15 word summary of the scene",
             "story_thread": "Main plot thread this scene belongs to",
+            "emotional_tone": "Overall emotional tone of the scene",
+            "key_elements": ["list", "of", "key", "elements"],
+            "department_focus": {
+                "camera": "Camera department notes",
+                "lighting": "Lighting department notes",
+                "sound": "Sound department notes",
+                "art": "Art department notes"
+            },
             "characters": {
                 "Character Name": {
                     "arc_point": "Description of character's arc in this scene",
-                    "emotional_state": "Character's emotional state"
+                    "emotional_state": "Character's emotional state",
+                    "motivation": "Character's motivation in scene"
                 }
-            }
+            },
+            "approval_status": "pending",
+            "last_modified_by": null,
+            "review_notes": []
         }
     ]
 }'''
         
-        # Construct the prompt using string concatenation
+        # Construct the enhanced prompt
         prompt = (
             "Create concise 12-15 word summaries for each scene that:\n"
             "- Capture essential dramatic elements\n"
             "- Maintain story progression\n"
             "- Use consistent tone and style\n"
-            "- Link related story elements\n\n"
-            "For each scene, include:\n"
-            "- Key story beats\n"
-            "- Character arcs\n"
-            "- Emotional transitions\n"
-            "- Visual highlights\n\n"
+            "- Link related story elements\n"
+            "- Include emotional tone analysis\n"
+            "- Identify key technical elements\n"
+            "- Specify department-specific focus areas\n\n"
+            "For each scene, analyze and include:\n"
+            "- Overall emotional tone\n"
+            "- Key story elements and beats\n"
+            "- Technical requirements per department\n"
+            "- Character emotional states and motivations\n"
+            "- Visual and technical highlights\n\n"
             f"Expected JSON format:\n{json_format}\n\n"
             f"Scene Data:\n{json.dumps(scene_data, indent=2)}"
         )
@@ -75,14 +90,12 @@ class SemanticDistillerAgent:
             logger.info("Received response from agent")
             
             try:
-                # Clean the response before parsing JSON
                 cleaned_response = self._clean_response(result.final_output)
                 logger.debug(f"Cleaned response: {cleaned_response[:200]}...")
                 
                 summaries = json.loads(cleaned_response)
                 logger.info("Successfully parsed JSON response")
                 
-                # Validate and process summaries
                 processed_summaries = self._process_summaries(summaries)
                 logger.info("Successfully processed summaries")
                 
@@ -98,12 +111,19 @@ class SemanticDistillerAgent:
             raise ValueError(f"Error generating summaries: {str(e)}")
     
     def _process_summaries(self, summaries: Dict[str, Any]) -> Dict[str, Any]:
-        """Process and validate generated summaries."""
+        """Process and validate generated summaries with enhanced fields."""
         logger.info("Processing summaries")
         processed = {
             "summaries": [],
             "story_threads": {},
             "character_arcs": {},
+            "emotional_journey": {},
+            "department_insights": {
+                "camera": [],
+                "lighting": [],
+                "sound": [],
+                "art": []
+            },
             "warnings": []
         }
         
@@ -134,25 +154,31 @@ class SemanticDistillerAgent:
                 if thread not in processed["story_threads"]:
                     processed["story_threads"][thread] = []
                 processed["story_threads"][thread].append(scene["scene_number"])
-            else:
-                warning = f"Scene {scene_num}: Missing story thread"
-                logger.warning(warning)
-                processed["warnings"].append(warning)
+            
+            # Track emotional journey
+            if "emotional_tone" in scene:
+                processed["emotional_journey"][scene_num] = scene["emotional_tone"]
+            
+            # Track department insights
+            if "department_focus" in scene:
+                for dept, notes in scene["department_focus"].items():
+                    if dept in processed["department_insights"]:
+                        processed["department_insights"][dept].append({
+                            "scene": scene_num,
+                            "notes": notes
+                        })
             
             # Track character arcs
             if "characters" in scene:
-                for char in scene["characters"]:
+                for char, data in scene["characters"].items():
                     if char not in processed["character_arcs"]:
                         processed["character_arcs"][char] = []
                     processed["character_arcs"][char].append({
                         "scene": scene["scene_number"],
-                        "arc_point": scene["characters"][char].get("arc_point", ""),
-                        "emotional_state": scene["characters"][char].get("emotional_state", "")
+                        "arc_point": data.get("arc_point", ""),
+                        "emotional_state": data.get("emotional_state", ""),
+                        "motivation": data.get("motivation", "")
                     })
-            else:
-                warning = f"Scene {scene_num}: Missing character data"
-                logger.warning(warning)
-                processed["warnings"].append(warning)
             
             # Add processed scene to summaries
             processed["summaries"].append(scene)

@@ -102,7 +102,7 @@ def show_upload_page():
                             script_content = f.read()
                         
                         # Process through script ingestion pipeline
-                        script_data = asyncio.run(script_coordinator.process_script(script_content))
+                        script_data = asyncio.run(script_coordinator.process_script(script_content, validation_level="lenient"))
                         
                         if "error" in script_data:
                             st.error(f"Script processing failed: {script_data['error']}")
@@ -138,7 +138,7 @@ def show_upload_page():
             with st.spinner("Processing script through ingestion pipeline..."):
                 try:
                     # Process through script ingestion pipeline
-                    script_data = asyncio.run(script_coordinator.process_script(pasted_text))
+                    script_data = asyncio.run(script_coordinator.process_script(pasted_text, validation_level="lenient"))
                     
                     if "error" in script_data:
                         st.error(f"Script processing failed: {script_data['error']}")
@@ -167,30 +167,342 @@ def show_script_analysis():
     st.header("Script Analysis")
     results = load_from_storage('script_ingestion_results.json')
     
-    if results:
-        # Display parsed data
-        st.subheader("Parsed Script Structure")
-        if "parsed_data" in results:
-            with st.expander("View Parsed Data", expanded=True):
-                st.json(results["parsed_data"])
-        
-        # Display metadata
-        st.subheader("Script Metadata")
+    if not results:
+        st.warning("Please upload and process a script first.")
+        if st.button("Go to Upload", type="primary"):
+            st.session_state.current_step = 'Upload Script'
+            st.rerun()
+        return
+    
+    # Create tabs for different views
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+        "Timeline", "Scene Analysis", "Technical Requirements", 
+        "Department Analysis", "Validation Report", "Statistics", "Raw Data"
+    ])
+    
+    with tab1:
+        st.subheader("Script Timeline")
+        if "parsed_data" in results and "timeline" in results["parsed_data"]:
+            timeline = results["parsed_data"]["timeline"]
+            
+            # Create timeline visualization using plotly
+            import plotly.figure_factory as ff
+            import plotly.graph_objects as go
+            from datetime import datetime, timedelta
+            
+            # Convert timeline data to plotly format
+            tasks = []
+            start_times = []
+            finish_times = []
+            colors = []
+            
+            base_time = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+            for scene in timeline["scene_breakdown"]:
+                tasks.append(f"Scene {scene['scene_number']}")
+                start_time = datetime.strptime(scene['start_time'], "%H:%M:%S")
+                end_time = datetime.strptime(scene['end_time'], "%H:%M:%S")
+                start_times.append(base_time + timedelta(
+                    hours=start_time.hour,
+                    minutes=start_time.minute,
+                    seconds=start_time.second
+                ))
+                finish_times.append(base_time + timedelta(
+                    hours=end_time.hour,
+                    minutes=end_time.minute,
+                    seconds=end_time.second
+                ))
+                # Add color based on technical complexity
+                colors.append(f"rgb({min(255, scene['technical_complexity'] * 50)}, {max(0, 255 - scene['technical_complexity'] * 50)}, 100)")
+            
+            fig = ff.create_gantt(
+                df=[dict(
+                    Task=task,
+                    Start=start,
+                    Finish=finish,
+                    Color=color
+                ) for task, start, finish, color in zip(tasks, start_times, finish_times, colors)],
+                index_col='Task',
+                show_colorbar=True,
+                group_tasks=True,
+                showgrid_x=True,
+                showgrid_y=True
+            )
+            
+            # Add scene information on hover
+            for i, scene in enumerate(timeline["scene_breakdown"]):
+                fig.data[i].hovertemplate = f"""
+                Scene {scene['scene_number']}<br>
+                Location: {scene['location']}<br>
+                Characters: {', '.join(scene['characters'])}<br>
+                Technical Complexity: {scene['technical_complexity']}<br>
+                Setup Time: {scene['setup_time']} minutes<br>
+                <extra></extra>
+                """
+            
+            st.plotly_chart(fig, use_container_width=True)
+            
+            # Display scene duration statistics
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Total Duration", timeline['total_duration'])
+            with col2:
+                st.metric("Average Scene Duration", f"{timeline['average_scene_duration']} min")
+            with col3:
+                st.metric("Total Scenes", len(timeline['scene_breakdown']))
+    
+    with tab2:
+        st.subheader("Scene Analysis")
+        if "parsed_data" in results and "scenes" in results["parsed_data"]:
+            scenes = results["parsed_data"]["scenes"]
+            
+            # Scene complexity analysis
+            complexity_data = []
+            for scene in scenes:
+                score = 0
+                # Calculate complexity based on various factors
+                score += len(scene.get("technical_cues", []))
+                score += len(scene.get("main_characters", []))
+                score += sum(len(notes) for notes in scene.get("department_notes", {}).values())
+                
+                complexity_data.append({
+                    "Scene": f"Scene {scene['scene_number']}",
+                    "Complexity Score": score,
+                    "Location": scene["location"]["place"],
+                    "Time": scene["time"]
+                })
+            
+            # Create complexity bar chart
+            import plotly.express as px
+            
+            fig = px.bar(
+                complexity_data,
+                x="Scene",
+                y="Complexity Score",
+                color="Location",
+                title="Scene Complexity Analysis",
+                hover_data=["Time"]
+            )
+            st.plotly_chart(fig, use_container_width=True)
+            
+            # Scene details in expanders
+            for scene in scenes:
+                with st.expander(f"Scene {scene['scene_number']} - {scene['location']['place']} ({scene['time']})"):
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        st.write("**Description:**")
+                        st.write(scene["description"])
+                        st.write("**Main Characters:**")
+                        st.write(", ".join(scene["main_characters"]))
+                        
+                    with col2:
+                        st.write("**Technical Cues:**")
+                        for cue in scene.get("technical_cues", []):
+                            st.write(f"- {cue}")
+                        
+                        st.write("**Department Notes:**")
+                        for dept, notes in scene.get("department_notes", {}).items():
+                            st.write(f"_{dept.title()}_:")
+                            for note in notes:
+                                st.write(f"  - {note}")
+    
+    with tab3:
+        st.subheader("Technical Requirements")
         if "metadata" in results:
-            with st.expander("View Metadata", expanded=True):
-                st.json(results["metadata"])
-        
-        # Display validation results
-        st.subheader("Validation Results")
+            metadata = results["metadata"]
+            
+            # Global requirements
+            st.write("### Global Requirements")
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.write("**Equipment:**")
+                for item in metadata.get("global_requirements", {}).get("equipment", []):
+                    st.write(f"- {item}")
+                
+                st.write("**Props:**")
+                for item in metadata.get("global_requirements", {}).get("props", []):
+                    st.write(f"- {item}")
+            
+            with col2:
+                st.write("**Special Effects:**")
+                for item in metadata.get("global_requirements", {}).get("special_effects", []):
+                    st.write(f"- {item}")
+            
+            # Technical requirements by scene
+            st.write("### Technical Requirements by Scene")
+            for scene_meta in metadata.get("scene_metadata", []):
+                with st.expander(f"Scene {scene_meta['scene_number']} Technical Details"):
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        st.write("**Lighting:**")
+                        st.write(f"Type: {scene_meta['lighting']['type']}")
+                        for req in scene_meta['lighting']['requirements']:
+                            st.write(f"- {req}")
+                        
+                        st.write("**Props:**")
+                        for category, items in scene_meta['props'].items():
+                            if items:
+                                st.write(f"_{category}_:")
+                                for item in items:
+                                    st.write(f"- {item}")
+                    
+                    with col2:
+                        st.write("**Technical:**")
+                        for category, items in scene_meta['technical'].items():
+                            if items:
+                                st.write(f"_{category}_:")
+                                for item in items:
+                                    st.write(f"- {item}")
+    
+    with tab4:
+        st.subheader("Department Analysis")
+        if "metadata" in results:
+            metadata = results["metadata"]
+            
+            # Department workload analysis
+            department_data = {}
+            for scene_meta in metadata.get("scene_metadata", []):
+                for dept, notes in scene_meta.get("department_notes", {}).items():
+                    if dept not in department_data:
+                        department_data[dept] = {"total_tasks": 0, "scenes": []}
+                    department_data[dept]["total_tasks"] += len(notes)
+                    department_data[dept]["scenes"].append(scene_meta["scene_number"])
+            
+            # Create department workload chart
+            workload_data = {
+                "Department": list(department_data.keys()),
+                "Total Tasks": [data["total_tasks"] for data in department_data.values()],
+                "Scene Coverage": [len(data["scenes"]) for data in department_data.values()]
+            }
+            
+            fig = px.bar(
+                workload_data,
+                x="Department",
+                y=["Total Tasks", "Scene Coverage"],
+                title="Department Workload Analysis",
+                barmode="group"
+            )
+            st.plotly_chart(fig, use_container_width=True)
+            
+            # Department details
+            for dept, data in department_data.items():
+                with st.expander(f"{dept.title()} Department Details"):
+                    st.write(f"**Total Tasks:** {data['total_tasks']}")
+                    st.write(f"**Scenes Involved:** {', '.join(data['scenes'])}")
+                    
+                    # Show department notes by scene
+                    st.write("**Notes by Scene:**")
+                    for scene_meta in metadata.get("scene_metadata", []):
+                        if dept in scene_meta.get("department_notes", {}):
+                            st.write(f"_Scene {scene_meta['scene_number']}_:")
+                            for note in scene_meta["department_notes"][dept]:
+                                st.write(f"- {note}")
+    
+    with tab5:
+        st.subheader("Validation Report")
         if "validation" in results:
             validation = results["validation"]
-            if validation["is_valid"]:
+            
+            # Display validation status
+            if validation.get("is_valid", False):
                 st.success("✅ Script validation passed")
             else:
                 st.warning("⚠️ Script validation has issues")
             
-            with st.expander("View Validation Details"):
-                st.json(validation)
+            # Display issues
+            if "validation_report" in validation:
+                report = validation["validation_report"]
+                
+                # Group issues by category
+                issues_by_category = {}
+                for issue in report.get("issues", []):
+                    category = issue["category"]
+                    if category not in issues_by_category:
+                        issues_by_category[category] = []
+                    issues_by_category[category].append(issue)
+                
+                # Display issues by category
+                for category, issues in issues_by_category.items():
+                    with st.expander(f"{category.title()} Issues"):
+                        for issue in issues:
+                            col1, col2 = st.columns([1, 3])
+                            with col1:
+                                if issue["type"] == "error":
+                                    st.error("Error")
+                                else:
+                                    st.warning("Warning")
+                            with col2:
+                                st.write(f"**Scene:** {issue.get('scene_number', 'Global')}")
+                                st.write(issue["description"])
+                                st.write(f"_Suggestion: {issue['suggestion']}_")
+                
+                # Display scene validations
+                st.write("### Scene Validation Details")
+                for scene_validation in report.get("scene_validations", []):
+                    with st.expander(f"Scene {scene_validation['scene_number']} Validation"):
+                        for check in scene_validation["checks"]:
+                            if check["status"] == "pass":
+                                st.success(f"✅ {check['check_name']}")
+                            else:
+                                st.error(f"❌ {check['check_name']}: {check['details']}")
+    
+    with tab6:
+        st.subheader("Statistics")
+        if "metadata" in results and "statistics" in results["metadata"]:
+            stats = results["metadata"]["statistics"]
+            
+            # Display key metrics
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Total Scenes", stats["total_scenes"])
+                st.metric("Total Pages", stats["total_pages"])
+            with col2:
+                st.metric("Estimated Runtime", stats["estimated_runtime"])
+                st.metric("Total Cast", stats["total_cast"])
+            with col3:
+                st.metric("Unique Locations", stats["unique_locations"])
+            
+            # Scene duration statistics
+            if "scene_statistics" in stats:
+                scene_stats = stats["scene_statistics"]
+                st.write("### Scene Duration Statistics")
+                
+                duration_data = {
+                    "Metric": ["Average", "Shortest", "Longest", "Total"],
+                    "Duration (minutes)": [
+                        scene_stats["average_duration"],
+                        scene_stats["shortest_scene"],
+                        scene_stats["longest_scene"],
+                        scene_stats["total_duration"]
+                    ]
+                }
+                
+                fig = px.bar(
+                    duration_data,
+                    x="Metric",
+                    y="Duration (minutes)",
+                    title="Scene Duration Analysis"
+                )
+                st.plotly_chart(fig, use_container_width=True)
+    
+    with tab7:
+        st.subheader("Raw Data")
+        # Display parsed data
+        if "parsed_data" in results:
+            with st.expander("View Parsed Data", expanded=False):
+                st.json(results["parsed_data"])
+        
+        # Display metadata
+        if "metadata" in results:
+            with st.expander("View Metadata", expanded=False):
+                st.json(results["metadata"])
+        
+        # Display validation results
+        if "validation" in results:
+            with st.expander("View Validation Details", expanded=False):
+                st.json(results["validation"])
         
         # Navigation buttons
         col1, col2 = st.columns([1, 2])
@@ -205,30 +517,361 @@ def show_script_analysis():
                         st.rerun()
                     except Exception as e:
                         st.error(f"Error generating one-liner: {str(e)}")
-            else:
-                    st.warning("Please upload and process a script first.")
-                    if st.button("Go to Upload", type="primary"):
-                        st.session_state.current_step = 'Upload Script'
-                        st.rerun()
 
 def show_one_liner():
     st.header("One-Liner Summary")
-    results = load_from_storage('one_liner_results.json')
-    if results:
-        st.json(results)
-        if st.button("Analyze Characters"):
+    
+    # Load results
+    script_results = load_from_storage('script_ingestion_results.json')
+    one_liner_results = load_from_storage('one_liner_results.json')
+    
+    if not script_results or not one_liner_results:
+        st.warning("Please complete script analysis first.")
+        if st.button("Go to Script Analysis", type="primary"):
+            st.session_state.current_step = 'Script Analysis'
+            st.rerun()
+        return
+    
+    # Initialize default data structures if missing
+    if not isinstance(one_liner_results, dict):
+        one_liner_results = {}
+    
+    summaries_data = one_liner_results.get("summaries", {})
+    if not isinstance(summaries_data, dict):
+        summaries_data = {}
+    
+    summaries = summaries_data.get("summaries", [])
+    if not isinstance(summaries, list):
+        summaries = []
+    
+    metadata = one_liner_results.get("metadata", {})
+    if not isinstance(metadata, dict):
+        metadata = {}
+    
+    workflow = one_liner_results.get("workflow", {})
+    if not isinstance(workflow, dict):
+        workflow = {}
+    
+    # Create tabs for different views
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+        "Scene List", 
+        "Story Elements",
+        "Character Arcs",
+        "Department View",
+        "Workflow Status",
+        "Raw JSON Data"
+    ])
+    
+    with tab1:
+        st.subheader("Scene Summaries")
+        
+        # Get unique values for filters
+        characters = set()
+        emotions = set()
+        departments = set()
+        story_threads = set()
+        
+        for scene in summaries:
+            if not isinstance(scene, dict):
+                continue
+                
+            # Update character set
+            if "characters" in scene:
+                characters.update(scene["characters"].keys())
+            
+            # Update emotions set
+            if "emotional_tone" in scene:
+                emotions.add(scene["emotional_tone"])
+            
+            # Update departments set
+            if "department_focus" in scene:
+                departments.update(scene["department_focus"].keys())
+            
+            # Update story threads
+            if "story_thread" in scene:
+                story_threads.add(scene["story_thread"])
+        
+        # Filters
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            character_filter = st.multiselect("Filter by Character", sorted(list(characters)))
+        with col2:
+            emotion_filter = st.multiselect("Filter by Emotion", sorted(list(emotions)))
+        with col3:
+            dept_filter = st.multiselect("Filter by Department", sorted(list(departments)))
+        with col4:
+            thread_filter = st.multiselect("Filter by Story Thread", sorted(list(story_threads)))
+            
+        # Search
+        search_term = st.text_input("Search scenes", "").lower()
+        
+        # Filter scenes
+        filtered_scenes = []
+        for scene in summaries:
+            if not isinstance(scene, dict):
+                continue
+                
+            # Check if scene should be included based on filters
+            include_scene = True
+            
+            # Character filter
+            if character_filter:
+                scene_chars = scene.get("characters", {}).keys()
+                if not any(char in scene_chars for char in character_filter):
+                    include_scene = False
+            
+            # Emotion filter
+            if emotion_filter and scene.get("emotional_tone") not in emotion_filter:
+                include_scene = False
+            
+            # Department filter
+            if dept_filter:
+                scene_depts = scene.get("department_focus", {}).keys()
+                if not any(dept in scene_depts for dept in dept_filter):
+                    include_scene = False
+            
+            # Story thread filter
+            if thread_filter and scene.get("story_thread") not in thread_filter:
+                include_scene = False
+            
+            # Search filter
+            if search_term and search_term not in scene.get("summary", "").lower():
+                include_scene = False
+            
+            if include_scene:
+                filtered_scenes.append(scene)
+        
+        # Sort scenes by scene number
+        filtered_scenes.sort(key=lambda x: int(x.get("scene_number", "0")))
+        
+        # Scene list
+        for scene in filtered_scenes:
+            with st.expander(f"Scene {scene.get('scene_number', '?')} - {scene.get('summary', 'No summary')}", expanded=False):
+                col1, col2 = st.columns([2, 1])
+                
+                with col1:
+                    st.write("**Summary:**", scene.get("summary", "No summary available"))
+                    st.write("**Story Thread:**", scene.get("story_thread", "N/A"))
+                    st.write("**Emotional Tone:**", scene.get("emotional_tone", "N/A"))
+                    
+                    if "key_elements" in scene:
+                        st.write("**Key Elements:**")
+                        for element in scene["key_elements"]:
+                            st.markdown(f"- {element}")
+                
+                with col2:
+                    # Display approval status and modification options
+                    scene_id = str(scene.get('scene_number', '0'))
+                    approval_data = workflow.get("approval_data", {}) or {}
+                    current_status = approval_data.get(scene_id, {}).get("status", "pending")
+                    new_status = st.selectbox(
+                        "Status",
+                        ["pending", "approved", "needs_review"],
+                        index=["pending", "approved", "needs_review"].index(current_status),
+                        key=f"status_{scene_id}"
+                    )
+                    
+                    if new_status != current_status:
+                        if "workflow" not in one_liner_results:
+                            one_liner_results["workflow"] = {}
+                        if "approval_data" not in one_liner_results["workflow"]:
+                            one_liner_results["workflow"]["approval_data"] = {}
+                        if scene_id not in one_liner_results["workflow"]["approval_data"]:
+                            one_liner_results["workflow"]["approval_data"][scene_id] = {}
+                        
+                        one_liner_results["workflow"]["approval_data"][scene_id]["status"] = new_status
+                        one_liner_results["workflow"]["approval_data"][scene_id]["last_modified"] = datetime.now().isoformat()
+                        save_to_storage(one_liner_results, 'one_liner_results.json')
+                
+                # Department Focus
+                st.write("**Department Focus:**")
+                dept_cols = st.columns(4)
+                for i, (dept, notes) in enumerate(scene.get("department_focus", {}).items()):
+                    with dept_cols[i % 4]:
+                        st.write(f"_{dept.title()}_: {notes}")
+                
+                # Characters
+                st.write("**Characters:**")
+                char_cols = st.columns(2)
+                for i, (char_name, char_data) in enumerate(scene.get("characters", {}).items()):
+                    with char_cols[i % 2]:
+                        with st.container(border=True):
+                            st.write(f"**{char_name}**")
+                            st.write(f"Arc Point: {char_data.get('arc_point', 'N/A')}")
+                            st.write(f"Emotional State: {char_data.get('emotional_state', 'N/A')}")
+                            st.write(f"Motivation: {char_data.get('motivation', 'N/A')}")
+    
+    with tab2:
+        st.subheader("Story Elements")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            # Story Threads
+            st.write("**Story Threads**")
+            story_threads = summaries_data.get("story_threads", {})
+            for thread, scenes in story_threads.items():
+                with st.expander(thread):
+                    st.write("Scenes:", ", ".join(scenes))
+            
+            # Themes and Motifs
+            if "story_elements" in metadata:
+                story_elements = metadata["story_elements"]
+                st.write("**Themes**")
+                for theme in story_elements.get("themes", []):
+                    st.markdown(f"- {theme}")
+                
+                st.write("**Motifs**")
+                for motif in story_elements.get("motifs", []):
+                    st.markdown(f"- {motif}")
+        
+        with col2:
+            # Emotional Journey
+            st.write("**Emotional Journey**")
+            emotional_journey = summaries_data.get("emotional_journey", {})
+            if emotional_journey:
+                import plotly.express as px
+                journey_data = {
+                    "Scene": [f"Scene {scene}" for scene in emotional_journey.keys()],
+                    "Emotion": list(emotional_journey.values())
+                }
+                fig = px.line(journey_data, x="Scene", y="Emotion", title="Emotional Journey")
+                st.plotly_chart(fig, use_container_width=True)
+            
+            # Cross References
+            st.write("**Scene Connections**")
+            cross_refs = metadata.get("cross_references", {})
+            for scene_id, ref_data in cross_refs.items():
+                with st.expander(f"Scene {scene_id}"):
+                    st.write("Related Scenes:", ", ".join(ref_data.get("related_scenes", [])))
+                    st.write("Relationship:", ref_data.get("relationship_type", "N/A"))
+    
+    with tab3:
+        st.subheader("Character Arcs")
+        
+        character_arcs = summaries_data.get("character_arcs", {})
+        for char_name, arc_data in character_arcs.items():
+            with st.expander(char_name):
+                # Create a timeline of character's journey
+                for point in sorted(arc_data, key=lambda x: int(x["scene"])):
+                    with st.container(border=True):
+                        st.write(f"**Scene {point['scene']}**")
+                        st.write(f"Arc Point: {point.get('arc_point', 'N/A')}")
+                        st.write(f"Emotional State: {point.get('emotional_state', 'N/A')}")
+                        st.write(f"Motivation: {point.get('motivation', 'N/A')}")
+    
+    with tab4:
+        st.subheader("Department Views")
+        
+        # Department selector
+        dept = st.selectbox(
+            "Select Department",
+            ["camera", "lighting", "sound", "art", "wardrobe", "makeup"]
+        )
+        
+        # Get department insights
+        dept_insights = metadata.get("department_insights", {}).get(dept, [])
+        
+        if dept_insights:
+            # Display department-specific information
+            st.write(f"**{dept.title()} Department Notes**")
+            
+            # Create a timeline of department notes
+            for note in sorted(dept_insights, key=lambda x: int(x["scene"])):
+                with st.container(border=True):
+                    st.write(f"**Scene {note['scene']}**")
+                    st.write(note["notes"])
+            
+            # Display technical requirements if available
+            tech_reqs = one_liner_results.get("ui_metadata", {}).get("quick_references", {}).get("technical_requirements", {})
+            if tech_reqs:
+                st.write("**Technical Requirements**")
+                for req_type, reqs in tech_reqs.items():
+                    if req_type.startswith(dept):
+                        for req in reqs:
+                            st.markdown(f"- {req}")
+    
+    with tab5:
+        st.subheader("Workflow Status")
+        
+        # Get workflow data
+        workflow_status = workflow.get("status", {})
+        approval_data = workflow.get("approval_data", {}) or {}
+        
+        # Progress tracker
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write("**Current Status:**", workflow_status.get("current_stage", "Not started").title())
+            st.write("**Started At:**", workflow_status.get("started_at", "N/A"))
+            st.write("**Completed At:**", workflow_status.get("completed_at", "N/A"))
+        
+        with col2:
+            # Calculate completion percentage
+            completed_stages = len(workflow_status.get("completed_stages", []))
+            total_stages = 3  # summary_generation, tag_processing, workflow_setup
+            progress = completed_stages / total_stages
+            st.progress(progress, text=f"Completion: {int(progress * 100)}%")
+        
+        # Completed Stages
+        st.write("**Completed Stages:**")
+        for stage in workflow_status.get("completed_stages", []):
+            with st.container(border=True):
+                st.write(f"Stage: {stage.get('stage', 'N/A')}")
+                st.write(f"Completed At: {stage.get('completed_at', 'N/A')}")
+                st.write(f"Success: {'✅' if stage.get('success') else '❌'}")
+        
+        # Warnings and Errors
+        if workflow_status.get("warnings"):
+            st.warning("**Warnings:**")
+            for warning in workflow_status["warnings"]:
+                st.write(f"- {warning}")
+        
+        if workflow_status.get("errors"):
+            st.error("**Errors:**")
+            for error in workflow_status["errors"]:
+                st.write(f"- {error}")
+    
+    with tab6:
+        st.subheader("Raw JSON Data")
+        
+        # Create expandable sections for different parts of the JSON data
+        with st.expander("Scene Summaries", expanded=True):
+            st.json(summaries_data)
+        
+        with st.expander("Metadata"):
+            st.json(metadata)
+        
+        with st.expander("Workflow Data"):
+            st.json(workflow)
+        
+        with st.expander("UI Metadata"):
+            st.json(one_liner_results.get("ui_metadata", {}))
+        
+        with st.expander("Complete Raw JSON"):
+            st.json(one_liner_results)
+        
+        # Add download button for the complete JSON
+        st.download_button(
+            "Download Complete JSON",
+            data=json.dumps(one_liner_results, indent=2),
+            file_name="one_liner_data.json",
+            mime="application/json"
+        )
+    
+    # Navigation buttons
+    st.divider()
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        if st.button("Analyze Characters", type="primary"):
             with st.spinner("Analyzing characters..."):
                 try:
-                    script_data = load_from_storage('script_ingestion_results.json')
-                    character_data = asyncio.run(character_coordinator.process_script(script_data))
+                    character_data = asyncio.run(character_coordinator.process_script(script_results))
                     save_to_storage(character_data, 'character_breakdown_results.json')
                     st.session_state.current_step = 'Character Breakdown'
                     st.success("Character analysis completed!")
                     st.rerun()
                 except Exception as e:
                     st.error(f"Error analyzing characters: {str(e)}")
-    else:
-        st.warning("Please complete script analysis first.")
 
 def show_character_breakdown():
     st.header("Character Breakdown")

@@ -3,6 +3,7 @@ from typing import Dict, Any
 import json
 import logging
 import re
+from datetime import datetime
 from ...base_config import AGENT_INSTRUCTIONS
 
 # Configure logging
@@ -30,6 +31,121 @@ class MetadataAgent:
         # If no code blocks found, return the original response
         return response.strip()
     
+    def _parse_duration(self, duration_str: str) -> int:
+        """Parse duration string to minutes with improved handling."""
+        try:
+            if isinstance(duration_str, (int, float)):
+                return int(duration_str)
+            
+            if not duration_str:
+                return 0
+                
+            duration_str = str(duration_str).lower().strip()
+            
+            # Handle different duration formats
+            if 'min' in duration_str:
+                # Extract numeric part before 'min'
+                numeric_part = ''.join(c for c in duration_str.split('min')[0] if c.isdigit() or c == '.')
+                return int(float(numeric_part)) if numeric_part else 0
+            elif ':' in duration_str:  # Handle HH:MM:SS format
+                parts = duration_str.split(':')
+                if len(parts) == 3:  # HH:MM:SS
+                    hours, minutes, seconds = map(int, parts)
+                    return hours * 60 + minutes + (1 if seconds >= 30 else 0)
+                elif len(parts) == 2:  # MM:SS
+                    minutes, seconds = map(int, parts)
+                    return minutes + (1 if seconds >= 30 else 0)
+            elif duration_str.replace('.', '').isdigit():  # Handle decimal numbers
+                return int(float(duration_str))
+            
+            return 0
+        except (ValueError, TypeError, AttributeError):
+            return 0
+    
+    def _calculate_statistics(self, scene_metadata: list) -> Dict[str, Any]:
+        """Calculate script statistics from scene metadata with improved duration handling."""
+        total_scenes = len(scene_metadata)
+        total_pages = sum(len(scene.get('description', '').split()) / 250 for scene in scene_metadata)
+        
+        # Calculate durations with validation
+        scene_durations = []
+        for scene in scene_metadata:
+            # Get duration from multiple possible sources
+            time_details = scene.get('time_details', {})
+            duration = (
+                self._parse_duration(time_details.get('duration'))
+                or self._parse_duration(scene.get('duration'))
+                or self._parse_duration(scene.get('duration_minutes', 0))
+            )
+            if duration > 0:
+                scene_durations.append(duration)
+        
+        total_duration = sum(scene_durations)
+        avg_scene_duration = round(total_duration / len(scene_durations), 2) if scene_durations else 0
+        
+        unique_locations = len(set(scene.get('location', {}).get('place', '') for scene in scene_metadata))
+        cast_size = len(self._get_unique_cast(scene_metadata))
+        
+        return {
+            "total_scenes": total_scenes,
+            "total_pages": round(total_pages, 1),
+            "estimated_runtime": self._format_duration(total_duration),
+            "total_cast": cast_size,
+            "unique_locations": unique_locations,
+            "scene_statistics": {
+                "average_duration": avg_scene_duration,
+                "shortest_scene": min(scene_durations) if scene_durations else 0,
+                "longest_scene": max(scene_durations) if scene_durations else 0,
+                "total_duration": total_duration
+            }
+        }
+    
+    def _format_duration(self, minutes: int) -> str:
+        """Format minutes to HH:MM:SS."""
+        hours = minutes // 60
+        remaining_minutes = minutes % 60
+        return f"{hours:02d}:{remaining_minutes:02d}:00"
+    
+    def _get_unique_cast(self, scene_metadata: list) -> set:
+        """Extract unique cast members from scene metadata."""
+        cast = set()
+        for scene in scene_metadata:
+            for dialogue in scene.get('dialogues', []):
+                cast.add(dialogue.get('character', ''))
+        return cast - {''}  # Remove empty strings
+    
+    def _generate_color_coding(self, scene_metadata: list) -> Dict[str, Dict[str, str]]:
+        """Generate color coding schemes for scenes."""
+        # Generate unique colors for locations
+        unique_locations = list(set(scene.get('location', {}).get('place', '') for scene in scene_metadata))
+        location_colors = {loc: f"#{hash(loc) % 0xFFFFFF:06x}" for loc in unique_locations if loc}
+        
+        # Standard colors for time of day
+        time_colors = {
+            "DAY": "#FFD700",
+            "NIGHT": "#191970",
+            "DAWN": "#FFA07A",
+            "DUSK": "#483D8B",
+            "MORNING": "#87CEEB",
+            "EVENING": "#4B0082"
+        }
+        
+        # Department colors
+        department_colors = {
+            "PROPS": "#FF4500",
+            "LIGHTING": "#FFD700",
+            "SOUND": "#4169E1",
+            "CAMERA": "#32CD32",
+            "MAKEUP": "#FF69B4",
+            "WARDROBE": "#8A2BE2"
+        }
+        
+        return {
+            "location_colors": location_colors,
+            "time_colors": time_colors,
+            "department_colors": department_colors
+        }
+    
     def format_metadata(self, metadata: Dict[str, Any]) -> str:
         """Format metadata into readable text."""
         if "error" in metadata:
@@ -37,8 +153,18 @@ class MetadataAgent:
             
         output = []
         
-        # Add timestamp
-        output.append(f"Analysis Timestamp: {metadata.get('timestamp', 'Not specified')}\n")
+        # Add timestamp and statistics
+        output.append(f"Analysis Timestamp: {metadata.get('timestamp', 'Not specified')}")
+        
+        stats = metadata.get('statistics', {})
+        output.extend([
+            "\nScript Statistics:",
+            f"Total Scenes: {stats.get('total_scenes', 0)}",
+            f"Page Count: {stats.get('total_pages', 0)}",
+            f"Estimated Runtime: {stats.get('estimated_runtime', '00:00:00')}",
+            f"Cast Size: {stats.get('total_cast', 0)}",
+            f"Unique Locations: {stats.get('unique_locations', 0)}\n"
+        ])
         
         # Format scene metadata
         for scene in metadata.get("scene_metadata", []):
@@ -48,7 +174,7 @@ class MetadataAgent:
                 f"{'-'*80}\n"
             ])
             
-            # Mood
+            # Mood and atmosphere
             output.append(f"Mood: {scene.get('mood', 'Not specified')}\n")
             
             # Lighting
@@ -127,10 +253,14 @@ class MetadataAgent:
         - Weather conditions (if applicable)
         - Required props and set dressing
         - Technical requirements
+        - Estimated scene duration
+        - Main characters and their interactions
+        - Technical cues and special effects
+        - Department-specific notes
         
         Return the data in this exact JSON format:
         {{
-            "timestamp": "YYYY-MM-DD HH:MM:SS",
+            "timestamp": "{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
             "scene_metadata": [
                 {{
                     "scene_number": "1",
@@ -157,6 +287,12 @@ class MetadataAgent:
                         "camera": ["camera requirements"],
                         "sound": ["sound requirements"],
                         "special_equipment": ["any special needs"]
+                    }},
+                    "department_notes": {{
+                        "props": ["department specific notes"],
+                        "lighting": ["department specific notes"],
+                        "sound": ["department specific notes"],
+                        "camera": ["department specific notes"]
                     }}
                 }}
             ],
@@ -192,6 +328,12 @@ class MetadataAgent:
                     raise ValueError("Metadata missing 'scene_metadata' key")
                 if not isinstance(metadata["scene_metadata"], list):
                     raise ValueError("'scene_metadata' is not a list")
+                
+                # Add statistics
+                metadata["statistics"] = self._calculate_statistics(metadata["scene_metadata"])
+                
+                # Add color coding
+                metadata["color_coding"] = self._generate_color_coding(metadata["scene_metadata"])
                 
                 logger.info(f"Successfully extracted metadata for {len(metadata['scene_metadata'])} scenes")
                 
