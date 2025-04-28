@@ -49,3 +49,4 @@ pytest-asyncio
 colorama  # For colored terminal output
 tqdm      # For progress bars
 replicate
+generativeai
