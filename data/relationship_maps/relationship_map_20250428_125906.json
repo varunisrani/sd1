@@ -1,0 +1,42 @@
+{
+  "relationships": {
+    "Ela-Marcus": {
+      "type": null,
+      "dynamics": [],
+      "evolution": [],
+      "interactions": [],
+      "conflicts": []
+    },
+    "Ela-Sheriff Miller": {
+      "type": null,
+      "dynamics": [],
+      "evolution": [],
+      "interactions": [],
+      "conflicts": []
+    },
+    "Marcus-Sheriff Miller": {
+      "type": null,
+      "dynamics": [],
+      "evolution": [],
+      "interactions": [],
+      "conflicts": []
+    }
+  },
+  "statistics": {
+    "Ela-Marcus": {
+      "total_interactions": 0,
+      "total_conflicts": 0,
+      "dynamic_changes": 0
+    },
+    "Ela-Sheriff Miller": {
+      "total_interactions": 0,
+      "total_conflicts": 0,
+      "dynamic_changes": 0
+    },
+    "Marcus-Sheriff Miller": {
+      "total_interactions": 0,
+      "total_conflicts": 0,
+      "dynamic_changes": 0
+    }
+  }
+}

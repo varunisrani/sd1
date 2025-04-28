@@ -1,0 +1,49 @@
+{
+  "scene_matrix": {
+    "1": {
+      "characters": [
+        "ELA"
+      ],
+      "emotional_tone": "mysterious"
+    },
+    "2": {
+      "characters": [
+        "ELA",
+        "MARCUS (V.O.)"
+      ],
+      "emotional_tone": "tense"
+    },
+    "3": {
+      "characters": [
+        "MARCUS"
+      ],
+      "emotional_tone": "intense"
+    },
+    "4": {
+      "characters": [
+        "SHERIFF MILLER"
+      ],
+      "emotional_tone": "focused"
+    },
+    "5": {
+      "characters": [
+        "SHERIFF MILLER",
+        "MARCUS",
+        "ELA"
+      ],
+      "emotional_tone": "hopeful"
+    },
+    "6": {
+      "characters": [
+        "SHERIFF MILLER",
+        "ELA"
+      ],
+      "emotional_tone": "reflective"
+    }
+  },
+  "statistics": {
+    "total_scenes": 6,
+    "average_characters_per_scene": 0.0,
+    "total_interactions": 0
+  }
+}

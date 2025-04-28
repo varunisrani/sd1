@@ -1,0 +1,117 @@
+{
+  "dialogue_analysis": {
+    "total_lines": 3,
+    "total_words": 11,
+    "average_line_length": 3.67,
+    "vocabulary_complexity": 1.3,
+    "patterns": {
+      "common_phrases": [
+        "Medics are en route",
+        "He made it through the night"
+      ],
+      "speech_style": "assured",
+      "emotional_markers": [
+        "muttering",
+        "assured"
+      ]
+    }
+  },
+  "action_sequences": [
+    {
+      "scene": "4",
+      "sequence": "Navigates to crash site.",
+      "interaction_type": "solitary",
+      "emotional_context": "determined"
+    },
+    {
+      "scene": "5",
+      "sequence": "Arrives at crash site, assists in rescue.",
+      "interaction_type": "collaborative",
+      "emotional_context": "trustworthy"
+    },
+    {
+      "scene": "6",
+      "sequence": "Reflects with Ela.",
+      "interaction_type": "reflective",
+      "emotional_context": "content"
+    }
+  ],
+  "emotional_range": {
+    "primary_emotion": "determined",
+    "emotional_spectrum": [
+      "determined",
+      "trustworthy",
+      "content"
+    ],
+    "emotional_journey": [
+      {
+        "scene": "4",
+        "emotion": "determined",
+        "intensity": 0.8,
+        "trigger": "finding the crash site"
+      },
+      {
+        "scene": "5",
+        "emotion": "trustworthy",
+        "intensity": 0.9,
+        "trigger": "rescue involvement"
+      },
+      {
+        "scene": "6",
+        "emotion": "content",
+        "intensity": 0.7,
+        "trigger": "successful rescue"
+      }
+    ]
+  },
+  "scene_presence": [],
+  "objectives": {},
+  "costumes": [],
+  "makeup": {
+    "base": {
+      "item": "Natural with slight aging"
+    },
+    "timeline": [
+      {
+        "scene": "4",
+        "changes": {
+          "item": "Add sweat"
+        },
+        "special_effects": []
+      },
+      {
+        "scene": "5",
+        "changes": {
+          "item": "Dirt and minor scratches"
+        },
+        "special_effects": []
+      }
+    ]
+  },
+  "props": {
+    "base": [
+      "Badge",
+      "gun holster"
+    ],
+    "timeline": [
+      {
+        "scene": "4",
+        "additions": [
+          "map"
+        ],
+        "removals": []
+      },
+      {
+        "scene": "5",
+        "additions": [],
+        "removals": [
+          "map"
+        ]
+      }
+    ]
+  },
+  "casting_requirements": {},
+  "audition_notes": [],
+  "importance_score": 0.0,
+  "screen_time_percentage": 0.0
+}

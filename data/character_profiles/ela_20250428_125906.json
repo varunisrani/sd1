@@ -1,0 +1,120 @@
+{
+  "dialogue_analysis": {
+    "total_lines": 5,
+    "total_words": 20,
+    "average_line_length": 4.0,
+    "vocabulary_complexity": 2.0,
+    "patterns": {
+      "common_phrases": [
+        "Command, do you copy?",
+        "Stay calm."
+      ],
+      "speech_style": "calm and reassuring",
+      "emotional_markers": [
+        "softly",
+        "into mic"
+      ]
+    }
+  },
+  "action_sequences": [
+    {
+      "scene": "2",
+      "sequence": "Listens to radio static, notes down coordinates.",
+      "interaction_type": "solitary, tech-based",
+      "emotional_context": "focused"
+    },
+    {
+      "scene": "5",
+      "sequence": "Joins Sheriff Miller and Marcus at crash site.",
+      "interaction_type": "collaborative",
+      "emotional_context": "reassuring"
+    },
+    {
+      "scene": "6",
+      "sequence": "Reflects on the night\u2019s events with Sheriff Miller.",
+      "interaction_type": "reflective",
+      "emotional_context": "grateful"
+    }
+  ],
+  "emotional_range": {
+    "primary_emotion": "calm",
+    "emotional_spectrum": [
+      "calm",
+      "focused",
+      "reassuring",
+      "grateful"
+    ],
+    "emotional_journey": [
+      {
+        "scene": "2",
+        "emotion": "focused",
+        "intensity": 0.8,
+        "trigger": "radio communication"
+      },
+      {
+        "scene": "5",
+        "emotion": "reassuring",
+        "intensity": 0.7,
+        "trigger": "arrival at crash site"
+      },
+      {
+        "scene": "6",
+        "emotion": "grateful",
+        "intensity": 0.9,
+        "trigger": "Marcus' survival"
+      }
+    ]
+  },
+  "scene_presence": [],
+  "objectives": {},
+  "costumes": [],
+  "makeup": {
+    "base": {
+      "item": "Natural look"
+    },
+    "timeline": [
+      {
+        "scene": "1",
+        "changes": {
+          "item": "Sweat and dirt added"
+        },
+        "special_effects": []
+      },
+      {
+        "scene": "5",
+        "changes": {
+          "item": "More dirt and smudges"
+        },
+        "special_effects": []
+      }
+    ]
+  },
+  "props": {
+    "base": [
+      "radio headset",
+      "notepad"
+    ],
+    "timeline": [
+      {
+        "scene": "2",
+        "additions": [
+          "lantern"
+        ],
+        "removals": []
+      },
+      {
+        "scene": "6",
+        "additions": [
+          "photo of Marcus"
+        ],
+        "removals": [
+          "lantern"
+        ]
+      }
+    ]
+  },
+  "casting_requirements": {},
+  "audition_notes": [],
+  "importance_score": 0.0,
+  "screen_time_percentage": 0.0
+}

@@ -1,0 +1,58 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "title": "Scene 1",
+      "start": "2025-04-28T20:00:00",
+      "end": "2025-04-28T22:00:00",
+      "resourceId": "location_1",
+      "color": "blue",
+      "textColor": "white",
+      "description": "A full moon hangs over an empty highway.",
+      "location": "Deserted Highway",
+      "crew": [
+        "Director",
+        "DP",
+        "Sound Mixer",
+        "Gaffer",
+        "Key Grip"
+      ],
+      "equipment": [
+        "camera",
+        "boom mic",
+        "lights"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Scene 2",
+      "start": "2025-04-28T23:30:00",
+      "end": "2025-04-29T02:30:00",
+      "resourceId": "location_2",
+      "color": "green",
+      "textColor": "white",
+      "description": "Ela listens to radio static, noting down coordinates.",
+      "location": "Radio Tent",
+      "crew": [
+        "Director",
+        "Sound Mixer"
+      ],
+      "equipment": [
+        "camera",
+        "sound recorder"
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "id": "location_1",
+      "title": "Deserted Highway",
+      "type": "location"
+    },
+    {
+      "id": "location_2",
+      "title": "Radio Tent",
+      "type": "location"
+    }
+  ]
+}

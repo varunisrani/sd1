@@ -79,11 +79,16 @@ class StoryboardCoordinator:
                 image_results
             )
             
-            # Add web-accessible paths
-            formatted_storyboard["web_root"] = "/storage/storyboards"
+            # Convert absolute paths to web-accessible paths
             for scene in formatted_storyboard["scenes"]:
                 if "image_path" in scene and scene["image_path"]:
-                    scene["web_path"] = scene["image_path"].replace(output_dir, "/storage/storyboards")
+                    # Get the relative path from the static directory
+                    try:
+                        relative_path = os.path.relpath(scene["image_path"], start="static")
+                        scene["image_path"] = relative_path
+                    except ValueError:
+                        # If paths are on different drives, keep the original path
+                        pass
             
             # Save storyboard data
             saved_path = self._save_to_disk(formatted_storyboard)

@@ -1,0 +1,179 @@
+{
+  "events": [
+    {
+      "id": "E1",
+      "title": "Scene 1",
+      "start": "2025-04-28T18:00:00",
+      "end": "2025-04-28T20:00:00",
+      "resourceId": "L1",
+      "color": "#FFA07A",
+      "textColor": "#000000",
+      "description": "Shooting Scene 1 at Deserted Highway",
+      "location": "Deserted Highway, NV",
+      "crew": [
+        "Director",
+        "DP",
+        "Sound Mixer",
+        "Gaffer",
+        "Key Grip"
+      ],
+      "equipment": [
+        "camera1",
+        "camera2",
+        "sound_mixer",
+        "boom_mic",
+        "floodlights",
+        "rigging_gear"
+      ]
+    },
+    {
+      "id": "E2",
+      "title": "Scene 4",
+      "start": "2025-04-28T21:30:00",
+      "end": "2025-04-28T23:30:00",
+      "resourceId": "L4",
+      "color": "#20B2AA",
+      "textColor": "#FFFFFF",
+      "description": "Shooting Scene 4 at Desolation Road",
+      "location": "Desolation Road, NV",
+      "crew": [
+        "Director",
+        "DP",
+        "Sound Mixer",
+        "Gaffer",
+        "Key Grip"
+      ],
+      "equipment": [
+        "camera1",
+        "camera2",
+        "sound_mixer",
+        "boom_mic",
+        "rigging_gear"
+      ]
+    },
+    {
+      "id": "E3",
+      "title": "Scene 3",
+      "start": "2025-04-29T18:00:00",
+      "end": "2025-04-29T20:00:00",
+      "resourceId": "L3",
+      "color": "#FF6347",
+      "textColor": "#000000",
+      "description": "Shooting Scene 3 at Crash Site",
+      "location": "Crash Zone, Desert Highway, NV",
+      "crew": [
+        "Director",
+        "DP",
+        "Sound Mixer",
+        "Gaffer",
+        "Key Grip"
+      ],
+      "equipment": [
+        "camera1",
+        "camera2",
+        "sound_mixer",
+        "boom_mic",
+        "rigging_gear"
+      ]
+    },
+    {
+      "id": "E4",
+      "title": "Scene 5",
+      "start": "2025-04-29T21:30:00",
+      "end": "2025-04-29T23:30:00",
+      "resourceId": "L3",
+      "color": "#32CD32",
+      "textColor": "#000000",
+      "description": "Shooting Scene 5 at Crash Site",
+      "location": "Crash Zone, Desert Highway, NV",
+      "crew": [
+        "Director",
+        "DP",
+        "Sound Mixer",
+        "Gaffer",
+        "Key Grip"
+      ],
+      "equipment": [
+        "camera1",
+        "camera2",
+        "sound_mixer",
+        "boom_mic",
+        "spotlight",
+        "rigging_gear"
+      ]
+    },
+    {
+      "id": "E5",
+      "title": "Scene 2",
+      "start": "2025-04-30T05:00:00",
+      "end": "2025-04-30T08:00:00",
+      "resourceId": "L2",
+      "color": "#4682B4",
+      "textColor": "#FFFFFF",
+      "description": "Shooting Scene 2 at Radio Tent",
+      "location": "Tent Site, Desert Highway, NV",
+      "crew": [
+        "Director",
+        "DP",
+        "Sound Mixer",
+        "Gaffer",
+        "Key Grip"
+      ],
+      "equipment": [
+        "camera1",
+        "camera2",
+        "sound_mixer",
+        "boom_mic",
+        "floodlights",
+        "rigging_gear"
+      ]
+    },
+    {
+      "id": "E6",
+      "title": "Scene 6",
+      "start": "2025-04-30T08:30:00",
+      "end": "2025-04-30T11:30:00",
+      "resourceId": "L2",
+      "color": "#6A5ACD",
+      "textColor": "#FFFFFF",
+      "description": "Shooting Scene 6 at Radio Tent",
+      "location": "Tent Site, Desert Highway, NV",
+      "crew": [
+        "Director",
+        "DP",
+        "Sound Mixer",
+        "Gaffer",
+        "Key Grip"
+      ],
+      "equipment": [
+        "camera1",
+        "camera2",
+        "sound_mixer",
+        "boom_mic",
+        "rigging_gear"
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "id": "L1",
+      "title": "Deserted Highway",
+      "type": "location"
+    },
+    {
+      "id": "L2",
+      "title": "Radio Tent",
+      "type": "location"
+    },
+    {
+      "id": "L3",
+      "title": "Crash Site",
+      "type": "location"
+    },
+    {
+      "id": "L4",
+      "title": "Desolation Road",
+      "type": "location"
+    }
+  ]
+}

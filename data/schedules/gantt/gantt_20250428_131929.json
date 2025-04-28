@@ -1,0 +1,50 @@
+{
+  "tasks": [
+    {
+      "id": "scene_1",
+      "text": "Scene 1",
+      "start_date": "2025-04-28 20:00",
+      "end_date": "2025-04-28 22:00",
+      "progress": 0,
+      "parent": "day_1",
+      "dependencies": [],
+      "resource_ids": [
+        "location_1"
+      ],
+      "type": "task",
+      "color": "blue"
+    },
+    {
+      "id": "scene_2",
+      "text": "Scene 2",
+      "start_date": "2025-04-28 23:30",
+      "end_date": "2025-04-29 02:30",
+      "progress": 0,
+      "parent": "day_1",
+      "dependencies": [
+        "scene_1"
+      ],
+      "resource_ids": [
+        "location_2"
+      ],
+      "type": "task",
+      "color": "green"
+    }
+  ],
+  "links": [
+    {
+      "id": "link_1",
+      "source": "scene_1",
+      "target": "scene_2",
+      "type": "0"
+    }
+  ],
+  "resources": [
+    {
+      "id": "location_1",
+      "name": "Deserted Highway",
+      "type": "location",
+      "calendar_id": "cal_1"
+    }
+  ]
+}

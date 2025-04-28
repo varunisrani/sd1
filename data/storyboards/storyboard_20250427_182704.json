@@ -1,0 +1,504 @@
+{
+  "title": "Untitled Script",
+  "timestamp": "2025-04-27T18:27:04.026774",
+  "scenes": [
+    {
+      "scene_id": "1",
+      "scene_heading": "Scene 1",
+      "description": "A full moon hangs over an empty highway, with a solitary radio tent glowing under floodlights.",
+      "prompt": "In a medium shot, capture the desolate, moonlit highway stretching out until it meets the horizon, the surface glistening under the radiant full moon hanging ominously in the inky sky. Nestled on the side of this road is a solitary, canvas radio tent glowing under the harsh, cold floodlights. The white beams of light cut through the darkness, illuminating the small area around the tent and creating stark contrasts between the illuminated and the shrouded. The camera angle should be slightly low, focusing on the waist-up figure of a lone broadcaster emerging from the tent, his face and form partially lit by the bluish moonlight and the harsh floodlights, casting dramatic shadows. His body language should convey a sense of solitude and perhaps a hint of unease, shoulders slightly slumped, a wary look on his face. The overall mood is eerie and tense, the atmosphere thick with the silence of the empty highway and the loneliness it conveys. Use highly contrasted colors to emphasize the isolation of the scene, the harshness of the floodlights against the spectral glow of the moon.",
+      "revised_prompt": null,
+      "status": "error",
+      "image_path": null,
+      "web_path": null,
+      "image_url": null,
+      "technical_params": {
+        "shot_type": "MS",
+        "style": "realistic",
+        "mood": "neutral"
+      },
+      "annotations": [],
+      "sequence_number": 1,
+      "error": "Invalid type for url.  Expected str or httpx.URL, got <class 'replicate.helpers.FileOutput'>: <replicate.helpers.FileOutput object at 0x11fa8c750>"
+    },
+    {
+      "scene_id": "2",
+      "scene_heading": "Scene 2",
+      "description": "Ela listens to radio static, noting down coordinates.",
+      "prompt": "In a medium close-up shot, Ela, a woman in her late thirties with determined eyes and tousled hair, sits at a cluttered wooden desk in a dimly lit room, her face partially illuminated by the glow of an old radio set. The camera angle is slightly low, adding a sense of intensity and importance to her actions. A faintly haunting green hue permeates the scene, enhancing the mood of tension and anticipation. The radio, with its crackling static, dominates the foreground, with Ela's focused expression and the furrow of her brows indicating her concentration on the incomprehensible sounds. In her hand, a well-worn pencil dances across a tattered notepad, jotting down coordinates as she deciphers them from the cryptic radio signals. The room around her is filled with old maps and scattered papers, creating a sense of chaotic order. The only other source of light is a flickering desk lamp, casting long, dramatic shadows that dance across her face, the notepad, and the worn-out maps, creating an atmosphere of mystery and urgency.",
+      "revised_prompt": null,
+      "status": "error",
+      "image_path": null,
+      "web_path": null,
+      "image_url": null,
+      "technical_params": {
+        "shot_type": "MS",
+        "style": "realistic",
+        "mood": "neutral"
+      },
+      "annotations": [],
+      "sequence_number": 2,
+      "error": "Invalid type for url.  Expected str or httpx.URL, got <class 'replicate.helpers.FileOutput'>: <replicate.helpers.FileOutput object at 0x11f6b6a10>"
+    },
+    {
+      "scene_id": "3",
+      "scene_heading": "Scene 3",
+      "description": "A damaged spacecraft lies in the sand. Marcus is struggling inside.",
+      "prompt": "In a desolate desert, under a stormy twilight sky, a battered spacecraft lies half-buried in the sand, its metallic body scorched and dented. From a medium-distance, the camera captures a waist-up shot of Marcus, our protagonist, framed within the cracked open hatch of the spacecraft. He's wearing a tattered astronaut suit, its once vibrant colours now dulled by dust and damage. The sharp angle of the camera emphasises the struggle in his movements as he wrestles with a control panel, desperation etched on his sweat-drenched face. The dim, blueish light from the failing control panel casts long, dramatic shadows across Marcus and the spacecraft's interior, while sporadic sparks illuminate the scene with sudden, intense bursts of light. The atmosphere is tense and urgent, heightened by the striking contrast between the desolation outside and the chaotic struggle inside the spacecraft.",
+      "revised_prompt": null,
+      "status": "error",
+      "image_path": null,
+      "web_path": null,
+      "image_url": null,
+      "technical_params": {
+        "shot_type": "MS",
+        "style": "realistic",
+        "mood": "neutral"
+      },
+      "annotations": [],
+      "sequence_number": 3,
+      "error": "Invalid type for url.  Expected str or httpx.URL, got <class 'replicate.helpers.FileOutput'>: <replicate.helpers.FileOutput object at 0x11f56cd50>"
+    },
+    {
+      "scene_id": "4",
+      "scene_heading": "Scene 4",
+      "description": "Sheriff Miller navigates to the crash site.",
+      "prompt": "In a medium shot, Sheriff Miller, a sturdy, middle-aged man with a weathered face and deep-set eyes, navigates through a wild, overgrown field illuminated by the eerie glow of the twilight hour. His brow is furrowed in determination, mouth set in a grim line, and his eyes reflect the intricacy of the situation. He wears a faded brown sheriff's uniform with a star-shaped badge, slightly dulled by the years of service. His right hand clutches a flashlight, casting long, grotesque shadows on the ground, while his left hand pushes through the thick foliage. Behind him, the twisted wreckage of a crash site is faintly visible; mangled metal and broken glass glint ominously in the dying light. The camera angle is a front-facing one, capturing the sheriff's facial expressions and his apprehensive body language. The framing emphasizes the vastness of the field and the isolation of the character. The overall atmosphere is suspenseful and somber, accentuated by the contrast of the warm sunset colors against the cold, metallic crash site.",
+      "revised_prompt": null,
+      "status": "error",
+      "image_path": null,
+      "web_path": null,
+      "image_url": null,
+      "technical_params": {
+        "shot_type": "MS",
+        "style": "realistic",
+        "mood": "neutral"
+      },
+      "annotations": [],
+      "sequence_number": 4,
+      "error": "Invalid type for url.  Expected str or httpx.URL, got <class 'replicate.helpers.FileOutput'>: <replicate.helpers.FileOutput object at 0x11d876d10>"
+    },
+    {
+      "scene_id": "5",
+      "scene_heading": "Scene 5",
+      "description": "Sheriff Miller arrives and helps Marcus. Ela joins them.",
+      "prompt": "In the heart of a dusty, sun-beaten western town, Sheriff Miller, a burly man with a firm jaw and steely eyes under a wide-brimmed hat, is arriving on horseback. He dismounts and helps Marcus, a younger, leaner man with a nervous expression, to his feet. Ela, a fearless woman with an unreadable expression, steps in to join them from the right-hand side of the frame. This is a medium shot, taken from a lower angle to emphasize the characters' determination and unity, with the focus from the waist up to capture their expressions and body language. The camera angle provides a glimpse of the empty, silent town behind them, embodying the isolation and danger they face. The harsh afternoon sun casts sharp shadows, creating a stark contrast and emphasizing the rough textures of their weathered clothes and the gritty dirt road beneath them. The mood is tense yet hopeful, underscored by the golden sunlight which imbues the scene with a rugged warmth.",
+      "revised_prompt": null,
+      "status": "error",
+      "image_path": null,
+      "web_path": null,
+      "image_url": null,
+      "technical_params": {
+        "shot_type": "MS",
+        "style": "realistic",
+        "mood": "neutral"
+      },
+      "annotations": [],
+      "sequence_number": 5,
+      "error": "Invalid type for url.  Expected str or httpx.URL, got <class 'replicate.helpers.FileOutput'>: <replicate.helpers.FileOutput object at 0x11fa91d10>"
+    },
+    {
+      "scene_id": "6",
+      "scene_heading": "Scene 6",
+      "description": "Ela reflects on the night\u2019s events with Sheriff Miller.",
+      "prompt": "In a dimly lit, rustic Sheriff's office, Ela, a woman in her mid-thirties with sharp features and dark, thoughtful eyes, leans against a heavy wooden desk cluttered with loose papers, a flickering oil lamp, and an old-fashioned typewriter. To her right, Sheriff Miller, a gruff middle-aged man with a weathered face, sits on the edge of the desk, his Stetson hat held in his hands. Their expressions are serious, their body postures hinting at a shared fatigue and solemnity. The medium shot captures them from the waist up, the camera angle slightly low, emphasizing their weary stature in the semi-darkness. The room's only light source is the oil lamp casting long, dramatic shadows and a warm, sepia-toned glow that contrasts with the cool moonlight filtering in from a half-open window behind them. Old wanted posters and a mounted deer head are silhouetted on the wooden walls in the background. The atmosphere is heavy with the weight of the night's events, resonating in the silence and the characters' quiet contemplation.",
+      "revised_prompt": null,
+      "status": "error",
+      "image_path": null,
+      "web_path": null,
+      "image_url": null,
+      "technical_params": {
+        "shot_type": "MS",
+        "style": "realistic",
+        "mood": "neutral"
+      },
+      "annotations": [],
+      "sequence_number": 6,
+      "error": "Invalid type for url.  Expected str or httpx.URL, got <class 'replicate.helpers.FileOutput'>: <replicate.helpers.FileOutput object at 0x11fb47610>"
+    }
+  ],
+  "status": "success",
+  "sequence_order": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "annotations": {},
+  "metadata": {
+    "scene_count": 6,
+    "source_data": {
+      "timestamp": "2025-04-26 21:16:48",
+      "scene_metadata": [
+        {
+          "scene_number": "1",
+          "mood": "Eerie and solitary",
+          "lighting": {
+            "type": "artificial",
+            "requirements": [
+              "floodlights",
+              "natural moonlight"
+            ],
+            "special_effects": []
+          },
+          "time_details": {
+            "time_of_day": "Night",
+            "duration": "2 minutes"
+          },
+          "weather": {
+            "conditions": [],
+            "effects_needed": []
+          },
+          "props": {
+            "set_dressing": [
+              "radio tent"
+            ],
+            "hand_props": [],
+            "special_items": [
+              "floodlights"
+            ]
+          },
+          "technical": {
+            "camera": [
+              "ANGLE ON tent's entrance",
+              "establishing shots"
+            ],
+            "sound": [
+              "radio static"
+            ],
+            "special_equipment": []
+          },
+          "department_notes": {
+            "props": [
+              "radio tent",
+              "floodlights"
+            ],
+            "lighting": [
+              "moonlight",
+              "floodlights"
+            ],
+            "sound": [
+              "radio static"
+            ],
+            "camera": [
+              "ANGLE ON",
+              "establishing shots"
+            ]
+          }
+        },
+        {
+          "scene_number": "2",
+          "mood": "Tense and suspenseful",
+          "lighting": {
+            "type": "dim",
+            "requirements": [
+              "lantern light"
+            ],
+            "special_effects": []
+          },
+          "time_details": {
+            "time_of_day": "Continuous",
+            "duration": "3 minutes"
+          },
+          "weather": {
+            "conditions": [],
+            "effects_needed": []
+          },
+          "props": {
+            "set_dressing": [
+              "radio equipment"
+            ],
+            "hand_props": [
+              "lantern"
+            ],
+            "special_items": []
+          },
+          "technical": {
+            "camera": [
+              "close-ups of Ela"
+            ],
+            "sound": [
+              "radio static"
+            ],
+            "special_equipment": []
+          },
+          "department_notes": {
+            "props": [
+              "radio equipment",
+              "lantern"
+            ],
+            "lighting": [
+              "dim lighting to create shadows"
+            ],
+            "sound": [
+              "radio static"
+            ],
+            "camera": [
+              "close-ups of Ela"
+            ]
+          }
+        },
+        {
+          "scene_number": "3",
+          "mood": "Intense and dramatic",
+          "lighting": {
+            "type": "natural",
+            "requirements": [
+              "sparks for dramatic effect"
+            ],
+            "special_effects": []
+          },
+          "time_details": {
+            "time_of_day": "Flashback",
+            "duration": "3 minutes"
+          },
+          "weather": {
+            "conditions": [],
+            "effects_needed": []
+          },
+          "props": {
+            "set_dressing": [],
+            "hand_props": [],
+            "special_items": [
+              "spacecraft"
+            ]
+          },
+          "technical": {
+            "camera": [
+              "EXTREME CLOSE-UP"
+            ],
+            "sound": [
+              "SFX: Sparks"
+            ],
+            "special_equipment": []
+          },
+          "department_notes": {
+            "props": [
+              "spacecraft"
+            ],
+            "lighting": [
+              "sparks for dramatic effect"
+            ],
+            "sound": [
+              "SFX: Sparks"
+            ],
+            "camera": [
+              "EXTREME CLOSE-UP"
+            ]
+          }
+        },
+        {
+          "scene_number": "4",
+          "mood": "Focused and determined",
+          "lighting": {
+            "type": "natural",
+            "requirements": [
+              "headlights"
+            ],
+            "special_effects": []
+          },
+          "time_details": {
+            "time_of_day": "Late Night",
+            "duration": "3 minutes"
+          },
+          "weather": {
+            "conditions": [],
+            "effects_needed": []
+          },
+          "props": {
+            "set_dressing": [
+              "map"
+            ],
+            "hand_props": [
+              "SUV"
+            ],
+            "special_items": []
+          },
+          "technical": {
+            "camera": [
+              "shots from inside the SUV"
+            ],
+            "sound": [
+              "engine sounds"
+            ],
+            "special_equipment": []
+          },
+          "department_notes": {
+            "props": [
+              "SUV",
+              "map"
+            ],
+            "lighting": [
+              "headlights"
+            ],
+            "sound": [
+              "engine sounds"
+            ],
+            "camera": [
+              "shots from inside the SUV"
+            ]
+          }
+        },
+        {
+          "scene_number": "5",
+          "mood": "Hopeful and collaborative",
+          "lighting": {
+            "type": "artificial",
+            "requirements": [
+              "spotlight"
+            ],
+            "special_effects": []
+          },
+          "time_details": {
+            "time_of_day": "Moments Later",
+            "duration": "4 minutes"
+          },
+          "weather": {
+            "conditions": [],
+            "effects_needed": []
+          },
+          "props": {
+            "set_dressing": [],
+            "hand_props": [
+              "first-aid kit"
+            ],
+            "special_items": []
+          },
+          "technical": {
+            "camera": [
+              "close-ups of characters"
+            ],
+            "sound": [
+              "breathing"
+            ],
+            "special_equipment": []
+          },
+          "department_notes": {
+            "props": [
+              "first-aid kit"
+            ],
+            "lighting": [
+              "spotlight"
+            ],
+            "sound": [
+              "breathing"
+            ],
+            "camera": [
+              "close-ups of characters"
+            ]
+          }
+        },
+        {
+          "scene_number": "6",
+          "mood": "Reflective and serene",
+          "lighting": {
+            "type": "natural",
+            "requirements": [
+              "soft sunrise lighting"
+            ],
+            "special_effects": []
+          },
+          "time_details": {
+            "time_of_day": "Dawn",
+            "duration": "3 minutes"
+          },
+          "weather": {
+            "conditions": [],
+            "effects_needed": []
+          },
+          "props": {
+            "set_dressing": [],
+            "hand_props": [
+              "photo of Marcus"
+            ],
+            "special_items": []
+          },
+          "technical": {
+            "camera": [
+              "medium shots of characters"
+            ],
+            "sound": [
+              "soft radio bleep"
+            ],
+            "special_equipment": []
+          },
+          "department_notes": {
+            "props": [
+              "photo of Marcus"
+            ],
+            "lighting": [
+              "soft sunrise lighting"
+            ],
+            "sound": [
+              "soft radio bleep"
+            ],
+            "camera": [
+              "medium shots of characters"
+            ]
+          }
+        }
+      ],
+      "global_requirements": {
+        "equipment": [
+          "floodlights",
+          "lantern"
+        ],
+        "props": [
+          "radio tent",
+          "radio equipment",
+          "spacecraft",
+          "SUV",
+          "first-aid kit"
+        ],
+        "special_effects": [
+          "sparks for dramatic effect",
+          "spotlight effect"
+        ]
+      },
+      "statistics": {
+        "total_scenes": 6,
+        "total_pages": 0.0,
+        "estimated_runtime": "00:18:00",
+        "total_cast": 0,
+        "unique_locations": 1,
+        "scene_statistics": {
+          "average_duration": 3.0,
+          "shortest_scene": 2,
+          "longest_scene": 4,
+          "total_duration": 18
+        }
+      },
+      "color_coding": {
+        "location_colors": {},
+        "time_colors": {
+          "DAY": "#FFD700",
+          "NIGHT": "#191970",
+          "DAWN": "#FFA07A",
+          "DUSK": "#483D8B",
+          "MORNING": "#87CEEB",
+          "EVENING": "#4B0082"
+        },
+        "department_colors": {
+          "PROPS": "#FF4500",
+          "LIGHTING": "#FFD700",
+          "SOUND": "#4169E1",
+          "CAMERA": "#32CD32",
+          "MAKEUP": "#FF69B4",
+          "WARDROBE": "#8A2BE2"
+        }
+      },
+      "formatted_text": "Analysis Timestamp: 2025-04-26 21:16:48\n\nScript Statistics:\nTotal Scenes: 6\nPage Count: 0.0\nEstimated Runtime: 00:18:00\nCast Size: 0\nUnique Locations: 1\n\n\n================================================================================\nSCENE 1 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Eerie and solitary\n\nLighting:\n  Type: artificial\n  Requirements: floodlights, natural moonlight\n  Special Effects: \n\nTime Details:\n  Time of Day: Night\n  Duration: 2 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: radio tent\n  Hand Props: \n  Special Items: floodlights\n\nTechnical Requirements:\n  Camera: ANGLE ON tent's entrance, establishing shots\n  Sound: radio static\n  Special Equipment: \n\n\n================================================================================\nSCENE 2 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Tense and suspenseful\n\nLighting:\n  Type: dim\n  Requirements: lantern light\n  Special Effects: \n\nTime Details:\n  Time of Day: Continuous\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: radio equipment\n  Hand Props: lantern\n  Special Items: \n\nTechnical Requirements:\n  Camera: close-ups of Ela\n  Sound: radio static\n  Special Equipment: \n\n\n================================================================================\nSCENE 3 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Intense and dramatic\n\nLighting:\n  Type: natural\n  Requirements: sparks for dramatic effect\n  Special Effects: \n\nTime Details:\n  Time of Day: Flashback\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: \n  Special Items: spacecraft\n\nTechnical Requirements:\n  Camera: EXTREME CLOSE-UP\n  Sound: SFX: Sparks\n  Special Equipment: \n\n\n================================================================================\nSCENE 4 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Focused and determined\n\nLighting:\n  Type: natural\n  Requirements: headlights\n  Special Effects: \n\nTime Details:\n  Time of Day: Late Night\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: map\n  Hand Props: SUV\n  Special Items: \n\nTechnical Requirements:\n  Camera: shots from inside the SUV\n  Sound: engine sounds\n  Special Equipment: \n\n\n================================================================================\nSCENE 5 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Hopeful and collaborative\n\nLighting:\n  Type: artificial\n  Requirements: spotlight\n  Special Effects: \n\nTime Details:\n  Time of Day: Moments Later\n  Duration: 4 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: first-aid kit\n  Special Items: \n\nTechnical Requirements:\n  Camera: close-ups of characters\n  Sound: breathing\n  Special Equipment: \n\n\n================================================================================\nSCENE 6 - TECHNICAL BREAKDOWN\n--------------------------------------------------------------------------------\n\nMood: Reflective and serene\n\nLighting:\n  Type: natural\n  Requirements: soft sunrise lighting\n  Special Effects: \n\nTime Details:\n  Time of Day: Dawn\n  Duration: 3 minutes\n\nWeather:\n  Conditions: \n  Effects Needed: \n\nProps:\n  Set Dressing: \n  Hand Props: photo of Marcus\n  Special Items: \n\nTechnical Requirements:\n  Camera: medium shots of characters\n  Sound: soft radio bleep\n  Special Equipment: \n\n\n================================================================================\nGLOBAL REQUIREMENTS\n--------------------------------------------------------------------------------\n\nEquipment: floodlights, lantern\nProps: radio tent, radio equipment, spacecraft, SUV, first-aid kit\nSpecial Effects: sparks for dramatic effect, spotlight effect"
+    },
+    "generation_config": {
+      "image_model": "dall-e-3",
+      "quality": "standard",
+      "style": "natural",
+      "size": "1024x1024"
+    },
+    "timestamp": "2025-04-27T18:27:04.026870",
+    "success_rate": "0.0%"
+  },
+  "web_root": "/storage/storyboards"
+}

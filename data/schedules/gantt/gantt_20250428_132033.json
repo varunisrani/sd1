@@ -1,0 +1,254 @@
+{
+  "tasks": [
+    {
+      "id": "T1",
+      "text": "Setup Scene 1",
+      "start_date": "2025-04-28 16:00",
+      "end_date": "2025-04-28 18:00",
+      "progress": 0,
+      "parent": "S1",
+      "dependencies": [],
+      "resource_ids": [
+        "L1"
+      ],
+      "type": "setup",
+      "color": "#F0E68C"
+    },
+    {
+      "id": "S1",
+      "text": "Scene 1 Shooting",
+      "start_date": "2025-04-28 18:00",
+      "end_date": "2025-04-28 20:00",
+      "progress": 0,
+      "parent": "",
+      "dependencies": [
+        "T1"
+      ],
+      "resource_ids": [
+        "L1"
+      ],
+      "type": "scene",
+      "color": "#FFA07A"
+    },
+    {
+      "id": "T2",
+      "text": "Setup Scene 4",
+      "start_date": "2025-04-28 20:00",
+      "end_date": "2025-04-28 21:30",
+      "progress": 0,
+      "parent": "S4",
+      "dependencies": [],
+      "resource_ids": [
+        "L4"
+      ],
+      "type": "setup",
+      "color": "#F0E68C"
+    },
+    {
+      "id": "S4",
+      "text": "Scene 4 Shooting",
+      "start_date": "2025-04-28 21:30",
+      "end_date": "2025-04-28 23:30",
+      "progress": 0,
+      "parent": "",
+      "dependencies": [
+        "T2"
+      ],
+      "resource_ids": [
+        "L4"
+      ],
+      "type": "scene",
+      "color": "#20B2AA"
+    },
+    {
+      "id": "T3",
+      "text": "Setup Scene 3",
+      "start_date": "2025-04-29 16:00",
+      "end_date": "2025-04-29 18:00",
+      "progress": 0,
+      "parent": "S3",
+      "dependencies": [],
+      "resource_ids": [
+        "L3"
+      ],
+      "type": "setup",
+      "color": "#F0E68C"
+    },
+    {
+      "id": "S3",
+      "text": "Scene 3 Shooting",
+      "start_date": "2025-04-29 18:00",
+      "end_date": "2025-04-29 20:00",
+      "progress": 0,
+      "parent": "",
+      "dependencies": [
+        "T3"
+      ],
+      "resource_ids": [
+        "L3"
+      ],
+      "type": "scene",
+      "color": "#FF6347"
+    },
+    {
+      "id": "T4",
+      "text": "Setup Scene 5",
+      "start_date": "2025-04-29 20:00",
+      "end_date": "2025-04-29 21:30",
+      "progress": 0,
+      "parent": "S5",
+      "dependencies": [],
+      "resource_ids": [
+        "L3"
+      ],
+      "type": "setup",
+      "color": "#F0E68C"
+    },
+    {
+      "id": "S5",
+      "text": "Scene 5 Shooting",
+      "start_date": "2025-04-29 21:30",
+      "end_date": "2025-04-29 23:30",
+      "progress": 0,
+      "parent": "",
+      "dependencies": [
+        "T4"
+      ],
+      "resource_ids": [
+        "L3"
+      ],
+      "type": "scene",
+      "color": "#32CD32"
+    },
+    {
+      "id": "T5",
+      "text": "Setup Scene 2",
+      "start_date": "2025-04-30 04:00",
+      "end_date": "2025-04-30 05:00",
+      "progress": 0,
+      "parent": "S2",
+      "dependencies": [],
+      "resource_ids": [
+        "L2"
+      ],
+      "type": "setup",
+      "color": "#F0E68C"
+    },
+    {
+      "id": "S2",
+      "text": "Scene 2 Shooting",
+      "start_date": "2025-04-30 05:00",
+      "end_date": "2025-04-30 08:00",
+      "progress": 0,
+      "parent": "",
+      "dependencies": [
+        "T5"
+      ],
+      "resource_ids": [
+        "L2"
+      ],
+      "type": "scene",
+      "color": "#4682B4"
+    },
+    {
+      "id": "T6",
+      "text": "Setup Scene 6",
+      "start_date": "2025-04-30 08:00",
+      "end_date": "2025-04-30 08:30",
+      "progress": 0,
+      "parent": "S6",
+      "dependencies": [],
+      "resource_ids": [
+        "L2"
+      ],
+      "type": "setup",
+      "color": "#F0E68C"
+    },
+    {
+      "id": "S6",
+      "text": "Scene 6 Shooting",
+      "start_date": "2025-04-30 08:30",
+      "end_date": "2025-04-30 11:30",
+      "progress": 0,
+      "parent": "",
+      "dependencies": [
+        "T6"
+      ],
+      "resource_ids": [
+        "L2"
+      ],
+      "type": "scene",
+      "color": "#6A5ACD"
+    }
+  ],
+  "links": [
+    {
+      "id": "L1",
+      "source": "T1",
+      "target": "S1",
+      "type": "FS"
+    },
+    {
+      "id": "L2",
+      "source": "T2",
+      "target": "S4",
+      "type": "FS"
+    },
+    {
+      "id": "L3",
+      "source": "T3",
+      "target": "S3",
+      "type": "FS"
+    },
+    {
+      "id": "L4",
+      "source": "T4",
+      "target": "S5",
+      "type": "FS"
+    },
+    {
+      "id": "L5",
+      "source": "T5",
+      "target": "S2",
+      "type": "FS"
+    },
+    {
+      "id": "L6",
+      "source": "T6",
+      "target": "S6",
+      "type": "FS"
+    }
+  ],
+  "resources": [
+    {
+      "id": "R1",
+      "name": "Director",
+      "type": "crew",
+      "calendar_id": "C1"
+    },
+    {
+      "id": "R2",
+      "name": "DP",
+      "type": "crew",
+      "calendar_id": "C1"
+    },
+    {
+      "id": "R3",
+      "name": "Sound Mixer",
+      "type": "crew",
+      "calendar_id": "C1"
+    },
+    {
+      "id": "R4",
+      "name": "Gaffer",
+      "type": "crew",
+      "calendar_id": "C1"
+    },
+    {
+      "id": "R5",
+      "name": "Key Grip",
+      "type": "crew",
+      "calendar_id": "C1"
+    }
+  ]
+}

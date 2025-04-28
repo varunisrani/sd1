@@ -5,11 +5,11 @@ from datetime import datetime, timedelta, date
 import json
 import asyncio
 from src.script_ingestion.coordinator import ScriptIngestionCoordinator
-from src.one_liner.coordinator import OneLinerCoordinator
 from src.character_breakdown.coordinator import CharacterBreakdownCoordinator
 from src.scheduling.coordinator import SchedulingCoordinator
 from src.budgeting.coordinator import BudgetingCoordinator
 from src.storyboard.coordinator import StoryboardCoordinator
+from src.one_liner.agents.one_linear_agent import OneLinerAgent
 import logging
 import plotly.express as px
 import plotly.graph_objects as go
@@ -19,6 +19,8 @@ import pandas as pd
 import qrcode
 from io import BytesIO
 import base64
+import httpx
+import replicate
 
 # Configure logging
 logging.basicConfig(
@@ -29,11 +31,13 @@ logger = logging.getLogger(__name__)
 
 # Initialize coordinators
 script_coordinator = ScriptIngestionCoordinator()
-one_liner_coordinator = OneLinerCoordinator()
 character_coordinator = CharacterBreakdownCoordinator()
 scheduling_coordinator = SchedulingCoordinator()
 budgeting_coordinator = BudgetingCoordinator()
 storyboard_coordinator = StoryboardCoordinator()
+
+# Initialize agents
+one_liner_agent = OneLinerAgent()
 
 # Knowledge base storage
 STORAGE_DIR = "static/storage"
@@ -231,9 +235,9 @@ def show_script_analysis():
         return
     
     # Create tabs for different views
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "Timeline", "Scene Analysis", "Technical Requirements", 
-        "Department Analysis", "Validation Report", "Statistics", "Raw Data"
+        "Department Analysis", "Raw Data"
     ])
     
     with tab1:
@@ -241,61 +245,21 @@ def show_script_analysis():
         if "parsed_data" in results and "timeline" in results["parsed_data"]:
             timeline = results["parsed_data"]["timeline"]
             
-            # Create timeline visualization using plotly
-            import plotly.figure_factory as ff
-            import plotly.graph_objects as go
-            from datetime import datetime, timedelta
-            
-            # Convert timeline data to plotly format
-            tasks = []
-            start_times = []
-            finish_times = []
-            colors = []
-            
-            base_time = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+            # Display scene information in a table format
+            st.write("### Scene Breakdown")
+            scene_data = []
             for scene in timeline["scene_breakdown"]:
-                tasks.append(f"Scene {scene['scene_number']}")
-                start_time = datetime.strptime(scene['start_time'], "%H:%M:%S")
-                end_time = datetime.strptime(scene['end_time'], "%H:%M:%S")
-                start_times.append(base_time + timedelta(
-                    hours=start_time.hour,
-                    minutes=start_time.minute,
-                    seconds=start_time.second
-                ))
-                finish_times.append(base_time + timedelta(
-                    hours=end_time.hour,
-                    minutes=end_time.minute,
-                    seconds=end_time.second
-                ))
-                # Add color based on technical complexity
-                colors.append(f"rgb({min(255, scene['technical_complexity'] * 50)}, {max(0, 255 - scene['technical_complexity'] * 50)}, 100)")
+                scene_data.append({
+                    "Scene": f"Scene {scene['scene_number']}",
+                    "Start Time": scene['start_time'],
+                    "End Time": scene['end_time'],
+                    "Location": scene['location'],
+                    "Characters": ", ".join(scene['characters']),
+                    "Technical Complexity": scene['technical_complexity'],
+                    "Setup Time": f"{scene['setup_time']} minutes"
+                })
             
-            fig = ff.create_gantt(
-                df=[dict(
-                    Task=task,
-                    Start=start,
-                    Finish=finish,
-                    Color=color
-                ) for task, start, finish, color in zip(tasks, start_times, finish_times, colors)],
-                index_col='Task',
-                show_colorbar=True,
-                group_tasks=True,
-                showgrid_x=True,
-                showgrid_y=True
-            )
-            
-            # Add scene information on hover
-            for i, scene in enumerate(timeline["scene_breakdown"]):
-                fig.data[i].hovertemplate = f"""
-                Scene {scene['scene_number']}<br>
-                Location: {scene['location']}<br>
-                Characters: {', '.join(scene['characters'])}<br>
-                Technical Complexity: {scene['technical_complexity']}<br>
-                Setup Time: {scene['setup_time']} minutes<br>
-                <extra></extra>
-                """
-            
-            st.plotly_chart(fig, use_container_width=True)
+            st.table(scene_data)
             
             # Display scene duration statistics
             col1, col2, col3 = st.columns(3)
@@ -311,34 +275,7 @@ def show_script_analysis():
         if "parsed_data" in results and "scenes" in results["parsed_data"]:
             scenes = results["parsed_data"]["scenes"]
             
-            # Scene complexity analysis
-            complexity_data = []
-            for scene in scenes:
-                score = 0
-                # Calculate complexity based on various factors
-                score += len(scene.get("technical_cues", []))
-                score += len(scene.get("main_characters", []))
-                score += sum(len(notes) for notes in scene.get("department_notes", {}).values())
-                
-                complexity_data.append({
-                    "Scene": f"Scene {scene['scene_number']}",
-                    "Complexity Score": score,
-                    "Location": scene["location"]["place"],
-                    "Time": scene["time"]
-                })
-            
-            # Create complexity bar chart
-            fig = px.bar(
-                complexity_data,
-                x="Scene",
-                y="Complexity Score",
-                color="Location",
-                title="Scene Complexity Analysis",
-                hover_data=["Time"]
-            )
-            st.plotly_chart(fig, use_container_width=True)
-            
-            # Scene details in expanders
+            # Display scene analysis in a structured format
             for scene in scenes:
                 with st.expander(f"Scene {scene['scene_number']} - {scene['location']['place']} ({scene['time']})"):
                     col1, col2 = st.columns(2)
@@ -348,6 +285,12 @@ def show_script_analysis():
                         st.write(scene["description"])
                         st.write("**Main Characters:**")
                         st.write(", ".join(scene["main_characters"]))
+                        
+                        # Add complexity information
+                        complexity_score = len(scene.get("technical_cues", [])) + \
+                                        len(scene.get("main_characters", [])) + \
+                                        sum(len(notes) for notes in scene.get("department_notes", {}).values())
+                        st.write("**Complexity Score:**", complexity_score)
                         
                     with col2:
                         st.write("**Technical Cues:**")
@@ -455,95 +398,6 @@ def show_script_analysis():
                                 st.write(f"- {note}")
     
     with tab5:
-        st.subheader("Validation Report")
-        if "validation" in results:
-            validation = results["validation"]
-            
-            # Display validation status
-            if validation.get("is_valid", False):
-                st.success("✅ Script validation passed")
-            else:
-                st.warning("⚠️ Script validation has issues")
-            
-            # Display issues
-            if "validation_report" in validation:
-                report = validation["validation_report"]
-                
-                # Group issues by category
-                issues_by_category = {}
-                for issue in report.get("issues", []):
-                    category = issue["category"]
-                    if category not in issues_by_category:
-                        issues_by_category[category] = []
-                    issues_by_category[category].append(issue)
-                
-                # Display issues by category
-                for category, issues in issues_by_category.items():
-                    with st.expander(f"{category.title()} Issues"):
-                        for issue in issues:
-                            col1, col2 = st.columns([1, 3])
-                            with col1:
-                                if issue["type"] == "error":
-                                    st.error("Error")
-                                else:
-                                    st.warning("Warning")
-                            with col2:
-                                st.write(f"**Scene:** {issue.get('scene_number', 'Global')}")
-                                st.write(issue["description"])
-                                st.write(f"_Suggestion: {issue['suggestion']}_")
-                
-                # Display scene validations
-                st.write("### Scene Validation Details")
-                for scene_validation in report.get("scene_validations", []):
-                    with st.expander(f"Scene {scene_validation['scene_number']} Validation"):
-                        for check in scene_validation["checks"]:
-                            if check["status"] == "pass":
-                                st.success(f"✅ {check['check_name']}")
-                            else:
-                                st.error(f"❌ {check['check_name']}: {check['details']}")
-    
-    with tab6:
-        st.subheader("Statistics")
-        if "metadata" in results and "statistics" in results["metadata"]:
-            stats = results["metadata"]["statistics"]
-            
-            # Display key metrics
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                st.metric("Total Scenes", stats["total_scenes"])
-                st.metric("Total Pages", stats["total_pages"])
-            with col2:
-                st.metric("Estimated Runtime", stats["estimated_runtime"])
-                st.metric("Total Cast", stats["total_cast"])
-            with col3:
-                st.metric("Unique Locations", stats["unique_locations"])
-            
-            # Scene duration statistics
-            if "scene_statistics" in stats:
-                scene_stats = stats["scene_statistics"]  # Use the correct key
-                st.write("### Scene Duration Statistics")
-                
-                duration_data = {
-                    "Metric": ["Average", "Shortest", "Longest", "Total"],
-                    "Duration (minutes)": [
-                        scene_stats["average_duration"],
-                        scene_stats["shortest_scene"],
-                        scene_stats["longest_scene"],
-                        scene_stats["total_duration"]
-                    ]
-                }
-                
-                fig = px.bar(
-                    duration_data,
-                    x="Metric",
-                    y="Duration (minutes)",
-                    title="Scene Duration Analysis"
-                )
-                st.plotly_chart(fig, use_container_width=True)
-            else:
-                st.info("Scene duration statistics are not available.")
-    
-    with tab7:
         st.subheader("Raw Data")
         # Display parsed data
         if "parsed_data" in results:
@@ -555,18 +409,15 @@ def show_script_analysis():
             with st.expander("View Metadata", expanded=False):
                 st.json(results["metadata"])
         
-        # Display validation results
-        if "validation" in results:
-            with st.expander("View Validation Details", expanded=False):
-                st.json(results["validation"])
-        
         # Navigation buttons
         col1, col2 = st.columns([1, 2])
         with col1:
             if st.button("Generate One-Liner", type="primary"):
                 with st.spinner("Generating one-liner..."):
                     try:
-                        one_liner_data = asyncio.run(one_liner_coordinator.generate_one_liner(results))
+                        one_liner_data = asyncio.run(one_liner_agent.process(
+                            st.session_state.processed_data["script_analysis"]
+                        ))
                         save_to_storage(one_liner_data, 'one_liner_results.json')
                         st.session_state.current_step = 'One-Liner'
                         st.success("One-liner generated successfully!")
@@ -575,370 +426,119 @@ def show_script_analysis():
                         st.error(f"Error generating one-liner: {str(e)}")
 
 def show_one_liner():
-    st.header("One-Liner Summary")
+    st.markdown("## One-Liner Creation Module")
     
-    # Load results
+    # Check if script analysis is completed
     script_results = load_from_storage('script_ingestion_results.json')
-    one_liner_results = load_from_storage('one_liner_results.json')
-    
-    if not script_results or not one_liner_results:
+    if not script_results:
         st.warning("Please complete script analysis first.")
-        if st.button("Go to Script Analysis", type="primary"):
-            st.session_state.current_step = 'Script Analysis'
+        if st.button("Go to Script Analysis"):
+            st.session_state.current_step = "Script Analysis"
             st.rerun()
         return
     
-    # Initialize default data structures if missing
-    if not isinstance(one_liner_results, dict):
-        one_liner_results = {}
+    # Load or generate one-liners
+    one_liner_results = load_from_storage('one_liner_results.json')
     
-    summaries_data = one_liner_results.get("summaries", {})
-    if not isinstance(summaries_data, dict):
-        summaries_data = {}
-    
-    summaries = summaries_data.get("summaries", [])
-    if not isinstance(summaries, list):
-        summaries = []
-    
-    metadata = one_liner_results.get("metadata", {})
-    if not isinstance(metadata, dict):
-        metadata = {}
-    
-    workflow = one_liner_results.get("workflow", {})
-    if not isinstance(workflow, dict):
-        workflow = {}
-    
-    # Create tabs for different views
-    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
-        "Scene List", 
-        "Story Elements",
-        "Character Arcs",
-        "Department View",
-        "Workflow Status",
-        "Raw JSON Data"
-    ])
-    
-    with tab1:
-        st.subheader("Scene Summaries")
-        
-        # Get unique values for filters
-        characters = set()
-        emotions = set()
-        departments = set()
-        story_threads = set()
-        
-        for scene in summaries:
-            if not isinstance(scene, dict):
-                continue
-                
-            # Update character set
-            if "characters" in scene:
-                characters.update(scene["characters"].keys())
-            
-            # Update emotions set
-            if "emotional_tone" in scene:
-                emotions.add(scene["emotional_tone"])
-            
-            # Update departments set
-            if "department_focus" in scene:
-                departments.update(scene["department_focus"].keys())
-            
-            # Update story threads
-            if "story_thread" in scene:
-                story_threads.add(scene["story_thread"])
-        
-        # Filters
-        col1, col2, col3, col4 = st.columns(4)
-        with col1:
-            character_filter = st.multiselect("Filter by Character", sorted(list(characters)))
-        with col2:
-            emotion_filter = st.multiselect("Filter by Emotion", sorted(list(emotions)))
-        with col3:
-            dept_filter = st.multiselect("Filter by Department", sorted(list(departments)))
-        with col4:
-            thread_filter = st.multiselect("Filter by Story Thread", sorted(list(story_threads)))
-            
-        # Search
-        search_term = st.text_input("Search scenes", "").lower()
-        
-        # Filter scenes
-        filtered_scenes = []
-        for scene in summaries:
-            if not isinstance(scene, dict):
-                continue
-                
-            # Check if scene should be included based on filters
-            include_scene = True
-            
-            # Character filter
-            if character_filter:
-                scene_chars = scene.get("characters", {}).keys()
-                if not any(char in scene_chars for char in character_filter):
-                    include_scene = False
-            
-            # Emotion filter
-            if emotion_filter and scene.get("emotional_tone") not in emotion_filter:
-                include_scene = False
-            
-            # Department filter
-            if dept_filter:
-                scene_depts = scene.get("department_focus", {}).keys()
-                if not any(dept in scene_depts for dept in dept_filter):
-                    include_scene = False
-            
-            # Story thread filter
-            if thread_filter and scene.get("story_thread") not in thread_filter:
-                include_scene = False
-            
-            # Search filter
-            if search_term and search_term not in scene.get("summary", "").lower():
-                include_scene = False
-            
-            if include_scene:
-                filtered_scenes.append(scene)
-        
-        # Sort scenes by scene number
-        filtered_scenes.sort(key=lambda x: int(x.get("scene_number", "0")))
-        
-        # Scene list
-        for scene in filtered_scenes:
-            with st.expander(f"Scene {scene.get('scene_number', '?')} - {scene.get('summary', 'No summary')}", expanded=False):
-                col1, col2 = st.columns([2, 1])
-                
-                with col1:
-                    st.write("**Summary:**", scene.get("summary", "No summary available"))
-                    st.write("**Story Thread:**", scene.get("story_thread", "N/A"))
-                    st.write("**Emotional Tone:**", scene.get("emotional_tone", "N/A"))
-                    
-                    if "key_elements" in scene:
-                        st.write("**Key Elements:**")
-                        for element in scene["key_elements"]:
-                            st.markdown(f"- {element}")
-                
-                with col2:
-                    # Display approval status and modification options
-                    scene_id = str(scene.get('scene_number', '0'))
-                    approval_data = workflow.get("approval_data", {}) or {}
-                    current_status = approval_data.get(scene_id, {}).get("status", "pending")
-                    new_status = st.selectbox(
-                        "Status",
-                        ["pending", "approved", "needs_review"],
-                        index=["pending", "approved", "needs_review"].index(current_status),
-                        key=f"status_{scene_id}"
-                    )
-                    
-                    if new_status != current_status:
-                        if "workflow" not in one_liner_results:
-                            one_liner_results["workflow"] = {}
-                        if "approval_data" not in one_liner_results["workflow"]:
-                            one_liner_results["workflow"]["approval_data"] = {}
-                        if scene_id not in one_liner_results["workflow"]["approval_data"]:
-                            one_liner_results["workflow"]["approval_data"][scene_id] = {}
-                        
-                        one_liner_results["workflow"]["approval_data"][scene_id]["status"] = new_status
-                        one_liner_results["workflow"]["approval_data"][scene_id]["last_modified"] = datetime.now().isoformat()
-                        save_to_storage(one_liner_results, 'one_liner_results.json')
-                
-                # Department Focus
-                st.write("**Department Focus:**")
-                dept_cols = st.columns(4)
-                for i, (dept, notes) in enumerate(scene.get("department_focus", {}).items()):
-                    with dept_cols[i % 4]:
-                        st.write(f"_{dept.title()}_: {notes}")
-                
-                # Characters
-                st.write("**Characters:**")
-                char_cols = st.columns(2)
-                for i, (char_name, char_data) in enumerate(scene.get("characters", {}).items()):
-                    with char_cols[i % 2]:
-                        with st.container(border=True):
-                            st.write(f"**{char_name}**")
-                            st.write(f"Arc Point: {char_data.get('arc_point', 'N/A')}")
-                            st.write(f"Emotional State: {char_data.get('emotional_state', 'N/A')}")
-                            st.write(f"Motivation: {char_data.get('motivation', 'N/A')}")
-    
-    with tab2:
-        st.subheader("Story Elements")
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            # Story Threads
-            st.write("**Story Threads**")
-            story_threads = summaries_data.get("story_threads", {})
-            for thread, scenes in story_threads.items():
-                with st.expander(thread):
-                    st.write("Scenes:", ", ".join(scenes))
-            
-            # Themes and Motifs
-            if "story_elements" in metadata:
-                story_elements = metadata["story_elements"]
-                st.write("**Themes**")
-                for theme in story_elements.get("themes", []):
-                    st.markdown(f"- {theme}")
-                
-                st.write("**Motifs**")
-                for motif in story_elements.get("motifs", []):
-                    st.markdown(f"- {motif}")
-        
-        with col2:
-            # Emotional Journey
-            st.write("**Emotional Journey**")
-            emotional_journey = summaries_data.get("emotional_journey", {})
-            if emotional_journey:
-                fig = px.line(
-                    x=list(emotional_journey.keys()),
-                    y=list(emotional_journey.values()),
-                    title="Emotional Journey"
-                )
-                st.plotly_chart(fig, use_container_width=True)
-            
-            # Cross References
-            st.write("**Scene Connections**")
-            cross_refs = metadata.get("cross_references", {})
-            for scene_id, ref_data in cross_refs.items():
-                with st.expander(f"Scene {scene_id}"):
-                    st.write("Related Scenes:", ", ".join(ref_data.get("related_scenes", [])))
-                    st.write("Relationship:", ref_data.get("relationship_type", "N/A"))
-    
-    with tab3:
-        st.subheader("Character Arcs")
-        
-        character_arcs = summaries_data.get("character_arcs", {})
-        for char_name, arc_data in character_arcs.items():
-            with st.expander(char_name):
-                # Create a timeline of character's journey
-                for point in sorted(arc_data, key=lambda x: int(x["scene"])):
-                    with st.container(border=True):
-                        st.write(f"**Scene {point['scene']}**")
-                        st.write(f"Arc Point: {point.get('arc_point', 'N/A')}")
-                        st.write(f"Emotional State: {point.get('emotional_state', 'N/A')}")
-                        st.write(f"Motivation: {point.get('motivation', 'N/A')}")
-    
-    with tab4:
-        st.subheader("Department Views")
-        
-        # Department selector
-        dept = st.selectbox(
-            "Select Department",
-            ["camera", "lighting", "sound", "art", "wardrobe", "makeup"]
-        )
-        
-        # Get department insights
-        dept_insights = metadata.get("department_insights", {}).get(dept, [])
-        
-        if dept_insights:
-            # Display department-specific information
-            st.write(f"**{dept.title()} Department Notes**")
-            
-            # Create a timeline of department notes
-            for note in sorted(dept_insights, key=lambda x: int(x["scene"])):
-                with st.container(border=True):
-                    st.write(f"**Scene {note['scene']}**")
-                    st.write(note["notes"])
-            
-            # Display technical requirements if available
-            tech_reqs = one_liner_results.get("ui_metadata", {}).get("quick_references", {}).get("technical_requirements", {})
-            if tech_reqs:
-                st.write("**Technical Requirements**")
-                for req_type, reqs in tech_reqs.items():
-                    if req_type.startswith(dept):
-                        for req in reqs:
-                            st.markdown(f"- {req}")
-    
-    with tab5:
-        st.subheader("Workflow Status")
-        
-        # Get workflow data
-        workflow_status = workflow.get("status", {})
-        approval_data = workflow.get("approval_data", {}) or {}
-        
-        # Progress tracker
-        col1, col2 = st.columns(2)
-        with col1:
-            st.write("**Current Status:**", workflow_status.get("current_stage", "Not started").title())
-            st.write("**Started At:**", workflow_status.get("started_at", "N/A"))
-            st.write("**Completed At:**", workflow_status.get("completed_at", "N/A"))
-        
-        with col2:
-            # Calculate completion percentage
-            completed_stages = len(workflow_status.get("completed_stages", []))
-            total_stages = 3  # summary_generation, tag_processing, workflow_setup
-            progress = completed_stages / total_stages
-            st.progress(progress, text=f"Completion: {int(progress * 100)}%")
-        
-        # Completed Stages
-        st.write("**Completed Stages:**")
-        for stage in workflow_status.get("completed_stages", []):
-            with st.container(border=True):
-                st.write(f"Stage: {stage.get('stage', 'N/A')}")
-                st.write(f"Completed At: {stage.get('completed_at', 'N/A')}")
-                st.write(f"Success: {'✅' if stage.get('success') else '❌'}")
-        
-        # Warnings and Errors
-        if workflow_status.get("warnings"):
-            st.warning("**Warnings:**")
-            for warning in workflow_status["warnings"]:
-                st.write(f"- {warning}")
-        
-        if workflow_status.get("errors"):
-            st.error("**Errors:**")
-            for error in workflow_status["errors"]:
-                st.write(f"- {error}")
-    
-    with tab6:
-        st.subheader("Raw JSON Data")
-        
-        # Create expandable sections for different parts of the JSON data
-        with st.expander("Scene Summaries", expanded=True):
-            st.json(summaries_data)
-        
-        with st.expander("Metadata"):
-            st.json(metadata)
-        
-        with st.expander("Workflow Data"):
-            st.json(workflow)
-        
-        with st.expander("UI Metadata"):
-            st.json(one_liner_results.get("ui_metadata", {}))
-        
-        with st.expander("Complete Raw JSON"):
-            st.json(one_liner_results)
-        
-        # Add download button for the complete JSON
-        st.download_button(
-            "Download Complete JSON",
-            data=json.dumps(one_liner_results, indent=2),
-            file_name="one_liner_data.json",
-            mime="application/json"
-        )
-    
-    # Navigation buttons
-    st.divider()
-    col1, col2 = st.columns([1, 2])
-    with col1:
-        if st.button("Analyze Characters", type="primary"):
-            with st.spinner("Analyzing characters..."):
+    if not one_liner_results:
+        if st.button("Generate One-Liners", type="primary"):
+            with st.spinner("Generating one-liner summaries..."):
                 try:
-                    character_data = asyncio.run(character_coordinator.process_script(script_results))
-                    save_to_storage(character_data, 'character_breakdown_results.json')
-                    st.session_state.current_step = 'Character Breakdown'
-                    st.success("Character analysis completed!")
+                    one_liner_results = one_liner_agent.process(script_results)
+                    save_to_storage(one_liner_results, 'one_liner_results.json')
+                    st.success("One-liners generated successfully!")
                     st.rerun()
                 except Exception as e:
-                    st.error(f"Error analyzing characters: {str(e)}")
+                    logger.error(f"Error generating one-liners: {str(e)}", exc_info=True)
+                    st.error(f"Failed to generate one-liners: {str(e)}")
+                    if hasattr(e, 'details'):
+                        with st.expander("View Error Details"):
+                            st.code(e.details)
+                    return
+        return
+    
+    # Display one-liners in a more organized way
+    st.markdown("### Scene Summaries")
+    
+    # Extract scenes from the results
+    scenes = one_liner_results.get("scenes", [])
+    
+    # Create columns for better organization
+    col1, col2 = st.columns([3, 1])
+    
+    with col1:
+        for scene in sorted(scenes, key=lambda x: x.get("scene_number", 0)):
+            with st.container(border=True):
+                st.markdown(f"**Scene {scene.get('scene_number', '?')}**")
+                st.write(scene.get("one_liner", "No summary available"))
+    
+    with col2:
+        st.markdown("### Export Options")
+        
+        # Add regenerate button at the top
+        if st.button("🔄 Regenerate One-Liners", type="primary"):
+            with st.spinner("Regenerating one-liner summaries..."):
+                try:
+                    one_liner_results = one_liner_agent.process(script_results)
+                    save_to_storage(one_liner_results, 'one_liner_results.json')
+                    st.success("One-liners regenerated successfully!")
+                    st.rerun()
+                except Exception as e:
+                    logger.error(f"Error regenerating one-liners: {str(e)}", exc_info=True)
+                    st.error(f"Failed to regenerate one-liners: {str(e)}")
+                    if hasattr(e, 'details'):
+                        with st.expander("View Error Details"):
+                            st.code(e.details)
+        
+        st.markdown("---")  # Add a separator
+        
+        # Add download button for JSON
+        json_str = json.dumps(one_liner_results, indent=2)
+        st.download_button(
+            label="Download One-Liners (JSON)",
+            data=json_str,
+            file_name="one_liners.json",
+            mime="application/json",
+            help="Download the one-liner summaries in JSON format"
+        )
+        
+        # Add copy to clipboard option
+        if st.button("Copy All to Clipboard"):
+            # Format the text for clipboard
+            clipboard_text = "\n\n".join([
+                f"Scene {scene.get('scene_number', '?')}:\n{scene.get('one_liner', 'No summary available')}"
+                for scene in sorted(scenes, key=lambda x: x.get("scene_number", 0))
+            ])
+            st.code(clipboard_text)
+            st.success("Text copied to clipboard! Use the code block above to copy.")
 
 def show_character_breakdown():
     st.header("Character Breakdown")
+    
+    # Initialize breakdown_results first
+    breakdown_results = load_from_storage('character_breakdown_results.json')
     script_results = load_from_storage('script_ingestion_results.json')
     
     if not script_results:
         st.warning("Please upload and process a script first.")
         return
     
+    # Check if we need to generate character breakdown
+    if not breakdown_results:
+        if st.button("Generate Character Breakdown", type="primary"):
+            with st.spinner("Analyzing characters..."):
+                try:
+                    breakdown_results = asyncio.run(character_coordinator.process_script(script_results))
+                    save_to_storage(breakdown_results, 'character_breakdown_results.json')
+                    st.success("Character breakdown generated!")
+                    st.rerun()
+                except Exception as e:
+                    logger.error(f"Error generating character breakdown: {str(e)}", exc_info=True)
+                    st.error(f"An error occurred: {str(e)}")
+        return
+    
     # Add tabs for different views
-    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
-        "Character List", 
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "Character Profiles",
         "Arc & Relationships",
         "Scene Matrix",
@@ -947,78 +547,6 @@ def show_character_breakdown():
     ])
     
     with tab1:
-        # Load character breakdown results
-        breakdown_results = load_from_storage('character_breakdown_results.json')
-        
-        if not breakdown_results:
-            if st.button("Generate Character Breakdown", type="primary"):
-                with st.spinner("Analyzing characters..."):
-                    try:
-                        breakdown_results = asyncio.run(character_coordinator.process_script(script_results))
-                        save_to_storage(breakdown_results, 'character_breakdown_results.json')
-                        st.success("Character breakdown generated!")
-                        st.rerun()
-                    except Exception as e:
-                        logger.error(f"Error generating character breakdown: {str(e)}", exc_info=True)
-                        st.error(f"An error occurred: {str(e)}")
-        else:
-            # Character List View
-            if "characters" in breakdown_results:
-                # Sorting options
-                sort_by = st.selectbox(
-                    "Sort by",
-                    ["Importance", "Screen Time", "First Appearance", "Name"],
-                    key="char_sort"
-                )
-                
-                # Create sortable character list
-                characters = []
-                for char_name, char_data in breakdown_results["characters"].items():
-                    char_info = {
-                        "name": char_name,
-                        "importance_score": char_data.get("importance_score", 0.0),
-                        "screen_time": char_data.get("screen_time_percentage", 0.0),
-                        "first_appearance": min([
-                            int(scene.get("scene", 0)) 
-                            for scene in char_data.get("scene_presence", [])
-                        ]) if char_data.get("scene_presence") else 0,
-                        "total_scenes": len(char_data.get("scene_presence", [])),
-                        "role_type": char_data.get("role_type", "Unknown"),
-                        "primary_emotion": char_data.get("emotional_range", {}).get("primary_emotion", "Unknown"),
-                        "main_objective": char_data.get("objectives", {}).get("main_objective", "Unknown")
-                    }
-                    characters.append(char_info)
-                
-                # Sort characters
-                if sort_by == "Importance":
-                    characters.sort(key=lambda x: x["importance_score"], reverse=True)
-                elif sort_by == "Screen Time":
-                    characters.sort(key=lambda x: x["screen_time"], reverse=True)
-                elif sort_by == "First Appearance":
-                    characters.sort(key=lambda x: x["first_appearance"])
-                else:
-                    characters.sort(key=lambda x: x["name"])
-                
-                # Display character grid
-                cols = st.columns(2)
-                for i, char in enumerate(characters):
-                    with cols[i % 2]:
-                        with st.container(border=True):
-                            st.subheader(char["name"])
-                            st.write(f"**Primary Emotion:** {char['primary_emotion']}")
-                            st.write(f"**Main Objective:** {char['main_objective']}")
-                            st.metric(
-                                "Importance Score",
-                                f"{char['importance_score']:.2f}",
-                                f"{char['screen_time']:.1f}% screen time"
-                            )
-                            st.write(f"**First Appearance:** Scene {char['first_appearance']}")
-                            st.write(f"**Total Scenes:** {char['total_scenes']}")
-                            if st.button("View Profile", key=f"view_{char['name']}"):
-                                st.session_state.selected_character = char["name"]
-                                st.rerun()
-    
-    with tab2:
         # Character Profiles View
         if breakdown_results and "characters" in breakdown_results:
             # Character selector
@@ -1194,7 +722,7 @@ def show_character_breakdown():
                                         for effect in entry["special_effects"]:
                                             st.write(f"- {effect}")
     
-    with tab3:
+    with tab2:
         if breakdown_results:
             # Relationship Network
             st.write("### Character Relationships")
@@ -1230,7 +758,7 @@ def show_character_breakdown():
                                     st.write(f"Conflict: {conflict.get('conflict', 'N/A')}")
                                     st.write(f"Resolution: {conflict.get('resolution', 'N/A')}")
     
-    with tab4:
+    with tab3:
         if breakdown_results and "scene_matrix" in breakdown_results:
             st.write("### Scene Matrix")
             
@@ -1263,7 +791,7 @@ def show_character_breakdown():
                         st.write(f"**Type:** {interaction.get('type', 'N/A')}")
                         st.write(f"**Significance:** {interaction.get('significance', 0.0):.2f}")
     
-    with tab5:
+    with tab4:
         if breakdown_results and "statistics" in breakdown_results:
             stats = breakdown_results["statistics"]
             
@@ -1332,7 +860,7 @@ def show_character_breakdown():
                     df = pd.DataFrame(costume_data)
                     st.dataframe(df, use_container_width=True)
     
-    with tab6:
+    with tab5:
         if breakdown_results:
             st.json(breakdown_results)
             
@@ -2125,12 +1653,20 @@ def show_budget():
 
 def show_storyboard():
     st.header("Storyboard Generation")
+    logger.info("Starting storyboard view")
+    
+    # Define the absolute path for storyboards
+    STORYBOARD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "storage", "storyboards")
+    os.makedirs(STORYBOARD_DIR, exist_ok=True)
+    logger.info(f"Using storyboard directory: {STORYBOARD_DIR}")
     
     # Load required data from previous steps
     script_results = load_from_storage('script_ingestion_results.json')
+    logger.info(f"Script results loaded: {bool(script_results)}")
     
     if not script_results:
         st.warning("Please complete script analysis first.")
+        logger.warning("No script results found")
         return
 
     # Create tabs for different views
@@ -2139,15 +1675,18 @@ def show_storyboard():
     with tab1:
         # Load storyboard results
         storyboard_results = load_from_storage('storyboard_results.json')
+        logger.info(f"Storyboard results loaded: {bool(storyboard_results)}")
         
         # Add a prominent storyboard generation button at the top
         if not storyboard_results:
             st.subheader("Generate New Storyboard")
             if st.button("🎬 GENERATE STORYBOARD 🎬", key="main_storyboard_button", type="primary", use_container_width=True):
+                logger.info("Starting storyboard generation")
                 with st.spinner("Generating storyboard images..."):
                     try:
                         # Get current settings
                         settings = load_from_storage('storyboard_settings.json') or {}
+                        logger.info(f"Loaded storyboard settings: {bool(settings)}")
                         
                         # Generate storyboard using coordinator with settings
                         storyboard_results = asyncio.run(
@@ -2157,7 +1696,15 @@ def show_storyboard():
                             )
                         )
                         
+                        # Update image paths to absolute paths
+                        if "scenes" in storyboard_results:
+                            for scene in storyboard_results["scenes"]:
+                                if "image_path" in scene:
+                                    scene["image_path"] = os.path.join(STORYBOARD_DIR, f"scene_{scene.get('scene_id', '')}.webp")
+                                    logger.info(f"Updated image path for scene {scene.get('scene_id', '')}: {scene['image_path']}")
+                        
                         save_to_storage(storyboard_results, 'storyboard_results.json')
+                        logger.info("Storyboard generation completed successfully")
                         st.success("Storyboard generated!")
                         st.rerun()
                     except Exception as e:
@@ -2168,32 +1715,19 @@ def show_storyboard():
             # Display storyboard images
             if "scenes" in storyboard_results:
                 st.subheader("Storyboard Sequence")
+                logger.info(f"Number of scenes in storyboard: {len(storyboard_results['scenes'])}")
                 
                 # Add sequence controls
                 col1, col2 = st.columns([3, 1])
                 with col1:
                     view_mode = st.radio("View Mode", ["Grid", "Slideshow"], horizontal=True)
-                with col2:
-                    if st.button("Reorder Sequence"):
-                        scene_order = [s["scene_id"] for s in storyboard_results["scenes"]]
-                        new_order = st.text_input("Enter scene IDs in desired order (comma-separated)", 
-                                                ",".join(scene_order))
-                        if st.button("Apply New Order"):
-                            try:
-                                new_order = [s.strip() for s in new_order.split(",")]
-                                storyboard_results = asyncio.run(
-                                    storyboard_coordinator.reorder_sequence(storyboard_results, new_order)
-                                )
-                                save_to_storage(storyboard_results, 'storyboard_results.json')
-                                st.success("Sequence updated!")
-                                st.rerun()
-                            except Exception as e:
-                                st.error(f"Error reordering sequence: {str(e)}")
+                    logger.info(f"Selected view mode: {view_mode}")
                 
                 if view_mode == "Grid":
                     # Organize scenes into rows
                     scenes = storyboard_results.get("scenes", [])
                     num_cols = st.select_slider("Panels per row", options=[2, 3, 4], value=3)
+                    logger.info(f"Grid view: {num_cols} panels per row")
                     
                     for i in range(0, len(scenes), num_cols):
                         row_scenes = scenes[i:i+num_cols]
@@ -2201,10 +1735,18 @@ def show_storyboard():
                         
                         for j, scene in enumerate(row_scenes):
                             with cols[j]:
-                                if "image_path" in scene and scene["image_path"]:
-                                    # Display the image
-                                    st.image(scene["image_path"], 
+                                # Get the absolute path for the image
+                                image_path = os.path.join(STORYBOARD_DIR, f"scene_{scene.get('scene_id', '')}.webp")
+                                logger.info(f"Checking image path for scene {scene.get('scene_id', '')}: {image_path}")
+                                
+                                if os.path.exists(image_path):
+                                    logger.info(f"Image found at path: {image_path}")
+                                    st.image(image_path, 
                                            caption=f"Scene {scene.get('scene_id', '?')} - {scene.get('technical_params', {}).get('shot_type', 'MS')}")
+                                    
+                                    # Update the path in the scene data
+                                    scene["image_path"] = image_path
+                                    logger.info(f"Updated image path in scene data to: {image_path}")
                                     
                                     # Display prompt
                                     with st.expander("View Prompt"):
@@ -2213,45 +1755,24 @@ def show_storyboard():
                                         if "enhanced_prompt" in scene:
                                             st.write("**Enhanced Prompt:**")
                                             st.write(scene["enhanced_prompt"])
-                                    
-                                    # Scene details and annotations
-                                    with st.expander("Scene Details & Annotations"):
-                                        st.write(f"**Scene:** {scene.get('scene_id', 'Unknown')}")
-                                        st.write(f"**Shot Type:** {scene.get('technical_params', {}).get('shot_type', 'MS')}")
-                                        st.write(f"**Style:** {scene.get('technical_params', {}).get('style', 'realistic')}")
-                                        st.write(f"**Description:** {scene.get('description', 'No description')}")
-                                        
-                                        # Annotations
-                                        st.divider()
-                                        st.write("**Annotations:**")
-                                        for annotation in scene.get("annotations", []):
-                                            st.text(f"- {annotation['text']}")
-                                        
-                                        # Add new annotation
-                                        new_annotation = st.text_input("Add annotation", key=f"annot_{scene['scene_id']}")
-                                        if st.button("Add", key=f"add_annot_{scene['scene_id']}"):
-                                            try:
-                                                storyboard_results = asyncio.run(
-                                                    storyboard_coordinator.add_annotation(
-                                                        storyboard_results,
-                                                        scene["scene_id"],
-                                                        new_annotation
-                                                    )
-                                                )
-                                                save_to_storage(storyboard_results, 'storyboard_results.json')
-                                                st.success("Annotation added!")
-                                                st.rerun()
-                                            except Exception as e:
-                                                st.error(f"Error adding annotation: {str(e)}")
                                 else:
-                                    st.error(f"Scene {scene.get('scene_id', '?')} - No image available")
+                                    logger.error(f"Image not found at path: {image_path}")
+                                    st.error(f"Scene {scene.get('scene_id', '?')} - Image not found")
                 else:  # Slideshow mode
                     scenes = storyboard_results.get("scenes", [])
-                    if "current_scene_index" not in st.session_state:
+                    if not scenes:
+                        st.warning("No scenes found in storyboard.")
+                        return
+                    
+                    # Initialize current scene index in session state if not present
+                    if 'current_scene_index' not in st.session_state:
                         st.session_state.current_scene_index = 0
+                    
                     current_scene = st.session_state.current_scene_index
                     
-                    col1, col2, col3 = st.columns([1, 3, 1])
+                    # Navigation controls
+                    col1, col2, col3 = st.columns([1, 4, 1])
+                    
                     with col1:
                         if st.button("⬅️ Previous") and current_scene > 0:
                             st.session_state.current_scene_index = current_scene - 1
@@ -2259,45 +1780,32 @@ def show_storyboard():
                     
                     with col2:
                         scene = scenes[current_scene]
-                        if "image_path" in scene and scene["image_path"]:
-                            st.image(scene["image_path"], use_column_width=True)
-                            st.write(f"**Scene {scene.get('scene_id', '?')} - {scene.get('technical_params', {}).get('shot_type', 'MS')}**")
+                        st.write(f"### Scene {scene.get('scene_id', '?')}")
+                        
+                        # Get the absolute path for the image
+                        image_path = os.path.join(STORYBOARD_DIR, f"scene_{scene.get('scene_id', '')}.webp")
+                        
+                        if os.path.exists(image_path):
+                            st.image(image_path, use_column_width=True)
                             
-                            # Display prompt in slideshow view
-                            with st.expander("View Prompt", expanded=True):
+                            # Display scene details
+                            col1, col2 = st.columns(2)
+                            with col1:
+                                st.write("**Scene Description:**")
+                                st.write(scene.get("description", "No description available"))
+                            with col2:
+                                st.write("**Technical Notes:**")
+                                st.write(scene.get("technical_notes", "No technical notes available"))
+                            
+                            # Display prompt
+                            with st.expander("View Prompt"):
                                 st.write("**Original Prompt:**")
                                 st.write(scene.get("prompt", "No prompt available"))
                                 if "enhanced_prompt" in scene:
                                     st.write("**Enhanced Prompt:**")
                                     st.write(scene["enhanced_prompt"])
-                            
-                            # Scene details in columns
-                            det_col1, det_col2 = st.columns(2)
-                            with det_col1:
-                                st.write(f"**Shot Type:** {scene.get('technical_params', {}).get('shot_type', 'MS')}")
-                                st.write(f"**Style:** {scene.get('technical_params', {}).get('style', 'realistic')}")
-                            with det_col2:
-                                st.write(f"**Description:** {scene.get('description', 'No description')}")
-                            
-                            # Annotations
-                            with st.expander("Annotations", expanded=True):
-                                for annotation in scene.get("annotations", []):
-                                    st.text(f"- {annotation['text']}")
-                                new_annotation = st.text_input("Add annotation", key=f"slide_annot_{scene['scene_id']}")
-                                if st.button("Add", key=f"slide_add_annot_{scene['scene_id']}"):
-                                    try:
-                                        storyboard_results = asyncio.run(
-                                            storyboard_coordinator.add_annotation(
-                                                storyboard_results,
-                                                scene["scene_id"],
-                                                new_annotation
-                                            )
-                                        )
-                                        save_to_storage(storyboard_results, 'storyboard_results.json')
-                                        st.success("Annotation added!")
-                                        st.rerun()
-                                    except Exception as e:
-                                        st.error(f"Error adding annotation: {str(e)}")
+                        else:
+                            st.error(f"Scene {scene.get('scene_id', '?')} - Image not found")
                     
                     with col3:
                         if st.button("Next ➡️") and current_scene < len(scenes) - 1:
@@ -2306,24 +1814,24 @@ def show_storyboard():
                     
                     # Progress bar
                     st.progress((current_scene + 1) / len(scenes))
-            
-            # Add regenerate button
-            if st.button("Regenerate Storyboard", key="regenerate_button", type="primary"):
-                with st.spinner("Regenerating storyboard images..."):
-                    try:
-                        settings = load_from_storage('storyboard_settings.json') or {}
-                        storyboard_results = asyncio.run(
-                            storyboard_coordinator.generate_storyboard(
-                                script_results,
-                                shot_settings=settings.get("shot_settings", {})
+                
+                # Add regenerate button
+                if st.button("Regenerate Storyboard", key="regenerate_button", type="primary"):
+                    with st.spinner("Regenerating storyboard images..."):
+                        try:
+                            settings = load_from_storage('storyboard_settings.json') or {}
+                            storyboard_results = asyncio.run(
+                                storyboard_coordinator.generate_storyboard(
+                                    script_results,
+                                    shot_settings=settings.get("shot_settings", {})
+                                )
                             )
-                        )
-                        save_to_storage(storyboard_results, 'storyboard_results.json')
-                        st.success("Storyboard regenerated!")
-                        st.rerun()
-                    except Exception as e:
-                        logger.error(f"Error regenerating storyboard: {str(e)}", exc_info=True)
-                        st.error(f"An error occurred: {str(e)}")
+                            save_to_storage(storyboard_results, 'storyboard_results.json')
+                            st.success("Storyboard regenerated!")
+                            st.rerun()
+                        except Exception as e:
+                            logger.error(f"Error regenerating storyboard: {str(e)}", exc_info=True)
+                            st.error(f"An error occurred: {str(e)}")
     
     with tab2:
         st.subheader("Shot Setup")
@@ -2706,6 +2214,62 @@ def display_day_calendar(events, day):
                             st.session_state.schedule_modified = True
     else:
         st.info("No events scheduled for this day")
+
+def download_image_from_replicate(output, save_path):
+    """Helper function to download and save images from Replicate output."""
+    try:
+        # Handle both single URL and FileOutput cases
+        if isinstance(output, str):
+            # If output is a direct URL string
+            response = httpx.get(output)
+            if response.status_code == 200:
+                with open(save_path, "wb") as f:
+                    f.write(response.content)
+                return True
+        elif hasattr(output, 'read'):
+            # If output is a FileOutput object
+            with open(save_path, "wb") as f:
+                f.write(output.read())
+            return True
+        return False
+    except Exception as e:
+        logger.error(f"Error downloading image: {str(e)}")
+        return False
+
+async def generate_image(prompt, scene_id):
+    """Generate image using Replicate API."""
+    try:
+        # Configure the model input
+        input_data = {
+            "prompt": prompt,
+            "num_inference_steps": 50,
+            "guidance_scale": 7.5
+        }
+        
+        # Run the model
+        output = replicate.run(
+            "black-forest-labs/flux-schnell",
+            input=input_data
+        )
+        
+        # Handle the output
+        if output:
+            # Create the save directory if it doesn't exist
+            save_dir = os.path.join("static", "storage", "storyboards")
+            os.makedirs(save_dir, exist_ok=True)
+            
+            # Save each output image
+            saved_paths = []
+            for i, item in enumerate(output):
+                save_path = os.path.join(save_dir, f"scene_{scene_id}_{i}.webp")
+                if download_image_from_replicate(item, save_path):
+                    saved_paths.append(save_path)
+            
+            return saved_paths[0] if saved_paths else None
+            
+    except Exception as e:
+        logger.error(f"Error generating image for scene {scene_id}: {str(e)}")
+        return None
 
 if __name__ == '__main__':
     logger.info("Application started")

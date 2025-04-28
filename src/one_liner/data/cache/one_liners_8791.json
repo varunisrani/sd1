@@ -1,0 +1,29 @@
+{
+  "production_title": "Untitled",
+  "scenes": [
+    {
+      "scene_number": 1,
+      "one_liner": "Ela monitors eerie radio static alone on a moonlit deserted highway."
+    },
+    {
+      "scene_number": 2,
+      "one_liner": "Ela deciphers urgent coordinates from Marcus\u2019s faint radio distress inside tent."
+    },
+    {
+      "scene_number": 3,
+      "one_liner": "Flashback: Marcus struggles inside damaged spacecraft amid sparking systems failure."
+    },
+    {
+      "scene_number": 4,
+      "one_liner": "Sheriff Miller drives determinedly down Desolation Road toward crash coordinates."
+    },
+    {
+      "scene_number": 5,
+      "one_liner": "Sheriff Miller and Ela arrive, aiding weakened Marcus at the crash site."
+    },
+    {
+      "scene_number": 6,
+      "one_liner": "At dawn, Ela and Sheriff reflect quietly on Marcus\u2019s survival."
+    }
+  ]
+}

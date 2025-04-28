@@ -1,0 +1,109 @@
+{
+  "dialogue_analysis": {
+    "total_lines": 5,
+    "total_words": 14,
+    "average_line_length": 2.8,
+    "vocabulary_complexity": 1.5,
+    "patterns": {
+      "common_phrases": [
+        "status report",
+        "reboot comms"
+      ],
+      "speech_style": "urgent and technical",
+      "emotional_markers": [
+        "faint",
+        "urgent",
+        "weak"
+      ]
+    }
+  },
+  "action_sequences": [
+    {
+      "scene": "3",
+      "sequence": "Struggles inside damaged spacecraft.",
+      "interaction_type": "solitary, tech-based",
+      "emotional_context": "desperate"
+    },
+    {
+      "scene": "5",
+      "sequence": "Acknowledges Sheriff Miller and Ela.",
+      "interaction_type": "collaborative",
+      "emotional_context": "relieved"
+    }
+  ],
+  "emotional_range": {
+    "primary_emotion": "desperate",
+    "emotional_spectrum": [
+      "desperate",
+      "urgent",
+      "relieved"
+    ],
+    "emotional_journey": [
+      {
+        "scene": "3",
+        "emotion": "desperate",
+        "intensity": 0.9,
+        "trigger": "spacecraft failure"
+      },
+      {
+        "scene": "5",
+        "emotion": "relieved",
+        "intensity": 0.8,
+        "trigger": "rescue"
+      }
+    ]
+  },
+  "scene_presence": [],
+  "objectives": {},
+  "costumes": [],
+  "makeup": {
+    "base": {
+      "item": "Distressed and sweaty"
+    },
+    "timeline": [
+      {
+        "scene": "3",
+        "changes": {
+          "item": "Add cuts and bruises"
+        },
+        "special_effects": [
+          "Blood makeup"
+        ]
+      },
+      {
+        "scene": "5",
+        "changes": {
+          "item": "Enhance bruises"
+        },
+        "special_effects": []
+      }
+    ]
+  },
+  "props": {
+    "base": [
+      "Comms device"
+    ],
+    "timeline": [
+      {
+        "scene": "3",
+        "additions": [
+          "none"
+        ],
+        "removals": [
+          "none"
+        ]
+      },
+      {
+        "scene": "5",
+        "additions": [],
+        "removals": [
+          "Comms device"
+        ]
+      }
+    ]
+  },
+  "casting_requirements": {},
+  "audition_notes": [],
+  "importance_score": 0.0,
+  "screen_time_percentage": 0.0
+}
