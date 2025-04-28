@@ -29,6 +29,15 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Configure Streamlit file watcher
+try:
+    # Reduce file watch frequency
+    st.config.set_option('server.fileWatcherType', 'poll')
+    st.config.set_option('server.maxUploadSize', 200)
+    st.config.set_option('server.maxMessageSize', 200)
+except Exception as e:
+    logger.warning(f"Could not configure file watcher: {e}")
+
 # Initialize coordinators
 script_coordinator = ScriptIngestionCoordinator()
 character_coordinator = CharacterBreakdownCoordinator()
@@ -96,7 +105,20 @@ def reset_storage():
         logger.error(f"Error resetting storage: {str(e)}", exc_info=True)
         return False, f"Error resetting storage: {str(e)}"
 
+def configure_watchdog():
+    """Configure watchdog settings for file system monitoring."""
+    try:
+        import watchdog.observers
+        watchdog.observers.Observer.DEFAULT_OBSERVER_TIMEOUT = 10  # Increase timeout
+        return True
+    except Exception as e:
+        logger.error(f"Error configuring watchdog: {e}")
+        return False
+
 def main():
+    # Configure watchdog before starting the app
+    configure_watchdog()
+    
     st.title("Film Production Assistant")
     
     # Initialize session state
