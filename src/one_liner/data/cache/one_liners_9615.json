@@ -1,0 +1,33 @@
+{
+  "production_title": "Untitled Script",
+  "scenes": [
+    {
+      "scene_number": 1,
+      "one_liner": "Ela\u2019s isolated radio tent glows under moonlight on deserted highway at night."
+    },
+    {
+      "scene_number": 2,
+      "one_liner": "Ela urgently relays Marcus\u2019s distress over radio inside the tent at night."
+    },
+    {
+      "scene_number": 3,
+      "one_liner": "Flashback shows Marcus struggling with damaged spacecraft amid flickering sparks."
+    },
+    {
+      "scene_number": 4,
+      "one_liner": "Ela receives coordinates from Marcus and alerts Sheriff Miller for rescue."
+    },
+    {
+      "scene_number": 5,
+      "one_liner": "Sheriff Miller drives down Desolation Road, closing in on Marcus\u2019s crash site."
+    },
+    {
+      "scene_number": 6,
+      "one_liner": "Ela and Sheriff Miller find injured Marcus, offering hope with first aid."
+    },
+    {
+      "scene_number": 7,
+      "one_liner": "At dawn, Ela reflects on Marcus\u2019s survival as AI signals extraction readiness."
+    }
+  ]
+}
